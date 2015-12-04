@@ -65,7 +65,7 @@ namespace com.smartwork
             reviewerEmailAddressList.Add("hyman.zhang@missionsky.com");
             reviewerEmailAddressList.Add("feng.xuan@missionsky.com");
             reviewerEmailAddressList.Add("cheng.xu@missionsky.com");
-            reviewerEmailAddressList.Add("stephen.jin@missionsky.com");
+            reviewerEmailAddressList.Add("alex.li@missionsky.com");
             reviewerEmailAddressList.Add("shaun.qiu@missionsky.com");
 
             reviewerEmailAddressList.Add("mandy.zhou@missionsky.com");
@@ -196,7 +196,7 @@ namespace com.smartwork
             Reviewers.Add("Hyman", "Hyman.Zhang");
             Reviewers.Add("Feng", "Feng.Xuan");
             Reviewers.Add("Cheng", "Cheng.Xu");
-            Reviewers.Add("Stephen", "Stephen.Jin");
+            Reviewers.Add("Alex", "Alex.Li");
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
             Reviewers.Add("Linda", "Linda.Xiao");

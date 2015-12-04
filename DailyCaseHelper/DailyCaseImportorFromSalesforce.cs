@@ -53,8 +53,9 @@ namespace com.smartwork
             this.btnTopNCommentedCase.Enabled = false;
             this.btnShowHotCases.Enabled = false;
             this.btnShowScheduledCase.Enabled = false;
+            this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Smart Worker - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.0.1.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -66,6 +67,7 @@ namespace com.smartwork
                 this.btnTopNCommentedCase.Enabled = true;
                 this.btnShowHotCases.Enabled = true;
                 this.btnShowScheduledCase.Enabled = true;
+                this.btnShowPendingCases.Enabled = true;
             }
         }
 
@@ -106,7 +108,10 @@ namespace com.smartwork
                 {
                     if (reg.IsMatch(caseId))
                     {
-                        caseIdList.Add(caseId.Trim());
+                        if (!caseIdList.Contains(caseId.Trim()))
+                        {
+                            caseIdList.Add(caseId.Trim());
+                        }
                     }
                     else
                     {
@@ -121,11 +126,29 @@ namespace com.smartwork
                 }
             }
 
-            var GetCaseList = SalesforceProxy.GetCaseList(caseIdList);
-            var GetIssueList = JiraProxy.GetIssueList(caseIdList);
+            var caseList = new List<AccelaCase>();
+            var issueList = new List<Issue>();
 
-            var caseList = await GetCaseList;
-            var issueList = await GetIssueList;
+            int N = 1;
+            for (int i=0; i < caseIdList.Count; )
+            {
+                List<string> caseIdListTemp = new List<string>();
+                for (; i < N * 100 && i < caseIdList.Count; i++)
+                {
+                    caseIdListTemp.Add(caseIdList[i]);
+                }
+
+                N = N + 1;
+
+                var GetCaseList = SalesforceProxy.GetCaseList(caseIdListTemp);
+                var GetIssueList = JiraProxy.GetIssueList(caseIdListTemp);
+                
+                var caseListTmp = await GetCaseList;
+                var issueListTmp = await GetIssueList;
+                
+                caseList.AddRange(caseListTmp);
+                issueList.AddRange(issueListTmp);
+            }
 
             Dictionary<string, AccelaIssueCaseMapper> JiraMapping = new Dictionary<string, AccelaIssueCaseMapper>();
             foreach (var issue in issueList)
@@ -178,6 +201,7 @@ namespace com.smartwork
             table.Columns.Add("SFLastModified", typeof(string));
             table.Columns.Add("CaseComment", typeof(CaseComment));
             table.Columns.Add("TargetedRelease", typeof(string));
+            table.Columns.Add("BZID", typeof(string));
 
             Dictionary<string, string> Reviewers = new Dictionary<string, string>();
             Reviewers.Add("Jessy", "Jessy.Zhang");
@@ -188,6 +212,7 @@ namespace com.smartwork
             Reviewers.Add("Alvin", "Alvin.Li");
             Reviewers.Add("Mina", "Mina.Xiong");
 
+            Reviewers.Add("Alex", "Alex.Li");
             Reviewers.Add("Peter", "Peter.Peng");
             Reviewers.Add("John", "John.Huang");
             Reviewers.Add("Bass", "Bass.Yang");
@@ -202,8 +227,7 @@ namespace com.smartwork
             Reviewers.Add("Matt", "Matt.Ao");
             Reviewers.Add("Hyman", "Hyman.Zhang");
             Reviewers.Add("Feng", "Feng.Xuan");
-            Reviewers.Add("Cheng", "Cheng.Xu");
-            Reviewers.Add("Stephen", "Stephen.Jin");
+            Reviewers.Add("Cheng", "Cheng.Xu");           
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
             Reviewers.Add("Linda", "Linda.Xiao");
@@ -218,6 +242,8 @@ namespace com.smartwork
 
             Reviewers.Add("Jessie", "Jessie.Zhang");
             Reviewers.Add("William", "William.Wang");
+            Reviewers.Add("Iron", "Iron.Tang");
+            Reviewers.Add("Rev", "Rev.Vergara");
 
             Reviewers.Add("Carly", "Carly.Xu");
             Reviewers.Add("Janice", "Janice.Zhong");
@@ -299,6 +325,11 @@ namespace com.smartwork
                 row["Type"] = (String.IsNullOrEmpty(caseinfo.InternalType) ? caseinfo.Type : "Production " + caseinfo.InternalType);
                 row["Version"] = caseinfo.CurrentVersion;
                 customer = (caseinfo.Customer != null && !String.IsNullOrEmpty(caseinfo.Customer.Name) ? caseinfo.Customer.Name : (caseinfo.Account != null ? caseinfo.Account.Name : ""));
+                if (customer.IndexOf("Accela") >= 0 && caseinfo.Account != null && !String.IsNullOrEmpty(caseinfo.Account.Name))
+                {
+                    customer = caseinfo.Account.Name;
+                }
+
                 row["Customer"] = customer;
                 row["Summary"] = caseinfo.Subject;
                 row["Description"] = caseinfo.Description;
@@ -380,6 +411,7 @@ namespace com.smartwork
                 }
 
                 row["TargetedRelease"] = caseinfo.TargetedRelease;
+                row["BZID"] = caseinfo.BZID;
 
                 table.Rows.Add(row);
                 index++;
@@ -424,6 +456,7 @@ namespace com.smartwork
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>SF#</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Jira#</th> 
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Severity</th>
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Rank</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Version</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Type</th>
                                         <th align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Customer</th>
@@ -445,6 +478,7 @@ namespace com.smartwork
                 string caseNumber = "";
                 string jiraKey = "";
                 string priority = "";
+                int rank = 0;
                 string buildVersion = "";
                 string type = "";
                 string summary = "";
@@ -467,6 +501,7 @@ namespace com.smartwork
                     caseNumber = row["SalesforceID"] as string;
                     jiraKey = row["JiraKey"] as string;
                     priority = row["Severity"] as string;
+                    rank = (int)row["Rank"];
                     buildVersion = row["Version"] as string;
                     type = row["Type"] as string;
                     customer = row["Customer"] as string;
@@ -498,6 +533,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'><a href='https://na26.salesforce.com/{14}'><font style='{15}'>{2}</font></a></td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'><a href='https://accelaeng.atlassian.net/browse/{3}'>{3}</a></td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{4}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{16}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{5}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{6}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{7}</td>
@@ -508,11 +544,11 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{13}</td>
                                                     </tr>",
-                                                       (i + 1),
-                                                       product,
-                                                       caseNumber,
-                                                       jiraKey,
-                                                       priority,
+                                                       (i + 1),         // 0
+                                                       product,         // 1
+                                                       caseNumber,      // 2
+                                                       jiraKey,         // 3
+                                                       priority,        // 4
                                                        buildVersion,
                                                        type,
                                                        customer,
@@ -524,7 +560,8 @@ namespace com.smartwork
                                                        //jiaStstus,
                                                        comment,
                                                        caseId,
-                                                       "" //(isNeedDoubleReview ? "font-weight:bold;font-style:italic;color:red" : "color:green")
+                                                       "", //(isNeedDoubleReview ? "font-weight:bold;font-style:italic;color:red" : "color:green")
+                                                       (rank == 0 ? "" : "" + rank)
                                                        );
                 }
             }
@@ -541,7 +578,14 @@ namespace com.smartwork
 
             string subject = "Daily Case Review Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
 
-            EmailUtil.SendEmail(from, to, cc, subject, content);
+            try
+            {
+                EmailUtil.SendEmail(from, to, cc, subject, content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed to send email");
+            }
 
             this.btnSendDailyCaseSummaryReport.Enabled = true;
         }
@@ -550,13 +594,34 @@ namespace com.smartwork
         {
             this.btnTopNNewCase.Enabled = false;
 
-            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(150, this.chkOnlyV8000.Checked, this.chkExcludeV8000.Checked);
+            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(300, this.chkOnlyV8000.Checked, this.chkExcludeV8000.Checked);
 
             var caseList = await GetTopNNewCaseList;
             string caseIDs = "";
             bool isFirstOne = true;
             foreach (var caseinfo in caseList)
             {
+                if (caseinfo != null && String.IsNullOrEmpty(caseinfo.Product))
+                {
+                    continue;
+                }
+
+                if (caseinfo != null
+                    && caseinfo.Customer != null
+                    && !String.IsNullOrEmpty(caseinfo.Customer.Name)
+                    && caseinfo.Customer.Name.ToLower().IndexOf("test") >= 0)
+                {
+                    System.Console.WriteLine("Skip Case ID: " + caseinfo.CaseNumber + " because the customer name is " + caseinfo.Customer.Name);
+                    continue;
+                } else if (caseinfo != null
+                    && caseinfo.Account != null
+                    && !String.IsNullOrEmpty(caseinfo.Account.Name)
+                    && caseinfo.Account.Name.ToLower().IndexOf("test") >= 0)
+                {
+                    System.Console.WriteLine("Skip Case ID: " + caseinfo.CaseNumber + " because the customer name is " + caseinfo.Account.Name);
+                    continue;
+                }
+
                 if (isFirstOne)
                 {
                     caseIDs = caseinfo.CaseNumber;
@@ -583,6 +648,21 @@ namespace com.smartwork
             DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
             foreach (var caseinfo in caseList)
             {
+                if (caseinfo != null
+                    && caseinfo.Customer != null
+                    && !String.IsNullOrEmpty(caseinfo.Customer.Name)
+                    && caseinfo.Customer.Name.ToLower().IndexOf("test") >= 0)
+                {
+                    continue;
+                }
+                else if (caseinfo != null
+                  && caseinfo.Account != null
+                  && !String.IsNullOrEmpty(caseinfo.Account.Name)
+                  && caseinfo.Account.Name.ToLower().IndexOf("test") >= 0)
+                {
+                    continue;
+                }
+
                 if (caseinfo.CaseComments != null && caseinfo.CaseComments.Records.Count > 0)
                 {
                     CaseComment comment = caseinfo.CaseComments.Records[0];
@@ -634,6 +714,9 @@ namespace com.smartwork
                 string targetedRelease = "";
                 int reopenCount = 0;
                 string lastModifiedDate = "";
+                string bzid = String.Empty;
+                string jiraStstus = String.Empty;
+                string nextJiraStatus = String.Empty;
 
                 bool hotCase = false;
                 bool missionsky = false;
@@ -660,6 +743,8 @@ namespace com.smartwork
                     reopenCount = (String.IsNullOrEmpty(row["ReopenedCount"] as string) ? 0 : int.Parse(row["ReopenedCount"] as string));
                     reopenCount = reopenCount + 1;
                     lastModifiedDate = row["SFLastModified"] as string;
+                    targetedRelease = row["TargetedRelease"] as string;                    
+
                     DateTime temOpenDate;
 
                     if (this.chkOnlyImportCase.Checked)
@@ -722,6 +807,10 @@ namespace com.smartwork
                         {
                             jiraId = row["JiraId"] as string;
                             jiraKey = row["JiraKey"] as string;
+                            bzid = row["BZID"] as string;
+                            jiraStstus = row["JiraStatus"] as string;
+                            nextJiraStatus = row["NextJiraStatus"] as string;
+
                             Issue issue = new Issue();
                             issue.id = jiraId;
                             issue.key = jiraKey;
@@ -739,6 +828,19 @@ namespace com.smartwork
                                 issue.fields.labels.Add("Missionsky");
                             }
                             */
+
+                            if (!String.IsNullOrEmpty(bzid) && !issue.fields.labels.Contains("BUG_BUCKET"))
+                            {
+                                if ("Development in Progress" == jiraStstus || "Development in Progress" == nextJiraStatus)
+                                {
+                                    issue.fields.labels.Add("BUG_BUCKET");
+                                }
+
+                                if ("Close" == jiraStstus)
+                                {
+                                    issue.fields.labels.Remove("BUG_BUCKET");
+                                }
+                            }
 
                             if (hotCase && !issue.fields.labels.Contains("HotCase"))
                             {
@@ -773,12 +875,12 @@ namespace com.smartwork
                                 issue.fields.customfield_11501 = "Accela Ad Hoc";
                             }
 
-                            if ("Inspector" == product || "Civic Hero" == product || "Code Officer" == product || "Work Crew" == product || "Support Access" == product)
+                            if ("Inspector" == product || "Civic Hero" == product || "Code Officer" == product || "Work Crew" == product || "Support Access" == product || "PublicStuff" == product)
                             {
                                 issue.fields.customfield_11501 = "Accela Mobile";
                             }
 
-                            if ("Civic Cloud Platform" == product || "Accela Asset Management" == product || "Accela Licensing & Case Management" == product)
+                            if ("Civic Cloud Platform" == product || "Accela Asset Management" == product || "Accela Licensing & Case Management" == product || "EPC" == product)
                             {
                                 issue.fields.customfield_11501 = "Accela Automation";
                             }
@@ -937,8 +1039,15 @@ namespace com.smartwork
             }
             string cc = "rleung@accela.com;leo.liu@missionsky.com";
             string subject = "Daily Case Comment Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
-
-            EmailUtil.SendEmail(from, to, cc, subject, content);
+                        
+            try
+            {
+                EmailUtil.SendEmail(from, to, cc, subject, content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed to send email");
+            }
 
             this.btnSendDailyCommentEmail.Enabled = true;
 
@@ -964,6 +1073,7 @@ namespace com.smartwork
                 string jiraID = "";
                 string jiraStatus = "";
                 string jiraNextStatus = "";
+                string bzid = "";
 
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -972,6 +1082,7 @@ namespace com.smartwork
                     jiraID = row["JiraID"] as string;
                     jiraStatus = row["JiraStatus"] as string;
                     jiraNextStatus = row["NextJiraStatus"] as string;
+                    bzid = row["BZID"] as string;
 
                     if (!String.IsNullOrEmpty(jiraNextStatus))
                     {
@@ -1074,6 +1185,170 @@ namespace com.smartwork
                     this.grdCaseList.Rows[i].Cells[3].Value = false;
                 }
             }
+        }
+
+        private async void btnShowPendingCases_Click(object sender, EventArgs e)
+        {
+            btnShowPendingCases.Enabled = false;
+            this.txtCaseIDList.Text = "";
+
+            string caseLists = string.Empty;
+
+            List<string> statuses = new List<string>();
+            statuses.Add("Open");
+            statuses.Add("In Progress");
+            statuses.Add("Reopened");
+            statuses.Add("Pending");
+
+            foreach (string status in statuses)
+            {
+                var GetIssueListByStatus = JiraProxy.GetIssueListByStatus(status);
+                var issueList = await GetIssueListByStatus;
+
+                foreach (var issue in issueList)
+                {
+                    if (String.IsNullOrEmpty(caseLists))
+                    {
+                        caseLists = issue.fields.customfield_10600;
+                    }
+                    else
+                    {
+                        caseLists += "," + issue.fields.customfield_10600;
+                    }
+                }
+            }
+
+            this.txtCaseIDList.Text = caseLists;
+
+            btnShowPendingCases.Enabled = true;
+        }
+
+        private void btnSendCloseReport_Click(object sender, EventArgs e)
+        {
+            this.btnSendCloseReport.Enabled = false;
+
+            DataTable dataTable = this.grdCaseList.DataSource as DataTable;
+
+            DataView dataTableView = dataTable.DefaultView;
+            dataTableView.Sort = "Reviewer ASC";
+            dataTable = dataTableView.ToTable();
+
+            string dailyCaseSummary = "";
+            dailyCaseSummary = @"<table cellspacing='0px' cellpadding='1px' border='1px' style='border-color:black;font-size:14px'>
+                                    <tr>
+                                        <th align='center'>No</th>
+                                        <th align='center'>Product</th>                                       
+                                        <th align='center'>Salesforce ID</th>
+                                        <th align='center'>Jira Key</th> 
+                                        <th align='center'>Version</th>
+                                        <th align='center'>Priority</th>
+                                        <th align='center'>Customer</th>
+                                        <th align='center'>Summary</th>
+                                        <th align='left'>Reopened Times</th>
+                                        <th align='center'>Reviewer</th>
+                                        <th align='center'>SF Queue</th>    
+                                        <th align='center'>SF Status Count</th>                                    
+                                        <th align='left'>JIRA Status</th>
+                                    </tr>";
+
+            int count = 0;
+            if (dataTable != null)
+            {
+                int rowCount = dataTable.Rows.Count;
+                string product = "";
+                string caseId = "";
+                string caseNumber = "";
+                string jiraKey = "";
+                string buildVersion = "";
+                string priority = "";
+                string customer = "";
+                string summary = "";
+                string reopenCount = "";
+                string assignee = "";
+                string sfQueue = "";
+                string sfStatus = "";
+                string jiaStstus = "";
+                string jiraNextStatus = "";
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    DataRow row = dataTable.Rows[i];
+                    product = row["Product"] as string;
+                    caseId = row["ID"] as string;
+                    caseNumber = row["SalesforceID"] as string;
+                    jiraKey = row["JiraKey"] as string;
+                    buildVersion = row["Version"] as string;
+                    priority = row["Severity"] as string;
+                    customer = row["Customer"] as string;
+                    summary = row["Summary"] as string;
+                    reopenCount = row["ReopenedCount"] as string;
+                    assignee = row["Reviewer"] as string;
+                    sfQueue = row["SFQueue"] as string;
+                    sfStatus = row["SFStatus"] as string;
+                    jiaStstus = row["JiraStatus"] as string;
+
+                    if (!"Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    dailyCaseSummary += String.Format(@"<tr>
+                                                        <td align='center'>{0}</td>
+                                                        <td align='center'>{1}</td>
+                                                        <td align='center'><a href='https://na26.salesforce.com/{13}'>{2}</a></td>
+                                                        <td align='center'><a href='https://accelaeng.atlassian.net/browse/{3}'>{3}</a></td>
+                                                        <td align='center'>{4}</td>
+                                                        <td align='center'>{5}</td>
+                                                        <td align='center'>{6}</td>
+                                                        <td align='left'>{7}</td>
+                                                        <td align='center'>{8}</td>
+                                                        <td align='center'>{9}</td>
+                                                        <td align='center'>{10}</td>    
+                                                        <td align='center'>{11}</td>
+                                                        <td align='center'>{12}</td>
+                                                    </tr>",
+                                                       ++count,
+                                                       product,
+                                                       caseNumber,
+                                                       jiraKey,
+                                                       buildVersion,
+                                                       priority,
+                                                       customer,
+                                                       summary,
+                                                       reopenCount,
+                                                       assignee,
+                                                       sfQueue,
+                                                       sfStatus,
+                                                       jiaStstus,
+                                                       caseId
+                                                       );
+                }
+            }
+            dailyCaseSummary += "</table>";
+
+            if (count == 0)
+            {
+                this.btnSendCloseReport.Enabled = true;
+                return;
+            }
+
+            string content = @"Hi, All guys<br/><br/>Below is your closed cases today, please close them on JIRA accordingly.<br/><br/>" + dailyCaseSummary + "<br/><br/>Thanks<br/>Accela Support Team";
+            string from = "auto_sender@missionsky.com";
+            string to = "peter.peng@missionsky.com";
+            string cc = "peter.peng@missionsky.com;leo.liu@missionsky.com;";
+            string subject = "Closed Case List - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+                        
+            try
+            {
+                EmailUtil.SendEmail(from, to, cc, subject, content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed to send email");
+            }
+
+            this.btnSendCloseReport.Enabled = true;
         }
     }
 }

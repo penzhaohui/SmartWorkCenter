@@ -65,6 +65,22 @@ namespace com.smartwork.Proxy
             return issueList;
         }
 
+        public static async Task<List<Issue>> GetIssueListByStatus(string status)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = "project = ENGSUPP AND status = \"" + status + "\" AND reporter in (\"Peter.peng@missionsky.com\")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
+
         public static async Task<Issue> CreateIssue(IssueFields fields)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");

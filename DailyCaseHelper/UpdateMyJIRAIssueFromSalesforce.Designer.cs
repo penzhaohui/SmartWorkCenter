@@ -92,7 +92,7 @@
             this.NextStatus});
             this.grdCaseList.Location = new System.Drawing.Point(12, 75);
             this.grdCaseList.Name = "grdCaseList";
-            this.grdCaseList.Size = new System.Drawing.Size(1082, 641);
+            this.grdCaseList.Size = new System.Drawing.Size(1277, 674);
             this.grdCaseList.TabIndex = 8;
             // 
             // ID
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 728);
+            this.ClientSize = new System.Drawing.Size(1301, 767);
             this.Controls.Add(this.ddlReviewerEmailAddress);
             this.Controls.Add(this.btnSendTaskList);
             this.Controls.Add(this.btnSyncCaseInJiraAndSF);

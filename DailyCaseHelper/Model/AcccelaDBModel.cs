@@ -9,6 +9,11 @@ namespace com.smartwork.Model
     public class AcccelaDBModel
     {
         /// <summary>
+        /// Type_IP_Port_SID_U_P
+        /// </summary>
+        public string UniqueID { set; get; }
+
+        /// <summary>
         /// DB Type: Oracle or MSSQL
         /// </summary>
         public string Type { set; get; }

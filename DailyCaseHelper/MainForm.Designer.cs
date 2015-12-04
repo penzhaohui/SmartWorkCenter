@@ -253,7 +253,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Daily Case Helper";
+            this.Text = "Smart Worker";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);

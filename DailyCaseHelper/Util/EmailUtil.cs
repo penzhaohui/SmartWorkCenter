@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -15,8 +16,8 @@ namespace com.smartwork.Util
         {
             string host = "smtp.exmail.qq.com"; // from database table
             int port = 25;
-            string user = "auto_sender@missionsky.com";
-            string password = "Ms123456!";
+            string user = ConfigurationManager.AppSettings["email_user"];
+            string password = ConfigurationManager.AppSettings["email_password"];
             bool auth = true;
 
             /*** Below code is copied from http://www.cnblogs.com/youring2/archive/2008/11/29/1343911.html ***/

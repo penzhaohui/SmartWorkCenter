@@ -62,6 +62,7 @@ namespace com.smartwork.Proxy
 
         public static async Task<List<AccelaCase>> GetTopNNewCaseList(int n, bool isOnlyV80000 = false, bool isExclude80000 = false)
         {
+            /*
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
                                   case.createdby.name, status, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
                                   (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate 
@@ -71,16 +72,30 @@ namespace com.smartwork.Proxy
                             from case 
                             where status ='eng new'
                             and case.owner.name='engineering'
-                            and product__c != 'Springbrook' ";
+                            and product__c != 'Springbrook' 
+                            and product__c != 'SoftRight' 
+                            and product__c != 'Legislative Management' 
+                            and product__c != 'Environmental Health' ";
+             * */
+
+            string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
+                                  case.createdby.name, status, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name 
+                            from case 
+                            where status ='eng new'
+                            and case.owner.name='engineering'
+                            and product__c != 'Springbrook' 
+                            and product__c != 'SoftRight' 
+                            and product__c != 'Legislative Management' 
+                            and product__c != 'Environmental Health' ";
 
             if (isOnlyV80000)
             {
-                sql += " and current_version__c = '8.0.0.0.0' ";
+                sql += " and current_version__c like '8.%' ";
             }
 
             if (isExclude80000)
             {
-                sql += " and current_version__c <> '8.0.0.0.0' ";
+                sql += " and current_version__c <> '8.0.0.0.0' and current_version__c <> '8.0.1.0.0' ";
             }
 
             sql += "order by createddate desc limit " + n;
@@ -119,7 +134,10 @@ namespace com.smartwork.Proxy
                  
              sql += @" order by createddate desc) 
                        from case 
-                       where product__c <> 'Springbrook' and ( ";
+                       where product__c != 'Springbrook' 
+                       and product__c != 'SoftRight' 
+                       and product__c != 'Legislative Management' 
+                       and product__c != 'Environmental Health' and ( ";
 
             bool isFirstCase = true;
             foreach(string caseId in caseIdList)
@@ -153,7 +171,10 @@ namespace com.smartwork.Proxy
                                               case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
                                               case.createdby.name, status, internal_type__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name
                            from case 
-                           where product__c <> 'Springbrook' and ( ";
+                           where product__c != 'Springbrook' 
+                           and product__c != 'SoftRight' 
+                           and product__c != 'Legislative Management' 
+                           and product__c != 'Environmental Health' and ( ";
 
             sql += " casenumber='" + caseId + "' " + ")";
 
@@ -174,6 +195,9 @@ namespace com.smartwork.Proxy
                             where status ='eng new'
                             and case.owner.name='engineering'
                             and product__c != 'Springbrook' 
+                            and product__c != 'SoftRight' 
+                            and product__c != 'Legislative Management' 
+                            and product__c != 'Environmental Health'
                             and ( rank_order__c != null OR services_rank__c != null ) ";
 
             sql += "order by createddate desc limit " + n;

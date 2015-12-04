@@ -270,6 +270,11 @@ namespace TechTalk.JiraRestClient
                         {
                             updateData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
                         }
+                        // SF-Customer
+                        else if ("customfield_10900" == property.Name)
+                        {
+                            updateData.Add(property.Name, new[] { new { set = propertyNalue } });
+                        }
                         else
                         {
                             updateData.Add(property.Name, new[] { new { set = propertyNalue } });

@@ -30,9 +30,7 @@ namespace com.smartwork
             OracleConnection conn = new OracleConnection(connString);
             try
             {
-                conn.Open();
-
-              
+                conn.Open();              
 
                 OracleCommand cmd = conn.CreateCommand();
                 cmd.CommandText = @"SELECT DB_TYPE,
@@ -72,11 +70,13 @@ namespace com.smartwork
                      //accelaDBModel.CreatedDate = reader.GetOracleString(11).ToString();// DB_CREATED
                      accelaDBModel.Owner = reader.GetOracleString(12).ToString();       // USER_REQUESTOR
                      accelaDBModel.SFCase = reader.GetOracleString(13).ToString();      // DB_USAGE
+                     accelaDBModel.SID = accelaDBModel.IP + "_" + accelaDBModel.Port + "_" + accelaDBModel.SID + "_" + accelaDBModel.User + "_" + accelaDBModel.Password;
 
                      accelaDBModelList.Add(accelaDBModel);
                  }
 
                 XmlDocument xmlDoc = new XmlDocument();
+                
                 //创建Xml声明部分，即<?xml version="1.0" encoding="utf-8" ?>
                 XmlDeclaration Declaration = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
 
