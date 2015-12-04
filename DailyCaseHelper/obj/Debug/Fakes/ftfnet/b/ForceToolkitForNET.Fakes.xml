@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ForceToolkitForNET.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Salesforce.Force.Fakes.ShimForceClient">
+            <summary>Shim type of Salesforce.Force.ForceClient</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.#ctor(Salesforce.Force.ForceClient)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.BasicInformationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.BasicInformationAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.Bind(Salesforce.Force.IForceClient)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.DescribeAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.DescribeLayoutAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeLayoutAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.DescribeLayoutAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeLayoutAsync(String objectName, String recordTypeId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.ExecuteRestApiOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.ExecuteRestApi(String apiName, String parameters)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.GetDeletedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.GetDeleted(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.GetObjectsAsyncOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Threading.Tasks.Task{Salesforce.Common.Models.DescribeGlobalResult{``0}}})">
+            <summary>Sets the shim of ForceClient.GetObjectsAsync()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.GetUpdatedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.GetUpdated(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.QueryAllAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryAllAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.QueryAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.QueryByIdAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.QueryByIdAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.QueryContinuationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryContinuationAsync(String nextRecordsUrl)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.RecentAsyncOf1Int32``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Int32,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.RecentAsync(Int32 limit)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.UserInfoOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.UserInfo(String url)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient._QueryByIdAsyncb__4Of1PropertyInfo``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Reflection.PropertyInfo,System.String})">
+            <summary>Sets the shim of ForceClient.&lt;QueryByIdAsync&gt;b__4(PropertyInfo p)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.ConstructorStringStringString">
+            <summary>Sets the shim of ForceClient.ForceClient(String instanceUrl, String accessToken, String apiVersion)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.ConstructorStringStringStringHttpClient">
+            <summary>Sets the shim of ForceClient.ForceClient(String instanceUrl, String accessToken, String apiVersion, HttpClient httpClient)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.CreateAsyncStringObject">
+            <summary>Sets the shim of ForceClient.CreateAsync(String objectName, Object record)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.DeleteAsyncStringString">
+            <summary>Sets the shim of ForceClient.DeleteAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.Dispose">
+            <summary>Sets the shim of ForceClient.Dispose()</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.UpdateAsyncStringStringObject">
+            <summary>Sets the shim of ForceClient.UpdateAsync(String objectName, String recordId, Object record)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.UpsertExternalAsyncStringStringStringObject">
+            <summary>Sets the shim of ForceClient.UpsertExternalAsync(String objectName, String externalFieldName, String externalId, Object record)</summary>
+        </member>
+        <member name="T:Salesforce.Force.Fakes.ShimForceClient.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.BasicInformationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.BasicInformationAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.DescribeAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.DescribeLayoutAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeLayoutAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.DescribeLayoutAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.DescribeLayoutAsync(String objectName, String recordTypeId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.ExecuteRestApiOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.ExecuteRestApi(String apiName, String parameters)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.GetDeletedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.GetDeleted(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.GetObjectsAsyncOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.Threading.Tasks.Task{Salesforce.Common.Models.DescribeGlobalResult{``0}}})">
+            <summary>Sets the shim of ForceClient.GetObjectsAsync()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.GetUpdatedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.GetUpdated(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.QueryAllAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryAllAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.QueryAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.QueryByIdAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.QueryByIdAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.QueryContinuationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets the shim of ForceClient.QueryContinuationAsync(String nextRecordsUrl)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.RecentAsyncOf1Int32``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.Int32,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.RecentAsync(Int32 limit)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.ShimForceClient.AllInstances.UserInfoOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{Salesforce.Force.ForceClient,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets the shim of ForceClient.UserInfo(String url)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.AllInstances.CreateAsyncStringObject">
+            <summary>Sets the shim of ForceClient.CreateAsync(String objectName, Object record)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.AllInstances.DeleteAsyncStringString">
+            <summary>Sets the shim of ForceClient.DeleteAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.AllInstances.Dispose">
+            <summary>Sets the shim of ForceClient.Dispose()</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.AllInstances.UpdateAsyncStringStringObject">
+            <summary>Sets the shim of ForceClient.UpdateAsync(String objectName, String recordId, Object record)</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.ShimForceClient.AllInstances.UpsertExternalAsyncStringStringStringObject">
+            <summary>Sets the shim of ForceClient.UpsertExternalAsync(String objectName, String externalFieldName, String externalId, Object record)</summary>
+        </member>
+        <member name="T:Salesforce.Force.Fakes.StubForceClient">
+            <summary>Stub type of Salesforce.Force.ForceClient</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubForceClient.#ctor(System.String,System.String,System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubForceClient.#ctor(System.String,System.String,System.String,System.Net.Http.HttpClient)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubForceClient.InitializeStub">
+            <summary>Initializes a new instance of type StubForceClient</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.StubForceClient.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.StubForceClient.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Salesforce.Force.Fakes.StubForceClient.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Salesforce.Force.Fakes.StubIForceClient">
+            <summary>Stub type of Salesforce.Force.IForceClient</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.#ctor">
+            <summary>Initializes a new instance of type StubIForceClient</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.BasicInformationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of BasicInformationAsync(String objectName)</summary>
+        </member>
+        <member name="F:Salesforce.Force.Fakes.StubIForceClient.CreateAsyncStringObject">
+            <summary>Sets the stub of IForceClient.CreateAsync(String objectName, Object record)</summary>
+        </member>
+        <member name="F:Salesforce.Force.Fakes.StubIForceClient.DeleteAsyncStringString">
+            <summary>Sets the stub of IForceClient.DeleteAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.DescribeAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of DescribeAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.DescribeLayoutAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of DescribeLayoutAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.DescribeLayoutAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of DescribeLayoutAsync(String objectName, String recordTypeId)</summary>
+        </member>
+        <member name="F:Salesforce.Force.Fakes.StubIForceClient.Dispose">
+            <summary>Sets the stub of IForceClient.Dispose()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ExecuteRestApiOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of ExecuteRestApi(String apiName, String parameters)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.GetDeletedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of GetDeleted(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.GetObjectsAsyncOf1``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Threading.Tasks.Task{Salesforce.Common.Models.DescribeGlobalResult{``0}}})">
+            <summary>Sets stubs of GetObjectsAsync()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.GetUpdatedOf1StringDateTimeDateTime``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.DateTime,System.DateTime,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of GetUpdated(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.QueryAllAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets stubs of QueryAllAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.QueryAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets stubs of QueryAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.QueryByIdAsyncOf1StringString``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of QueryByIdAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.QueryContinuationAsyncOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{Salesforce.Common.Models.QueryResult{``0}}})">
+            <summary>Sets stubs of QueryContinuationAsync(String nextRecordsUrl)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.RecentAsyncOf1Int32``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Int32,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of RecentAsync(Int32 limit)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#BasicInformationAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.BasicInformationAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#CreateAsync(System.String,System.Object)">
+            <summary>Sets the stub of IForceClient.CreateAsync(String objectName, Object record)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#DeleteAsync(System.String,System.String)">
+            <summary>Sets the stub of IForceClient.DeleteAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#DescribeAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.DescribeAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#DescribeLayoutAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.DescribeLayoutAsync(String objectName)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#DescribeLayoutAsync``1(System.String,System.String)">
+            <summary>Sets the stub of IForceClient.DescribeLayoutAsync(String objectName, String recordTypeId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#Dispose">
+            <summary>Sets the stub of IForceClient.Dispose()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#ExecuteRestApi``1(System.String,System.String)">
+            <summary>Sets the stub of IForceClient.ExecuteRestApi(String apiName, String parameters)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#GetDeleted``1(System.String,System.DateTime,System.DateTime)">
+            <summary>Sets the stub of IForceClient.GetDeleted(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#GetObjectsAsync``1">
+            <summary>Sets the stub of IForceClient.GetObjectsAsync()</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#GetUpdated``1(System.String,System.DateTime,System.DateTime)">
+            <summary>Sets the stub of IForceClient.GetUpdated(String objectName, DateTime startDateTime, DateTime endDateTime)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#QueryAllAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.QueryAllAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#QueryAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.QueryAsync(String query)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#QueryByIdAsync``1(System.String,System.String)">
+            <summary>Sets the stub of IForceClient.QueryByIdAsync(String objectName, String recordId)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#QueryContinuationAsync``1(System.String)">
+            <summary>Sets the stub of IForceClient.QueryContinuationAsync(String nextRecordsUrl)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#RecentAsync``1(System.Int32)">
+            <summary>Sets the stub of IForceClient.RecentAsync(Int32 limit)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#UpdateAsync(System.String,System.String,System.Object)">
+            <summary>Sets the stub of IForceClient.UpdateAsync(String objectName, String recordId, Object record)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#UpsertExternalAsync(System.String,System.String,System.String,System.Object)">
+            <summary>Sets the stub of IForceClient.UpsertExternalAsync(String objectName, String externalFieldName, String externalId, Object record)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.ftfnet::Salesforce#Force#IForceClient#UserInfo``1(System.String)">
+            <summary>Sets the stub of IForceClient.UserInfo(String url)</summary>
+        </member>
+        <member name="F:Salesforce.Force.Fakes.StubIForceClient.UpdateAsyncStringStringObject">
+            <summary>Sets the stub of IForceClient.UpdateAsync(String objectName, String recordId, Object record)</summary>
+        </member>
+        <member name="F:Salesforce.Force.Fakes.StubIForceClient.UpsertExternalAsyncStringStringStringObject">
+            <summary>Sets the stub of IForceClient.UpsertExternalAsync(String objectName, String externalFieldName, String externalId, Object record)</summary>
+        </member>
+        <member name="M:Salesforce.Force.Fakes.StubIForceClient.UserInfoOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
+            <summary>Sets stubs of UserInfo(String url)</summary>
+        </member>
+    </members>
+</doc>
