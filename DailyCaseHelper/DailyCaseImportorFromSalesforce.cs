@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.0.1.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.0.2.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -160,6 +160,7 @@ namespace com.smartwork
                     accelaIssueCaseMapper.Assignee = (issue.fields.assignee == null ? "" : issue.fields.assignee.displayName);
                     accelaIssueCaseMapper.JiraId = issue.id;
                     accelaIssueCaseMapper.JiraKey = issue.key;
+                    accelaIssueCaseMapper.IssueCategory = (issue.fields.customfield_11502 != null && issue.fields.customfield_11502.Count > 0 ? issue.fields.customfield_11502[0].value : "--NONE--");
                     accelaIssueCaseMapper.LastModified = issue.fields.customfield_10903;
                     accelaIssueCaseMapper.Status = issue.fields.status.name;
                     accelaIssueCaseMapper.HotCase = issue.fields.labels.Contains("HotCase");
@@ -202,6 +203,7 @@ namespace com.smartwork
             table.Columns.Add("CaseComment", typeof(CaseComment));
             table.Columns.Add("TargetedRelease", typeof(string));
             table.Columns.Add("BZID", typeof(string));
+            table.Columns.Add("IssueCategory", typeof(string));
 
             Dictionary<string, string> Reviewers = new Dictionary<string, string>();
             Reviewers.Add("Jessy", "Jessy.Zhang");
@@ -236,10 +238,13 @@ namespace com.smartwork
             Reviewers.Add("Claire", "Claire.Cao");
             Reviewers.Add("Viola", "Viola.Shi");
             Reviewers.Add("Larry", "Larry.Francisco");
+            Reviewers.Add("Yummy", "Yummy.Xie");
+            Reviewers.Add("Lola", "Lola.He");
 
             Reviewers.Add("Gordon", "Gordon.Chen");
             Reviewers.Add("Tracy", "Tracy.Xiang");
 
+            Reviewers.Add("Apia", "Apia.Liu");
             Reviewers.Add("Jessie", "Jessie.Zhang");
             Reviewers.Add("William", "William.Wang");
             Reviewers.Add("Iron", "Iron.Tang");
@@ -287,6 +292,7 @@ namespace com.smartwork
                 row["HotCase"] = (tempIssue != null && tempIssue.HotCase);
                 row["Missionsky"] = (tempIssue != null && tempIssue.Missionsky);
                 row["JiraLabels"] = (tempIssue != null ? tempIssue.JiraLabels : null);
+                row["IssueCategory"] = (tempIssue != null ? tempIssue.IssueCategory : null);
                 //row["HotCase"] = true;
                 row["ProductForUI"] = AccelaCaseUtil.AdjustProductName(caseinfo.Product, caseinfo.Solution, caseinfo.Subject, caseinfo.Description);
                 row["Product"] = caseinfo.Product;
@@ -503,7 +509,12 @@ namespace com.smartwork
                     priority = row["Severity"] as string;
                     rank = (int)row["Rank"];
                     buildVersion = row["Version"] as string;
-                    type = row["Type"] as string;
+                    type = row["IssueCategory"] as string;
+                    if (String.IsNullOrEmpty(type))
+                    {
+                        //type = row["Type"] as string;
+                        type = "";
+                    }
                     customer = row["Customer"] as string;
                     origin = row["Orgin"] as string;
                     openDate = row["OpenDate"] as string;
@@ -519,10 +530,13 @@ namespace com.smartwork
                     caseCommentBody = (caseComment != null ? caseComment.CommentBody : "");
 
                     isNeedDoubleReview = false;
-                    if (!String.IsNullOrEmpty(caseCommentBody) && (caseCommentBody.ToLower().Contains(" released ") 
-                                                                   || caseCommentBody.ToLower().Contains(" fix ") 
-                                                                   || caseCommentBody.ToLower().Contains(" released ") 
-                                                                   || caseCommentBody.ToLower().Contains(" fixed ")))
+                    if (!String.IsNullOrEmpty(caseCommentBody) && (caseCommentBody.ToLower().Contains("released")
+                                                           || caseCommentBody.ToLower().Contains(" fix ")
+                                                           || caseCommentBody.ToLower().Contains("released")
+                                                           || caseCommentBody.ToLower().Contains("fixed")
+                                                           || caseCommentBody.ToLower().Contains("bug")
+                                                           || caseCommentBody.ToLower().Contains("missionsky")
+                                                           || caseCommentBody.ToLower().Contains("asap")))
                     {
                         isNeedDoubleReview = true;
                     }
@@ -870,9 +884,20 @@ namespace com.smartwork
                             issue.fields.customfield_11106.name = ("High" == severity ? "Major" : severity);
 
                             issue.fields.customfield_11501 = product;
+                            if (!String.IsNullOrEmpty(solution) && solution.ToUpper().Contains("ARW")
+                                || !String.IsNullOrEmpty("ARW") && product.ToUpper().Contains("ARW"))
+                            {
+                                issue.fields.customfield_11501 = "Accela ARW";
+                            }
+
                             if ("AdHoc Reports" == product)
                             {
                                 issue.fields.customfield_11501 = "Accela Ad Hoc";
+                            }
+
+                            if ("Reporting" == product)
+                            {
+                                issue.fields.customfield_11501 = "Accela Automation";
                             }
 
                             if ("Inspector" == product || "Civic Hero" == product || "Code Officer" == product || "Work Crew" == product || "Support Access" == product || "PublicStuff" == product)
@@ -880,7 +905,7 @@ namespace com.smartwork
                                 issue.fields.customfield_11501 = "Accela Mobile";
                             }
 
-                            if ("Civic Cloud Platform" == product || "Accela Asset Management" == product || "Accela Licensing & Case Management" == product || "EPC" == product)
+                            if ("Civic Cloud Platform" == product || "Accela Asset Management" == product || "Accela Licensing & Case Management" == product || "Accela AMS Classic" == product || "EPC" == product)
                             {
                                 issue.fields.customfield_11501 = "Accela Automation";
                             }
@@ -909,7 +934,14 @@ namespace com.smartwork
                             }
                             issue.fields.customfield_10906 = "https://na26.salesforce.com/" + caseId;
 
-                            var updateIssue = await JiraProxy.UpdateIssue(issue);
+                            try
+                            {
+                                var updateIssue = await JiraProxy.UpdateIssue(issue);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Cannot update JIRA key - " + issue.key + ", please remove it and try again.");
+                            }
                         }
                     }
                 }
@@ -1015,10 +1047,13 @@ namespace com.smartwork
 	                                      </tr>";
 
                     isNeedDoubleReview = false;
-                    if (!String.IsNullOrEmpty(comment) && (comment.ToLower().Contains(" released ")
+                    if (!String.IsNullOrEmpty(comment) && (comment.ToLower().Contains("released")
                                                            || comment.ToLower().Contains(" fix ")
-                                                           || comment.ToLower().Contains(" released ")
-                                                           || comment.ToLower().Contains(" fixed ")))
+                                                           || comment.ToLower().Contains("released")
+                                                           || comment.ToLower().Contains("fixed")
+                                                           || comment.ToLower().Contains("bug")
+                                                           || comment.ToLower().Contains("missionsky")
+                                                           || comment.ToLower().Contains("asap")))
                     {
                         comment = "<p style='font-weight:bold;font-style:italic;color:red'>" + comment + "</p>";
                     }

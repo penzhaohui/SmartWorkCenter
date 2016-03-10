@@ -26,7 +26,7 @@ namespace com.smartwork
         {
             this.btnTop50NewCases.Enabled = false;
 
-            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(120);
+            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(300, false, false, true);
 
             var caseList = await GetTopNNewCaseList;
             string caseIDs = "";

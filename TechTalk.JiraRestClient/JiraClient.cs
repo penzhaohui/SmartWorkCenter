@@ -240,8 +240,8 @@ namespace TechTalk.JiraRestClient
                     var propertyNalue = property.GetValue(issue.fields, null);
                     if (propertyNalue != null)
                     {
-                        // SF-Priority
-                        if ("customfield_10905" == property.Name)
+                        // SF-Priority & Issue Category
+                        if ("customfield_10905" == property.Name || "customfield_11502" == property.Name)
                         {
                             //updateData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
                         }

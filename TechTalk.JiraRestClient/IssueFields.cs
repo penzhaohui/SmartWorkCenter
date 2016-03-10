@@ -16,6 +16,7 @@ namespace TechTalk.JiraRestClient
             attachment = new List<Attachment>();
             watchers = new List<JiraUser>();
 
+            customfield_11502 = new List<IssueCategory>(); 
             customfield_10907 = new List<string>();
         }
 
@@ -69,6 +70,10 @@ namespace TechTalk.JiraRestClient
         /// 
         /// </summary>
         public String customfield_11501 { get; set; }
+        /// <summary>
+        /// Issue Category
+        /// </summary>
+        public List<IssueCategory> customfield_11502 { get; set; }
         /// <summary>
         /// SF-Customer
         /// </summary>

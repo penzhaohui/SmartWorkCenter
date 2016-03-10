@@ -11,6 +11,7 @@ namespace com.smartwork.Proxy.models
         public string CaseNumber { get; set; }
         public string JiraId { get; set; }
         public string JiraKey { get; set; }
+        public string IssueCategory { get; set; }
         public string Assignee { get; set; }
         public string Status { get; set; }
         public string LastModified { get; set; }
