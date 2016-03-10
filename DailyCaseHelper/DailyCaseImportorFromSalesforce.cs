@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.0.1.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.0.1.5 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -870,6 +870,12 @@ namespace com.smartwork
                             issue.fields.customfield_11106.name = ("High" == severity ? "Major" : severity);
 
                             issue.fields.customfield_11501 = product;
+                            if (!String.IsNullOrEmpty(solution) && solution.ToUpper().Contains("ARW")
+                                || !String.IsNullOrEmpty("ARW") && product.ToUpper().Contains("ARW"))
+                            {
+                                issue.fields.customfield_11501 = "Accela ARW";
+                            }
+
                             if ("AdHoc Reports" == product)
                             {
                                 issue.fields.customfield_11501 = "Accela Ad Hoc";
