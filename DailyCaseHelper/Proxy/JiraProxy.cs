@@ -124,6 +124,16 @@ namespace com.smartwork.Proxy
             return jiraComment;
         }
 
+        public static async Task<List<Comment>> GetComments(IssueRef issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var jiraComments = jira.GetComments(issue);
+
+
+            return (jiraComments as List<Comment>);
+        }
+
         public static async Task<bool> UpdateJiraStatus(IssueRef issueRef, string jiraStatus, string jiraNextStatus)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
@@ -187,6 +197,6 @@ namespace com.smartwork.Proxy
             // "In Progress" -> "Commented"
             // "In Progress" -> "Closed"
             return true;
-        }
+        }        
     }
 }

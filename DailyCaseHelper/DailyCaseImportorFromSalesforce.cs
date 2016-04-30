@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.0.2.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.1.0.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -158,6 +158,7 @@ namespace com.smartwork
                     AccelaIssueCaseMapper accelaIssueCaseMapper = new AccelaIssueCaseMapper();
                     accelaIssueCaseMapper.CaseNumber = issue.fields.customfield_10600;
                     accelaIssueCaseMapper.Assignee = (issue.fields.assignee == null ? "" : issue.fields.assignee.displayName);
+                    accelaIssueCaseMapper.AssigneeQA = (issue.fields.customfield_11702 == null ? "" : issue.fields.customfield_11702.displayName);
                     accelaIssueCaseMapper.JiraId = issue.id;
                     accelaIssueCaseMapper.JiraKey = issue.key;
                     accelaIssueCaseMapper.IssueCategory = (issue.fields.customfield_11502 != null && issue.fields.customfield_11502.Count > 0 ? issue.fields.customfield_11502[0].value : "--NONE--");
@@ -204,64 +205,11 @@ namespace com.smartwork
             table.Columns.Add("TargetedRelease", typeof(string));
             table.Columns.Add("BZID", typeof(string));
             table.Columns.Add("IssueCategory", typeof(string));
+            table.Columns.Add("Assignee", typeof(string));
+            table.Columns.Add("AssigneeQA", typeof(string));
+            table.Columns.Add("CaseComments", typeof(List<CaseComment>));
 
-            Dictionary<string, string> Reviewers = new Dictionary<string, string>();
-            Reviewers.Add("Jessy", "Jessy.Zhang");
-            Reviewers.Add("Adger", "Adger.Chen");
-            Reviewers.Add("Tim", "Tim.Liu");
-
-            Reviewers.Add("Mia", "Mia.Huang");
-            Reviewers.Add("Alvin", "Alvin.Li");
-            Reviewers.Add("Mina", "Mina.Xiong");
-
-            Reviewers.Add("Alex", "Alex.Li");
-            Reviewers.Add("Peter", "Peter.Peng");
-            Reviewers.Add("John", "John.Huang");
-            Reviewers.Add("Bass", "Bass.Yang");
-            Reviewers.Add("Star", "Star.Li");
-            Reviewers.Add("Shaun", "Shaun.Qiu");
-            Reviewers.Add("Lex", "Lex.Wu");
-            Reviewers.Add("Louis", "Louis.He");
-            Reviewers.Add("Likko", "Likko.Zhang");
-            Reviewers.Add("Sandy", "Sandy.Zheng");
-            Reviewers.Add("Weber", "Weber.Yan");
-            Reviewers.Add("Rick", "Rick.Liu");
-            Reviewers.Add("Matt", "Matt.Ao");
-            Reviewers.Add("Hyman", "Hyman.Zhang");
-            Reviewers.Add("Feng", "Feng.Xuan");
-            Reviewers.Add("Cheng", "Cheng.Xu");           
-
-            Reviewers.Add("Mandy", "Mandy.Zhou");
-            Reviewers.Add("Linda", "Linda.Xiao");
-            Reviewers.Add("Leo", "Leo.Liu");
-            Reviewers.Add("Abel", "Abel.Yu");
-            Reviewers.Add("Claire", "Claire.Cao");
-            Reviewers.Add("Viola", "Viola.Shi");
-            Reviewers.Add("Larry", "Larry.Francisco");
-            Reviewers.Add("Yummy", "Yummy.Xie");
-            Reviewers.Add("Lola", "Lola.He");
-
-            Reviewers.Add("Gordon", "Gordon.Chen");
-            Reviewers.Add("Tracy", "Tracy.Xiang");
-
-            Reviewers.Add("Apia", "Apia.Liu");
-            Reviewers.Add("Jessie", "Jessie.Zhang");
-            Reviewers.Add("William", "William.Wang");
-            Reviewers.Add("Iron", "Iron.Tang");
-            Reviewers.Add("Rev", "Rev.Vergara");
-
-            Reviewers.Add("Carly", "Carly.Xu");
-            Reviewers.Add("Janice", "Janice.Zhong");
-            Reviewers.Add("Jane", "Jane.Hu");
-            Reviewers.Add("Amy", "Amy.Bao");
-            Reviewers.Add("Iris", "Iris.Wang");
-            Reviewers.Add("Grace", "Grace.Tang");
-            Reviewers.Add("Cloud", "Cloud.Qi");
-            Reviewers.Add("Carol", "Carol.Gong");
-
-            Reviewers.Add("Manasi", "mkarvat@accela.com");
-            Reviewers.Add("Sasirekha", "sbalaji@accela.com");
-            Reviewers.Add("Jerry", "Jerry.Lu");
+            Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
 
             int index = 1;
             AccelaIssueCaseMapper tempIssue = null;
@@ -293,6 +241,8 @@ namespace com.smartwork
                 row["Missionsky"] = (tempIssue != null && tempIssue.Missionsky);
                 row["JiraLabels"] = (tempIssue != null ? tempIssue.JiraLabels : null);
                 row["IssueCategory"] = (tempIssue != null ? tempIssue.IssueCategory : null);
+                row["Assignee"] = (tempIssue != null ? tempIssue.Assignee : null);
+                row["AssigneeQA"] = (tempIssue != null ? tempIssue.AssigneeQA : null);
                 //row["HotCase"] = true;
                 row["ProductForUI"] = AccelaCaseUtil.AdjustProductName(caseinfo.Product, caseinfo.Solution, caseinfo.Subject, caseinfo.Description);
                 row["Product"] = caseinfo.Product;
@@ -348,6 +298,8 @@ namespace com.smartwork
                 lastModifiedDate = Yesterday.Year + "-" + Yesterday.Month + "-" + Yesterday.Day;
                 if (caseinfo.CaseComments != null && caseinfo.CaseComments.Records != null)
                 {
+                    row["CaseComments"] = caseinfo.CaseComments.Records;
+
                     CaseComment comment = caseinfo.CaseComments.Records[0];
                     //lastModifiedDate = comment.CreatedDate.Year + "-" + (comment.CreatedDate.Month < 10 ? "0" + comment.CreatedDate.Month : "" + comment.CreatedDate.Month) + "-" + (comment.CreatedDate.Day < 10 ? "0" + comment.CreatedDate.Day : "" + comment.CreatedDate.Day);
                     if (DateTime.Now.Year != comment.CreatedDate.Year
@@ -613,10 +565,20 @@ namespace com.smartwork
             var caseList = await GetTopNNewCaseList;
             string caseIDs = "";
             bool isFirstOne = true;
+            int index = 0;
             foreach (var caseinfo in caseList)
             {
+                if (index == 126)
+                {
+                    System.Console.WriteLine("Debug");
+                }
+
+                System.Console.WriteLine("Start Index: " + ++index);
                 if (caseinfo != null && String.IsNullOrEmpty(caseinfo.Product))
                 {
+                    System.Console.WriteLine("Skip Case ID: " + caseinfo.CaseNumber);
+                    System.Console.WriteLine("Product: " + caseinfo.Product);
+                    System.Console.WriteLine("Solution: " + caseinfo.Solution);
                     continue;
                 }
 
@@ -645,6 +607,8 @@ namespace com.smartwork
                 {
                     caseIDs += "," + caseinfo.CaseNumber;
                 }
+
+                System.Console.WriteLine("End Index: " + index);
             }
 
             this.txtCaseIDList.Text = caseIDs;
@@ -1370,8 +1334,8 @@ namespace com.smartwork
 
             string content = @"Hi, All guys<br/><br/>Below is your closed cases today, please close them on JIRA accordingly.<br/><br/>" + dailyCaseSummary + "<br/><br/>Thanks<br/>Accela Support Team";
             string from = "auto_sender@missionsky.com";
-            string to = "peter.peng@missionsky.com";
-            string cc = "peter.peng@missionsky.com;leo.liu@missionsky.com;";
+            string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;abel.yu@missionsky.com";
+            string cc = "accela-support-team@missionsky.com";
             string subject = "Closed Case List - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
                         
             try
@@ -1384,6 +1348,432 @@ namespace com.smartwork
             }
 
             this.btnSendCloseReport.Enabled = true;
+        }
+
+        private async void btnSendRecreatedCase_Click(object sender, EventArgs e)
+        {
+            this.btnSendRecreatedCase.Enabled = false;
+
+            DataTable dataTable = this.grdCaseList.DataSource as DataTable;
+
+            DataView dataTableView = dataTable.DefaultView;
+            dataTableView.Sort = "Assignee ASC";
+            dataTable = dataTableView.ToTable();
+
+            string dailyCaseSummary = "";
+            dailyCaseSummary = @"<table cellspacing='1px' cellpadding='1px' border='1px' style='border-color:black;font-size:14px'>
+                                    <tr>
+                                        <th align='center'>No</th>
+                                        <th align='center'>Product</th>                                       
+                                        <th align='center'>Salesforce ID</th>
+                                        <th align='center'>Jira Key</th> 
+                                        <th align='center'>Version</th>
+                                        <th align='center'>Priority</th>
+                                        <th align='center'>Customer</th>
+                                        <th align='center'>Summary</th>
+                                        <th align='left'>Reopened Times</th>
+                                        <th align='center'>Dev</th>
+                                        <th align='center'>QA</th>    
+                                        <th align='center'>Recreated Time</th>
+                                    </tr>";
+
+            int count = 0;
+            if (dataTable != null)
+            {
+                int rowCount = dataTable.Rows.Count;
+                string product = "";
+                string caseId = "";
+                string caseNumber = "";
+                string jiraID = "";
+                string jiraKey = "";
+                string buildVersion = "";
+                string priority = "";
+                string customer = "";
+                string summary = "";
+                string reopenCount = "";
+                string assignee = "";
+                string assigneeQA = "";
+                List<string> jiraLabels = null;
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    DataRow row = dataTable.Rows[i];
+                    product = row["Product"] as string;
+                    caseId = row["ID"] as string;
+                    caseNumber = row["SalesforceID"] as string;
+                    jiraKey = row["JiraKey"] as string;
+                    buildVersion = row["Version"] as string;
+                    priority = row["Severity"] as string;
+                    customer = row["Customer"] as string;
+                    summary = row["Summary"] as string;
+                    reopenCount = row["ReopenedCount"] as string;
+                    assignee = row["Assignee"] as string;
+                    assigneeQA = row["AssigneeQA"] as string; 
+                    jiraLabels = row["JiraLabels"] as List<string>;
+
+                    if (!jiraLabels.Contains("Recreated_By_QA"))
+                    {
+                        continue;
+                    }
+
+                    
+                    jiraID = row["JiraID"] as string;
+					
+					IssueRef issue = new IssueRef();
+                    issue.key = jiraKey;
+                    issue.id = jiraID;
+                    var GetComments = JiraProxy.GetComments(issue);
+                    var Comments = await GetComments;
+                    DateTime recreatedTime = DateTime.Now;
+                    if (Comments != null && Comments.Count > 0)
+                    {
+                        foreach (Comment comment in Comments)
+                        {
+                            if (comment != null 
+                                && comment.body != null)
+                            {
+                                if(comment.body.ToLower().Contains("copied from salesforce:"))
+                                {
+                                    continue;
+                                }
+
+                                if(comment.body.ToLower().Contains("reproduce") 
+                                    || comment.body.ToLower().Contains("recreate")
+                                    || comment.body.ToLower().Contains("replicate"))
+                                {
+                                    if (comment.UpdateAuthor != null && comment.UpdateAuthor.displayName == assigneeQA)
+                                    {
+                                        recreatedTime = comment.Updated;
+                                        break;
+                                    }
+                                    else if (comment.Author != null && comment.Author.displayName == assigneeQA)
+                                    {
+                                        recreatedTime = comment.Created;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    dailyCaseSummary += String.Format(@"<tr>
+                                                        <td align='center'>{0}</td>
+                                                        <td align='center'>{1}</td>
+                                                        <td align='center'><a href='https://na26.salesforce.com/{12}'>{2}</a></td>
+                                                        <td align='center'><a href='https://accelaeng.atlassian.net/browse/{3}'>{3}</a></td>
+                                                        <td align='center'>{4}</td>
+                                                        <td align='center'>{5}</td>
+                                                        <td align='center'>{6}</td>
+                                                        <td align='left'>{7}</td>
+                                                        <td align='center'>{8}</td>
+                                                        <td align='center'>{9}</td>
+                                                        <td align='center'>{10}</td>    
+                                                        <td align='center'>{11}</td>
+                                                    </tr>",
+                                                       ++count, // 0 - No
+                                                       product, // 1 - Product
+                                                       caseNumber, // 2 - Salesforce ID
+                                                       jiraKey, // 3 - Jira Key
+                                                       buildVersion, // 4 - Version
+                                                       priority, // 5 - Priority
+                                                       customer, // 6 - Customer
+                                                       summary, // 7 - Summary
+                                                       reopenCount, // 8 - Reopened Times
+                                                       assignee, // 9 - Dev
+                                                       assigneeQA, // 10 - QA
+                                                       recreatedTime.ToShortDateString(), // 11 - Recreated Time
+                                                       caseId
+                                                       );
+                }
+
+                dailyCaseSummary += "</table>";
+
+                if (count == 0)
+                {
+                    this.btnSendRecreatedCase.Enabled = true;
+                    return;
+                }
+
+                string content = @"Hi, All guys<br/><br/>The following case are already recreated by our QA, please deal with them within one oe two days. If you finished it, please remove the label - Recreated_By_QA. Thanks a lot!<br/><br/>" + dailyCaseSummary + "<br/><br/>Thanks<br/>Accela Support Team";
+                string from = "auto_sender@missionsky.com";
+                string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;abel.yu@missionsky.com";
+                string cc = "accela-support-team@missionsky.com";
+                string subject = "The Case List Recreated By QA - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+
+                try
+                {
+                    EmailUtil.SendEmail(from, to, cc, subject, content);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Failed to send email");
+                }
+
+                this.btnSendRecreatedCase.Enabled = true;
+            }
+        }
+
+        private async void btnSendAnalysisReport_Click(object sender, EventArgs e)
+        {
+            this.btnSendAnalysisReport.Enabled = false;
+
+            DataTable dataTable = this.grdCaseList.DataSource as DataTable;
+
+            DataView dataTableView = dataTable.DefaultView;
+            dataTableView.Sort = "Assignee ASC";
+            dataTable = dataTableView.ToTable();
+
+            string dailyCaseSummary = "";
+            dailyCaseSummary = @"<table cellspacing='1px' cellpadding='1px' border='1px' style='border-color:black;font-size:14px'>
+                                    <tr>
+                                        <th align='center'>No</th>
+                                        <th align='center'>Product</th>                                       
+                                        <th align='center'>Salesforce ID</th>
+                                        <th align='center'>Jira Key</th> 
+                                        <th align='center'>Version</th>
+                                        <th align='center'>Priority</th>
+                                        <th align='center'>Customer</th>
+                                        <th align='center'>Summary</th>
+                                        <th align='left'>Reopened Times</th>
+                                        <th align='left'>Review History</th>
+                                        <th align='left'>QA Ratio</th>
+                                        <th align='left'>Dev Ratio</th>
+                                        <th align='left'>SF Status</th>
+                                    </tr>";
+
+            int count = 0;
+            if (dataTable != null)
+            {
+                int rowCount = dataTable.Rows.Count;
+                string product = "";
+                string caseId = "";
+                string caseNumber = "";
+                string jiraID = "";
+                string jiraKey = "";
+                string buildVersion = "";
+                string priority = "";
+                string customer = "";
+                string summary = "";
+                string reopenCount = "";
+                string assignee = "";
+                string reviewHostory = "";
+                string sfStatus = "";
+                List<string> jiraLabels = null;
+                List<CaseComment> caseComments = null;
+
+                Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
+                List<string> DevNameList = null;
+                List<string> QANameList = SalesforceProxy.GetQAReviewerNamesList();
+                if (this.chkOnlySupport.Checked)
+                {
+                    QANameList = SalesforceProxy.GetSupportQAList();
+                    DevNameList = SalesforceProxy.GetSupportDevList();
+                }
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    DataRow row = dataTable.Rows[i];
+                    product = row["Product"] as string;
+                    caseId = row["ID"] as string;
+                    caseNumber = row["SalesforceID"] as string;
+                    jiraKey = row["JiraKey"] as string;
+                    buildVersion = row["Version"] as string;
+                    priority = row["Severity"] as string;
+                    customer = row["Customer"] as string;
+                    summary = row["Summary"] as string;
+                    reopenCount = row["ReopenedCount"] as string;
+                    jiraLabels = row["JiraLabels"] as List<string>;
+                    caseComments = row["CaseComments"] as List<CaseComment>;
+
+                    sfStatus = row["SFStatus"] as string;
+                    if (!"Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        sfStatus = "UnResolved";
+                    }
+                    else
+                    {
+                        sfStatus = "Closed";
+                    }
+
+                    Dictionary<DateTime, string> CommentHistories = new Dictionary<DateTime, string>();
+                    if (caseComments != null && caseComments.Count > 0)
+                    {
+                        foreach (CaseComment comment in caseComments)
+                        {
+                            if (comment == null || comment.CommentBody == null)
+                            {
+                                continue;
+                            }
+
+                            if (this.chkOnlyCurrentMonth.Checked)
+                            {
+                                if (comment.LastModifiedDate.Month != DateTime.Now.Month)
+                                {
+                                    continue;
+                                }
+                            }
+
+                            foreach (var key in Reviewers.Keys)
+                            {
+                                string value = Reviewers[key];
+                                string value1 = value.Replace('.', ' ');
+                                if (comment.CommentBody.ToUpper().EndsWith(key.ToUpper())
+                                    || comment.CommentBody.ToUpper().EndsWith(value.ToUpper())
+                                    || comment.CommentBody.ToUpper().EndsWith(value1.ToUpper()))
+                                {
+                                    assignee = Reviewers[key];
+                                    CommentHistories.Add(comment.LastModifiedDate, assignee);
+                                    break;
+                                }
+                            }
+                        }
+                    }                   
+
+                    jiraID = row["JiraID"] as string;
+
+                    IssueRef issue = new IssueRef();
+                    issue.key = jiraKey;
+                    issue.id = jiraID;
+                    var GetComments = JiraProxy.GetComments(issue);
+                    var Comments = await GetComments;
+
+                    DateTime recreatedTime = DateTime.Now;
+                    int caseCommentCount = 0;
+                    if (Comments != null && Comments.Count > 0)
+                    {
+                        caseCommentCount = Comments.Count;
+                        foreach (Comment comment in Comments)
+                        {
+                            if (comment != null
+                                && comment.body != null)
+                            {
+                                if (this.chkOnlyCurrentMonth.Checked)
+                                {
+                                    if (comment.Updated.Month != DateTime.Now.Month)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (comment.body.ToLower().Contains("copied from salesforce:"))
+                                {
+                                    continue;
+                                }
+
+                                CommentHistories.Add(comment.Updated, comment.UpdateAuthor.displayName.Replace(" ", "."));
+                            }
+                        }
+                    }
+
+                    CommentHistories = CommentHistories.OrderBy(comment => comment.Key).ToDictionary(comment => comment.Key, comment => comment.Value);
+                    reviewHostory = "";
+                    string dateString = null;
+                    string reviewer = "";
+                    decimal totalReviewerCount = 0;
+                    decimal totalQAReviewerCount = 0;
+                    decimal totalDevReviewerCount = 0;
+                    foreach(var commentHistory in CommentHistories)
+                    {
+                        if (dateString == commentHistory.Key.ToShortDateString() || reviewer == commentHistory.Value)
+                        {
+                            continue;
+                        }
+
+                        dateString = commentHistory.Key.ToShortDateString();
+                        reviewer = commentHistory.Value;
+                        reviewHostory += dateString + " - " + reviewer + "  <br/>";
+
+                        totalReviewerCount = totalReviewerCount + 1;
+                        if (QANameList.Contains(reviewer))
+                        {
+                            totalQAReviewerCount = totalQAReviewerCount + 1;
+                        }
+
+                        if (this.chkOnlySupport.Checked)
+                        {
+                            if (DevNameList.Contains(reviewer))
+                            {
+                                totalDevReviewerCount = totalDevReviewerCount + 1;
+                            }
+                        }
+                    }
+
+                    if (!this.chkOnlySupport.Checked)
+                    {
+                        totalDevReviewerCount = totalReviewerCount - totalQAReviewerCount;
+                    }
+
+                    decimal QARatio = 0;
+                    if (totalReviewerCount != 0)
+                    {
+                        QARatio = Math.Round(totalQAReviewerCount / totalReviewerCount, 2);
+                    }
+
+                    decimal DevRatio = 0;
+                    if (totalReviewerCount != 0)
+                    {
+                        DevRatio = Math.Round(totalDevReviewerCount / totalReviewerCount, 2);
+                    }
+
+
+                    dailyCaseSummary += String.Format(@"<tr>
+                                                        <td align='center'>{0}</td>
+                                                        <td align='center'>{1}</td>
+                                                        <td align='center'><a href='https://na26.salesforce.com/{13}'>{2}</a></td>
+                                                        <td align='center'><a href='https://accelaeng.atlassian.net/browse/{3}'>{3}</a></td>
+                                                        <td align='center'>{4}</td>
+                                                        <td align='center'>{5}</td>
+                                                        <td align='center'>{6}</td>
+                                                        <td align='left'>{7}</td>
+                                                        <td align='center'>{8}</td>
+                                                        <td align='center'>{9}</td>
+                                                        <td align='center'>{10}</td>
+                                                        <td align='center'>{11}</td>
+                                                        <td align='center'>{12}</td>
+                                                    </tr>",
+                                                       ++count, // 0 - No
+                                                       product, // 1 - Product
+                                                       caseNumber, // 2 - Salesforce ID
+                                                       jiraKey, // 3 - Jira Key
+                                                       buildVersion, // 4 - Version
+                                                       priority, // 5 - Priority
+                                                       customer, // 6 - Customer
+                                                       summary, // 7 - Summary
+                                                       reopenCount, // 8 - Reopened Times
+                                                       reviewHostory, // 9 - Review History  
+                                                       QARatio, // 10 - QA Ratio
+                                                       DevRatio, // 11 - Dev Ratio
+                                                       sfStatus, // 12 - SF Status
+                                                       caseId
+                                                       );
+                }
+
+                dailyCaseSummary += "</table>";
+
+                if (count == 0)
+                {
+                    this.btnSendRecreatedCase.Enabled = true;
+                    return;
+                }
+
+                string content = @"Hi, All guys<br/><br/>Below is the case analysis report. Just for reference!<br/><br/>" + dailyCaseSummary + "<br/><br/>Thanks<br/>Accela Support Team";
+                string from = "auto_sender@missionsky.com";
+                string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;abel.yu@missionsky.com";
+                string cc = "accela-support-team@missionsky.com";
+                string subject = "The Case Analysis Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+
+                try
+                {
+                    EmailUtil.SendEmail(from, to, cc, subject, content);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Failed to send email");
+                }
+
+                this.btnSendAnalysisReport.Enabled = true;
+            }
         }
     }
 }

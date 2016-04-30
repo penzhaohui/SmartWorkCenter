@@ -218,5 +218,145 @@ namespace com.smartwork.Proxy
 
             return cases;
         }
+
+        public static Dictionary<string, string> GetReviewerNamesList()
+        {
+            Dictionary<string, string> Reviewers = new Dictionary<string, string>();
+            Reviewers.Add("Jessy", "Jessy.Zhang");
+            Reviewers.Add("Adger", "Adger.Chen");
+            Reviewers.Add("Tim", "Tim.Liu");
+
+            Reviewers.Add("Mia", "Mia.Huang");
+            Reviewers.Add("Alvin", "Alvin.Li");
+            Reviewers.Add("Mina", "Mina.Xiong");
+
+            Reviewers.Add("Alex", "Alex.Li");
+            Reviewers.Add("Peter", "Peter.Peng");
+            Reviewers.Add("John", "John.Huang");
+            Reviewers.Add("Bass", "Bass.Yang");
+            Reviewers.Add("Star", "Star.Li");
+            Reviewers.Add("Shaun", "Shaun.Qiu");
+            Reviewers.Add("Lex", "Lex.Wu");
+            Reviewers.Add("Louis", "Louis.He");
+            Reviewers.Add("Likko", "Likko.Zhang");
+            Reviewers.Add("Sandy", "Sandy.Zheng");
+            Reviewers.Add("Weber", "Weber.Yan");
+            Reviewers.Add("Rick", "Rick.Liu");
+            Reviewers.Add("Matt", "Matt.Ao");
+            Reviewers.Add("Hyman", "Hyman.Zhang");
+            Reviewers.Add("Feng", "Feng.Xuan");
+            Reviewers.Add("Cheng", "Cheng.Xu");
+
+            Reviewers.Add("Mandy", "Mandy.Zhou");
+            Reviewers.Add("Linda", "Linda.Xiao");
+            Reviewers.Add("Leo", "Leo.Liu");
+            Reviewers.Add("Abel", "Abel.Yu");
+            Reviewers.Add("Claire", "Claire.Cao");
+            Reviewers.Add("Viola", "Viola.Shi");
+            Reviewers.Add("Larry", "Larry.Francisco");
+            Reviewers.Add("Yummy", "Yummy.Xie");
+            Reviewers.Add("Lola", "Lola.He");
+
+            Reviewers.Add("Fay", "Fay.Ding");
+
+            Reviewers.Add("Gordon", "Gordon.Chen");
+            Reviewers.Add("Tracy", "Tracy.Xiang");
+
+            Reviewers.Add("Apia", "Apia.Liu");
+            Reviewers.Add("Jessie", "Jessie.Zhang");
+            Reviewers.Add("William", "William.Wang");
+            Reviewers.Add("Iron", "Iron.Tang");
+            Reviewers.Add("Rev", "Rev.Vergara");
+            Reviewers.Add("Lisa", "Lisa.Kang");
+
+            Reviewers.Add("Carly", "Carly.Xu");
+            Reviewers.Add("Janice", "Janice.Zhong");
+            Reviewers.Add("Jane", "Jane.Hu");
+            Reviewers.Add("Amy", "Amy.Bao");
+            Reviewers.Add("Iris", "Iris.Wang");
+            Reviewers.Add("Grace", "Grace.Tang");
+            Reviewers.Add("Cloud", "Cloud.Qi");
+            Reviewers.Add("Carol", "Carol.Gong");
+
+            Reviewers.Add("Manasi", "mkarvat@accela.com");
+            Reviewers.Add("Sasirekha", "sbalaji@accela.com");
+            Reviewers.Add("Jerry", "Jerry.Lu");
+
+            return Reviewers;
+        }
+
+        public static List<string> GetSupportDevList()
+        {
+            List<string> Reviewers = new List<string>();
+            Reviewers.Add("Alex.Li");
+            Reviewers.Add("Peter.Peng");
+            Reviewers.Add("John.Huang");
+            Reviewers.Add("Bass.Yang");
+            Reviewers.Add("Star.Li");
+            Reviewers.Add("Shaun.Qiu");
+            Reviewers.Add("Lex.Wu");
+            Reviewers.Add("Louis.He");
+            Reviewers.Add("Likko.Zhang");
+            Reviewers.Add("Sandy.Zheng");
+            Reviewers.Add("Weber.Yan");
+
+            return Reviewers;
+        }
+
+        public static List<string> GetSupportQAList()
+        {
+            List<string> Reviewers = new List<string>();
+            Reviewers.Add("Jessy.Zhang");           
+
+            Reviewers.Add("Linda.Xiao");
+            Reviewers.Add("Leo.Liu");
+            Reviewers.Add("Abel.Yu");
+            Reviewers.Add("Claire.Cao");
+            Reviewers.Add("Viola.Shi");
+            Reviewers.Add("Yummy.Xie");
+            Reviewers.Add("Lola.He");
+            Reviewers.Add("Gordon.Chen");
+            Reviewers.Add("Fay.Ding");          
+
+            return Reviewers;
+        }
+
+        public static List<string> GetQAReviewerNamesList()
+        {
+            List<string> Reviewers = new List<string>();
+            Reviewers.Add("Jessy.Zhang");            
+
+            Reviewers.Add("Mia.Huang");
+            Reviewers.Add("Alvin.Li");
+            Reviewers.Add("Mina.Xiong");           
+
+            Reviewers.Add("Mandy.Zhou");
+            Reviewers.Add("Linda.Xiao");
+            Reviewers.Add("Leo.Liu");
+            Reviewers.Add("Abel.Yu");
+            Reviewers.Add("Claire.Cao");
+            Reviewers.Add("Viola.Shi");
+            Reviewers.Add("Larry.Francisco");
+            Reviewers.Add("Yummy.Xie");
+            Reviewers.Add("Lola.He");
+            Reviewers.Add("Gordon.Chen");
+            Reviewers.Add("Fay.Ding");
+
+            Reviewers.Add("Apia.Liu");
+            Reviewers.Add("Jessie.Zhang");
+            Reviewers.Add("Rev.Vergara");
+            Reviewers.Add("Lisa.Kang");
+
+            Reviewers.Add("Carly.Xu");
+            Reviewers.Add("Janice.Zhong");
+            Reviewers.Add("Jane.Hu");
+            Reviewers.Add("Amy.Bao");
+            Reviewers.Add("Iris.Wang");
+            Reviewers.Add("Grace.Tang");
+            Reviewers.Add("Cloud.Qi");
+            Reviewers.Add("Carol.Gong");
+
+            return Reviewers;
+        }
     }
 }
