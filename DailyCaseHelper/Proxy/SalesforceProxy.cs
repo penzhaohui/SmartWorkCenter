@@ -92,7 +92,8 @@ namespace com.smartwork.Proxy
                             and product__c != 'Springbrook' 
                             and product__c != 'SoftRight' 
                             and product__c != 'Legislative Management' 
-                            and product__c != 'Environmental Health' ";
+                            and product__c != 'Environmental Health'
+                            and product__c != 'KVS Standard' ";
 
             if (isOnlyV80000)
             {
@@ -300,14 +301,18 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Sandy.Zheng");
             Reviewers.Add("Weber.Yan");
 
+            Reviewers.Add("Tim.Liu");
+            Reviewers.Add("Adger.Chen");
+
             return Reviewers;
         }
 
         public static List<string> GetSupportQAList()
         {
             List<string> Reviewers = new List<string>();
-            Reviewers.Add("Jessy.Zhang");           
+            Reviewers.Add("Jessy.Zhang");
 
+            Reviewers.Add("Jane.Hu");
             Reviewers.Add("Linda.Xiao");
             Reviewers.Add("Leo.Liu");
             Reviewers.Add("Abel.Yu");

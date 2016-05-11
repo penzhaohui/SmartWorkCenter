@@ -1675,7 +1675,7 @@ namespace com.smartwork
                     decimal totalDevReviewerCount = 0;
                     foreach(var commentHistory in CommentHistories)
                     {
-                        if (dateString == commentHistory.Key.ToShortDateString() || reviewer == commentHistory.Value)
+                        if (dateString == commentHistory.Key.ToShortDateString() && reviewer == commentHistory.Value)
                         {
                             continue;
                         }
@@ -1727,7 +1727,7 @@ namespace com.smartwork
                                                         <td align='center'>{6}</td>
                                                         <td align='left'>{7}</td>
                                                         <td align='center'>{8}</td>
-                                                        <td align='center'>{9}</td>
+                                                        <td align='left'>{9}</td>
                                                         <td align='center'>{10}</td>
                                                         <td align='center'>{11}</td>
                                                         <td align='center'>{12}</td>
