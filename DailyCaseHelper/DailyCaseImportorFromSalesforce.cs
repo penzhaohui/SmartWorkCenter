@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.1.0.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.1.0.3 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -886,6 +886,10 @@ namespace com.smartwork
                             }
 
                             issue.fields.customfield_10900 = customer;
+                            if ("Delivery".Equals(origin, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                origin = "Other";
+                            }
                             issue.fields.customfield_11900 = origin;
                             issue.fields.customfield_12400 = reopenCount;
                             temOpenDate = DateTime.Parse(lastModifiedDate);
@@ -1198,6 +1202,7 @@ namespace com.smartwork
             statuses.Add("In Progress");
             statuses.Add("Reopened");
             statuses.Add("Pending");
+            statuses.Add("Development in Progress");
 
             foreach (string status in statuses)
             {
@@ -1287,7 +1292,8 @@ namespace com.smartwork
                     jiaStstus = row["JiraStatus"] as string;
 
                     if (!"Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        && !"Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                        && !"Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Dev Released".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
                     {
                         continue;
                     }
@@ -1411,7 +1417,7 @@ namespace com.smartwork
                     assigneeQA = row["AssigneeQA"] as string; 
                     jiraLabels = row["JiraLabels"] as List<string>;
 
-                    if (!jiraLabels.Contains("Recreated_By_QA"))
+                    if (jiraLabels != null && !jiraLabels.Contains("Recreated_By_QA"))
                     {
                         continue;
                     }
