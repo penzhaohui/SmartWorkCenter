@@ -52,6 +52,7 @@
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mergeAttachmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -173,7 +174,8 @@
             this.syncJiraIssueToolStripMenuItem,
             this.dailyCaseToolToolStripMenuItem,
             this.FTPMonitorToolStripMenuItem,
-            this.dbManagerToolStripMenuItem});
+            this.dbManagerToolStripMenuItem,
+            this.mergeAttachmentToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -181,35 +183,35 @@
             // AADevCheckerToolStripMenuItem
             // 
             this.AADevCheckerToolStripMenuItem.Name = "AADevCheckerToolStripMenuItem";
-            this.AADevCheckerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.AADevCheckerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.AADevCheckerToolStripMenuItem.Text = "AA Dev";
             this.AADevCheckerToolStripMenuItem.Click += new System.EventHandler(this.AADevCheckerToolStripMenuItem_Click);
             // 
             // syncJiraIssueToolStripMenuItem
             // 
             this.syncJiraIssueToolStripMenuItem.Name = "syncJiraIssueToolStripMenuItem";
-            this.syncJiraIssueToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.syncJiraIssueToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.syncJiraIssueToolStripMenuItem.Text = "Sync JIRA Issue";
             this.syncJiraIssueToolStripMenuItem.Click += new System.EventHandler(this.syncJiraIssueToolStripMenuItem_Click);
             // 
             // dailyCaseToolToolStripMenuItem
             // 
             this.dailyCaseToolToolStripMenuItem.Name = "dailyCaseToolToolStripMenuItem";
-            this.dailyCaseToolToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.dailyCaseToolToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.dailyCaseToolToolStripMenuItem.Text = "Daily Case Tool";
             this.dailyCaseToolToolStripMenuItem.Click += new System.EventHandler(this.dailyCaseToolToolStripMenuItem_Click);
             // 
             // FTPMonitorToolStripMenuItem
             // 
             this.FTPMonitorToolStripMenuItem.Name = "FTPMonitorToolStripMenuItem";
-            this.FTPMonitorToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.FTPMonitorToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.FTPMonitorToolStripMenuItem.Text = "FTP Monitor";
             this.FTPMonitorToolStripMenuItem.Click += new System.EventHandler(this.FTPMonitorToolStripMenuItem_Click);
             // 
             // dbManagerToolStripMenuItem
             // 
             this.dbManagerToolStripMenuItem.Name = "dbManagerToolStripMenuItem";
-            this.dbManagerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.dbManagerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.dbManagerToolStripMenuItem.Text = "DB Manager";
             this.dbManagerToolStripMenuItem.Click += new System.EventHandler(this.dbManagerToolStripMenuItem_Click);
             // 
@@ -241,6 +243,13 @@
             // 
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
+            // 
+            // mergeAttachmentToolStripMenuItem
+            // 
+            this.mergeAttachmentToolStripMenuItem.Name = "mergeAttachmentToolStripMenuItem";
+            this.mergeAttachmentToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.mergeAttachmentToolStripMenuItem.Text = "Merge Attachment";
+            this.mergeAttachmentToolStripMenuItem.Click += new System.EventHandler(this.mergeAttachmentToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -289,6 +298,7 @@
         private System.Windows.Forms.ToolStripMenuItem dailyCaseToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FTPMonitorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dbManagerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeAttachmentToolStripMenuItem;
     }
 }
 

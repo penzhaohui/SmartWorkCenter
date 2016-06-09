@@ -7,8 +7,12 @@ using Newtonsoft.Json;
 
 namespace com.smartwork.Models
 {
+    // https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_attachment.htm
     public class CaseComment
     {
+        [JsonProperty(PropertyName = "Body")]
+        public Byte[] Body { get; set; }
+
         [JsonProperty(PropertyName = "attributes")]
         public AttributeType Attributes { get; set; }
 

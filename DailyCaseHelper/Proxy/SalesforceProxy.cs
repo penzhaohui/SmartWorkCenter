@@ -1,9 +1,11 @@
 ﻿using com.smartwork.Models;
+using com.smartwork.Proxy.models;
 using Salesforce.Common;
 using Salesforce.Force;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -170,6 +172,84 @@ namespace com.smartwork.Proxy
             cases.AddRange(results.Records);
 
             return cases;
+        }
+
+        public static async Task<List<AccelaCase>> GetCaseAttachmentInfoByID(List<string> caseIdList)
+        {
+            // http://stackoverflow.com/questions/4952379/salesforce-soql-query-for-notes-and-attachments-of-a-site
+            string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, rank_order__c, services_rank__c, case.account.name, 
+                                              case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
+                                              case.createdby.name, status, internal_type__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name,
+                                              (select Id, Name, ContentType, BodyLength, Description, IsPrivate, OwnerId, ParentId, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById from Attachments) 
+                           from case 
+                           where product__c != 'Springbrook' 
+                           and product__c != 'SoftRight' 
+                           and product__c != 'Legislative Management' 
+                           and product__c != 'Environmental Health' and ( ";
+
+            bool isFirstCase = true;
+            foreach (string caseId in caseIdList)
+            {
+                if (isFirstCase)
+                {
+                    sql += " casenumber='" + caseId + "' ";
+                    isFirstCase = false;
+                }
+                else
+                {
+                    sql += " OR casenumber='" + caseId + "' ";
+                }
+            }
+            sql += ")";
+
+            var cases = new List<AccelaCase>();
+            var results = await Client.QueryAsync<AccelaCase>(sql);
+            var totalSize = results.TotalSize;
+
+            cases.AddRange(results.Records);
+
+            return cases;
+        }
+
+        public static byte[] GetCaseAttachmentById(string attachmentId)
+        {
+            // https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_blob_retrieve.htm
+            // Salesforce REST API Read File - http://danlb.blogspot.com/2012/06/salesforce-rest-api-read-file.html
+            // Salesforce REST API File Upload - http://danlb.blogspot.com/2012/06/salesforce-rest-api-file-upload.html
+
+            //string sql = "Select Name, Body, ContentType from Attachment where id = '" + attachmentId + "'";
+            //var result = await Client.QueryAsync<AccelaCaseAttachment>(sql);
+
+            var uri = "https://na26.salesforce.com//services/data/v32.0/sobjects/Attachment/" + attachmentId + "/body";
+            var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uri);
+            req.Headers.Add("Authorization: OAuth " + "00D300000000B1r!AQMAQBb3Nv5DaNTlgPJz3Pzmvry2J4mJ4f4vF9aRbjHVQcxOMHRIZXGsbpLn_IhfoHObdV9jBhdwVg5XTa5V5Bw_tr7Zql.f");
+            req.ContentType = "application/json";
+            req.Method = "GET";
+            var resp = req.GetResponse();
+            var sr = new System.IO.StreamReader(resp.GetResponseStream());
+            //var result = sr.ReadToEnd();
+
+            var bytes = default(byte[]);
+            using (var memstream = new MemoryStream())
+            {
+                var buffer = new byte[512];
+                var bytesRead = default(int);
+                while ((bytesRead = sr.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                    memstream.Write(buffer, 0, bytesRead);
+                bytes = memstream.ToArray();
+                //memstream.Position = 0;
+                //memstream.Close();
+                //return memstream;
+            }
+
+            return bytes;
+        }
+
+        public static async Task<User> GetUserInfoById(string id)
+        {
+            var result = await Client.QueryByIdAsync<User>("User", id);
+
+            return result;
         }
 
         public static async Task<List<AccelaCase>> GetCaseInfoByID(string caseId)

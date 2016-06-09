@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Salesforce.Common.Models;
+using com.smartwork.Proxy.models;
 
 namespace com.smartwork.Models
 {
@@ -87,6 +88,9 @@ namespace com.smartwork.Models
 
         [JsonProperty(PropertyName = "CaseComments")]
         public QueryResult<CaseComment> CaseComments { get; set; }
+
+        [JsonProperty(PropertyName = "Attachments")]
+        public QueryResult<CaseAttachment> CaseAttachments { get; set; }        
         
     }
 }

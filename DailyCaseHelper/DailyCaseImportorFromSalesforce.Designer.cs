@@ -43,10 +43,26 @@
             this.chkOnlyEmailMe = new System.Windows.Forms.CheckBox();
             this.chkOnlyImportCase = new System.Windows.Forms.CheckBox();
             this.grdCaseList = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chkOnlyCurrentMonth = new System.Windows.Forms.CheckBox();
+            this.chkOnlySupport = new System.Windows.Forms.CheckBox();
+            this.btnSendRecreatedCase = new System.Windows.Forms.Button();
+            this.btnSendAnalysisReport = new System.Windows.Forms.Button();
+            this.btnSendCloseReport = new System.Windows.Forms.Button();
+            this.chkSelectAllMissionsky = new System.Windows.Forms.CheckBox();
+            this.chkSelectAllHotCase = new System.Windows.Forms.CheckBox();
+            this.btnUpdateJIRAStatus = new System.Windows.Forms.Button();
+            this.btnSendDailyCommentEmail = new System.Windows.Forms.Button();
+            this.btnMoveCommentToJIRA = new System.Windows.Forms.Button();
+            this.btnSyncWithJiraAndSF = new System.Windows.Forms.Button();
+            this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
+            this.btnImportToJira = new System.Windows.Forms.Button();
+            this.lblExportTodayCaseList = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotCase = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Missionsky = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Attachment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalesforceID = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -64,21 +80,6 @@
             this.SFQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NextJiraStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnSendRecreatedCase = new System.Windows.Forms.Button();
-            this.btnSendAnalysisReport = new System.Windows.Forms.Button();
-            this.btnSendCloseReport = new System.Windows.Forms.Button();
-            this.chkSelectAllMissionsky = new System.Windows.Forms.CheckBox();
-            this.chkSelectAllHotCase = new System.Windows.Forms.CheckBox();
-            this.btnUpdateJIRAStatus = new System.Windows.Forms.Button();
-            this.btnSendDailyCommentEmail = new System.Windows.Forms.Button();
-            this.btnMoveCommentToJIRA = new System.Windows.Forms.Button();
-            this.btnSyncWithJiraAndSF = new System.Windows.Forms.Button();
-            this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
-            this.btnImportToJira = new System.Windows.Forms.Button();
-            this.lblExportTodayCaseList = new System.Windows.Forms.Label();
-            this.chkOnlySupport = new System.Windows.Forms.CheckBox();
-            this.chkOnlyCurrentMonth = new System.Windows.Forms.CheckBox();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -245,6 +246,7 @@
             this.No,
             this.HotCase,
             this.Missionsky,
+            this.Attachment,
             this.Rank,
             this.Product,
             this.SalesforceID,
@@ -267,153 +269,6 @@
             this.grdCaseList.Size = new System.Drawing.Size(1254, 522);
             this.grdCaseList.TabIndex = 7;
             // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // No
-            // 
-            this.No.DataPropertyName = "No";
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            // 
-            // HotCase
-            // 
-            this.HotCase.DataPropertyName = "HotCase";
-            this.HotCase.HeaderText = "Hot Case";
-            this.HotCase.Name = "HotCase";
-            this.HotCase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.HotCase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Missionsky
-            // 
-            this.Missionsky.DataPropertyName = "Missionsky";
-            this.Missionsky.HeaderText = "Missionsky";
-            this.Missionsky.Name = "Missionsky";
-            // 
-            // Rank
-            // 
-            this.Rank.DataPropertyName = "Rank";
-            this.Rank.HeaderText = "Rank";
-            this.Rank.Name = "Rank";
-            this.Rank.ReadOnly = true;
-            // 
-            // Product
-            // 
-            this.Product.DataPropertyName = "ProductForUI";
-            this.Product.HeaderText = "Product";
-            this.Product.Name = "Product";
-            this.Product.ReadOnly = true;
-            // 
-            // SalesforceID
-            // 
-            this.SalesforceID.DataPropertyName = "SalesforceID";
-            this.SalesforceID.HeaderText = "Salesforce ID";
-            this.SalesforceID.Name = "SalesforceID";
-            this.SalesforceID.ReadOnly = true;
-            this.SalesforceID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SalesforceID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // JiraKey
-            // 
-            this.JiraKey.DataPropertyName = "JiraKey";
-            this.JiraKey.HeaderText = "Jira Key";
-            this.JiraKey.Name = "JiraKey";
-            this.JiraKey.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.JiraKey.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Severity
-            // 
-            this.Severity.DataPropertyName = "Severity";
-            this.Severity.HeaderText = "Severity";
-            this.Severity.Name = "Severity";
-            this.Severity.ReadOnly = true;
-            // 
-            // Version
-            // 
-            this.Version.DataPropertyName = "Version";
-            this.Version.HeaderText = "Version";
-            this.Version.Name = "Version";
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "IssueCategory";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Customer
-            // 
-            this.Customer.DataPropertyName = "Customer";
-            this.Customer.HeaderText = "Customer";
-            this.Customer.Name = "Customer";
-            // 
-            // Orgin
-            // 
-            this.Orgin.DataPropertyName = "Orgin";
-            this.Orgin.HeaderText = "Orgin";
-            this.Orgin.Name = "Orgin";
-            // 
-            // OpenDate
-            // 
-            this.OpenDate.DataPropertyName = "OpenDate";
-            this.OpenDate.HeaderText = "Open Date";
-            this.OpenDate.Name = "OpenDate";
-            this.OpenDate.ReadOnly = true;
-            // 
-            // Summary
-            // 
-            this.Summary.DataPropertyName = "Summary";
-            this.Summary.HeaderText = "Summary";
-            this.Summary.Name = "Summary";
-            this.Summary.ReadOnly = true;
-            // 
-            // Reviewer
-            // 
-            this.Reviewer.DataPropertyName = "Reviewer";
-            this.Reviewer.HeaderText = "Reviewer";
-            this.Reviewer.Name = "Reviewer";
-            this.Reviewer.ReadOnly = true;
-            // 
-            // ReopenedCount
-            // 
-            this.ReopenedCount.DataPropertyName = "ReopenedCount";
-            this.ReopenedCount.HeaderText = "Reopened Times";
-            this.ReopenedCount.Name = "ReopenedCount";
-            this.ReopenedCount.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "JiraStatus";
-            this.Status.HeaderText = "Jira Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // SFQueue
-            // 
-            this.SFQueue.DataPropertyName = "SFQueue";
-            this.SFQueue.HeaderText = "SFQueue";
-            this.SFQueue.Name = "SFQueue";
-            this.SFQueue.ReadOnly = true;
-            // 
-            // SFStatus
-            // 
-            this.SFStatus.DataPropertyName = "SFStatus";
-            this.SFStatus.HeaderText = "SFStatus";
-            this.SFStatus.Name = "SFStatus";
-            this.SFStatus.ReadOnly = true;
-            // 
-            // NextJiraStatus
-            // 
-            this.NextJiraStatus.DataPropertyName = "NextJiraStatus";
-            this.NextJiraStatus.HeaderText = "NextJiraStatus";
-            this.NextJiraStatus.Name = "NextJiraStatus";
-            this.NextJiraStatus.ReadOnly = true;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.chkOnlyCurrentMonth);
@@ -434,6 +289,30 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1151, 55);
             this.panel3.TabIndex = 9;
+            // 
+            // chkOnlyCurrentMonth
+            // 
+            this.chkOnlyCurrentMonth.AutoSize = true;
+            this.chkOnlyCurrentMonth.Checked = true;
+            this.chkOnlyCurrentMonth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOnlyCurrentMonth.Location = new System.Drawing.Point(730, 4);
+            this.chkOnlyCurrentMonth.Name = "chkOnlyCurrentMonth";
+            this.chkOnlyCurrentMonth.Size = new System.Drawing.Size(117, 17);
+            this.chkOnlyCurrentMonth.TabIndex = 13;
+            this.chkOnlyCurrentMonth.Text = "Only Current Month";
+            this.chkOnlyCurrentMonth.UseVisualStyleBackColor = true;
+            // 
+            // chkOnlySupport
+            // 
+            this.chkOnlySupport.AutoSize = true;
+            this.chkOnlySupport.Checked = true;
+            this.chkOnlySupport.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOnlySupport.Location = new System.Drawing.Point(582, 3);
+            this.chkOnlySupport.Name = "chkOnlySupport";
+            this.chkOnlySupport.Size = new System.Drawing.Size(117, 17);
+            this.chkOnlySupport.TabIndex = 12;
+            this.chkOnlySupport.Text = "Only Support Team";
+            this.chkOnlySupport.UseVisualStyleBackColor = true;
             // 
             // btnSendRecreatedCase
             // 
@@ -557,29 +436,159 @@
             this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
     "mail box. ";
             // 
-            // chkOnlySupport
+            // ID
             // 
-            this.chkOnlySupport.AutoSize = true;
-            this.chkOnlySupport.Checked = true;
-            this.chkOnlySupport.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOnlySupport.Location = new System.Drawing.Point(582, 3);
-            this.chkOnlySupport.Name = "chkOnlySupport";
-            this.chkOnlySupport.Size = new System.Drawing.Size(117, 17);
-            this.chkOnlySupport.TabIndex = 12;
-            this.chkOnlySupport.Text = "Only Support Team";
-            this.chkOnlySupport.UseVisualStyleBackColor = true;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
-            // chkOnlyCurrentMonth
+            // No
             // 
-            this.chkOnlyCurrentMonth.AutoSize = true;
-            this.chkOnlyCurrentMonth.Checked = true;
-            this.chkOnlyCurrentMonth.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOnlyCurrentMonth.Location = new System.Drawing.Point(730, 4);
-            this.chkOnlyCurrentMonth.Name = "chkOnlyCurrentMonth";
-            this.chkOnlyCurrentMonth.Size = new System.Drawing.Size(117, 17);
-            this.chkOnlyCurrentMonth.TabIndex = 13;
-            this.chkOnlyCurrentMonth.Text = "Only Current Month";
-            this.chkOnlyCurrentMonth.UseVisualStyleBackColor = true;
+            this.No.DataPropertyName = "No";
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            // 
+            // HotCase
+            // 
+            this.HotCase.DataPropertyName = "HotCase";
+            this.HotCase.HeaderText = "Hot Case";
+            this.HotCase.Name = "HotCase";
+            this.HotCase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HotCase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Missionsky
+            // 
+            this.Missionsky.DataPropertyName = "Missionsky";
+            this.Missionsky.HeaderText = "Missionsky";
+            this.Missionsky.Name = "Missionsky";
+            // 
+            // Attachment
+            // 
+            this.Attachment.HeaderText = "Attachment";
+            this.Attachment.Name = "Attachment";
+            this.Attachment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Attachment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Rank
+            // 
+            this.Rank.DataPropertyName = "Rank";
+            this.Rank.HeaderText = "Rank";
+            this.Rank.Name = "Rank";
+            this.Rank.ReadOnly = true;
+            // 
+            // Product
+            // 
+            this.Product.DataPropertyName = "ProductForUI";
+            this.Product.HeaderText = "Product";
+            this.Product.Name = "Product";
+            this.Product.ReadOnly = true;
+            // 
+            // SalesforceID
+            // 
+            this.SalesforceID.DataPropertyName = "SalesforceID";
+            this.SalesforceID.HeaderText = "Salesforce ID";
+            this.SalesforceID.Name = "SalesforceID";
+            this.SalesforceID.ReadOnly = true;
+            this.SalesforceID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SalesforceID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // JiraKey
+            // 
+            this.JiraKey.DataPropertyName = "JiraKey";
+            this.JiraKey.HeaderText = "Jira Key";
+            this.JiraKey.Name = "JiraKey";
+            this.JiraKey.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.JiraKey.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Severity
+            // 
+            this.Severity.DataPropertyName = "Severity";
+            this.Severity.HeaderText = "Severity";
+            this.Severity.Name = "Severity";
+            this.Severity.ReadOnly = true;
+            // 
+            // Version
+            // 
+            this.Version.DataPropertyName = "Version";
+            this.Version.HeaderText = "Version";
+            this.Version.Name = "Version";
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "IssueCategory";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Customer
+            // 
+            this.Customer.DataPropertyName = "Customer";
+            this.Customer.HeaderText = "Customer";
+            this.Customer.Name = "Customer";
+            // 
+            // Orgin
+            // 
+            this.Orgin.DataPropertyName = "Orgin";
+            this.Orgin.HeaderText = "Orgin";
+            this.Orgin.Name = "Orgin";
+            // 
+            // OpenDate
+            // 
+            this.OpenDate.DataPropertyName = "OpenDate";
+            this.OpenDate.HeaderText = "Open Date";
+            this.OpenDate.Name = "OpenDate";
+            this.OpenDate.ReadOnly = true;
+            // 
+            // Summary
+            // 
+            this.Summary.DataPropertyName = "Summary";
+            this.Summary.HeaderText = "Summary";
+            this.Summary.Name = "Summary";
+            this.Summary.ReadOnly = true;
+            // 
+            // Reviewer
+            // 
+            this.Reviewer.DataPropertyName = "Reviewer";
+            this.Reviewer.HeaderText = "Reviewer";
+            this.Reviewer.Name = "Reviewer";
+            this.Reviewer.ReadOnly = true;
+            // 
+            // ReopenedCount
+            // 
+            this.ReopenedCount.DataPropertyName = "ReopenedCount";
+            this.ReopenedCount.HeaderText = "Reopened Times";
+            this.ReopenedCount.Name = "ReopenedCount";
+            this.ReopenedCount.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "JiraStatus";
+            this.Status.HeaderText = "Jira Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // SFQueue
+            // 
+            this.SFQueue.DataPropertyName = "SFQueue";
+            this.SFQueue.HeaderText = "SFQueue";
+            this.SFQueue.Name = "SFQueue";
+            this.SFQueue.ReadOnly = true;
+            // 
+            // SFStatus
+            // 
+            this.SFStatus.DataPropertyName = "SFStatus";
+            this.SFStatus.HeaderText = "SFStatus";
+            this.SFStatus.Name = "SFStatus";
+            this.SFStatus.ReadOnly = true;
+            // 
+            // NextJiraStatus
+            // 
+            this.NextJiraStatus.DataPropertyName = "NextJiraStatus";
+            this.NextJiraStatus.HeaderText = "NextJiraStatus";
+            this.NextJiraStatus.Name = "NextJiraStatus";
+            this.NextJiraStatus.ReadOnly = true;
             // 
             // DailyCaseImportorFromSalesforce
             // 
@@ -630,10 +639,15 @@
         private System.Windows.Forms.CheckBox chkSelectAllHotCase;
         private System.Windows.Forms.Button btnShowPendingCases;
         private System.Windows.Forms.Button btnSendCloseReport;
+        private System.Windows.Forms.Button btnSendRecreatedCase;
+        private System.Windows.Forms.Button btnSendAnalysisReport;
+        private System.Windows.Forms.CheckBox chkOnlyCurrentMonth;
+        private System.Windows.Forms.CheckBox chkOnlySupport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewCheckBoxColumn HotCase;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Missionsky;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Attachment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rank;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewLinkColumn SalesforceID;
@@ -651,9 +665,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SFQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn SFStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn NextJiraStatus;
-        private System.Windows.Forms.Button btnSendRecreatedCase;
-        private System.Windows.Forms.Button btnSendAnalysisReport;
-        private System.Windows.Forms.CheckBox chkOnlyCurrentMonth;
-        private System.Windows.Forms.CheckBox chkOnlySupport;
     }
 }

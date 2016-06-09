@@ -447,7 +447,7 @@ namespace TechTalk.JiraRestClient
             return LoadIssue(issue).fields.attachment;
         }
 
-        public Attachment CreateAttachment(IssueRef issue, Stream fileStream, String fileName)
+        public Attachment CreateAttachment(IssueRef issue, byte[] fileStream, String fileName)
         {
             try
             {
@@ -455,7 +455,8 @@ namespace TechTalk.JiraRestClient
                 var request = CreateRequest(Method.POST, path);
                 request.AddHeader("X-Atlassian-Token", "nocheck");
                 request.AddHeader("ContentType", "multipart/form-data");
-                request.AddFile("file", stream => fileStream.CopyTo(stream), fileName);
+                //request.AddFile("file", stream => fileStream.CopyTo(stream), fileName);
+                request.AddFile("file", fileStream, fileName);
 
                 var response = ExecuteRequest(request);
                 AssertStatus(response, HttpStatusCode.OK);

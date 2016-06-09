@@ -134,6 +134,24 @@ namespace com.smartwork.Proxy
             return (jiraComments as List<Comment>);
         }
 
+        public static async Task<List<Attachment>> GetAttachments(IssueRef issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var jiraAttachments = jira.GetAttachments(issue);
+
+
+            return (jiraAttachments as List<Attachment>);
+        }
+
+        public static bool UploadAttachment(IssueRef issue, string fileName, byte[] fileStream)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            jira.CreateAttachment(issue, fileStream, fileName);
+
+            return true;
+        }
+
         public static async Task<bool> UpdateJiraStatus(IssueRef issueRef, string jiraStatus, string jiraNextStatus)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");

@@ -48,7 +48,7 @@ namespace TechTalk.JiraRestClient
         /// <summary>Return all attachments for the given issue</summary>
         IEnumerable<Attachment> GetAttachments(IssueRef issue);
         /// <summary>Creates an attachment to the given issue</summary>
-        Attachment CreateAttachment(IssueRef issue, Stream stream, String fileName);
+        Attachment CreateAttachment(IssueRef issue, byte[] stream, String fileName);
         /// <summary>Deletes the given attachment</summary>
         void DeleteAttachment(Attachment attachment);
 

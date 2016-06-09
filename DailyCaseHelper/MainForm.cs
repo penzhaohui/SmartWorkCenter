@@ -171,5 +171,16 @@ namespace com.smartwork
             dbManager.MinimizeBox = false;
             dbManager.Show();
         }
+
+        private void mergeAttachmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            MergeAttchmentFromSalesforce mergeAttachment = new MergeAttchmentFromSalesforce();
+            mergeAttachment.WindowState = FormWindowState.Maximized;
+            mergeAttachment.MdiParent = this;
+            mergeAttachment.MaximizeBox = false;
+            mergeAttachment.MinimizeBox = false;
+            mergeAttachment.Show();
+        }
     }
 }

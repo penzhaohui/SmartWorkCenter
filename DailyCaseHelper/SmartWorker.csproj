@@ -142,15 +142,26 @@
     <Compile Include="EmailSetting.Designer.cs">
       <DependentUpon>EmailSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="MergeAttchmentFromSalesforce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MergeAttchmentFromSalesforce.Designer.cs">
+      <DependentUpon>MergeAttchmentFromSalesforce.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\AcccelaDBModel.cs" />
+    <Compile Include="Proxy\models\AccelaAttachmentMapper.cs" />
     <Compile Include="Proxy\models\AccelaCase.cs" />
     <Compile Include="Proxy\JiraProxy.cs" />
+    <Compile Include="Proxy\models\AccelaCaseAttachment.cs" />
     <Compile Include="Proxy\models\AccelaIssue.cs" />
     <Compile Include="Proxy\models\AccelaIssueCaseMapper.cs" />
     <Compile Include="Proxy\models\AccelaIssueFields.cs" />
     <Compile Include="Proxy\models\Account.cs" />
+    <Compile Include="Proxy\models\CaseAttachment.cs" />
     <Compile Include="Proxy\models\AttributeType.cs" />
     <Compile Include="Proxy\models\CaseComment.cs" />
+    <Compile Include="Proxy\models\Contact.cs" />
+    <Compile Include="Proxy\models\User.cs" />
     <Compile Include="Proxy\SFDCUnitTest.cs" />
     <Compile Include="Proxy\SalesforceProxy.cs" />
     <Compile Include="MainForm.cs">
@@ -198,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeAttchmentFromSalesforce.resx">
+      <DependentUpon>MergeAttchmentFromSalesforce.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
