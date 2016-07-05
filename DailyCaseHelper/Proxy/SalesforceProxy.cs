@@ -327,6 +327,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Hyman", "Hyman.Zhang");
             Reviewers.Add("Feng", "Feng.Xuan");
             Reviewers.Add("Cheng", "Cheng.Xu");
+            Reviewers.Add("Felix", "Felix.Chen");
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
             Reviewers.Add("Linda", "Linda.Xiao");
@@ -337,11 +338,14 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Larry", "Larry.Francisco");
             Reviewers.Add("Yummy", "Yummy.Xie");
             Reviewers.Add("Lola", "Lola.He");
+            Reviewers.Add("Nicole", "Nicole.Guo");
+            Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 
             Reviewers.Add("Fay", "Fay.Ding");
 
             Reviewers.Add("Gordon", "Gordon.Chen");
             Reviewers.Add("Tracy", "Tracy.Xiang");
+            Reviewers.Add("Evelyn", "Evelyn.Zhang");
 
             Reviewers.Add("Apia", "Apia.Liu");
             Reviewers.Add("Jessie", "Jessie.Zhang");
@@ -362,6 +366,11 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Manasi", "mkarvat@accela.com");
             Reviewers.Add("Sasirekha", "sbalaji@accela.com");
             Reviewers.Add("Jerry", "Jerry.Lu");
+            Reviewers.Add("Anderson", "Anderson.Liu");
+            Reviewers.Add("Robinson", "Robinson.Leung");
+            Reviewers.Add("Greg", "Greg.Mietelski");
+            Reviewers.Add("Prakash", "Prakash.Dhanore");
+            Reviewers.Add("Shijie", "Shijie.Zhou");
 
             return Reviewers;
         }
@@ -369,6 +378,14 @@ namespace com.smartwork.Proxy
         public static List<string> GetSupportDevList()
         {
             List<string> Reviewers = new List<string>();
+            Reviewers.Add("Jessy.Zhang");
+            Reviewers.Add("Adger.Chen");
+            Reviewers.Add("Tim.Liu");
+
+            Reviewers.Add("Mia.Huang");
+            Reviewers.Add("Alvin.Li");
+            Reviewers.Add("Mina.Xiong");
+
             Reviewers.Add("Alex.Li");
             Reviewers.Add("Peter.Peng");
             Reviewers.Add("John.Huang");
@@ -380,9 +397,56 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Likko.Zhang");
             Reviewers.Add("Sandy.Zheng");
             Reviewers.Add("Weber.Yan");
+            Reviewers.Add("Rick.Liu");
+            Reviewers.Add("Matt.Ao");
+            Reviewers.Add("Hyman.Zhang");
+            Reviewers.Add("Feng.Xuan");
+            Reviewers.Add("Cheng.Xu");
+            Reviewers.Add("Felix.Chen");
 
-            Reviewers.Add("Tim.Liu");
-            Reviewers.Add("Adger.Chen");
+            Reviewers.Add("Mandy.Zhou");
+            Reviewers.Add("Linda.Xiao");
+            //Reviewers.Add("Leo.Liu");
+            Reviewers.Add("Abel.Yu");
+            Reviewers.Add("Claire.Cao");
+            Reviewers.Add("Viola.Shi");
+            Reviewers.Add("Larry.Francisco");
+            Reviewers.Add("Yummy.Xie");
+            Reviewers.Add("Lola.He");
+            Reviewers.Add("Nicole.Guo");
+            Reviewers.Add("Joanna.Mae.Ramirez");
+
+            Reviewers.Add("Fay.Ding");
+
+            Reviewers.Add("Gordon.Chen");
+            Reviewers.Add("Tracy.Xiang");
+            Reviewers.Add("Evelyn.Zhang");
+
+            Reviewers.Add("Apia.Liu");
+            Reviewers.Add("Jessie.Zhang");
+            Reviewers.Add("William.Wang");
+            Reviewers.Add("Iron.Tang");
+            Reviewers.Add("Rev.Vergara");
+            Reviewers.Add("Lisa.Kang");
+
+            Reviewers.Add("Carly.Xu");
+            Reviewers.Add("Janice.Zhong");
+            //Reviewers.Add("Jane.Hu");
+            Reviewers.Add("Amy.Bao");
+            Reviewers.Add("Iris.Wang");
+            Reviewers.Add("Grace.Tang");
+            Reviewers.Add("Cloud.Qi");
+            Reviewers.Add("Carol.Gong");
+
+            Reviewers.Add("mkarvat@accela.com");
+            Reviewers.Add("sbalaji@accela.com");
+            Reviewers.Add("Jerry.Lu");
+            Reviewers.Add("Anderson.Liu");
+            Reviewers.Add("Prakash.Dhanore");
+            Reviewers.Add("Shijie.Zhou");           
+            
+            //Reviewers.Add("Robinson.Leung");
+            //Reviewers.Add("Greg.Mietelski");
 
             return Reviewers;
         }
@@ -390,18 +454,11 @@ namespace com.smartwork.Proxy
         public static List<string> GetSupportQAList()
         {
             List<string> Reviewers = new List<string>();
-            Reviewers.Add("Jessy.Zhang");
-
-            Reviewers.Add("Jane.Hu");
-            Reviewers.Add("Linda.Xiao");
+           
+            Reviewers.Add("Jane.Hu");           
             Reviewers.Add("Leo.Liu");
-            Reviewers.Add("Abel.Yu");
-            Reviewers.Add("Claire.Cao");
-            Reviewers.Add("Viola.Shi");
-            Reviewers.Add("Yummy.Xie");
-            Reviewers.Add("Lola.He");
-            Reviewers.Add("Gordon.Chen");
-            Reviewers.Add("Fay.Ding");          
+            Reviewers.Add("Robinson.Leung");
+            Reviewers.Add("Greg.Mietelski");      
 
             return Reviewers;
         }
@@ -409,6 +466,8 @@ namespace com.smartwork.Proxy
         public static List<string> GetQAReviewerNamesList()
         {
             List<string> Reviewers = new List<string>();
+
+            /*
             Reviewers.Add("Jessy.Zhang");            
 
             Reviewers.Add("Mia.Huang");
@@ -440,6 +499,12 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Grace.Tang");
             Reviewers.Add("Cloud.Qi");
             Reviewers.Add("Carol.Gong");
+            * */
+
+            Reviewers.Add("Jane.Hu");
+            Reviewers.Add("Leo.Liu");
+            Reviewers.Add("Robinson.Leung");
+            Reviewers.Add("Greg.Mietelski");
 
             return Reviewers;
         }

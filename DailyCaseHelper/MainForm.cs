@@ -182,5 +182,16 @@ namespace com.smartwork
             mergeAttachment.MinimizeBox = false;
             mergeAttachment.Show();
         }
+
+        private void caseAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            CaseAnalysisReportForm caseAnalysis = new CaseAnalysisReportForm();
+            caseAnalysis.WindowState = FormWindowState.Maximized;
+            caseAnalysis.MdiParent = this;
+            caseAnalysis.MaximizeBox = false;
+            caseAnalysis.MinimizeBox = false;
+            caseAnalysis.Show();
+        }
     }
 }

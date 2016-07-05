@@ -97,6 +97,12 @@
     <Compile Include="Business\CaseBusiness.cs" />
     <Compile Include="Business\CustomerBusiness.cs" />
     <Compile Include="Business\DatbaseDumpBusiness.cs" />
+    <Compile Include="CaseAnalysisReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaseAnalysisReportForm.Designer.cs">
+      <DependentUpon>CaseAnalysisReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DailyCaseImportorFromEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     <Compile Include="Util\AccelaCaseUtil.cs" />
     <EmbeddedResource Include="AADevEnvChecker.resx">
       <DependentUpon>AADevEnvChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CaseAnalysisReportForm.resx">
+      <DependentUpon>CaseAnalysisReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DailyCaseImportorFromEmail.resx">
       <DependentUpon>DailyCaseImportorFromEmail.cs</DependentUpon>
