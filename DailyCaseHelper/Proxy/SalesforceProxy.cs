@@ -138,7 +138,12 @@ namespace com.smartwork.Proxy
                                               (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate 
                                                from casecomments ";
                 if(isCommentFilter) {
-                    sql += " where casecomment.createdby.name = 'Accela Support Team' or casecomment.createdby.name = 'Accela Engineering Team' ";
+                    sql += " where casecomment.createdby.name = 'Accela Support Team' ";
+                    sql += "       or casecomment.createdby.name = 'Accela Engineering Team' ";
+                    sql += "       or casecomment.createdby.name = 'Jerry Lu' ";
+                    sql += "       or casecomment.createdby.name = 'Robinson Leung' ";
+                    sql += "       or casecomment.createdby.name = 'Anderson Liu' ";
+                    sql += "       or casecomment.createdby.name = 'Greg Mietelski' ";
                 }
                  
              sql += @" order by createddate desc) 
@@ -300,7 +305,7 @@ namespace com.smartwork.Proxy
             return cases;
         }
 
-        public static Dictionary<string, string> GetReviewerNamesList()
+        public static Dictionary<string, string> GetReviewerNamesList(bool isExcludeAccelaEngineer = false)
         {
             Dictionary<string, string> Reviewers = new Dictionary<string, string>();
             Reviewers.Add("Jessy", "Jessy.Zhang");
@@ -328,10 +333,15 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Feng", "Feng.Xuan");
             Reviewers.Add("Cheng", "Cheng.Xu");
             Reviewers.Add("Felix", "Felix.Chen");
+            Reviewers.Add("Frank", "Frank.Deng");
+            //Reviewers.Add("Howe", "Howe.Deng");
+            Reviewers.Add("Zoe", "Zoe.Wang");
+
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
             Reviewers.Add("Linda", "Linda.Xiao");
             Reviewers.Add("Leo", "Leo.Liu");
+            Reviewers.Add("Jane", "Jane.Hu");
             Reviewers.Add("Abel", "Abel.Yu");
             Reviewers.Add("Claire", "Claire.Cao");
             Reviewers.Add("Viola", "Viola.Shi");
@@ -339,6 +349,10 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Yummy", "Yummy.Xie");
             Reviewers.Add("Lola", "Lola.He");
             Reviewers.Add("Nicole", "Nicole.Guo");
+            Reviewers.Add("Mamie", "Mamie.Li");
+            Reviewers.Add("Vicky", "Vicky.Chen");
+            Reviewers.Add("June", "June.Liu");
+
             Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 
             Reviewers.Add("Fay", "Fay.Ding");
@@ -356,35 +370,101 @@ namespace com.smartwork.Proxy
 
             Reviewers.Add("Carly", "Carly.Xu");
             Reviewers.Add("Janice", "Janice.Zhong");
-            Reviewers.Add("Jane", "Jane.Hu");
+            Reviewers.Add("Trancy", "Trancy.Zhai");
             Reviewers.Add("Amy", "Amy.Bao");
             Reviewers.Add("Iris", "Iris.Wang");
             Reviewers.Add("Grace", "Grace.Tang");
             Reviewers.Add("Cloud", "Cloud.Qi");
             Reviewers.Add("Carol", "Carol.Gong");
 
-            Reviewers.Add("Manasi", "mkarvat@accela.com");
-            Reviewers.Add("Sasirekha", "sbalaji@accela.com");
-            Reviewers.Add("Jerry", "Jerry.Lu");
-            Reviewers.Add("Anderson", "Anderson.Liu");
-            Reviewers.Add("Robinson", "Robinson.Leung");
-            Reviewers.Add("Greg", "Greg.Mietelski");
-            Reviewers.Add("Prakash", "Prakash.Dhanore");
-            Reviewers.Add("Shijie", "Shijie.Zhou");
+            if (!isExcludeAccelaEngineer)
+            {
+                Reviewers.Add("Manasi", "mkarvat@accela.com");
+                Reviewers.Add("Sasirekha", "sbalaji@accela.com");
+                Reviewers.Add("Jerry", "Jerry.Lu");
+                Reviewers.Add("Anderson", "Anderson.Liu");
+                Reviewers.Add("Robinson", "Robinson.Leung");
+                Reviewers.Add("Greg", "Greg.Mietelski");
+                Reviewers.Add("Prakash", "Prakash.Dhanore");
+                Reviewers.Add("Shijie", "Shijie.Zhou");
+            }
 
             return Reviewers;
         }
 
-        public static List<string> GetSupportDevList()
+        public static List<string> GetSupportDevList1(bool isExcludeAccelaEngineer = false)
         {
             List<string> Reviewers = new List<string>();
             Reviewers.Add("Jessy.Zhang");
-            Reviewers.Add("Adger.Chen");
+
+            Reviewers.Add("Alvin.Li");           
+            Reviewers.Add("Rev.Vergara");
+            Reviewers.Add("Lisa.Kang");
+        
+            Reviewers.Add("Alex.Li");
+            Reviewers.Add("Peter.Peng");
+            Reviewers.Add("John.Huang");
+            Reviewers.Add("Bass.Yang");
+            Reviewers.Add("Star.Li");
+            Reviewers.Add("Shaun.Qiu");
+            Reviewers.Add("Lex.Wu");
+            Reviewers.Add("Louis.He");
+            Reviewers.Add("Likko.Zhang");            
+            Reviewers.Add("Weber.Yan");            
+            Reviewers.Add("Felix.Chen");
+            Reviewers.Add("Frank.Deng");
+            //Reviewers.Add("Howe.Deng");
+
+            //Reviewers.Add("Mandy.Zhou");
+            Reviewers.Add("Linda.Xiao");
+            //Reviewers.Add("Leo.Liu");
+            //Reviewers.Add("Abel.Yu");            
+            Reviewers.Add("Nicole.Guo");
+            Reviewers.Add("Mamie.Li");
+            //Reviewers.Add("June.Liu");
+            
+            Reviewers.Add("Joanna.Mae.Ramirez");
+
+            Reviewers.Add("Gordon.Chen");
+            Reviewers.Add("Tracy.Xiang");
+            Reviewers.Add("Evelyn.Zhang");
+
+            Reviewers.Add("Apia.Liu");
+            Reviewers.Add("Jessie.Zhang");
+            Reviewers.Add("Iron.Tang");
+            
+
+            Reviewers.Add("Carly.Xu");
+            Reviewers.Add("Janice.Zhong");
+            Reviewers.Add("Trancy.Zhai");
+            Reviewers.Add("Iris.Wang");
+            Reviewers.Add("Grace.Tang");
+            Reviewers.Add("Cloud.Qi");
+            Reviewers.Add("Carol.Gong");
+
+            if (!isExcludeAccelaEngineer)
+            {               
+                Reviewers.Add("Jerry.Lu");
+                Reviewers.Add("Anderson.Liu");
+                Reviewers.Add("Prakash.Dhanore");
+                Reviewers.Add("Shijie.Zhou");
+            }            
+
+            return Reviewers;
+        }
+
+        public static List<string> GetSupportDevList(bool isExcludeAccelaEngineer = false)
+        {
+            List<string> Reviewers = new List<string>();
+            //Reviewers.Add("Jessy.Zhang");
+            //Reviewers.Add("Adger.Chen");
             Reviewers.Add("Tim.Liu");
 
-            Reviewers.Add("Mia.Huang");
-            Reviewers.Add("Alvin.Li");
-            Reviewers.Add("Mina.Xiong");
+            //Reviewers.Add("Mia.Huang");
+            //Reviewers.Add("Alvin.Li");
+            //Reviewers.Add("Mina.Xiong");
+            //Reviewers.Add("Rev.Vergara");
+            //Reviewers.Add("Lisa.Kang");
 
             Reviewers.Add("Alex.Li");
             Reviewers.Add("Peter.Peng");
@@ -397,68 +477,159 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Likko.Zhang");
             Reviewers.Add("Sandy.Zheng");
             Reviewers.Add("Weber.Yan");
-            Reviewers.Add("Rick.Liu");
-            Reviewers.Add("Matt.Ao");
-            Reviewers.Add("Hyman.Zhang");
-            Reviewers.Add("Feng.Xuan");
-            Reviewers.Add("Cheng.Xu");
+            //Reviewers.Add("Rick.Liu");
+            //Reviewers.Add("Matt.Ao");
+            //Reviewers.Add("Hyman.Zhang");
+            //Reviewers.Add("Feng.Xuan");
+            //Reviewers.Add("Cheng.Xu");
             Reviewers.Add("Felix.Chen");
+            //Reviewers.Add("Frank.Deng");
+            //Reviewers.Add("Howe.Deng");
 
-            Reviewers.Add("Mandy.Zhou");
-            Reviewers.Add("Linda.Xiao");
+            //Reviewers.Add("Mandy.Zhou");
+            //Reviewers.Add("Linda.Xiao");
             //Reviewers.Add("Leo.Liu");
-            Reviewers.Add("Abel.Yu");
-            Reviewers.Add("Claire.Cao");
-            Reviewers.Add("Viola.Shi");
-            Reviewers.Add("Larry.Francisco");
-            Reviewers.Add("Yummy.Xie");
-            Reviewers.Add("Lola.He");
-            Reviewers.Add("Nicole.Guo");
-            Reviewers.Add("Joanna.Mae.Ramirez");
+            //Reviewers.Add("Abel.Yu");
+            //Reviewers.Add("Claire.Cao");
+            //Reviewers.Add("Viola.Shi");
+            //Reviewers.Add("Larry.Francisco");
+            //Reviewers.Add("Yummy.Xie");
+            //Reviewers.Add("Lola.He");
+            //Reviewers.Add("Nicole.Guo");
+            //Reviewers.Add("Mamie.Li");
+            //Reviewers.Add("June.Liu");
 
-            Reviewers.Add("Fay.Ding");
+            //Reviewers.Add("Joanna.Mae.Ramirez");
 
-            Reviewers.Add("Gordon.Chen");
-            Reviewers.Add("Tracy.Xiang");
-            Reviewers.Add("Evelyn.Zhang");
+            //Reviewers.Add("Fay.Ding");
 
-            Reviewers.Add("Apia.Liu");
-            Reviewers.Add("Jessie.Zhang");
-            Reviewers.Add("William.Wang");
-            Reviewers.Add("Iron.Tang");
-            Reviewers.Add("Rev.Vergara");
-            Reviewers.Add("Lisa.Kang");
+            //Reviewers.Add("Gordon.Chen");
+            //Reviewers.Add("Tracy.Xiang");
+            //Reviewers.Add("Evelyn.Zhang");
 
-            Reviewers.Add("Carly.Xu");
-            Reviewers.Add("Janice.Zhong");
+            //Reviewers.Add("Apia.Liu");
+            //Reviewers.Add("Jessie.Zhang");
+            //Reviewers.Add("William.Wang");
+            //Reviewers.Add("Iron.Tang");
+
+
+            //Reviewers.Add("Carly.Xu");
+            //Reviewers.Add("Janice.Zhong");
             //Reviewers.Add("Jane.Hu");
-            Reviewers.Add("Amy.Bao");
-            Reviewers.Add("Iris.Wang");
-            Reviewers.Add("Grace.Tang");
-            Reviewers.Add("Cloud.Qi");
-            Reviewers.Add("Carol.Gong");
+            //Reviewers.Add("Amy.Bao");
+            //Reviewers.Add("Iris.Wang");
+            //Reviewers.Add("Grace.Tang");
+            //Reviewers.Add("Cloud.Qi");
+            //Reviewers.Add("Carol.Gong");
 
-            Reviewers.Add("mkarvat@accela.com");
-            Reviewers.Add("sbalaji@accela.com");
-            Reviewers.Add("Jerry.Lu");
-            Reviewers.Add("Anderson.Liu");
-            Reviewers.Add("Prakash.Dhanore");
-            Reviewers.Add("Shijie.Zhou");           
-            
+            if (isExcludeAccelaEngineer)
+            {
+                //Reviewers.Add("mkarvat@accela.com");
+                //Reviewers.Add("sbalaji@accela.com");
+                //Reviewers.Add("Jerry.Lu");
+                //Reviewers.Add("Anderson.Liu");
+                //Reviewers.Add("Prakash.Dhanore");
+                //Reviewers.Add("Shijie.Zhou");
+            }
+
             //Reviewers.Add("Robinson.Leung");
             //Reviewers.Add("Greg.Mietelski");
 
             return Reviewers;
         }
 
-        public static List<string> GetSupportQAList()
+        public static List<string> GetSupportQAList(bool isExcludeAccelaEngineer = false)
+        {
+            List<string> Reviewers = new List<string>();
+            Reviewers.Add("Jessy.Zhang");
+            //Reviewers.Add("Adger.Chen");
+            //Reviewers.Add("Tim.Liu");
+
+            //Reviewers.Add("Mia.Huang");
+            //Reviewers.Add("Alvin.Li");
+            //Reviewers.Add("Mina.Xiong");
+            //Reviewers.Add("Lisa.Kang");
+
+            //Reviewers.Add("Alex.Li");
+            //Reviewers.Add("Peter.Peng");
+            //Reviewers.Add("John.Huang");
+            //Reviewers.Add("Bass.Yang");
+            //Reviewers.Add("Star.Li");
+            //Reviewers.Add("Shaun.Qiu");
+            //Reviewers.Add("Lex.Wu");
+            //Reviewers.Add("Louis.He");
+            //Reviewers.Add("Likko.Zhang");
+            //Reviewers.Add("Sandy.Zheng");
+            //Reviewers.Add("Weber.Yan");
+            //Reviewers.Add("Rick.Liu");
+            //Reviewers.Add("Matt.Ao");
+            //Reviewers.Add("Hyman.Zhang");
+            //Reviewers.Add("Feng.Xuan");
+            //Reviewers.Add("Cheng.Xu");
+            //Reviewers.Add("Felix.Chen");
+            //Reviewers.Add("Frank.Deng");
+            //Reviewers.Add("Howe.Deng");
+
+            Reviewers.Add("Mandy.Zhou");
+            Reviewers.Add("Linda.Xiao");
+            Reviewers.Add("Leo.Liu");
+            Reviewers.Add("Jane.Hu");
+            Reviewers.Add("Abel.Yu");
+            Reviewers.Add("Claire.Cao");
+            Reviewers.Add("Viola.Shi");
+            //Reviewers.Add("Larry.Francisco");
+            //Reviewers.Add("Yummy.Xie");
+            Reviewers.Add("Lola.He");
+            Reviewers.Add("Nicole.Guo");
+            Reviewers.Add("Mamie.Li");
+            //Reviewers.Add("June.Liu");
+
+            Reviewers.Add("Joanna.Mae.Ramirez");
+
+            Reviewers.Add("Fay.Ding");
+
+            Reviewers.Add("Gordon.Chen");
+            //Reviewers.Add("Tracy.Xiang");
+            //Reviewers.Add("Evelyn.Zhang");
+
+            //Reviewers.Add("Apia.Liu");
+            //Reviewers.Add("Jessie.Zhang");
+            //Reviewers.Add("William.Wang");
+            //Reviewers.Add("Iron.Tang");
+            //Reviewers.Add("Rev.Vergara");
+            //Reviewers.Add("Lisa.Kang");
+
+            //Reviewers.Add("Carly.Xu");
+            //Reviewers.Add("Janice.Zhong");
+           
+            //Reviewers.Add("Amy.Bao");
+            //Reviewers.Add("Iris.Wang");
+            //Reviewers.Add("Grace.Tang");
+            //Reviewers.Add("Cloud.Qi");
+            //Reviewers.Add("Carol.Gong");
+
+            if (isExcludeAccelaEngineer)
+            {
+                //Reviewers.Add("Robinson.Leung");
+                //Reviewers.Add("Greg.Mietelski");
+            }
+
+            return Reviewers;
+        }
+
+        public static List<string> GetSupportQAList1(bool isExcludeAccelaEngineer = false)
         {
             List<string> Reviewers = new List<string>();
            
-            Reviewers.Add("Jane.Hu");           
             Reviewers.Add("Leo.Liu");
-            Reviewers.Add("Robinson.Leung");
-            Reviewers.Add("Greg.Mietelski");      
+            Reviewers.Add("Jane.Hu");
+            Reviewers.Add("Abel.Yu");
+
+            if (!isExcludeAccelaEngineer)
+            {
+                Reviewers.Add("Robinson.Leung");
+                Reviewers.Add("Greg.Mietelski");
+            }
 
             return Reviewers;
         }

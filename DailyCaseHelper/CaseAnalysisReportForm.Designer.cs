@@ -48,6 +48,9 @@
             this.Summary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkExcludeAccela = new System.Windows.Forms.CheckBox();
+            this.chkSpecifyDate = new System.Windows.Forms.CheckBox();
+            this.dtpSpecifyDate = new System.Windows.Forms.DateTimePicker();
             this.grpMergeCaseAttachment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).BeginInit();
             this.SuspendLayout();
@@ -112,9 +115,9 @@
             this.Summary,
             this.SFQueue,
             this.SFStatus});
-            this.grdCaseList.Location = new System.Drawing.Point(12, 180);
+            this.grdCaseList.Location = new System.Drawing.Point(12, 206);
             this.grdCaseList.Name = "grdCaseList";
-            this.grdCaseList.Size = new System.Drawing.Size(1280, 522);
+            this.grdCaseList.Size = new System.Drawing.Size(1280, 496);
             this.grdCaseList.TabIndex = 8;
             // 
             // No
@@ -219,11 +222,42 @@
             this.SFStatus.Name = "SFStatus";
             this.SFStatus.ReadOnly = true;
             // 
+            // chkExcludeAccela
+            // 
+            this.chkExcludeAccela.AutoSize = true;
+            this.chkExcludeAccela.Location = new System.Drawing.Point(12, 180);
+            this.chkExcludeAccela.Name = "chkExcludeAccela";
+            this.chkExcludeAccela.Size = new System.Drawing.Size(145, 17);
+            this.chkExcludeAccela.TabIndex = 9;
+            this.chkExcludeAccela.Text = "Exclude Accela Engineer";
+            this.chkExcludeAccela.UseVisualStyleBackColor = true;
+            // 
+            // chkSpecifyDate
+            // 
+            this.chkSpecifyDate.AutoSize = true;
+            this.chkSpecifyDate.Location = new System.Drawing.Point(177, 180);
+            this.chkSpecifyDate.Name = "chkSpecifyDate";
+            this.chkSpecifyDate.Size = new System.Drawing.Size(87, 17);
+            this.chkSpecifyDate.TabIndex = 10;
+            this.chkSpecifyDate.Text = "Specify Date";
+            this.chkSpecifyDate.UseVisualStyleBackColor = true;
+            // 
+            // dtpSpecifyDate
+            // 
+            this.dtpSpecifyDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpSpecifyDate.Location = new System.Drawing.Point(284, 180);
+            this.dtpSpecifyDate.Name = "dtpSpecifyDate";
+            this.dtpSpecifyDate.Size = new System.Drawing.Size(96, 20);
+            this.dtpSpecifyDate.TabIndex = 11;
+            // 
             // CaseAnalysisReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1304, 709);
+            this.Controls.Add(this.dtpSpecifyDate);
+            this.Controls.Add(this.chkSpecifyDate);
+            this.Controls.Add(this.chkExcludeAccela);
             this.Controls.Add(this.grdCaseList);
             this.Controls.Add(this.grpMergeCaseAttachment);
             this.MaximizeBox = false;
@@ -233,6 +267,7 @@
             this.grpMergeCaseAttachment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -258,5 +293,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Summary;
         private System.Windows.Forms.DataGridViewTextBoxColumn SFQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn SFStatus;
+        private System.Windows.Forms.CheckBox chkExcludeAccela;
+        private System.Windows.Forms.CheckBox chkSpecifyDate;
+        private System.Windows.Forms.DateTimePicker dtpSpecifyDate;
     }
 }

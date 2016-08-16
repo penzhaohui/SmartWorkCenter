@@ -890,7 +890,7 @@ namespace com.smartwork
                             {
                                 origin = "Other";
                             }
-                            issue.fields.customfield_11900 = origin;
+                            issue.fields.customfield_11900 = (origin.IndexOf("Email") >= 0) ? "Email" : origin; // To deal with one special case - "Email-MEA"
                             issue.fields.customfield_12400 = reopenCount;
                             temOpenDate = DateTime.Parse(lastModifiedDate);
                             issue.fields.customfield_10903 = temOpenDate.Year + "-" + (temOpenDate.Month < 10 ? "0" + temOpenDate.Month : "" + temOpenDate.Month) + "-" + (temOpenDate.Day < 10 ? "0" + temOpenDate.Day : "" + temOpenDate.Day) + "T00:00:00.000+1100";

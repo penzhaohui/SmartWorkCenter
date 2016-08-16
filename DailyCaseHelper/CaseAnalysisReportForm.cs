@@ -74,14 +74,15 @@ namespace com.smartwork
 
             List<string> DevNameList = null;
             List<string> QANameList = SalesforceProxy.GetQAReviewerNamesList();
-            QANameList = SalesforceProxy.GetSupportQAList();
-            DevNameList = SalesforceProxy.GetSupportDevList();
-            Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
+            QANameList = SalesforceProxy.GetSupportQAList(this.chkExcludeAccela.Checked);
+            DevNameList = SalesforceProxy.GetSupportDevList(this.chkExcludeAccela.Checked);
+            Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList(this.chkExcludeAccela.Checked);
 
             var caseList = new List<CaseAnalysisInfo>();
             var issueList = new List<Issue>();
 
             int N = 1;
+            int index1 = 1;
             for (int i = 0; i < caseIdList.Count; )
             {
                 List<string> caseIdListTemp = new List<string>();
@@ -92,7 +93,7 @@ namespace com.smartwork
 
                 N = N + 1;
 
-                var GetCaseList = SalesforceProxy.GetCaseList(caseIdListTemp, false);
+                var GetCaseList = SalesforceProxy.GetCaseList(caseIdListTemp, true);
                 var GetIssueList = JiraProxy.GetIssueList(caseIdListTemp);
 
                 var caseListTmp = await GetCaseList;
@@ -110,6 +111,7 @@ namespace com.smartwork
                         JIRAMapper.Add(issue.fields.customfield_10600, caseAnalysisInfo);
                     }
                 }
+
                 foreach (var caseInfo in caseListTmp)
                 {
                     Dictionary<DateTime, string> CommentHistories = new Dictionary<DateTime, string>();
@@ -118,16 +120,32 @@ namespace com.smartwork
                     int sfDevCommentCount = 0;
                     int sfQACommentCount = 0;
 
+                    System.Console.WriteLine("[" + (index1++) + "] " + caseInfo.CaseNumber);
+
                     if (caseInfo.CaseComments != null && caseInfo.CaseComments.Records  != null && caseInfo.CaseComments.Records.Count > 0)
                     {
                         foreach (CaseComment comment in caseInfo.CaseComments.Records)
-                        {
+                        {                            
                             if (comment == null
                                 || comment.CommentBody == null
                                 || comment.LastModifiedDate.Year != 2016
-                                || comment.LastModifiedDate.Month < 4)
+                                || comment.LastModifiedDate.Month != 8)
                             {
                                 continue;
+                            }
+
+                            if (this.chkSpecifyDate.Checked)
+                            {
+                                DateTime date = this.dtpSpecifyDate.Value;
+
+                                if (comment == null
+                                || comment.CommentBody == null
+                                || comment.LastModifiedDate.Year != date.Year
+                                || comment.LastModifiedDate.Month != date.Month
+                                || comment.LastModifiedDate.Day != date.Day)
+                                {
+                                    continue;
+                                }
                             }
 
                             string assignee = "";                           
@@ -173,6 +191,7 @@ namespace com.smartwork
                             caseAnalysisInfo.IssueCategory = tempCaseAnalysisInfo.IssueCategory;
                         }
 
+                        System.Console.WriteLine("Add " + caseInfo.CaseNumber);
                         caseList.Add(caseAnalysisInfo);
                     }
                     else
@@ -383,6 +402,7 @@ namespace com.smartwork
                                                         <td align='center'>{12}</td>
                                                         <td align='center'>{13}</td>
                                                         <td align='left'>{14}</td>
+                                                        <td align='left'>{15}</td>
                                                     </tr>",
                                                        ++count, // 0 - No
                                                        product, // 1 - Product
@@ -417,6 +437,10 @@ namespace com.smartwork
             string to = "peter.peng@missionsky.com";
             string cc = "";
             string subject = "The Case Analysis Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+            if (this.chkSpecifyDate.Checked)
+            {
+                subject = "The Case Analysis Summary - " + this.dtpSpecifyDate.Value.Month + "/" + this.dtpSpecifyDate.Value.Day + "/" + this.dtpSpecifyDate.Value.Year;
+            }
 
             try
             {
