@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechTalk.JiraRestClient;
 
@@ -215,6 +216,71 @@ namespace com.smartwork.Proxy
             // "In Progress" -> "Commented"
             // "In Progress" -> "Closed"
             return true;
-        }        
+        }
+
+        public static async Task<List<Issue>> GetCaseListFromCrossProjects(DateTime startDate, DateTime endDate, List<string> projects)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            string sql = "resolutiondate >= " + String.Format("{0}-{1}-{2}", startDate.Year, startDate.Month, startDate.Day) + " AND " + " resolutiondate <= " + String.Format("{0}-{1}-{2}", endDate.Year, endDate.Month, endDate.Day);
+            sql += " AND \"Salesforce ID\" !~ Empty ";
+            sql += " AND project in ( ";
+
+            bool isFirstOne = true;
+            foreach (string project in projects)
+            {
+                if (isFirstOne)
+                {
+                    sql += project;
+                    isFirstOne = false;
+                }
+                else
+                {
+                    sql += " , " + project;
+                }
+            }
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
+        public static async Task<List<Issue>> GetIssueListBySalesforceId(string salesforceId, List<string> projects)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            string sql = "\"Salesforce ID\" ~ " + salesforceId;
+            sql += " AND project in ( ";
+
+            bool isFirstOne = true;
+            foreach (string project in projects)
+            {
+                if (isFirstOne)
+                {
+                    sql += project;
+                    isFirstOne = false;
+                }
+                else
+                {
+                    sql += " , " + project;
+                }
+            }
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
     }
 }

@@ -193,5 +193,16 @@ namespace com.smartwork
             caseAnalysis.MinimizeBox = false;
             caseAnalysis.Show();
         }
+
+        private void scanStatusCrossProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            SyncCaseStatusCrossProject syncCaseStatusCrossProject = new SyncCaseStatusCrossProject();
+            syncCaseStatusCrossProject.WindowState = FormWindowState.Maximized;
+            syncCaseStatusCrossProject.MdiParent = this;
+            syncCaseStatusCrossProject.MaximizeBox = false;
+            syncCaseStatusCrossProject.MinimizeBox = false;
+            syncCaseStatusCrossProject.Show();
+        }
     }
 }

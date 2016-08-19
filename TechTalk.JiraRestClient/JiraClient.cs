@@ -88,11 +88,13 @@ namespace TechTalk.JiraRestClient
             var resultCount = 0;
             while (true)
             {
-                var jql = String.Format("project={0}", Uri.EscapeUriString(projectKey));
+                var jql = "";
+                if (projectKey!="")
+                    jql = String.Format("project={0}+AND+", Uri.EscapeUriString(projectKey));
                 if (!String.IsNullOrEmpty(issueType))
-                    jql += String.Format("+AND+issueType={0}", Uri.EscapeUriString(issueType));
+                    jql += String.Format("issueType={0}+AND+", Uri.EscapeUriString(issueType));
                 if (!String.IsNullOrEmpty(jqlQuery))
-                    jql += String.Format("+AND+{0}", Uri.EscapeUriString(jqlQuery));
+                    jql += String.Format("{0}", Uri.EscapeUriString(jqlQuery));
                 var path = String.Format("search?jql={0}&startAt={1}&maxResults={2}", jql, resultCount, queryCount);
                 var request = CreateRequest(Method.GET, path);
 

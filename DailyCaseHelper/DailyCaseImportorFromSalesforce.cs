@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.2.0.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.3.0.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();

@@ -83,10 +83,12 @@ namespace com.smartwork.Proxy
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
                                   case.createdby.name, status, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name ";
            
+            /*
             sql += @" , (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate 
                                    from casecomments 
                                    where casecomment.createdby.name <> 'Accela Support Team'
                                    order by createddate desc) ";
+             * */
 
             sql += @"      from case 
                             where status ='eng new'

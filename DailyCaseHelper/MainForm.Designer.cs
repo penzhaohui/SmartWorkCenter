@@ -49,11 +49,12 @@
             this.FTPMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dbManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mergeAttachmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caseAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.caseAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scanStatusCrossProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -177,7 +178,8 @@
             this.FTPMonitorToolStripMenuItem,
             this.dbManagerToolStripMenuItem,
             this.mergeAttachmentToolStripMenuItem,
-            this.caseAnalysisToolStripMenuItem});
+            this.caseAnalysisToolStripMenuItem,
+            this.scanStatusCrossProjectToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -224,6 +226,13 @@
             this.mergeAttachmentToolStripMenuItem.Text = "Merge Attachment";
             this.mergeAttachmentToolStripMenuItem.Click += new System.EventHandler(this.mergeAttachmentToolStripMenuItem_Click);
             // 
+            // caseAnalysisToolStripMenuItem
+            // 
+            this.caseAnalysisToolStripMenuItem.Name = "caseAnalysisToolStripMenuItem";
+            this.caseAnalysisToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.caseAnalysisToolStripMenuItem.Text = "Case Analysis";
+            this.caseAnalysisToolStripMenuItem.Click += new System.EventHandler(this.caseAnalysisToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -253,12 +262,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // caseAnalysisToolStripMenuItem
+            // scanStatusCrossProjectToolStripMenuItem
             // 
-            this.caseAnalysisToolStripMenuItem.Name = "caseAnalysisToolStripMenuItem";
-            this.caseAnalysisToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.caseAnalysisToolStripMenuItem.Text = "Case Analysis";
-            this.caseAnalysisToolStripMenuItem.Click += new System.EventHandler(this.caseAnalysisToolStripMenuItem_Click);
+            this.scanStatusCrossProjectToolStripMenuItem.Name = "scanStatusCrossProjectToolStripMenuItem";
+            this.scanStatusCrossProjectToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.scanStatusCrossProjectToolStripMenuItem.Text = "Scan Status Cross Project";
+            this.scanStatusCrossProjectToolStripMenuItem.Click += new System.EventHandler(this.scanStatusCrossProjectToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -309,6 +318,7 @@
         private System.Windows.Forms.ToolStripMenuItem dbManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeAttachmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem caseAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scanStatusCrossProjectToolStripMenuItem;
     }
 }
 
