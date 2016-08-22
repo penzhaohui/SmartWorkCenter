@@ -62,7 +62,7 @@ namespace com.smartwork.Proxy
             return cases;
         }
 
-        public static async Task<List<AccelaCase>> GetTopNNewCaseList(int n, bool isOnlyV80000 = false, bool isExclude80000 = false, bool isIncludeComments = false)
+        public static async Task<List<AccelaCase>> GetTopNNewCaseList(int n, bool isExcludeEngQA = false, bool isOnlyEngQA = false, bool isIncludeComments = false)
         {
             /*
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
@@ -91,22 +91,27 @@ namespace com.smartwork.Proxy
              * */
 
             sql += @"      from case 
-                            where status ='eng new'
-                            and case.owner.name='engineering'
+                            where case.owner.name='engineering'
                             and product__c != 'Springbrook' 
                             and product__c != 'SoftRight' 
                             and product__c != 'Legislative Management' 
                             and product__c != 'Environmental Health'
+                            and product__c != 'Kiva' 
                             and product__c != 'KVS Standard' ";
 
-            if (isOnlyV80000)
+            if (isOnlyEngQA)
             {
-                sql += " and current_version__c like '8.%' ";
+                sql += " and (status ='eng qa' or status ='qa in progress' or status ='engqa') ";
             }
 
-            if (isExclude80000)
+            if (isExcludeEngQA)
             {
-                sql += " and current_version__c <> '8.0.0.0.0' and current_version__c <> '8.0.1.0.0' ";
+                sql += " and status ='eng new' ";
+            }
+
+            if (isOnlyEngQA == false && isExcludeEngQA == false)
+            {
+                sql += " and (status ='eng new' or status ='eng qa' or status ='qa in progress' or status ='engqa') ";
             }
 
             sql += "order by createddate desc limit " + n;

@@ -32,8 +32,7 @@
             this.btnShowPendingCases = new System.Windows.Forms.Button();
             this.btnShowHotCases = new System.Windows.Forms.Button();
             this.btnShowScheduledCase = new System.Windows.Forms.Button();
-            this.chkExcludeV8000 = new System.Windows.Forms.CheckBox();
-            this.chkOnlyV8000 = new System.Windows.Forms.CheckBox();
+            this.chkOnlyEngQA = new System.Windows.Forms.CheckBox();
             this.btnTopNCommentedCase = new System.Windows.Forms.Button();
             this.btnTopNNewCase = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,12 +43,9 @@
             this.chkOnlyImportCase = new System.Windows.Forms.CheckBox();
             this.grdCaseList = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.chkOnlyCurrentMonth = new System.Windows.Forms.CheckBox();
-            this.chkOnlySupport = new System.Windows.Forms.CheckBox();
             this.btnSendRecreatedCase = new System.Windows.Forms.Button();
-            this.btnSendAnalysisReport = new System.Windows.Forms.Button();
             this.btnSendCloseReport = new System.Windows.Forms.Button();
-            this.chkSelectAllMissionsky = new System.Windows.Forms.CheckBox();
+            this.chkSelectTop10HotCase = new System.Windows.Forms.CheckBox();
             this.chkSelectAllHotCase = new System.Windows.Forms.CheckBox();
             this.btnUpdateJIRAStatus = new System.Windows.Forms.Button();
             this.btnSendDailyCommentEmail = new System.Windows.Forms.Button();
@@ -61,7 +57,6 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotCase = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Missionsky = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Attachment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,6 +75,7 @@
             this.SFQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NextJiraStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkExcludeEngQA = new System.Windows.Forms.CheckBox();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -89,11 +85,11 @@
             // 
             // grbImportTodayCaseList
             // 
+            this.grbImportTodayCaseList.Controls.Add(this.chkExcludeEngQA);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowPendingCases);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowHotCases);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowScheduledCase);
-            this.grbImportTodayCaseList.Controls.Add(this.chkExcludeV8000);
-            this.grbImportTodayCaseList.Controls.Add(this.chkOnlyV8000);
+            this.grbImportTodayCaseList.Controls.Add(this.chkOnlyEngQA);
             this.grbImportTodayCaseList.Controls.Add(this.btnTopNCommentedCase);
             this.grbImportTodayCaseList.Controls.Add(this.btnTopNNewCase);
             this.grbImportTodayCaseList.Controls.Add(this.panel1);
@@ -131,29 +127,20 @@
             this.btnShowScheduledCase.Name = "btnShowScheduledCase";
             this.btnShowScheduledCase.Size = new System.Drawing.Size(138, 23);
             this.btnShowScheduledCase.TabIndex = 14;
-            this.btnShowScheduledCase.Text = "Show Scheduled Cases";
+            this.btnShowScheduledCase.Text = "Show EngQA Cases";
             this.btnShowScheduledCase.UseVisualStyleBackColor = true;
             this.btnShowScheduledCase.Click += new System.EventHandler(this.btnShowScheduledCase_Click);
             // 
-            // chkExcludeV8000
+            // chkOnlyEngQA
             // 
-            this.chkExcludeV8000.AutoSize = true;
-            this.chkExcludeV8000.Location = new System.Drawing.Point(976, 38);
-            this.chkExcludeV8000.Name = "chkExcludeV8000";
-            this.chkExcludeV8000.Size = new System.Drawing.Size(100, 17);
-            this.chkExcludeV8000.TabIndex = 13;
-            this.chkExcludeV8000.Text = "Exclude 8.0.0.0";
-            this.chkExcludeV8000.UseVisualStyleBackColor = true;
-            // 
-            // chkOnlyV8000
-            // 
-            this.chkOnlyV8000.AutoSize = true;
-            this.chkOnlyV8000.Location = new System.Drawing.Point(976, 13);
-            this.chkOnlyV8000.Name = "chkOnlyV8000";
-            this.chkOnlyV8000.Size = new System.Drawing.Size(83, 17);
-            this.chkOnlyV8000.TabIndex = 12;
-            this.chkOnlyV8000.Text = "Only 8.0.0.0";
-            this.chkOnlyV8000.UseVisualStyleBackColor = true;
+            this.chkOnlyEngQA.AutoSize = true;
+            this.chkOnlyEngQA.Location = new System.Drawing.Point(976, 38);
+            this.chkOnlyEngQA.Name = "chkOnlyEngQA";
+            this.chkOnlyEngQA.Size = new System.Drawing.Size(91, 17);
+            this.chkOnlyEngQA.TabIndex = 13;
+            this.chkOnlyEngQA.Text = "Only ENG QA";
+            this.chkOnlyEngQA.UseVisualStyleBackColor = true;
+            this.chkOnlyEngQA.CheckedChanged += new System.EventHandler(this.chkOnlyEngQA_CheckedChanged);
             // 
             // btnTopNCommentedCase
             // 
@@ -245,7 +232,6 @@
             this.ID,
             this.No,
             this.HotCase,
-            this.Missionsky,
             this.Attachment,
             this.Rank,
             this.Product,
@@ -271,12 +257,9 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.chkOnlyCurrentMonth);
-            this.panel3.Controls.Add(this.chkOnlySupport);
             this.panel3.Controls.Add(this.btnSendRecreatedCase);
-            this.panel3.Controls.Add(this.btnSendAnalysisReport);
             this.panel3.Controls.Add(this.btnSendCloseReport);
-            this.panel3.Controls.Add(this.chkSelectAllMissionsky);
+            this.panel3.Controls.Add(this.chkSelectTop10HotCase);
             this.panel3.Controls.Add(this.chkSelectAllHotCase);
             this.panel3.Controls.Add(this.btnUpdateJIRAStatus);
             this.panel3.Controls.Add(this.btnSendDailyCommentEmail);
@@ -290,30 +273,6 @@
             this.panel3.Size = new System.Drawing.Size(1151, 55);
             this.panel3.TabIndex = 9;
             // 
-            // chkOnlyCurrentMonth
-            // 
-            this.chkOnlyCurrentMonth.AutoSize = true;
-            this.chkOnlyCurrentMonth.Checked = true;
-            this.chkOnlyCurrentMonth.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOnlyCurrentMonth.Location = new System.Drawing.Point(730, 4);
-            this.chkOnlyCurrentMonth.Name = "chkOnlyCurrentMonth";
-            this.chkOnlyCurrentMonth.Size = new System.Drawing.Size(117, 17);
-            this.chkOnlyCurrentMonth.TabIndex = 13;
-            this.chkOnlyCurrentMonth.Text = "Only Current Month";
-            this.chkOnlyCurrentMonth.UseVisualStyleBackColor = true;
-            // 
-            // chkOnlySupport
-            // 
-            this.chkOnlySupport.AutoSize = true;
-            this.chkOnlySupport.Checked = true;
-            this.chkOnlySupport.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOnlySupport.Location = new System.Drawing.Point(582, 3);
-            this.chkOnlySupport.Name = "chkOnlySupport";
-            this.chkOnlySupport.Size = new System.Drawing.Size(117, 17);
-            this.chkOnlySupport.TabIndex = 12;
-            this.chkOnlySupport.Text = "Only Support Team";
-            this.chkOnlySupport.UseVisualStyleBackColor = true;
-            // 
             // btnSendRecreatedCase
             // 
             this.btnSendRecreatedCase.Location = new System.Drawing.Point(846, 4);
@@ -323,16 +282,6 @@
             this.btnSendRecreatedCase.Text = "Send Recreated Case";
             this.btnSendRecreatedCase.UseVisualStyleBackColor = true;
             this.btnSendRecreatedCase.Click += new System.EventHandler(this.btnSendRecreatedCase_Click);
-            // 
-            // btnSendAnalysisReport
-            // 
-            this.btnSendAnalysisReport.Location = new System.Drawing.Point(438, -1);
-            this.btnSendAnalysisReport.Name = "btnSendAnalysisReport";
-            this.btnSendAnalysisReport.Size = new System.Drawing.Size(138, 23);
-            this.btnSendAnalysisReport.TabIndex = 26;
-            this.btnSendAnalysisReport.Text = "Send Analysis Report";
-            this.btnSendAnalysisReport.UseVisualStyleBackColor = true;
-            this.btnSendAnalysisReport.Click += new System.EventHandler(this.btnSendAnalysisReport_Click);
             // 
             // btnSendCloseReport
             // 
@@ -344,21 +293,21 @@
             this.btnSendCloseReport.UseVisualStyleBackColor = true;
             this.btnSendCloseReport.Click += new System.EventHandler(this.btnSendCloseReport_Click);
             // 
-            // chkSelectAllMissionsky
+            // chkSelectTop10HotCase
             // 
-            this.chkSelectAllMissionsky.AutoSize = true;
-            this.chkSelectAllMissionsky.Location = new System.Drawing.Point(1067, 27);
-            this.chkSelectAllMissionsky.Name = "chkSelectAllMissionsky";
-            this.chkSelectAllMissionsky.Size = new System.Drawing.Size(91, 17);
-            this.chkSelectAllMissionsky.TabIndex = 22;
-            this.chkSelectAllMissionsky.Text = "All Missionsky";
-            this.chkSelectAllMissionsky.UseVisualStyleBackColor = true;
-            this.chkSelectAllMissionsky.CheckedChanged += new System.EventHandler(this.chkSelectAllMissionsky_CheckedChanged);
+            this.chkSelectTop10HotCase.AutoSize = true;
+            this.chkSelectTop10HotCase.Location = new System.Drawing.Point(1044, 27);
+            this.chkSelectTop10HotCase.Name = "chkSelectTop10HotCase";
+            this.chkSelectTop10HotCase.Size = new System.Drawing.Size(107, 17);
+            this.chkSelectTop10HotCase.TabIndex = 22;
+            this.chkSelectTop10HotCase.Text = "Top 10 Hot Case";
+            this.chkSelectTop10HotCase.UseVisualStyleBackColor = true;
+            this.chkSelectTop10HotCase.CheckedChanged += new System.EventHandler(this.chkSelectAllMissionsky_CheckedChanged);
             // 
             // chkSelectAllHotCase
             // 
             this.chkSelectAllHotCase.AutoSize = true;
-            this.chkSelectAllHotCase.Location = new System.Drawing.Point(1067, 4);
+            this.chkSelectAllHotCase.Location = new System.Drawing.Point(1044, 4);
             this.chkSelectAllHotCase.Name = "chkSelectAllHotCase";
             this.chkSelectAllHotCase.Size = new System.Drawing.Size(84, 17);
             this.chkSelectAllHotCase.TabIndex = 21;
@@ -458,12 +407,6 @@
             this.HotCase.Name = "HotCase";
             this.HotCase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.HotCase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Missionsky
-            // 
-            this.Missionsky.DataPropertyName = "Missionsky";
-            this.Missionsky.HeaderText = "Missionsky";
-            this.Missionsky.Name = "Missionsky";
             // 
             // Attachment
             // 
@@ -590,6 +533,19 @@
             this.NextJiraStatus.Name = "NextJiraStatus";
             this.NextJiraStatus.ReadOnly = true;
             // 
+            // chkExcludeEngQA
+            // 
+            this.chkExcludeEngQA.AutoSize = true;
+            this.chkExcludeEngQA.Checked = true;
+            this.chkExcludeEngQA.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkExcludeEngQA.Location = new System.Drawing.Point(976, 13);
+            this.chkExcludeEngQA.Name = "chkExcludeEngQA";
+            this.chkExcludeEngQA.Size = new System.Drawing.Size(108, 17);
+            this.chkExcludeEngQA.TabIndex = 17;
+            this.chkExcludeEngQA.Text = "Exclude ENG QA";
+            this.chkExcludeEngQA.UseVisualStyleBackColor = true;
+            this.chkExcludeEngQA.CheckedChanged += new System.EventHandler(this.chkExcludeEngQA_CheckedChanged);
+            // 
             // DailyCaseImportorFromSalesforce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,23 +586,18 @@
         private System.Windows.Forms.CheckBox chkOnlyEmailMe;
         private System.Windows.Forms.CheckBox chkOnlyImportCase;
         private System.Windows.Forms.Button btnUpdateJIRAStatus;
-        private System.Windows.Forms.CheckBox chkOnlyV8000;
-        private System.Windows.Forms.CheckBox chkExcludeV8000;
+        private System.Windows.Forms.CheckBox chkOnlyEngQA;
         private System.Windows.Forms.Button btnShowScheduledCase;
         private System.Windows.Forms.Label lblExportTodayCaseList;
         private System.Windows.Forms.Button btnShowHotCases;
-        private System.Windows.Forms.CheckBox chkSelectAllMissionsky;
+        private System.Windows.Forms.CheckBox chkSelectTop10HotCase;
         private System.Windows.Forms.CheckBox chkSelectAllHotCase;
         private System.Windows.Forms.Button btnShowPendingCases;
         private System.Windows.Forms.Button btnSendCloseReport;
         private System.Windows.Forms.Button btnSendRecreatedCase;
-        private System.Windows.Forms.Button btnSendAnalysisReport;
-        private System.Windows.Forms.CheckBox chkOnlyCurrentMonth;
-        private System.Windows.Forms.CheckBox chkOnlySupport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewCheckBoxColumn HotCase;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Missionsky;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Attachment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rank;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
@@ -665,5 +616,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SFQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn SFStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn NextJiraStatus;
+        private System.Windows.Forms.CheckBox chkExcludeEngQA;
     }
 }

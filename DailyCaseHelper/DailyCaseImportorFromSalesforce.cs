@@ -55,7 +55,7 @@ namespace com.smartwork
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
 
-            this.Text = "Build Version: 2.3.0.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.3.1.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -560,7 +560,7 @@ namespace com.smartwork
         {
             this.btnTopNNewCase.Enabled = false;
 
-            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(300, this.chkOnlyV8000.Checked, this.chkExcludeV8000.Checked);
+            var GetTopNNewCaseList = SalesforceProxy.GetTopNNewCaseList(300, this.chkExcludeEngQA.Checked, this.chkOnlyEngQA.Checked);
 
             var caseList = await GetTopNNewCaseList;
             string caseIDs = "";
@@ -695,6 +695,7 @@ namespace com.smartwork
                 string bzid = String.Empty;
                 string jiraStstus = String.Empty;
                 string nextJiraStatus = String.Empty;
+                string sfStatus = String.Empty;
 
                 bool hotCase = false;
                 bool missionsky = false;
@@ -721,7 +722,8 @@ namespace com.smartwork
                     reopenCount = (String.IsNullOrEmpty(row["ReopenedCount"] as string) ? 0 : int.Parse(row["ReopenedCount"] as string));
                     reopenCount = reopenCount + 1;
                     lastModifiedDate = row["SFLastModified"] as string;
-                    targetedRelease = row["TargetedRelease"] as string;                    
+                    targetedRelease = row["TargetedRelease"] as string;
+                    sfStatus = row["SFStatus"] as string;
 
                     DateTime temOpenDate;
 
@@ -800,6 +802,23 @@ namespace com.smartwork
 
                             issue.fields.labels = jiraLabels;
 
+                            // Remove Missionsky label
+                            if (issue.fields.labels.Contains("Missionsky"))
+                            {
+                                issue.fields.labels.Remove("Missionsky");
+                            }
+
+                            // Remove SupportQA label
+                            if (issue.fields.labels.Contains("SupportQA"))
+                            {
+                                issue.fields.labels.Remove("SupportQA");
+                            }
+
+                            if (sfStatus != null && sfStatus.ToLower().IndexOf("qa") >= 0)
+                            {
+                                issue.fields.labels.Add("SupportQA");
+                            }
+
                             /*
                             if (!issue.fields.labels.Contains("Missionsky"))
                             {
@@ -848,8 +867,8 @@ namespace com.smartwork
                             issue.fields.customfield_11106.name = ("High" == severity ? "Major" : severity);
 
                             issue.fields.customfield_11501 = product;
-                            if (!String.IsNullOrEmpty(solution) && solution.ToUpper().Contains("ARW")
-                                || !String.IsNullOrEmpty("ARW") && product.ToUpper().Contains("ARW"))
+                            if (solution != null && solution.ToUpper().Contains("ARW")
+                                || product != null && !String.IsNullOrEmpty("ARW") && product.ToUpper().Contains("ARW"))
                             {
                                 issue.fields.customfield_11501 = "Accela ARW";
                             }
@@ -944,6 +963,13 @@ namespace com.smartwork
                     jiraID = row["JiraID"] as string;
                     lastModifiedDate = row["SFLastModified"] as string;
                     caseComment = row["CaseComment"] as CaseComment;
+                    
+                    // No comment today
+                    if (caseComment == null)
+                    {
+                        continue;
+                    }
+
                     string createdDate = "" + caseComment.CreatedDate.Year + "-" + (caseComment.CreatedDate.Month >= 10 ? "" + caseComment.CreatedDate.Month : "0" + caseComment.CreatedDate.Month) + "-" + (caseComment.CreatedDate.Day >= 10 ? "" + caseComment.CreatedDate.Day : "0" + caseComment.CreatedDate.Day); 
 
                     if (caseComment != null
@@ -1107,7 +1133,7 @@ namespace com.smartwork
 
             string caseLists = string.Empty;
 
-            var GetIssueList = JiraProxy.GetIssueListByLabel("Missionsky");
+            var GetIssueList = JiraProxy.GetIssueListByLabel("SupportQA");
             var issueList = await GetIssueList;
 
             foreach (var issue in issueList)
@@ -1129,11 +1155,12 @@ namespace com.smartwork
 
         private async void btnShowHotCases_Click(object sender, EventArgs e)
         {
-            this.btnShowHotCases.Enabled = false;
+            this.btnShowHotCases.Enabled = false;        
             this.txtCaseIDList.Text = "";
 
             string caseLists = string.Empty;
 
+            /*
             var GetCaseList = SalesforceProxy.GetHotCaseList(100);
             var caseList = await GetCaseList;
 
@@ -1146,6 +1173,21 @@ namespace com.smartwork
                 else
                 {
                     caseLists += "," + accelaCase.CaseNumber;
+                }
+            }
+             * */
+            var GetIssueList = JiraProxy.GetIssueListByLabel("HotCase");
+            var issueList = await GetIssueList;
+
+            foreach (var issue in issueList)
+            {
+                if (String.IsNullOrEmpty(caseLists))
+                {
+                    caseLists = issue.fields.customfield_10600;
+                }
+                else
+                {
+                    caseLists += "," + issue.fields.customfield_10600;
                 }
             }
 
@@ -1174,18 +1216,23 @@ namespace com.smartwork
 
         private void chkSelectAllMissionsky_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.chkSelectAllMissionsky.Checked)
+            if (this.chkSelectTop10HotCase.Checked)
             {
                 for (int i = 0; i < this.grdCaseList.Rows.Count; i++)
                 {
-                    this.grdCaseList.Rows[i].Cells[3].Value = true;
+                    if (this.grdCaseList.Rows[i].Cells[4].Value != null 
+                        && (int)this.grdCaseList.Rows[i].Cells[4].Value >= 1
+                        && (int)this.grdCaseList.Rows[i].Cells[4].Value <= 10)
+                    {
+                        this.grdCaseList.Rows[i].Cells[2].Value = true;
+                    }
                 }
             }
             else
             {
                 for (int i = 0; i < this.grdCaseList.Rows.Count; i++)
                 {
-                    this.grdCaseList.Rows[i].Cells[3].Value = false;
+                    this.grdCaseList.Rows[i].Cells[2].Value = false;
                 }
             }
         }
@@ -1521,6 +1568,7 @@ namespace com.smartwork
 
         private async void btnSendAnalysisReport_Click(object sender, EventArgs e)
         {
+            /*
             this.btnSendAnalysisReport.Enabled = false;
 
             DataTable dataTable = this.grdCaseList.DataSource as DataTable;
@@ -1570,7 +1618,7 @@ namespace com.smartwork
                 Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
                 List<string> DevNameList = null;
                 List<string> QANameList = SalesforceProxy.GetQAReviewerNamesList();
-                if (this.chkOnlySupport.Checked)
+                if (this.chkExcludeEngQA.Checked)
                 {
                     QANameList = SalesforceProxy.GetSupportQAList();
                     DevNameList = SalesforceProxy.GetSupportDevList();
@@ -1696,7 +1744,7 @@ namespace com.smartwork
                             totalQAReviewerCount = totalQAReviewerCount + 1;
                         }
 
-                        if (this.chkOnlySupport.Checked)
+                        if (this.chkExcludeEngQA.Checked)
                         {
                             if (DevNameList.Contains(reviewer))
                             {
@@ -1705,7 +1753,7 @@ namespace com.smartwork
                         }
                     }
 
-                    if (!this.chkOnlySupport.Checked)
+                    if (!this.chkExcludeEngQA.Checked)
                     {
                         totalDevReviewerCount = totalReviewerCount - totalQAReviewerCount;
                     }
@@ -1779,7 +1827,20 @@ namespace com.smartwork
                 }
 
                 this.btnSendAnalysisReport.Enabled = true;
+             
             }
+             * * 
+             * */
+        }
+
+        private void chkOnlyEngQA_CheckedChanged(object sender, EventArgs e)
+        {
+            this.chkExcludeEngQA.Checked = !this.chkOnlyEngQA.Checked;
+        }
+
+        private void chkExcludeEngQA_CheckedChanged(object sender, EventArgs e)
+        {
+            this.chkOnlyEngQA.Checked = !this.chkExcludeEngQA.Checked;
         }
     }
 }
