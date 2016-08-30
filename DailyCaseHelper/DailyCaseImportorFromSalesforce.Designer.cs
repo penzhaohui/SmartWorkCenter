@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grbImportTodayCaseList = new System.Windows.Forms.GroupBox();
+            this.chkExcludeEngQA = new System.Windows.Forms.CheckBox();
             this.btnShowPendingCases = new System.Windows.Forms.Button();
             this.btnShowHotCases = new System.Windows.Forms.Button();
             this.btnShowScheduledCase = new System.Windows.Forms.Button();
@@ -42,18 +43,6 @@
             this.chkOnlyEmailMe = new System.Windows.Forms.CheckBox();
             this.chkOnlyImportCase = new System.Windows.Forms.CheckBox();
             this.grdCaseList = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnSendRecreatedCase = new System.Windows.Forms.Button();
-            this.btnSendCloseReport = new System.Windows.Forms.Button();
-            this.chkSelectTop10HotCase = new System.Windows.Forms.CheckBox();
-            this.chkSelectAllHotCase = new System.Windows.Forms.CheckBox();
-            this.btnUpdateJIRAStatus = new System.Windows.Forms.Button();
-            this.btnSendDailyCommentEmail = new System.Windows.Forms.Button();
-            this.btnMoveCommentToJIRA = new System.Windows.Forms.Button();
-            this.btnSyncWithJiraAndSF = new System.Windows.Forms.Button();
-            this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
-            this.btnImportToJira = new System.Windows.Forms.Button();
-            this.lblExportTodayCaseList = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotCase = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -75,7 +64,19 @@
             this.SFQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NextJiraStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkExcludeEngQA = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSendRecreatedCase = new System.Windows.Forms.Button();
+            this.btnSendCloseReport = new System.Windows.Forms.Button();
+            this.chkSelectTop10HotCase = new System.Windows.Forms.CheckBox();
+            this.chkSelectAllHotCase = new System.Windows.Forms.CheckBox();
+            this.btnUpdateJIRAStatus = new System.Windows.Forms.Button();
+            this.btnSendDailyCommentEmail = new System.Windows.Forms.Button();
+            this.btnMoveCommentToJIRA = new System.Windows.Forms.Button();
+            this.btnSyncWithJiraAndSF = new System.Windows.Forms.Button();
+            this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
+            this.btnImportToJira = new System.Windows.Forms.Button();
+            this.lblExportTodayCaseList = new System.Windows.Forms.Label();
+            this.btnShowOpenCase = new System.Windows.Forms.Button();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // grbImportTodayCaseList
             // 
+            this.grbImportTodayCaseList.Controls.Add(this.btnShowOpenCase);
             this.grbImportTodayCaseList.Controls.Add(this.chkExcludeEngQA);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowPendingCases);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowHotCases);
@@ -101,9 +103,22 @@
             this.grbImportTodayCaseList.TabStop = false;
             this.grbImportTodayCaseList.Text = "1. Import Today Case List";
             // 
+            // chkExcludeEngQA
+            // 
+            this.chkExcludeEngQA.AutoSize = true;
+            this.chkExcludeEngQA.Checked = true;
+            this.chkExcludeEngQA.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkExcludeEngQA.Location = new System.Drawing.Point(976, 13);
+            this.chkExcludeEngQA.Name = "chkExcludeEngQA";
+            this.chkExcludeEngQA.Size = new System.Drawing.Size(108, 17);
+            this.chkExcludeEngQA.TabIndex = 17;
+            this.chkExcludeEngQA.Text = "Exclude ENG QA";
+            this.chkExcludeEngQA.UseVisualStyleBackColor = true;
+            this.chkExcludeEngQA.CheckedChanged += new System.EventHandler(this.chkExcludeEngQA_CheckedChanged);
+            // 
             // btnShowPendingCases
             // 
-            this.btnShowPendingCases.Location = new System.Drawing.Point(301, 32);
+            this.btnShowPendingCases.Location = new System.Drawing.Point(301, 34);
             this.btnShowPendingCases.Name = "btnShowPendingCases";
             this.btnShowPendingCases.Size = new System.Drawing.Size(138, 23);
             this.btnShowPendingCases.TabIndex = 16;
@@ -255,136 +270,6 @@
             this.grdCaseList.Size = new System.Drawing.Size(1254, 522);
             this.grdCaseList.TabIndex = 7;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnSendRecreatedCase);
-            this.panel3.Controls.Add(this.btnSendCloseReport);
-            this.panel3.Controls.Add(this.chkSelectTop10HotCase);
-            this.panel3.Controls.Add(this.chkSelectAllHotCase);
-            this.panel3.Controls.Add(this.btnUpdateJIRAStatus);
-            this.panel3.Controls.Add(this.btnSendDailyCommentEmail);
-            this.panel3.Controls.Add(this.btnMoveCommentToJIRA);
-            this.panel3.Controls.Add(this.btnSyncWithJiraAndSF);
-            this.panel3.Controls.Add(this.btnSendDailyCaseSummaryReport);
-            this.panel3.Controls.Add(this.btnImportToJira);
-            this.panel3.Controls.Add(this.lblExportTodayCaseList);
-            this.panel3.Location = new System.Drawing.Point(13, 19);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1151, 55);
-            this.panel3.TabIndex = 9;
-            // 
-            // btnSendRecreatedCase
-            // 
-            this.btnSendRecreatedCase.Location = new System.Drawing.Point(846, 4);
-            this.btnSendRecreatedCase.Name = "btnSendRecreatedCase";
-            this.btnSendRecreatedCase.Size = new System.Drawing.Size(138, 23);
-            this.btnSendRecreatedCase.TabIndex = 24;
-            this.btnSendRecreatedCase.Text = "Send Recreated Case";
-            this.btnSendRecreatedCase.UseVisualStyleBackColor = true;
-            this.btnSendRecreatedCase.Click += new System.EventHandler(this.btnSendRecreatedCase_Click);
-            // 
-            // btnSendCloseReport
-            // 
-            this.btnSendCloseReport.Location = new System.Drawing.Point(846, 29);
-            this.btnSendCloseReport.Name = "btnSendCloseReport";
-            this.btnSendCloseReport.Size = new System.Drawing.Size(138, 23);
-            this.btnSendCloseReport.TabIndex = 23;
-            this.btnSendCloseReport.Text = "Send Closed Case";
-            this.btnSendCloseReport.UseVisualStyleBackColor = true;
-            this.btnSendCloseReport.Click += new System.EventHandler(this.btnSendCloseReport_Click);
-            // 
-            // chkSelectTop10HotCase
-            // 
-            this.chkSelectTop10HotCase.AutoSize = true;
-            this.chkSelectTop10HotCase.Location = new System.Drawing.Point(1044, 27);
-            this.chkSelectTop10HotCase.Name = "chkSelectTop10HotCase";
-            this.chkSelectTop10HotCase.Size = new System.Drawing.Size(107, 17);
-            this.chkSelectTop10HotCase.TabIndex = 22;
-            this.chkSelectTop10HotCase.Text = "Top 10 Hot Case";
-            this.chkSelectTop10HotCase.UseVisualStyleBackColor = true;
-            this.chkSelectTop10HotCase.CheckedChanged += new System.EventHandler(this.chkSelectAllMissionsky_CheckedChanged);
-            // 
-            // chkSelectAllHotCase
-            // 
-            this.chkSelectAllHotCase.AutoSize = true;
-            this.chkSelectAllHotCase.Location = new System.Drawing.Point(1044, 4);
-            this.chkSelectAllHotCase.Name = "chkSelectAllHotCase";
-            this.chkSelectAllHotCase.Size = new System.Drawing.Size(84, 17);
-            this.chkSelectAllHotCase.TabIndex = 21;
-            this.chkSelectAllHotCase.Text = "All Hot Case";
-            this.chkSelectAllHotCase.UseVisualStyleBackColor = true;
-            this.chkSelectAllHotCase.CheckedChanged += new System.EventHandler(this.chkSelectAllHotCase_CheckedChanged);
-            // 
-            // btnUpdateJIRAStatus
-            // 
-            this.btnUpdateJIRAStatus.Location = new System.Drawing.Point(726, 29);
-            this.btnUpdateJIRAStatus.Name = "btnUpdateJIRAStatus";
-            this.btnUpdateJIRAStatus.Size = new System.Drawing.Size(114, 23);
-            this.btnUpdateJIRAStatus.TabIndex = 12;
-            this.btnUpdateJIRAStatus.Text = "Sync JIRA Status";
-            this.btnUpdateJIRAStatus.UseVisualStyleBackColor = true;
-            this.btnUpdateJIRAStatus.Click += new System.EventHandler(this.btnUpdateJIRAStatus_Click);
-            // 
-            // btnSendDailyCommentEmail
-            // 
-            this.btnSendDailyCommentEmail.Location = new System.Drawing.Point(582, 28);
-            this.btnSendDailyCommentEmail.Name = "btnSendDailyCommentEmail";
-            this.btnSendDailyCommentEmail.Size = new System.Drawing.Size(138, 23);
-            this.btnSendDailyCommentEmail.TabIndex = 17;
-            this.btnSendDailyCommentEmail.Text = "Send Daily Comment";
-            this.btnSendDailyCommentEmail.UseVisualStyleBackColor = true;
-            this.btnSendDailyCommentEmail.Click += new System.EventHandler(this.btnSendDailyCommentEmail_Click);
-            // 
-            // btnMoveCommentToJIRA
-            // 
-            this.btnMoveCommentToJIRA.Location = new System.Drawing.Point(291, 27);
-            this.btnMoveCommentToJIRA.Name = "btnMoveCommentToJIRA";
-            this.btnMoveCommentToJIRA.Size = new System.Drawing.Size(138, 23);
-            this.btnMoveCommentToJIRA.TabIndex = 11;
-            this.btnMoveCommentToJIRA.Text = "Move Comment to JIRA";
-            this.btnMoveCommentToJIRA.UseVisualStyleBackColor = true;
-            this.btnMoveCommentToJIRA.Click += new System.EventHandler(this.btnMoveCommentToJIRA_Click);
-            // 
-            // btnSyncWithJiraAndSF
-            // 
-            this.btnSyncWithJiraAndSF.Location = new System.Drawing.Point(3, 28);
-            this.btnSyncWithJiraAndSF.Name = "btnSyncWithJiraAndSF";
-            this.btnSyncWithJiraAndSF.Size = new System.Drawing.Size(138, 23);
-            this.btnSyncWithJiraAndSF.TabIndex = 10;
-            this.btnSyncWithJiraAndSF.Text = "Sync with JIRA and SF";
-            this.btnSyncWithJiraAndSF.UseVisualStyleBackColor = true;
-            this.btnSyncWithJiraAndSF.Click += new System.EventHandler(this.btnSyncWithJiraAndSF_Click);
-            // 
-            // btnSendDailyCaseSummaryReport
-            // 
-            this.btnSendDailyCaseSummaryReport.Location = new System.Drawing.Point(438, 27);
-            this.btnSendDailyCaseSummaryReport.Name = "btnSendDailyCaseSummaryReport";
-            this.btnSendDailyCaseSummaryReport.Size = new System.Drawing.Size(138, 23);
-            this.btnSendDailyCaseSummaryReport.TabIndex = 6;
-            this.btnSendDailyCaseSummaryReport.Text = "Send Daily Report";
-            this.btnSendDailyCaseSummaryReport.UseVisualStyleBackColor = true;
-            this.btnSendDailyCaseSummaryReport.Click += new System.EventHandler(this.btnSendDailyCaseSummaryReport_Click);
-            // 
-            // btnImportToJira
-            // 
-            this.btnImportToJira.Location = new System.Drawing.Point(147, 27);
-            this.btnImportToJira.Name = "btnImportToJira";
-            this.btnImportToJira.Size = new System.Drawing.Size(138, 23);
-            this.btnImportToJira.TabIndex = 10;
-            this.btnImportToJira.Text = "Import to JIRA";
-            this.btnImportToJira.UseVisualStyleBackColor = true;
-            this.btnImportToJira.Click += new System.EventHandler(this.btnImportToJira_Click);
-            // 
-            // lblExportTodayCaseList
-            // 
-            this.lblExportTodayCaseList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblExportTodayCaseList.Location = new System.Drawing.Point(0, 0);
-            this.lblExportTodayCaseList.Name = "lblExportTodayCaseList";
-            this.lblExportTodayCaseList.Size = new System.Drawing.Size(1151, 55);
-            this.lblExportTodayCaseList.TabIndex = 20;
-            this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
-    "mail box. ";
-            // 
             // ID
             // 
             this.ID.DataPropertyName = "ID";
@@ -533,18 +418,145 @@
             this.NextJiraStatus.Name = "NextJiraStatus";
             this.NextJiraStatus.ReadOnly = true;
             // 
-            // chkExcludeEngQA
+            // panel3
             // 
-            this.chkExcludeEngQA.AutoSize = true;
-            this.chkExcludeEngQA.Checked = true;
-            this.chkExcludeEngQA.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkExcludeEngQA.Location = new System.Drawing.Point(976, 13);
-            this.chkExcludeEngQA.Name = "chkExcludeEngQA";
-            this.chkExcludeEngQA.Size = new System.Drawing.Size(108, 17);
-            this.chkExcludeEngQA.TabIndex = 17;
-            this.chkExcludeEngQA.Text = "Exclude ENG QA";
-            this.chkExcludeEngQA.UseVisualStyleBackColor = true;
-            this.chkExcludeEngQA.CheckedChanged += new System.EventHandler(this.chkExcludeEngQA_CheckedChanged);
+            this.panel3.Controls.Add(this.btnSendRecreatedCase);
+            this.panel3.Controls.Add(this.btnSendCloseReport);
+            this.panel3.Controls.Add(this.chkSelectTop10HotCase);
+            this.panel3.Controls.Add(this.chkSelectAllHotCase);
+            this.panel3.Controls.Add(this.btnUpdateJIRAStatus);
+            this.panel3.Controls.Add(this.btnSendDailyCommentEmail);
+            this.panel3.Controls.Add(this.btnMoveCommentToJIRA);
+            this.panel3.Controls.Add(this.btnSyncWithJiraAndSF);
+            this.panel3.Controls.Add(this.btnSendDailyCaseSummaryReport);
+            this.panel3.Controls.Add(this.btnImportToJira);
+            this.panel3.Controls.Add(this.lblExportTodayCaseList);
+            this.panel3.Location = new System.Drawing.Point(13, 19);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1151, 55);
+            this.panel3.TabIndex = 9;
+            // 
+            // btnSendRecreatedCase
+            // 
+            this.btnSendRecreatedCase.Location = new System.Drawing.Point(846, 4);
+            this.btnSendRecreatedCase.Name = "btnSendRecreatedCase";
+            this.btnSendRecreatedCase.Size = new System.Drawing.Size(138, 23);
+            this.btnSendRecreatedCase.TabIndex = 24;
+            this.btnSendRecreatedCase.Text = "Send Recreated Case";
+            this.btnSendRecreatedCase.UseVisualStyleBackColor = true;
+            this.btnSendRecreatedCase.Click += new System.EventHandler(this.btnSendRecreatedCase_Click);
+            // 
+            // btnSendCloseReport
+            // 
+            this.btnSendCloseReport.Location = new System.Drawing.Point(846, 29);
+            this.btnSendCloseReport.Name = "btnSendCloseReport";
+            this.btnSendCloseReport.Size = new System.Drawing.Size(138, 23);
+            this.btnSendCloseReport.TabIndex = 23;
+            this.btnSendCloseReport.Text = "Send Closed Case";
+            this.btnSendCloseReport.UseVisualStyleBackColor = true;
+            this.btnSendCloseReport.Click += new System.EventHandler(this.btnSendCloseReport_Click);
+            // 
+            // chkSelectTop10HotCase
+            // 
+            this.chkSelectTop10HotCase.AutoSize = true;
+            this.chkSelectTop10HotCase.Location = new System.Drawing.Point(1044, 27);
+            this.chkSelectTop10HotCase.Name = "chkSelectTop10HotCase";
+            this.chkSelectTop10HotCase.Size = new System.Drawing.Size(107, 17);
+            this.chkSelectTop10HotCase.TabIndex = 22;
+            this.chkSelectTop10HotCase.Text = "Top 10 Hot Case";
+            this.chkSelectTop10HotCase.UseVisualStyleBackColor = true;
+            this.chkSelectTop10HotCase.CheckedChanged += new System.EventHandler(this.chkSelectAllMissionsky_CheckedChanged);
+            // 
+            // chkSelectAllHotCase
+            // 
+            this.chkSelectAllHotCase.AutoSize = true;
+            this.chkSelectAllHotCase.Location = new System.Drawing.Point(1044, 4);
+            this.chkSelectAllHotCase.Name = "chkSelectAllHotCase";
+            this.chkSelectAllHotCase.Size = new System.Drawing.Size(84, 17);
+            this.chkSelectAllHotCase.TabIndex = 21;
+            this.chkSelectAllHotCase.Text = "All Hot Case";
+            this.chkSelectAllHotCase.UseVisualStyleBackColor = true;
+            this.chkSelectAllHotCase.CheckedChanged += new System.EventHandler(this.chkSelectAllHotCase_CheckedChanged);
+            // 
+            // btnUpdateJIRAStatus
+            // 
+            this.btnUpdateJIRAStatus.Location = new System.Drawing.Point(726, 29);
+            this.btnUpdateJIRAStatus.Name = "btnUpdateJIRAStatus";
+            this.btnUpdateJIRAStatus.Size = new System.Drawing.Size(114, 23);
+            this.btnUpdateJIRAStatus.TabIndex = 12;
+            this.btnUpdateJIRAStatus.Text = "Sync JIRA Status";
+            this.btnUpdateJIRAStatus.UseVisualStyleBackColor = true;
+            this.btnUpdateJIRAStatus.Click += new System.EventHandler(this.btnUpdateJIRAStatus_Click);
+            // 
+            // btnSendDailyCommentEmail
+            // 
+            this.btnSendDailyCommentEmail.Location = new System.Drawing.Point(582, 28);
+            this.btnSendDailyCommentEmail.Name = "btnSendDailyCommentEmail";
+            this.btnSendDailyCommentEmail.Size = new System.Drawing.Size(138, 23);
+            this.btnSendDailyCommentEmail.TabIndex = 17;
+            this.btnSendDailyCommentEmail.Text = "Send Daily Comment";
+            this.btnSendDailyCommentEmail.UseVisualStyleBackColor = true;
+            this.btnSendDailyCommentEmail.Click += new System.EventHandler(this.btnSendDailyCommentEmail_Click);
+            // 
+            // btnMoveCommentToJIRA
+            // 
+            this.btnMoveCommentToJIRA.Location = new System.Drawing.Point(291, 27);
+            this.btnMoveCommentToJIRA.Name = "btnMoveCommentToJIRA";
+            this.btnMoveCommentToJIRA.Size = new System.Drawing.Size(138, 23);
+            this.btnMoveCommentToJIRA.TabIndex = 11;
+            this.btnMoveCommentToJIRA.Text = "Move Comment to JIRA";
+            this.btnMoveCommentToJIRA.UseVisualStyleBackColor = true;
+            this.btnMoveCommentToJIRA.Click += new System.EventHandler(this.btnMoveCommentToJIRA_Click);
+            // 
+            // btnSyncWithJiraAndSF
+            // 
+            this.btnSyncWithJiraAndSF.Location = new System.Drawing.Point(3, 28);
+            this.btnSyncWithJiraAndSF.Name = "btnSyncWithJiraAndSF";
+            this.btnSyncWithJiraAndSF.Size = new System.Drawing.Size(138, 23);
+            this.btnSyncWithJiraAndSF.TabIndex = 10;
+            this.btnSyncWithJiraAndSF.Text = "Sync with JIRA and SF";
+            this.btnSyncWithJiraAndSF.UseVisualStyleBackColor = true;
+            this.btnSyncWithJiraAndSF.Click += new System.EventHandler(this.btnSyncWithJiraAndSF_Click);
+            // 
+            // btnSendDailyCaseSummaryReport
+            // 
+            this.btnSendDailyCaseSummaryReport.Location = new System.Drawing.Point(438, 27);
+            this.btnSendDailyCaseSummaryReport.Name = "btnSendDailyCaseSummaryReport";
+            this.btnSendDailyCaseSummaryReport.Size = new System.Drawing.Size(138, 23);
+            this.btnSendDailyCaseSummaryReport.TabIndex = 6;
+            this.btnSendDailyCaseSummaryReport.Text = "Send Daily Report";
+            this.btnSendDailyCaseSummaryReport.UseVisualStyleBackColor = true;
+            this.btnSendDailyCaseSummaryReport.Click += new System.EventHandler(this.btnSendDailyCaseSummaryReport_Click);
+            // 
+            // btnImportToJira
+            // 
+            this.btnImportToJira.Location = new System.Drawing.Point(147, 27);
+            this.btnImportToJira.Name = "btnImportToJira";
+            this.btnImportToJira.Size = new System.Drawing.Size(138, 23);
+            this.btnImportToJira.TabIndex = 10;
+            this.btnImportToJira.Text = "Import to JIRA";
+            this.btnImportToJira.UseVisualStyleBackColor = true;
+            this.btnImportToJira.Click += new System.EventHandler(this.btnImportToJira_Click);
+            // 
+            // lblExportTodayCaseList
+            // 
+            this.lblExportTodayCaseList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblExportTodayCaseList.Location = new System.Drawing.Point(0, 0);
+            this.lblExportTodayCaseList.Name = "lblExportTodayCaseList";
+            this.lblExportTodayCaseList.Size = new System.Drawing.Size(1151, 55);
+            this.lblExportTodayCaseList.TabIndex = 20;
+            this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
+    "mail box. ";
+            // 
+            // btnShowOpenCase
+            // 
+            this.btnShowOpenCase.Location = new System.Drawing.Point(445, 34);
+            this.btnShowOpenCase.Name = "btnShowOpenCase";
+            this.btnShowOpenCase.Size = new System.Drawing.Size(138, 23);
+            this.btnShowOpenCase.TabIndex = 19;
+            this.btnShowOpenCase.Text = "Show Open Cases";
+            this.btnShowOpenCase.UseVisualStyleBackColor = true;
+            this.btnShowOpenCase.Click += new System.EventHandler(this.btnShowOpenCase_Click);
             // 
             // DailyCaseImportorFromSalesforce
             // 
@@ -617,5 +629,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SFStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn NextJiraStatus;
         private System.Windows.Forms.CheckBox chkExcludeEngQA;
+        private System.Windows.Forms.Button btnShowOpenCase;
     }
 }

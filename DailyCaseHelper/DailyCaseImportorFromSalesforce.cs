@@ -54,8 +54,9 @@ namespace com.smartwork
             this.btnShowHotCases.Enabled = false;
             this.btnShowScheduledCase.Enabled = false;
             this.btnShowPendingCases.Enabled = false;
+            this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.3.1.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.3.1.1 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -68,6 +69,7 @@ namespace com.smartwork
                 this.btnShowHotCases.Enabled = true;
                 this.btnShowScheduledCase.Enabled = true;
                 this.btnShowPendingCases.Enabled = true;
+                this.btnShowOpenCase.Enabled = true;
             }
         }
 
@@ -826,16 +828,16 @@ namespace com.smartwork
                             }
                             */
 
-                            if (!String.IsNullOrEmpty(bzid) && !issue.fields.labels.Contains("BUG_BUCKET"))
+                            if (!String.IsNullOrEmpty(bzid) && !issue.fields.labels.Contains("ENG_BUG_BUCKET"))
                             {
                                 if ("Development in Progress" == jiraStstus || "Development in Progress" == nextJiraStatus)
                                 {
-                                    issue.fields.labels.Add("BUG_BUCKET");
+                                    issue.fields.labels.Add("ENG_BUG_BUCKET");
                                 }
 
                                 if ("Close" == jiraStstus)
                                 {
-                                    issue.fields.labels.Remove("BUG_BUCKET");
+                                    issue.fields.labels.Remove("ENG_BUG_BUCKET");
                                 }
                             }
 
@@ -1340,7 +1342,9 @@ namespace com.smartwork
 
                     if (!"Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
                         && !"Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        && !"Dev Released".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                        && !"Dev Released".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Closed - Knowledge".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"SPAM Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
                     {
                         continue;
                     }
@@ -1841,6 +1845,41 @@ namespace com.smartwork
         private void chkExcludeEngQA_CheckedChanged(object sender, EventArgs e)
         {
             this.chkOnlyEngQA.Checked = !this.chkExcludeEngQA.Checked;
+        }
+
+        private async void btnShowOpenCase_Click(object sender, EventArgs e)
+        {
+            btnShowOpenCase.Enabled = false;
+            this.txtCaseIDList.Text = "";
+
+            string caseLists = string.Empty;
+
+            List<string> statuses = new List<string>();
+            statuses.Add("Open");
+            statuses.Add("In Progress");
+            statuses.Add("Reopened");
+
+            foreach (string status in statuses)
+            {
+                var GetIssueListByStatus = JiraProxy.GetIssueListByStatus(status);
+                var issueList = await GetIssueListByStatus;
+
+                foreach (var issue in issueList)
+                {
+                    if (String.IsNullOrEmpty(caseLists))
+                    {
+                        caseLists = issue.fields.customfield_10600;
+                    }
+                    else
+                    {
+                        caseLists += "," + issue.fields.customfield_10600;
+                    }
+                }
+            }
+
+            this.txtCaseIDList.Text = caseLists;
+
+            btnShowOpenCase.Enabled = true;
         }
     }
 }

@@ -105,7 +105,9 @@ namespace com.smartwork.Util
                 {
                     if ("CLOSED".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
                         || "PM Assigned".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        || "Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                        || "Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        || "Closed - Knowledge".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                        || "SPAM Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
                     {
                         if (!"Closed".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                         {
