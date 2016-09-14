@@ -141,16 +141,16 @@ namespace com.smartwork.Proxy
 //                                        and case.owner.name='engineering'";
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, rank_order__c, services_rank__c, case.account.name, 
                                               case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
-                                              case.createdby.name, status, internal_type__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
+                                              case.createdby.name, status, internal_type__c, engineering_status__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
                                               (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate 
                                                from casecomments ";
                 if(isCommentFilter) {
                     sql += " where casecomment.createdby.name = 'Accela Support Team' ";
                     sql += "       or casecomment.createdby.name = 'Accela Engineering Team' ";
-                    sql += "       or casecomment.createdby.name = 'Jerry Lu' ";
-                    sql += "       or casecomment.createdby.name = 'Robinson Leung' ";
-                    sql += "       or casecomment.createdby.name = 'Anderson Liu' ";
-                    sql += "       or casecomment.createdby.name = 'Greg Mietelski' ";
+                    //sql += "       or casecomment.createdby.name = 'Jerry Lu' ";
+                    //sql += "       or casecomment.createdby.name = 'Robinson Leung' ";
+                    //sql += "       or casecomment.createdby.name = 'Anderson Liu' ";
+                    //sql += "       or casecomment.createdby.name = 'Greg Mietelski' ";
                 }
                  
              sql += @" order by createddate desc) 
@@ -234,7 +234,7 @@ namespace com.smartwork.Proxy
 
             var uri = "https://na26.salesforce.com//services/data/v32.0/sobjects/Attachment/" + attachmentId + "/body";
             var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uri);
-            req.Headers.Add("Authorization: OAuth " + "00D300000000B1r!AQMAQBb3Nv5DaNTlgPJz3Pzmvry2J4mJ4f4vF9aRbjHVQcxOMHRIZXGsbpLn_IhfoHObdV9jBhdwVg5XTa5V5Bw_tr7Zql.f");
+            req.Headers.Add("Authorization: OAuth " + "00D300000000B1r!AQMAQNMJOSIlO5nn.h399Yq7kWkBqgLwi_3uDgOwDCP1jbgDOxPmVpqOXdTOzBIAc8bQyteeSjZaTdK3ReQ8tUXdrWPQ9zug");
             req.ContentType = "application/json";
             req.Method = "GET";
             var resp = req.GetResponse();
@@ -260,6 +260,27 @@ namespace com.smartwork.Proxy
         public static async Task<User> GetUserInfoById(string id)
         {
             var result = await Client.QueryByIdAsync<User>("User", id);
+
+            return result;
+        }
+
+        public static async void GetReleaseInfoById(string id)
+        {
+            //var result = await Client.QueryByIdAsync<User>("release_info__c", id);
+
+            var uri = "https://na26.salesforce.com//services/data/v32.0/sobjects/release_info__c/" + id;
+            var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uri);
+            req.Headers.Add("Authorization: OAuth " + "00D300000000B1r!AQMAQBb3Nv5DaNTlgPJz3Pzmvry2J4mJ4f4vF9aRbjHVQcxOMHRIZXGsbpLn_IhfoHObdV9jBhdwVg5XTa5V5Bw_tr7Zql.f");
+            req.ContentType = "application/json";
+            req.Method = "GET";
+            var resp = req.GetResponse();
+
+            //return result;
+        }
+
+        public static async Task<User> GetTargetedReleaseById(string id)
+        {
+            var result = await Client.QueryByIdAsync<User>("targeted_release__c", id);
 
             return result;
         }

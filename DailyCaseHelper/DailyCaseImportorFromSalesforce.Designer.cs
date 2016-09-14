@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grbImportTodayCaseList = new System.Windows.Forms.GroupBox();
+            this.btnShowOpenCase = new System.Windows.Forms.Button();
             this.chkExcludeEngQA = new System.Windows.Forms.CheckBox();
             this.btnShowPendingCases = new System.Windows.Forms.Button();
             this.btnShowHotCases = new System.Windows.Forms.Button();
@@ -76,7 +77,6 @@
             this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
             this.btnImportToJira = new System.Windows.Forms.Button();
             this.lblExportTodayCaseList = new System.Windows.Forms.Label();
-            this.btnShowOpenCase = new System.Windows.Forms.Button();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -102,6 +102,16 @@
             this.grbImportTodayCaseList.TabIndex = 2;
             this.grbImportTodayCaseList.TabStop = false;
             this.grbImportTodayCaseList.Text = "1. Import Today Case List";
+            // 
+            // btnShowOpenCase
+            // 
+            this.btnShowOpenCase.Location = new System.Drawing.Point(445, 34);
+            this.btnShowOpenCase.Name = "btnShowOpenCase";
+            this.btnShowOpenCase.Size = new System.Drawing.Size(138, 23);
+            this.btnShowOpenCase.TabIndex = 19;
+            this.btnShowOpenCase.Text = "Show Open Cases";
+            this.btnShowOpenCase.UseVisualStyleBackColor = true;
+            this.btnShowOpenCase.Click += new System.EventHandler(this.btnShowOpenCase_Click);
             // 
             // chkExcludeEngQA
             // 
@@ -547,16 +557,6 @@
             this.lblExportTodayCaseList.TabIndex = 20;
             this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
     "mail box. ";
-            // 
-            // btnShowOpenCase
-            // 
-            this.btnShowOpenCase.Location = new System.Drawing.Point(445, 34);
-            this.btnShowOpenCase.Name = "btnShowOpenCase";
-            this.btnShowOpenCase.Size = new System.Drawing.Size(138, 23);
-            this.btnShowOpenCase.TabIndex = 19;
-            this.btnShowOpenCase.Text = "Show Open Cases";
-            this.btnShowOpenCase.UseVisualStyleBackColor = true;
-            this.btnShowOpenCase.Click += new System.EventHandler(this.btnShowOpenCase_Click);
             // 
             // DailyCaseImportorFromSalesforce
             // 

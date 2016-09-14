@@ -173,5 +173,6 @@ namespace TechTalk.JiraRestClient
         public List<Comment> comments { get; set; }
         public List<IssueLink> issuelinks { get; set; }
         public List<Attachment> attachment { get; set; }
+        public List<IssueFixVersion> fixVersions { get; set; }
     }
 }

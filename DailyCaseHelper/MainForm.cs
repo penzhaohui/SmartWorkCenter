@@ -204,5 +204,16 @@ namespace com.smartwork
             syncCaseStatusCrossProject.MinimizeBox = false;
             syncCaseStatusCrossProject.Show();
         }
+
+        private void scanReleaseStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            ScanReleaseStatusFomSalesforce scanReleaseStatusFomSalesforce = new ScanReleaseStatusFomSalesforce();
+            scanReleaseStatusFomSalesforce.WindowState = FormWindowState.Maximized;
+            scanReleaseStatusFomSalesforce.MdiParent = this;
+            scanReleaseStatusFomSalesforce.MaximizeBox = false;
+            scanReleaseStatusFomSalesforce.MinimizeBox = false;
+            scanReleaseStatusFomSalesforce.Show();
+        }
     }
 }

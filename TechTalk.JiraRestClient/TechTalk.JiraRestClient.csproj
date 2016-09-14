@@ -43,6 +43,7 @@
     <Compile Include="CommentsContainer.cs" />
     <Compile Include="Compatibility.cs" />
     <Compile Include="IssueCategory.cs" />
+    <Compile Include="IssueFixVersion.cs" />
     <Compile Include="IssuePriority.cs" />
     <Compile Include="IssueSeverity.cs" />
     <Compile Include="IssueType.cs" />

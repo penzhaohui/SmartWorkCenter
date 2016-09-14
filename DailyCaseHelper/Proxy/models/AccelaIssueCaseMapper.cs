@@ -19,5 +19,6 @@ namespace com.smartwork.Proxy.models
         public bool HotCase { get; set; }
         public bool Missionsky { get; set; }
         public List<string> JiraLabels { get; set; }
+        public List<string> FixVersions { get; set; }
     }
 }

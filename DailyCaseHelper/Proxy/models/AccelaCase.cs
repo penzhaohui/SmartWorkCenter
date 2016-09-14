@@ -71,6 +71,9 @@ namespace com.smartwork.Models
         [JsonProperty(PropertyName = "Internal_Type__c")]
         public string InternalType { get; set; }
 
+        [JsonProperty(PropertyName = "Engineering_Status__c")]
+        public string EngineeringStatus { get; set; }
+
         [JsonProperty(PropertyName = "Product__c")]
         public string Product { get; set; }
 
