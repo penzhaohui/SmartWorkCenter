@@ -363,7 +363,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Felix", "Felix.Chen");
             Reviewers.Add("Frank", "Frank.Deng");
             //Reviewers.Add("Howe", "Howe.Deng");
-            Reviewers.Add("Zoe", "Zoe.Wang");
+            Reviewers.Add("Michael", "Michael.He");
 
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
@@ -442,6 +442,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Felix.Chen");
             Reviewers.Add("Frank.Deng");
             //Reviewers.Add("Howe.Deng");
+            Reviewers.Add("Michael.He");
 
             //Reviewers.Add("Mandy.Zhou");
             Reviewers.Add("Linda.Xiao");

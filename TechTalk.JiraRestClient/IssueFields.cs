@@ -125,6 +125,12 @@ namespace TechTalk.JiraRestClient
         /// Low - https://accelaeng.atlassian.net/rest/api/2/customFieldOption/10416
         /// </summary>
         public IssueSeverity customfield_11106 { get; set; }
+
+        /// <summary>
+        /// SF-Priority
+        /// </summary>
+        public string customfield_12801 { get; set; }
+
         /// <summary>
         /// Assigned QA
         /// </summary>

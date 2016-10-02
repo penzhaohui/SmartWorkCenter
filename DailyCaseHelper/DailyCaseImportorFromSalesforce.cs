@@ -56,7 +56,7 @@ namespace com.smartwork
             this.btnShowPendingCases.Enabled = false;
             this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.3.1.1 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.4.0.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -862,8 +862,9 @@ namespace com.smartwork
                             }
 
                             issue.fields.customfield_10905 = severity;
+                            issue.fields.customfield_12801 = severity;
                             issue.fields.Priority = new IssuePriority();
-                            issue.fields.Priority.id = 7;
+                            //issue.fields.Priority.id = 7;
                             issue.fields.Priority.name = severity;
                             issue.fields.customfield_11106 = new IssueSeverity();
                             issue.fields.customfield_11106.name = ("High" == severity ? "Major" : severity);

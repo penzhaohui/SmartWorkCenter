@@ -239,8 +239,8 @@ namespace TechTalk.JiraRestClient
                 var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
                 foreach (var property in propertyList)
                 {
-                    var propertyNalue = property.GetValue(issue.fields, null);
-                    if (propertyNalue != null)
+                    var propertyValue = property.GetValue(issue.fields, null);
+                    if (propertyValue != null)
                     {
                         // SF-Priority & Issue Category
                         if ("customfield_10905" == property.Name || "customfield_11502" == property.Name)
@@ -250,36 +250,36 @@ namespace TechTalk.JiraRestClient
                         // SF-Case Comment Count
                         else if ("customfield_12400" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = (int)propertyNalue } });
+                            updateData.Add(property.Name, new[] { new { set = (int)propertyValue } });
                         }
                         // SF-Last Modified
                         else if ("customfield_10903" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = (propertyNalue as string)} });
+                            updateData.Add(property.Name, new[] { new { set = (propertyValue as string)} });
                         }
                         // Severity
                         else if ("customfield_11106" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = new { value = (propertyNalue as IssueSeverity).name } } });
+                            updateData.Add(property.Name, new[] { new { set = new { value = (propertyValue as IssueSeverity).name, id = "" + (propertyValue as IssueSeverity).id } } });
                         }
                         // JIRA-Product
                         else if ("customfield_11501" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = new[] { new { value = propertyNalue } } } });
+                            updateData.Add(property.Name, new[] { new { set = new[] { new { value = propertyValue } } } });
                         }
                         // SF-Origin
                         else if ("customfield_11900" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
+                            updateData.Add(property.Name, new[] { new { set = new { value = propertyValue } } });
                         }
                         // SF-Customer
                         else if ("customfield_10900" == property.Name)
                         {
-                            updateData.Add(property.Name, new[] { new { set = propertyNalue } });
+                            updateData.Add(property.Name, new[] { new { set = propertyValue } });
                         }
                         else
                         {
-                            updateData.Add(property.Name, new[] { new { set = propertyNalue } });
+                            updateData.Add(property.Name, new[] { new { set = propertyValue } });
                         }
                     }
                 }
