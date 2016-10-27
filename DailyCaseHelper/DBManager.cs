@@ -57,14 +57,14 @@ namespace com.smartwork
 
                      AcccelaDBModel accelaDBModel = new AcccelaDBModel();
 
-                     accelaDBModel.Type = reader.GetOracleString(0).ToString();         // DB_TYPE
+                     accelaDBModel.DBType = reader.GetOracleString(0).ToString();         // DB_TYPE
                      accelaDBModel.Customer = reader.GetOracleString(1).ToString();     // CUSTOMER
                      accelaDBModel.Version = reader.GetOracleString(2).ToString();      // VERSION_ORI
                      accelaDBModel.IP = reader.GetOracleString(4).ToString();           // DB_IP
                      accelaDBModel.Port = reader.GetOracleString(5).ToString();         // DB_PORT
                      accelaDBModel.SID = reader.GetOracleString(6).ToString();          // DB_SID
-                     accelaDBModel.Type = reader.GetOracleString(7).ToString();         // DB_NAME
-                     accelaDBModel.Name = reader.GetOracleString(8).ToString();         // DB_USER
+                     accelaDBModel.DBType = reader.GetOracleString(7).ToString();         // DB_NAME
+                     accelaDBModel.DBName = reader.GetOracleString(8).ToString();         // DB_USER
                      accelaDBModel.User = reader.GetOracleString(9).ToString();         // DB_PASS
                      accelaDBModel.Password = reader.GetDateTime(10).ToShortDateString();
                      //accelaDBModel.CreatedDate = reader.GetOracleString(11).ToString();// DB_CREATED
@@ -88,7 +88,7 @@ namespace com.smartwork
                 xmlDoc.InsertBefore(Declaration, xmlDoc.DocumentElement);
                 foreach(AcccelaDBModel accelaDBModel in accelaDBModelList)
                 {
-                    string type = accelaDBModel.Type;
+                    string type = accelaDBModel.DBType;
                     string customer = accelaDBModel.Customer;
                     string version = accelaDBModel.Version;
                     string ip = accelaDBModel.IP;

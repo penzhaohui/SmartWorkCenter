@@ -16,7 +16,7 @@ namespace com.smartwork.Model
         /// <summary>
         /// DB Type: Oracle or MSSQL
         /// </summary>
-        public string Type { set; get; }
+        public string DBType { set; get; }
 
         /// <summary>
         /// Customer
@@ -46,7 +46,7 @@ namespace com.smartwork.Model
         /// <summary>
         /// DB Name
         /// </summary>
-        public string Name { set; get; }
+        public string DBName { set; get; }
 
         /// <summary>
         /// User

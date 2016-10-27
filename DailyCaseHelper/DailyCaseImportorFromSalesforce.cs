@@ -23,6 +23,8 @@ namespace com.smartwork
 {
     public partial class DailyCaseImportorFromSalesforce : Form
     {
+        private static Dictionary<string, AcccelaDBModel> AccelaDBMapper = new Dictionary<string, AcccelaDBModel>();
+
         public DailyCaseImportorFromSalesforce()
         {
             InitializeComponent();
@@ -71,6 +73,8 @@ namespace com.smartwork
                 this.btnShowPendingCases.Enabled = true;
                 this.btnShowOpenCase.Enabled = true;
             }
+
+            AccelaDBMapper = AccelaDBUtil.GetAccelaDatabaseMapper();
         }
 
         /// <summary>
@@ -745,7 +749,7 @@ namespace com.smartwork
 
                             if (missionsky)
                             {
-                                fields.labels.Add("Missionsky");
+                                //fields.labels.Add("Missionsky");
                             }
 
                             fields.description = description;
@@ -853,14 +857,14 @@ namespace com.smartwork
 
                             if (missionsky && !issue.fields.labels.Contains("Missionsky"))
                             {
-                                issue.fields.labels.Add("Missionsky");
+                                //issue.fields.labels.Add("Missionsky");
                             }
 
                             if (!missionsky && issue.fields.labels.Contains("Missionsky"))
                             {
                                 issue.fields.labels.Remove("Missionsky");
                             }
-
+                            
                             issue.fields.customfield_10905 = severity;
                             issue.fields.customfield_12801 = severity;
                             issue.fields.Priority = new IssuePriority();
@@ -908,6 +912,32 @@ namespace com.smartwork
                             }
 
                             issue.fields.customfield_10900 = customer;
+                            if ("Resolved".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Closed".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Development in Progress".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Pending".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Resolved".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Closed".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Development in Progress".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Pending".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                if (issue.fields.labels.Contains("DB"))
+                                {
+                                    issue.fields.labels.Remove("DB");
+                                }
+                            }
+                            else
+                            {
+                                if (!issue.fields.labels.Contains("DB"))
+                                {
+                                    if (AccelaDBMapper.ContainsKey(customer))
+                                    {
+                                        issue.fields.labels.Add("DB");
+                                        CreateDBInfoComment(jiraKey, customer);
+                                    }
+                                }
+                            }
+
                             if ("Delivery".Equals(origin, StringComparison.CurrentCultureIgnoreCase))
                             {
                                 origin = "Other";
@@ -926,7 +956,7 @@ namespace com.smartwork
 
                             try
                             {
-                                var updateIssue = await JiraProxy.UpdateIssue(issue);
+                                var updateIssue = await JiraProxy.UpdateIssue(issue);                                
                             }
                             catch (Exception ex)
                             {
@@ -941,9 +971,27 @@ namespace com.smartwork
             this.btnImportToJira.Enabled = true;
         }
 
-        private void btnUpdateTodayCaseList_Click(object sender, EventArgs e)
+        private async void CreateDBInfoComment(string jiraKey, string customer)
         {
+            if (AccelaDBMapper.ContainsKey(customer))
+            {
+                AcccelaDBModel dbInfo = AccelaDBMapper[customer];
 
+                IssueRef issue = new IssueRef();
+                issue.key = jiraKey;
+                issue.id = jiraKey;
+
+                string dbConnInfo = "";
+                dbConnInfo += "Type: " + dbInfo.DBType + "\n";
+                dbConnInfo += "IP: " + dbInfo.IP + "\n";
+                dbConnInfo += "Port: " + dbInfo.IP + "\n";
+                dbConnInfo += "Name: " + dbInfo.DBName + "\n";
+                dbConnInfo += "User: " + dbInfo.User + "\n";
+                dbConnInfo += "Pass: " + dbInfo.Password + "\n";
+                dbConnInfo += "Related Case: " + dbInfo.SFCase + "\n";
+
+                JiraProxy.CreateComment(issue, "This client provide some database dump before, please have a try on it first:\n---------------------------------------------------------\n" + dbConnInfo);
+            }
         }
 
         private void btnMoveCommentToJIRA_Click(object sender, EventArgs e)
