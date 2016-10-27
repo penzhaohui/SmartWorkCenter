@@ -93,8 +93,12 @@ namespace com.smartwork.Util
             }
             else
             {
+                // sql += " and (status ='eng qa' or status ='qa in progress' or status ='engqa') ";
                 if ("Engineering".Equals(sfQueue, System.StringComparison.InvariantCultureIgnoreCase)
-                    && "Eng New".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase))
+                    && ("Eng New".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                        || "Eng QA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                        || "Qa In Progress".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                        || "EngQA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)))
                 {
                     if (!"In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                     {

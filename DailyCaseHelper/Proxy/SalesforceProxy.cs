@@ -63,7 +63,7 @@ namespace com.smartwork.Proxy
         }
 
         public static async Task<List<AccelaCase>> GetTopNNewCaseList(int n, bool isExcludeEngQA = false, bool isOnlyEngQA = false, bool isIncludeComments = false)
-        {
+        {                                                     
             /*
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
                                   case.createdby.name, status, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
@@ -97,6 +97,7 @@ namespace com.smartwork.Proxy
                             and product__c != 'Legislative Management' 
                             and product__c != 'Environmental Health'
                             and product__c != 'Kiva' 
+                            and product__c != 'GeoTMS'
                             and product__c != 'KVS Standard' ";
 
             if (isOnlyEngQA)

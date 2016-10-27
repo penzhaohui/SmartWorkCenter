@@ -135,7 +135,7 @@ namespace com.smartwork
             for (int i=0; i < caseIdList.Count; )
             {
                 List<string> caseIdListTemp = new List<string>();
-                for (; i < N * 100 && i < caseIdList.Count; i++)
+                for (; i < N * 50 && i < caseIdList.Count; i++)
                 {
                     caseIdListTemp.Add(caseIdList[i]);
                 }
