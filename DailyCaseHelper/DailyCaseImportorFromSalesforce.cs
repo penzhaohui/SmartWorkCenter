@@ -58,7 +58,7 @@ namespace com.smartwork
             this.btnShowPendingCases.Enabled = false;
             this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.4.0.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.5.0.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -74,7 +74,14 @@ namespace com.smartwork
                 this.btnShowOpenCase.Enabled = true;
             }
 
-            AccelaDBMapper = AccelaDBUtil.GetAccelaDatabaseMapper();
+            try
+            {
+                AccelaDBMapper = AccelaDBUtil.GetAccelaDatabaseMapper();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -915,18 +922,23 @@ namespace com.smartwork
                             if ("Resolved".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
                                 || "Closed".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
                                 || "Development in Progress".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
-                                || "Pending".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
                                 || "Resolved".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
                                 || "Closed".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                                || "Development in Progress".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                                || "Pending".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                                || "Development in Progress".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 if (issue.fields.labels.Contains("DB"))
                                 {
                                     issue.fields.labels.Remove("DB");
                                 }
                             }
-                            else
+                            else if ("Pending".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                    || "Pending".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                            { 
+                            }
+                            else if ("Open".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "In Progress".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Open".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                                || "In Progress".Equals(nextJiraStatus, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 if (!issue.fields.labels.Contains("DB"))
                                 {

@@ -17,12 +17,11 @@ namespace com.smartwork.Util
             // C# 连接 Oracle 的几种方式: http://www.cnblogs.com/storys/archive/2013/03/06/2945914.html
             string connString = "User ID=dbmread;Password=dbmread;Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.156)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = dbs156)))";
             OracleConnection conn = new OracleConnection(connString);
-            try
-            {
-                conn.Open();
 
-                OracleCommand cmd = conn.CreateCommand();
-                cmd.CommandText = @"SELECT DB_TYPE,
+            conn.Open();
+
+            OracleCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT DB_TYPE,
                                        CUSTOMER,                                      
                                        VERSION_CUR,
                                        DB_IP,
@@ -38,40 +37,35 @@ namespace com.smartwork.Util
                                  WHERE DB_STATUS = 'USING' 
                                  ORDER BY DB_CREATED DESC ";
 
-                OracleDataReader reader = cmd.ExecuteReader();
+            OracleDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+            while (reader.Read())
+            {
+
+                AcccelaDBModel accelaDBModel = new AcccelaDBModel();
+
+                accelaDBModel.DBType = reader.GetOracleString(0).ToString();       // DB_TYPE
+                accelaDBModel.Customer = reader.GetOracleString(1).ToString();     // CUSTOMER
+                accelaDBModel.Version = reader.GetOracleString(2).ToString();      // VERSION_CUR
+                accelaDBModel.IP = reader.GetOracleString(3).ToString();           // DB_IP
+                accelaDBModel.Port = reader.GetOracleString(4).ToString();         // DB_PORT
+                accelaDBModel.SID = reader.GetOracleString(5).ToString();          // DB_SID
+                accelaDBModel.DBName = reader.GetOracleString(6).ToString();       // DB_NAME
+                accelaDBModel.User = reader.GetOracleString(7).ToString();         // DB_USER
+                accelaDBModel.Password = reader.GetOracleString(8).ToString();     // DB_PASS
+                accelaDBModel.Owner = reader.GetOracleString(9).ToString();        // USER_REQUESTOR
+                accelaDBModel.SFCase = reader.GetOracleString(10).ToString();      // DB_USAGE
+
+                if (!AccelaDBMapper.ContainsKey(accelaDBModel.Customer))
                 {
-
-                    AcccelaDBModel accelaDBModel = new AcccelaDBModel();
-
-                    accelaDBModel.DBType = reader.GetOracleString(0).ToString();       // DB_TYPE
-                    accelaDBModel.Customer = reader.GetOracleString(1).ToString();     // CUSTOMER
-                    accelaDBModel.Version = reader.GetOracleString(2).ToString();      // VERSION_CUR
-                    accelaDBModel.IP = reader.GetOracleString(3).ToString();           // DB_IP
-                    accelaDBModel.Port = reader.GetOracleString(4).ToString();         // DB_PORT
-                    accelaDBModel.SID = reader.GetOracleString(5).ToString();          // DB_SID
-                    accelaDBModel.DBName = reader.GetOracleString(6).ToString();       // DB_NAME
-                    accelaDBModel.User = reader.GetOracleString(7).ToString();         // DB_USER
-                    accelaDBModel.Password = reader.GetOracleString(8).ToString();     // DB_PASS
-                    accelaDBModel.Owner = reader.GetOracleString(9).ToString();        // USER_REQUESTOR
-                    accelaDBModel.SFCase = reader.GetOracleString(10).ToString();      // DB_USAGE
-
-                    if (!AccelaDBMapper.ContainsKey(accelaDBModel.Customer))
+                    if (accelaDBModel.DBName.IndexOf("_jet", StringComparison.InvariantCultureIgnoreCase) < 0)
                     {
-                        if (accelaDBModel.DBName.IndexOf("_jet", StringComparison.InvariantCultureIgnoreCase) < 0)
-                        {
-                            AccelaDBMapper.Add(accelaDBModel.Customer, accelaDBModel);
-                        }
+                        AccelaDBMapper.Add(accelaDBModel.Customer, accelaDBModel);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                //throw ex;
-            }
-            
-            return AccelaDBMapper;            
+
+            return AccelaDBMapper;
         }
     }
 }
