@@ -23,7 +23,7 @@ namespace com.smartwork.Util
             OracleCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT DB_TYPE,
                                        CUSTOMER,                                      
-                                       VERSION_CUR,
+                                       VERSION_ORI,
                                        DB_IP,
                                        DB_PORT,
                                        DB_SID,

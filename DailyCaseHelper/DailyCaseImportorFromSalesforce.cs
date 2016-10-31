@@ -996,10 +996,12 @@ namespace com.smartwork
                 string dbConnInfo = "";
                 dbConnInfo += "Type: " + dbInfo.DBType + "\n";
                 dbConnInfo += "IP: " + dbInfo.IP + "\n";
-                dbConnInfo += "Port: " + dbInfo.IP + "\n";
-                dbConnInfo += "Name: " + dbInfo.DBName + "\n";
+                dbConnInfo += "Port: " + dbInfo.Port + "\n";
+                dbConnInfo += "SID: " + dbInfo.SID + "\n";
+                dbConnInfo += "DB Name: " + dbInfo.DBName + "\n";
                 dbConnInfo += "User: " + dbInfo.User + "\n";
                 dbConnInfo += "Pass: " + dbInfo.Password + "\n";
+                dbConnInfo += "Version: " + dbInfo.Version + "\n";
                 dbConnInfo += "Related Case: " + dbInfo.SFCase + "\n";
 
                 JiraProxy.CreateComment(issue, "This client provide some database dump before, please have a try on it first:\n---------------------------------------------------------\n" + dbConnInfo);
