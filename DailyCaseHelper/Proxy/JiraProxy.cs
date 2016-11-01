@@ -5,6 +5,7 @@ using TechTalk.JiraRestClient;
 
 namespace com.smartwork.Proxy
 {
+    // http://stackoverflow.com/questions/31079195/adding-a-new-case-comment-via-salesforce-api-c-sharp
     public class JiraProxy
     {
         public static async Task<List<Issue>> GetIssueList(List<string> caseIdList)
