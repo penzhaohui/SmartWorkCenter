@@ -129,7 +129,7 @@ namespace com.smartwork
                             if (comment == null
                                 || comment.CommentBody == null
                                 || comment.LastModifiedDate.Year != 2016
-                                || comment.LastModifiedDate.Month != 10)
+                                || comment.LastModifiedDate.Month != this.dtpSpecifyDate.Value.Month)
                             {
                                 continue;
                             }
