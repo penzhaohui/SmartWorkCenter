@@ -40,7 +40,7 @@ namespace com.smartwork.Proxy
         public static async Task<List<Issue>> GetIssueList(string email)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
-            string sql = "assignee in (\"" + email  + "\")";
+            string sql = "assignee in (\"" + email  + "\") and status in (\"Open\", \"In Progress\", \"Reopened\", \"Pending\", \"Development in Progress\") ";
 
             List<Issue> issueList = new List<Issue>();
             var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
