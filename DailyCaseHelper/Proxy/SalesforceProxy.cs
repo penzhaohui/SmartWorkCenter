@@ -382,6 +382,8 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Mamie", "Mamie.Li");
             Reviewers.Add("Vicky", "Vicky.Chen");
             Reviewers.Add("June", "June.Liu");
+            Reviewers.Add("Shirlly", "Shirlly.Wang");
+            Reviewers.Add("Jenna", "Jenna.Zhang");
 
             Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 
@@ -452,6 +454,8 @@ namespace com.smartwork.Proxy
             //Reviewers.Add("Abel.Yu");            
             Reviewers.Add("Nicole.Guo");
             Reviewers.Add("Mamie.Li");
+            Reviewers.Add("Shirlly.Wang");
+            Reviewers.Add("Jenna.Zhang");
             //Reviewers.Add("June.Liu");
             
             Reviewers.Add("Joanna.Mae.Ramirez");
@@ -462,8 +466,7 @@ namespace com.smartwork.Proxy
 
             Reviewers.Add("Apia.Liu");
             Reviewers.Add("Jessie.Zhang");
-            Reviewers.Add("Iron.Tang");
-            
+            Reviewers.Add("Iron.Tang");            
 
             Reviewers.Add("Carly.Xu");
             Reviewers.Add("Janice.Zhong");
