@@ -553,7 +553,7 @@ namespace com.smartwork
             {
                 to = "peter.peng@missionsky.com";
             }
-            string cc = "peter.peng@missionsky.com;leo.liu@missionsky.com";
+            string cc = "peter.peng@missionsky.com;leo.liu@missionsky.com;louis.he@missionsky.com";
 
             string subject = "Daily Case Review Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
 
@@ -1131,7 +1131,7 @@ namespace com.smartwork
             {
                 to = "peter.peng@missionsky.com";
             }
-            string cc = "rleung@accela.com;leo.liu@missionsky.com";
+            string cc = "rleung@accela.com;peter.peng@missionsky.com;leo.liu@missionsky.com;louis.he@missionsky.com";
             string subject = "Daily Case Comment Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
                         
             try

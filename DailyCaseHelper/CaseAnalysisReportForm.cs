@@ -128,8 +128,8 @@ namespace com.smartwork
                         {                            
                             if (comment == null
                                 || comment.CommentBody == null
-                                || comment.LastModifiedDate.Year != 2016
-                                || comment.LastModifiedDate.Month != this.dtpSpecifyDate.Value.Month)
+                                || comment.CreatedDate.Year != this.dtpSpecifyDate.Value.Year
+                                || comment.CreatedDate.Month != this.dtpSpecifyDate.Value.Month)
                             {
                                 continue;
                             }
@@ -140,9 +140,9 @@ namespace com.smartwork
 
                                 if (comment == null
                                 || comment.CommentBody == null
-                                || comment.LastModifiedDate.Year != date.Year
-                                || comment.LastModifiedDate.Month != date.Month
-                                || comment.LastModifiedDate.Day != date.Day)
+                                || comment.CreatedDate.Year != date.Year
+                                || comment.CreatedDate.Month != date.Month
+                                || comment.CreatedDate.Day != date.Day)
                                 {
                                     continue;
                                 }

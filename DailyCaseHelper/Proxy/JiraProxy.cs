@@ -283,5 +283,39 @@ namespace com.smartwork.Proxy
 
             return issueList;
         }
+
+        public static async Task<List<Issue>> GetIssueListByCreatedDate(DateTime start, DateTime end)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            // http://www.cnblogs.com/polk6/p/5465088.html
+            string sql = "reporter in (\"Peter.peng@missionsky.com\") AND created >= " + start.ToString("yyyy-MM-dd") + " AND created < " + end.ToString("yyyy-MM-dd") + " ";
+            
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
+        public static async Task<List<Issue>> GetProductionIssueList()
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            // http://www.cnblogs.com/polk6/p/5465088.html
+            string sql = " status in (Open, \"In Progress\", Reopened, Pending, \"Development in Progress\") AND not \"Salesforce ID\" is EMPTY AND reporter in (\"Peter.peng@missionsky.com\") ";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "Bug", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
     }
 }

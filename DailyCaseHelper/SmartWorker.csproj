@@ -202,6 +202,12 @@
     <Compile Include="Util\AccelaDBUtil.cs" />
     <Compile Include="Util\EmailUtil.cs" />
     <Compile Include="Util\AccelaCaseUtil.cs" />
+    <Compile Include="WeeklyReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeeklyReportForm.Designer.cs">
+      <DependentUpon>WeeklyReportForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AADevEnvChecker.resx">
       <DependentUpon>AADevEnvChecker.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateMyJIRAIssueFromSalesforce.resx">
       <DependentUpon>UpdateMyJIRAIssueFromSalesforce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeeklyReportForm.resx">
+      <DependentUpon>WeeklyReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>

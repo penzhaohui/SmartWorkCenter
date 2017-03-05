@@ -247,7 +247,7 @@
             this.dtpSpecifyDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpSpecifyDate.Location = new System.Drawing.Point(284, 180);
             this.dtpSpecifyDate.Name = "dtpSpecifyDate";
-            this.dtpSpecifyDate.Size = new System.Drawing.Size(96, 20);
+            this.dtpSpecifyDate.Size = new System.Drawing.Size(97, 20);
             this.dtpSpecifyDate.TabIndex = 11;
             // 
             // CaseAnalysisReportForm

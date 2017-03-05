@@ -51,11 +51,12 @@
             this.mergeAttachmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.caseAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scanStatusCrossProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scanReleaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.scanReleaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weeklyReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -181,7 +182,8 @@
             this.mergeAttachmentToolStripMenuItem,
             this.caseAnalysisToolStripMenuItem,
             this.scanStatusCrossProjectToolStripMenuItem,
-            this.scanReleaseStatusToolStripMenuItem});
+            this.scanReleaseStatusToolStripMenuItem,
+            this.weeklyReportToolStripMenuItem1});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -242,6 +244,13 @@
             this.scanStatusCrossProjectToolStripMenuItem.Text = "Scan Status Cross Project";
             this.scanStatusCrossProjectToolStripMenuItem.Click += new System.EventHandler(this.scanStatusCrossProjectToolStripMenuItem_Click);
             // 
+            // scanReleaseStatusToolStripMenuItem
+            // 
+            this.scanReleaseStatusToolStripMenuItem.Name = "scanReleaseStatusToolStripMenuItem";
+            this.scanReleaseStatusToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.scanReleaseStatusToolStripMenuItem.Text = "Scan Release Status";
+            this.scanReleaseStatusToolStripMenuItem.Click += new System.EventHandler(this.scanReleaseStatusToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -271,12 +280,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // scanReleaseStatusToolStripMenuItem
+            // weeklyReportToolStripMenuItem1
             // 
-            this.scanReleaseStatusToolStripMenuItem.Name = "scanReleaseStatusToolStripMenuItem";
-            this.scanReleaseStatusToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.scanReleaseStatusToolStripMenuItem.Text = "Scan Release Status";
-            this.scanReleaseStatusToolStripMenuItem.Click += new System.EventHandler(this.scanReleaseStatusToolStripMenuItem_Click);
+            this.weeklyReportToolStripMenuItem1.Name = "weeklyReportToolStripMenuItem1";
+            this.weeklyReportToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
+            this.weeklyReportToolStripMenuItem1.Text = "Weekly Report";
+            this.weeklyReportToolStripMenuItem1.Click += new System.EventHandler(this.weeklyReportToolStripMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -329,6 +338,7 @@
         private System.Windows.Forms.ToolStripMenuItem caseAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scanStatusCrossProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scanReleaseStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem1;
     }
 }
 

@@ -98,7 +98,8 @@ namespace com.smartwork.Proxy
                             and product__c != 'Environmental Health'
                             and product__c != 'Kiva' 
                             and product__c != 'GeoTMS'
-                            and product__c != 'KVS Standard' ";
+                            and product__c != 'KVS Standard'
+                            and product__c != 'KVS Enterprise' ";
 
             if (isOnlyEngQA)
             {
@@ -384,6 +385,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("June", "June.Liu");
             Reviewers.Add("Shirlly", "Shirlly.Wang");
             Reviewers.Add("Jenna", "Jenna.Zhang");
+            Reviewers.Add("Venli", "Venli.Li");
 
             Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 
@@ -456,6 +458,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Mamie.Li");
             Reviewers.Add("Shirlly.Wang");
             Reviewers.Add("Jenna.Zhang");
+            Reviewers.Add("Venli.Li");
             //Reviewers.Add("June.Liu");
             
             Reviewers.Add("Joanna.Mae.Ramirez");

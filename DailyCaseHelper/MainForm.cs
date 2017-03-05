@@ -215,5 +215,16 @@ namespace com.smartwork
             scanReleaseStatusFomSalesforce.MinimizeBox = false;
             scanReleaseStatusFomSalesforce.Show();
         }
+
+        private void weeklyReportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            frmWeeklyReportForm weeklyReportForm = new frmWeeklyReportForm();
+            weeklyReportForm.WindowState = FormWindowState.Maximized;
+            weeklyReportForm.MdiParent = this;
+            weeklyReportForm.MaximizeBox = false;
+            weeklyReportForm.MinimizeBox = false;
+            weeklyReportForm.Show();
+        }
     }
 }
