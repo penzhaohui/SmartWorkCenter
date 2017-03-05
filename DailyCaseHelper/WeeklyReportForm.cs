@@ -202,19 +202,34 @@ namespace com.smartwork
                         {
                             if (IsSameday(comment.CreatedDate, monday))
                             {
-                                caseList.Add(caseInfo);
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 mondayCaseCommentCount++;
                                 System.Console.WriteLine("[1] " + caseInfo.CaseNumber);
                             }
                             else if (IsSameday(comment.CreatedDate, tuesday))
                             {
-                                caseList.Add(caseInfo);
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 tuesdayCaseCommentCount++;
                                 System.Console.WriteLine("[2] " + caseInfo.CaseNumber);
                             }
                             else if (IsSameday(comment.CreatedDate, wednesday))
                             {
-                                caseList.Add(caseInfo);
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 wednesdayCaseCommentCount++;
                                 System.Console.WriteLine("[3] " + caseInfo.CaseNumber);
                             }
@@ -226,18 +241,34 @@ namespace com.smartwork
                             }
                             else if (IsSameday(comment.CreatedDate, friday))
                             {
-                                caseList.Add(caseInfo);
+                                if(!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 fridayCaseCommentCount++;
                                 System.Console.WriteLine("[5] " + caseInfo.CaseNumber);                                
                             }
                             else if (IsSameday(comment.CreatedDate, saturday))
                             {
-                                caseList.Add(caseInfo);
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 saturdayCaseCommentCount++;
                                 System.Console.WriteLine("[6] " + caseInfo.CaseNumber);                                
                             }
                             else if (IsSameday(comment.CreatedDate, sunday))
-                            {                                caseList.Add(caseInfo);
+                            {
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
                                 sundayCaseCommentCount++;
                                 System.Console.WriteLine("[7] " + caseInfo.CaseNumber);
                             }
