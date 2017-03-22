@@ -291,12 +291,17 @@ namespace com.smartwork.Proxy
         {
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, rank_order__c, services_rank__c, case.account.name, 
                                               case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
-                                              case.createdby.name, status, internal_type__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name
+                                              case.createdby.name, status, internal_type__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
+                                              hosted__c
                            from case 
                            where product__c != 'Springbrook' 
-                           and product__c != 'SoftRight' 
-                           and product__c != 'Legislative Management' 
-                           and product__c != 'Environmental Health' and ( ";
+                            and product__c != 'SoftRight' 
+                            and product__c != 'Legislative Management' 
+                            and product__c != 'Environmental Health'
+                            and product__c != 'Kiva' 
+                            and product__c != 'GeoTMS'
+                            and product__c != 'KVS Standard'
+                            and product__c != 'KVS Enterprise'  and ( ";
 
             sql += " casenumber='" + caseId + "' " + ")";
 

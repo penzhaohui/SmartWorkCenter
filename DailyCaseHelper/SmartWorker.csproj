@@ -50,14 +50,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonLibrariesForNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dlls\CommonLibrariesForNET.dll</HintPath>
-    </Reference>
-    <Reference Include="ForceToolkitForNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dlls\ForceToolkitForNET.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -124,6 +116,12 @@
     <Compile Include="DataAccess\ConnectionInfo.cs" />
     <Compile Include="DataAccess\DatabaseUtil.cs" />
     <Compile Include="DataAccess\DBFactory.cs" />
+    <Compile Include="DBRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBRequestForm.Designer.cs">
+      <DependentUpon>DBRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTPMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +221,9 @@
     <EmbeddedResource Include="DailyCaseImportorFromSalesforce.resx">
       <DependentUpon>DailyCaseImportorFromSalesforce.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DBRequestForm.resx">
+      <DependentUpon>DBRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FTPMonitor.resx">
       <DependentUpon>FTPMonitor.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,6 +316,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLibrariesForNET\CommonLibrariesForNET.csproj">
+      <Project>{65129da9-ac8e-4db2-a895-15fbc0da2b54}</Project>
+      <Name>CommonLibrariesForNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForceToolkitForNET\ForceToolkitForNET.csproj">
+      <Project>{6b8131e1-ec47-4dee-8fcf-436f21c684d1}</Project>
+      <Name>ForceToolkitForNET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

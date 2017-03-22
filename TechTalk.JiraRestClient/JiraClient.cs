@@ -167,37 +167,40 @@ namespace TechTalk.JiraRestClient
                 //if (issueFields.timetracking != null)
                 //issueData.Add("timetracking", new { originalEstimate = issueFields.timetracking.originalEstimate });
 
-                var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
-                foreach (var property in propertyList)
+                if ("DATABASE" != projectKey)
                 {
-                    var value = property.GetValue(issueFields, null);
-                    if (value != null) issueData.Add(property.Name, value);
-
-                    /*
-                    var propertyNalue = property.GetValue(issueFields, null);
-                    if (propertyNalue != null)
+                    var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
+                    foreach (var property in propertyList)
                     {
-                        // SF-Priority
-                        if ("customfield_10905" == property.Name)
+                        var value = property.GetValue(issueFields, null);
+                        if (value != null) issueData.Add(property.Name, value);
+
+                        /*
+                        var propertyNalue = property.GetValue(issueFields, null);
+                        if (propertyNalue != null)
                         {
-                            issueData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
+                            // SF-Priority
+                            if ("customfield_10905" == property.Name)
+                            {
+                                issueData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
+                            }
+                            // Severity
+                            else if ("customfield_11106" == property.Name)
+                            {
+                                issueData.Add(property.Name, new[] { new { set = new { value = (propertyNalue as IssueSeverity).name } } });
+                            }
+                            // JIRA-Product
+                            else if ("customfield_11501" == property.Name)
+                            {
+                                issueData.Add(property.Name, new[] { new { set = new[] { new { value = propertyNalue } } } });
+                            }
+                            else
+                            {
+                                issueData.Add(property.Name, new[] { new { set = propertyNalue } });
+                            }
                         }
-                        // Severity
-                        else if ("customfield_11106" == property.Name)
-                        {
-                            issueData.Add(property.Name, new[] { new { set = new { value = (propertyNalue as IssueSeverity).name } } });
-                        }
-                        // JIRA-Product
-                        else if ("customfield_11501" == property.Name)
-                        {
-                            issueData.Add(property.Name, new[] { new { set = new[] { new { value = propertyNalue } } } });
-                        }
-                        else
-                        {
-                            issueData.Add(property.Name, new[] { new { set = propertyNalue } });
-                        }
+                         * */
                     }
-                     * */
                 }
 
                 request.AddBody(new { fields = issueData });
@@ -236,50 +239,53 @@ namespace TechTalk.JiraRestClient
                 //if (issue.fields.timetracking != null)
                 //    updateData.Add("timetracking", new[] { new { set = new { originalEstimate = issue.fields.timetracking.originalEstimate } } });
 
-                var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
-                foreach (var property in propertyList)
+                if (issue.key.StartsWith("ENGSUPP"))
                 {
-                    var propertyValue = property.GetValue(issue.fields, null);
-                    if (propertyValue != null)
+                    var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
+                    foreach (var property in propertyList)
                     {
-                        // SF-Priority & Issue Category
-                        if ("customfield_10905" == property.Name || "customfield_11502" == property.Name)
+                        var propertyValue = property.GetValue(issue.fields, null);
+                        if (propertyValue != null)
                         {
-                            //updateData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
-                        }
-                        // SF-Case Comment Count
-                        else if ("customfield_12400" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = (int)propertyValue } });
-                        }
-                        // SF-Last Modified
-                        else if ("customfield_10903" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = (propertyValue as string)} });
-                        }
-                        // Severity
-                        else if ("customfield_11106" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = new { value = (propertyValue as IssueSeverity).name, id = "" + (propertyValue as IssueSeverity).id } } });
-                        }
-                        // JIRA-Product
-                        else if ("customfield_11501" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = new[] { new { value = propertyValue } } } });
-                        }
-                        // SF-Origin
-                        else if ("customfield_11900" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = new { value = propertyValue } } });
-                        }
-                        // SF-Customer
-                        else if ("customfield_10900" == property.Name)
-                        {
-                            updateData.Add(property.Name, new[] { new { set = propertyValue } });
-                        }
-                        else
-                        {
-                            updateData.Add(property.Name, new[] { new { set = propertyValue } });
+                            // SF-Priority & Issue Category
+                            if ("customfield_10905" == property.Name || "customfield_11502" == property.Name)
+                            {
+                                //updateData.Add(property.Name, new[] { new { set = new { value = propertyNalue } } });
+                            }
+                            // SF-Case Comment Count
+                            else if ("customfield_12400" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = (int)propertyValue } });
+                            }
+                            // SF-Last Modified
+                            else if ("customfield_10903" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = (propertyValue as string) } });
+                            }
+                            // Severity
+                            else if ("customfield_11106" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = new { value = (propertyValue as IssueSeverity).name, id = "" + (propertyValue as IssueSeverity).id } } });
+                            }
+                            // JIRA-Product
+                            else if ("customfield_11501" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = new[] { new { value = propertyValue } } } });
+                            }
+                            // SF-Origin
+                            else if ("customfield_11900" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = new { value = propertyValue } } });
+                            }
+                            // SF-Customer
+                            else if ("customfield_10900" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = propertyValue } });
+                            }
+                            else
+                            {
+                                updateData.Add(property.Name, new[] { new { set = propertyValue } });
+                            }
                         }
                     }
                 }

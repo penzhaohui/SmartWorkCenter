@@ -37,6 +37,69 @@ namespace com.smartwork.Proxy
             return issueList;
         }
 
+        public static async Task<Issue> GetIssueByID(string project, string type, string caseId)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = "(";
+            sql += " \"SalesForce ID\" ~  " + caseId;
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery(project, type, sql);
+
+            foreach (Issue issue in issues)
+            {
+                if (issue != null)
+                {
+                    return issue;
+                }
+            }
+
+            return null;
+        }
+
+        public static async Task<Issue> GetDatabaseTaskByID(string project, string type, string id)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = "(";
+            sql += " \"key\" =  " + id;
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery(project, type, sql);
+
+            foreach (Issue issue in issues)
+            {
+                if (issue != null)
+                {
+                    return issue;
+                }
+            }
+
+            return null;
+        }
+
+        public static async Task<Issue> GetDatabaseTaskByCaseID(string project, string type, string caseid)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = "(";
+            sql += " \"summary\" ~ " + caseid;
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery(project, type, sql);
+
+            foreach (Issue issue in issues)
+            {
+                if (issue != null)
+                {
+                    return issue;
+                }
+            }
+
+            return null;
+        }
+
         public static async Task<List<Issue>> GetIssueList(string email)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
@@ -90,9 +153,27 @@ namespace com.smartwork.Proxy
             var issue = jira.CreateIssue("ENGSUPP", "Case", fields);
 
             return issue;
-        }      
+        }
 
         public static async Task<Issue> UpdateIssue(Issue issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var result = jira.UpdateIssue(issue);
+
+            return result;
+        }
+
+        public static async Task<Issue> CreateDatabaseTask(IssueFields fields)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var issue = jira.CreateIssue("DATABASE", "Task", fields);
+
+            return issue;
+        }
+
+        public static async Task<Issue> UpdateDatabaseTask(Issue issue)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
 

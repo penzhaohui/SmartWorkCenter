@@ -86,6 +86,9 @@ namespace com.smartwork.Models
         [JsonProperty(PropertyName = "targeted_release__c")]
         public string TargetedRelease { get; set; }
 
+        [JsonProperty(PropertyName = "hosted__c")]
+        public string Hosted { get; set; }        
+
         [JsonProperty(PropertyName = "Customer__r")]
         public Account Customer { get; set; }
 

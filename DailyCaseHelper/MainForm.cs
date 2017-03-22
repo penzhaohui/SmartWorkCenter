@@ -226,5 +226,16 @@ namespace com.smartwork
             weeklyReportForm.MinimizeBox = false;
             weeklyReportForm.Show();
         }
+
+        private void dBRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            DBRequestForm dbRequestForm = new DBRequestForm();
+            dbRequestForm.WindowState = FormWindowState.Maximized;
+            dbRequestForm.MdiParent = this;
+            dbRequestForm.MaximizeBox = false;
+            dbRequestForm.MinimizeBox = false;
+            dbRequestForm.Show();
+        }
     }
 }
