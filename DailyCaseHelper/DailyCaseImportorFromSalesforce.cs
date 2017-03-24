@@ -1454,7 +1454,7 @@ namespace com.smartwork
 
             string content = @"Hi, All guys<br/><br/>Below is your closed cases today, please close them on JIRA accordingly.<br/><br/>" + dailyCaseSummary + "<br/><br/>Thanks<br/>Accela Support Team";
             string from = "auto_sender@missionsky.com";
-            string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;abel.yu@missionsky.com";
+            string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;venli.li@missionsky.com";
             string cc = "accela-support-team@missionsky.com";
             string subject = "Closed Case List - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
                         

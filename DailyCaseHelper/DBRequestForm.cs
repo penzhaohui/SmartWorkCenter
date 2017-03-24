@@ -25,6 +25,8 @@ namespace com.smartwork
 
             try
             {
+                this.btnRequest.Enabled = false;
+
                 this.txtIssueSubject.ReadOnly = true;
                 this.txtProduct.ReadOnly = true;
                 this.txtPriority.ReadOnly = true;
@@ -89,7 +91,14 @@ namespace com.smartwork
             var GetIssueByID = JiraProxy.GetIssueByID("ENGSUPP", "", strSFID);
             var issueInfo = await GetIssueByID;
 
+            if (issueInfo == null)
+            {
+                return;
+            }
+
             this.txtEngsuppID.Text = issueInfo.key;
+            this.txtReviewer.Text = issueInfo.fields.assignee.emailAddress;
+
             bool hasOldDB = issueInfo.fields.labels.IndexOf("DB") >= 0;
 
             if (hasOldDB && AccelaDBMapper.ContainsKey(this.txtCustomerInfo.Text))
@@ -113,6 +122,7 @@ namespace com.smartwork
                 this.txtDatabaseID.Text = taskInfo.key;
             }
 
+            this.btnRequest.Enabled = true;
             this.btnCheck.Enabled = true;
         }
 
@@ -129,19 +139,7 @@ namespace com.smartwork
             string priority = this.txtPriority.Text;
             string siteUr = this.txtSiteUrl.Text;
 
-            string issueSubject = this.txtIssueSubject.Text;
-
-            var GetDBTaskBySFID = JiraProxy.GetDatabaseTaskByCaseID("DATABASE", "Task", sfid);
-            var taskInfo = await GetDBTaskBySFID;
-            if (taskInfo != null)
-            {
-                this.txtDatabaseID.Text = taskInfo.key;
-                MessageBox.Show("The database request ticket already exists, please refer to " + taskInfo.key);
-                showCaseComment(taskInfo.key);
-                this.btnRequest.Enabled = true;
-                return;
-            }
-
+            string issueSubject = this.txtIssueSubject.Text;            
             string customerInfo = this.txtCustomerInfo.Text;
             string dbType = this.txtDBType.Text;
             string dbIP = this.txtDBServerIP.Text;
@@ -152,6 +150,7 @@ namespace com.smartwork
             string dbVersion = this.txtDBVersion.Text;
             string dbRelatedCase = this.txtRelatedCase.Text;
             string enviroment = "";
+            string reviewer = this.txtReviewer.Text;
 
             if (this.txtSiteUrl.Text.Trim().IndexOf(".accela.com") == -1)
             {
@@ -199,51 +198,38 @@ namespace com.smartwork
            
 
             string summary = "Request one fresh database dump for [" + customerInfo + "] - " + sfid;
-            string description = @"
+            string description1 = @"
 Hi [~vzou@accela.com],
                               
-Please kindly help to get one fresh database dump pings to {18} for <<{0}>> which is Accela hosted, because we could not reproduce the problem on our local site connects our local database as below. Note, the problem might exists on one of their latest {9} enviroment.
+Please kindly help to get one fresh database dump pings to {1} for <<{1}>> which is Accela hosted, because we could not reproduce the problem on our local site connects our local database as below. Note, the problem might exists on one of their latest {2} enviroment.
 
-Local Database Connection Info:
----------------------------------------------------------
-Type: {1}
-IP: {2}
-Port: {3}
-DB Name: {4}
-User: {5}
-Pass: {6}
-Version: {7}
-Related Case: {8}
----------------------------------------------------------
 
 Custom Info:
 ---------------------------------------------------------
-Salesforce ID: {10}
-ENGSUPP Key: {11}
-Customer: {12}
-Current Version: {13}
-Product: {14}
-Contact:{15}
-Priority: {16}
-Issue Subject: {17}
+Salesforce ID: {3}
+ENGSUPP Key: {4}
+Customer: {5}
+Current Version: {6}
+Product: {7}
+Contact:{8}
+Priority: {9}
+Issue Subject: {10}
 ---------------------------------------------------------
 
 After the fresh database dump is ready, please put it under Accela ftp server. The path should like ftp://ftp.accela.com/BIN/MISSIONSKY/XXXXX-XXXXX, and then re-assign this jira ticket to Missionsky DBA - [~evelyn.zhang@missionsky.com] who will restore it in Missionsky. Any further question, please let us know.
 
 Thanks you very much!
 
-CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com]";
+CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{11}]";
 
-            description = String.Format(description,
-                                            customerInfo,
-                                            dbType,
-                                            dbIP,
-                                            dbPort,
-                                            dbInstance,
-                                            dbUserName,
-                                            dbUserPassword,
-                                            dbVersion,
-                                            dbRelatedCase,
+            if (reviewer == "leo.liu@missionsky.com")
+            {
+                reviewer = "leo.liu";
+            }
+
+            description1 = String.Format(description1,
+                                            siteUr,
+                                            customerInfo,                                            
                                             enviroment,
                                             sfid,
                                             engsuppKey,
@@ -253,26 +239,40 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
                                             contact,
                                             priority,
                                             issueSubject,
-                                            siteUr
+                                            reviewer
                                         );
 
             IssueFields fields = new IssueFields();
             fields.summary = summary;
-            fields.description = description;
-             
-            var issue = await JiraProxy.CreateDatabaseTask(fields);
-            this.txtDatabaseID.Text = issue.key;
+            fields.description = description1;
 
-            // 2 - Critical
-            // 7 - High
-            // 6 - Medium
-            // 8 - Low
-            issue.fields.Priority = new IssuePriority();
-            issue.fields.Priority.name = priority;
+            var GetDBTaskBySFID = JiraProxy.GetDatabaseTaskByCaseID("DATABASE", "Task", sfid);
+            var taskInfo = await GetDBTaskBySFID;
+            if (taskInfo != null)
+            {
+                taskInfo.fields = fields;
+                JiraProxy.UpdateDatabaseTask(taskInfo);
 
-            JiraProxy.UpdateDatabaseTask(issue);
+                this.txtDatabaseID.Text = taskInfo.key;
+                MessageBox.Show("The database request ticket already exists, please refer to " + taskInfo.key);
+                showCaseComment(taskInfo.key);                
+            }
+            else
+            {
 
-            showCaseComment(issue.key);
+                var issue = await JiraProxy.CreateDatabaseTask(fields);
+                this.txtDatabaseID.Text = issue.key;
+
+                // 2 - Critical
+                // 7 - High
+                // 6 - Medium
+                // 8 - Low
+                issue.fields.Priority = new IssuePriority();
+                issue.fields.Priority.name = priority;
+
+                JiraProxy.UpdateDatabaseTask(issue);
+                showCaseComment(issue.key);
+            }            
            
             this.btnRequest.Enabled = true;
         }

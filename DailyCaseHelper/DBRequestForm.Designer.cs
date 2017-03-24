@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.grbSFandJiraID = new System.Windows.Forms.GroupBox();
-            this.txtEngsuppID = new System.Windows.Forms.TextBox();
-            this.lblJiraID = new System.Windows.Forms.Label();
+            this.txtSiteUrl = new System.Windows.Forms.TextBox();
+            this.lblSiteUrl = new System.Windows.Forms.Label();
             this.btnRequest = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
             this.txtSFID = new System.Windows.Forms.TextBox();
             this.lblSFID = new System.Windows.Forms.Label();
+            this.txtEngsuppID = new System.Windows.Forms.TextBox();
+            this.lblJiraID = new System.Windows.Forms.Label();
             this.grbLocalDBInfo = new System.Windows.Forms.GroupBox();
             this.txtRelatedCase = new System.Windows.Forms.TextBox();
             this.lblRelatedCase = new System.Windows.Forms.Label();
@@ -53,6 +55,7 @@
             this.txtDBType = new System.Windows.Forms.TextBox();
             this.lblDBType = new System.Windows.Forms.Label();
             this.grbCustomerInfo = new System.Windows.Forms.GroupBox();
+            this.txtNotice = new System.Windows.Forms.TextBox();
             this.chbJetspeed = new System.Windows.Forms.CheckBox();
             this.lblJetspeed = new System.Windows.Forms.Label();
             this.chbTestFlag = new System.Windows.Forms.CheckBox();
@@ -79,11 +82,10 @@
             this.btnCheckDBRequest = new System.Windows.Forms.Button();
             this.txtPriority = new System.Windows.Forms.TextBox();
             this.lblPriority = new System.Windows.Forms.Label();
-            this.lblSiteUrl = new System.Windows.Forms.Label();
-            this.txtSiteUrl = new System.Windows.Forms.TextBox();
             this.grbCaseInfo = new System.Windows.Forms.GroupBox();
             this.txtProduct = new System.Windows.Forms.TextBox();
-            this.txtNotice = new System.Windows.Forms.TextBox();
+            this.lblReviewer = new System.Windows.Forms.Label();
+            this.txtReviewer = new System.Windows.Forms.TextBox();
             this.grbSFandJiraID.SuspendLayout();
             this.grbLocalDBInfo.SuspendLayout();
             this.grbCustomerInfo.SuspendLayout();
@@ -106,21 +108,22 @@
             this.grbSFandJiraID.TabStop = false;
             this.grbSFandJiraID.Text = "Please enter salesforce id or jira id here";
             // 
-            // txtEngsuppID
+            // txtSiteUrl
             // 
-            this.txtEngsuppID.Location = new System.Drawing.Point(109, 504);
-            this.txtEngsuppID.Name = "txtEngsuppID";
-            this.txtEngsuppID.Size = new System.Drawing.Size(126, 20);
-            this.txtEngsuppID.TabIndex = 4;
+            this.txtSiteUrl.Location = new System.Drawing.Point(97, 53);
+            this.txtSiteUrl.Multiline = true;
+            this.txtSiteUrl.Name = "txtSiteUrl";
+            this.txtSiteUrl.Size = new System.Drawing.Size(425, 20);
+            this.txtSiteUrl.TabIndex = 5;
             // 
-            // lblJiraID
+            // lblSiteUrl
             // 
-            this.lblJiraID.AutoSize = true;
-            this.lblJiraID.Location = new System.Drawing.Point(29, 507);
-            this.lblJiraID.Name = "lblJiraID";
-            this.lblJiraID.Size = new System.Drawing.Size(76, 13);
-            this.lblJiraID.TabIndex = 2;
-            this.lblJiraID.Text = "ENGSUPP ID:";
+            this.lblSiteUrl.AutoSize = true;
+            this.lblSiteUrl.Location = new System.Drawing.Point(35, 52);
+            this.lblSiteUrl.Name = "lblSiteUrl";
+            this.lblSiteUrl.Size = new System.Drawing.Size(53, 13);
+            this.lblSiteUrl.TabIndex = 4;
+            this.lblSiteUrl.Text = "Site URL:";
             // 
             // btnRequest
             // 
@@ -138,7 +141,7 @@
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(111, 23);
             this.btnCheck.TabIndex = 2;
-            this.btnCheck.Text = "Check";
+            this.btnCheck.Text = "Sync";
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
@@ -157,6 +160,22 @@
             this.lblSFID.Size = new System.Drawing.Size(74, 13);
             this.lblSFID.TabIndex = 0;
             this.lblSFID.Text = "Salesforce ID:";
+            // 
+            // txtEngsuppID
+            // 
+            this.txtEngsuppID.Location = new System.Drawing.Point(109, 504);
+            this.txtEngsuppID.Name = "txtEngsuppID";
+            this.txtEngsuppID.Size = new System.Drawing.Size(126, 20);
+            this.txtEngsuppID.TabIndex = 4;
+            // 
+            // lblJiraID
+            // 
+            this.lblJiraID.AutoSize = true;
+            this.lblJiraID.Location = new System.Drawing.Point(29, 507);
+            this.lblJiraID.Name = "lblJiraID";
+            this.lblJiraID.Size = new System.Drawing.Size(76, 13);
+            this.lblJiraID.TabIndex = 2;
+            this.lblJiraID.Text = "ENGSUPP ID:";
             // 
             // grbLocalDBInfo
             // 
@@ -336,6 +355,16 @@
             this.grbCustomerInfo.TabIndex = 2;
             this.grbCustomerInfo.TabStop = false;
             this.grbCustomerInfo.Text = "Cutomer Info";
+            // 
+            // txtNotice
+            // 
+            this.txtNotice.Location = new System.Drawing.Point(132, 174);
+            this.txtNotice.Multiline = true;
+            this.txtNotice.Name = "txtNotice";
+            this.txtNotice.ReadOnly = true;
+            this.txtNotice.Size = new System.Drawing.Size(125, 127);
+            this.txtNotice.TabIndex = 21;
+            this.txtNotice.Text = "Notice: Please tick on which enviroment this case could be recreated ";
             // 
             // chbJetspeed
             // 
@@ -561,25 +590,10 @@
             this.lblPriority.TabIndex = 12;
             this.lblPriority.Text = "Priority:";
             // 
-            // lblSiteUrl
-            // 
-            this.lblSiteUrl.AutoSize = true;
-            this.lblSiteUrl.Location = new System.Drawing.Point(35, 52);
-            this.lblSiteUrl.Name = "lblSiteUrl";
-            this.lblSiteUrl.Size = new System.Drawing.Size(53, 13);
-            this.lblSiteUrl.TabIndex = 4;
-            this.lblSiteUrl.Text = "Site URL:";
-            // 
-            // txtSiteUrl
-            // 
-            this.txtSiteUrl.Location = new System.Drawing.Point(97, 53);
-            this.txtSiteUrl.Multiline = true;
-            this.txtSiteUrl.Name = "txtSiteUrl";
-            this.txtSiteUrl.Size = new System.Drawing.Size(425, 20);
-            this.txtSiteUrl.TabIndex = 5;
-            // 
             // grbCaseInfo
             // 
+            this.grbCaseInfo.Controls.Add(this.txtReviewer);
+            this.grbCaseInfo.Controls.Add(this.lblReviewer);
             this.grbCaseInfo.Controls.Add(this.txtProduct);
             this.grbCaseInfo.Controls.Add(this.lblPriority);
             this.grbCaseInfo.Controls.Add(this.txtPriority);
@@ -598,15 +612,21 @@
             this.txtProduct.Size = new System.Drawing.Size(127, 20);
             this.txtProduct.TabIndex = 13;
             // 
-            // txtNotice
+            // lblReviewer
             // 
-            this.txtNotice.Location = new System.Drawing.Point(132, 174);
-            this.txtNotice.Multiline = true;
-            this.txtNotice.Name = "txtNotice";
-            this.txtNotice.ReadOnly = true;
-            this.txtNotice.Size = new System.Drawing.Size(125, 127);
-            this.txtNotice.TabIndex = 21;
-            this.txtNotice.Text = "Notice: Please tick on which enviroment this case could be recreated ";
+            this.lblReviewer.AutoSize = true;
+            this.lblReviewer.Location = new System.Drawing.Point(16, 104);
+            this.lblReviewer.Name = "lblReviewer";
+            this.lblReviewer.Size = new System.Drawing.Size(55, 13);
+            this.lblReviewer.TabIndex = 14;
+            this.lblReviewer.Text = "Reviewer:";
+            // 
+            // txtReviewer
+            // 
+            this.txtReviewer.Location = new System.Drawing.Point(83, 97);
+            this.txtReviewer.Name = "txtReviewer";
+            this.txtReviewer.Size = new System.Drawing.Size(127, 20);
+            this.txtReviewer.TabIndex = 15;
             // 
             // DBRequestForm
             // 
@@ -700,5 +720,7 @@
         private System.Windows.Forms.GroupBox grbCaseInfo;
         private System.Windows.Forms.TextBox txtProduct;
         private System.Windows.Forms.TextBox txtNotice;
+        private System.Windows.Forms.TextBox txtReviewer;
+        private System.Windows.Forms.Label lblReviewer;
     }
 }
