@@ -97,7 +97,7 @@ namespace com.smartwork
             }
 
             this.txtEngsuppID.Text = issueInfo.key;
-            this.txtReviewer.Text = issueInfo.fields.assignee.emailAddress;
+            this.txtReviewer.Text = issueInfo.fields.assignee.name;
 
             bool hasOldDB = issueInfo.fields.labels.IndexOf("DB") >= 0;
 
@@ -201,7 +201,7 @@ namespace com.smartwork
             string description1 = @"
 Hi [~vzou@accela.com],
                               
-Please kindly help to get one fresh database dump pings to {1} for <<{1}>> which is Accela hosted, because we could not reproduce the problem on our local site connects our local database as below. Note, the problem might exists on one of their latest {2} enviroment.
+Please kindly help to get one fresh database dump pings to {0} for <<{1}>> which is Accela hosted, because we could not reproduce the problem on our local site. The problem might exists on their latest {2} enviroment.
 
 
 Custom Info:
@@ -221,11 +221,6 @@ After the fresh database dump is ready, please put it under Accela ftp server. T
 Thanks you very much!
 
 CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{11}]";
-
-            if (reviewer == "leo.liu@missionsky.com")
-            {
-                reviewer = "leo.liu";
-            }
 
             description1 = String.Format(description1,
                                             siteUr,
@@ -282,7 +277,7 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
             string sfComment = @"
 Hi XXXXX,
 
-We have already send one ticket to Accela DBA to get one fresh database dump, because we suspect this case might be related to some data based on our test. The ticket for requesting database dump is {0}.  Thank you very much for your patience.
+One jira ticket is already created to Accela DBA for requesting one fresh database dump, because we suspect this case might be related to some data based on our test. The ticket key is {0}.  Thank you very much for your patience.
 
 Additional Information:
 <You could request other information from client here>
