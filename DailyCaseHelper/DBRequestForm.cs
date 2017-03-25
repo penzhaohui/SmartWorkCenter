@@ -277,7 +277,7 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
             string sfComment = @"
 Hi XXXXX,
 
-One jira ticket is already created to Accela DBA for requesting one fresh database dump, because we suspect this case might be related to some data based on our test. The ticket key is {0}.  Thank you very much for your patience.
+One jira ticket is already submitted to Accela DBA for the most recent database dump, because the reported issue might be data-related based on the research. The ticket key is {0}.  Thank you for your patience.
 
 Additional Information:
 <You could request other information from client here>
