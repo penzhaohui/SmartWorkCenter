@@ -100,6 +100,27 @@ namespace com.smartwork.Proxy
             return null;
         }
 
+        public static async Task<Issue> GetDatabaseTaskByCustomerID(string project, string type, string customer)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = "(";
+            sql += " created >= -15d AND summary ~ \"" + customer + "\"";
+            sql += ")";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery(project, type, sql);
+
+            foreach (Issue issue in issues)
+            {
+                if (issue != null)
+                {
+                    return issue;
+                }
+            }
+
+            return null;
+        }
+
         public static async Task<List<Issue>> GetIssueList(string email)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");

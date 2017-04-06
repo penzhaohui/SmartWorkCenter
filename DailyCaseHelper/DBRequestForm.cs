@@ -216,7 +216,7 @@ Priority: {9}
 Issue Subject: {10}
 ---------------------------------------------------------
 
-After the fresh database dump is ready, please put it under Accela ftp server. The path should like ftp://ftp.accela.com/BIN/MISSIONSKY/XXXXX-XXXXX, and then re-assign this jira ticket to Missionsky DBA - [~evelyn.zhang@missionsky.com] who will restore it in Missionsky. Any further question, please let us know.
+After the fresh database dump is ready, please put it under Accela ftp server. The path should like ftp://ftp.accela.com/BIN/MISSIONSKY/XXXXX-XXXXX, and then re-assign this jira ticket to [~{11}] who will download it in Missionsky. Any further question, please let us know.
 
 Thanks you very much!
 
@@ -242,9 +242,17 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
             fields.description = description1;
 
             var GetDBTaskBySFID = JiraProxy.GetDatabaseTaskByCaseID("DATABASE", "Task", sfid);
-            var taskInfo = await GetDBTaskBySFID;
-            if (taskInfo != null)
+            var GetDatabaseTaskByCustomerID = JiraProxy.GetDatabaseTaskByCustomerID("DATABASE", "Task", customerInfo);
+            var taskInfoByCaseId = await GetDBTaskBySFID;
+            var taskInfoByCustomerId = await GetDatabaseTaskByCustomerID;
+            if (taskInfoByCaseId != null || taskInfoByCustomerId != null)
             {
+                var taskInfo = taskInfoByCaseId;
+                if (taskInfo == null)
+                {
+                    taskInfo = taskInfoByCustomerId;
+                }
+
                 taskInfo.fields = fields;
                 JiraProxy.UpdateDatabaseTask(taskInfo);
 

@@ -58,7 +58,7 @@ namespace com.smartwork
             this.btnShowPendingCases.Enabled = false;
             this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.6.1.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.6.2.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -95,7 +95,7 @@ namespace com.smartwork
             // 1, Construct one case list from the specified case list
             // 1.1 Check if the case list formate is valid or not
             // 1.2 Construct one case list
-            string caseIDs = this.txtCaseIDList.Text;
+            string caseIDs = this.txtCaseIDList.Text.Replace(",,", ",");
             List<string> caseIdList = new List<string>();
 
             if (String.IsNullOrEmpty(caseIDs) || caseIDs.Trim().Length == 0)
