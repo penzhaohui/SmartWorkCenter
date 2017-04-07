@@ -77,9 +77,19 @@ namespace com.smartwork.Util
             return label;
         }
 
-        public static string GetNextJIRAStatus(string sfQueue, string sfStatus, string jiraStatus, bool isCommentedToday)
+        public static string GetNextJIRAStatus(string sfQueue, string sfStatus, string jiraStatus, bool isCommentedToday, string issueType="")
         {
             string nextJiraStatus = "";
+
+            if ("Bug".Equals(issueType, StringComparison.InvariantCultureIgnoreCase))
+            {
+                if ("Pending".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)                    
+                    || "Open".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                    || "In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    nextJiraStatus = "Dev In Progress";
+                }
+            }
 
             if (isCommentedToday)
             {
@@ -220,6 +230,36 @@ namespace com.smartwork.Util
                     foreach (var transition in transitions)
                     {
                         if ("Commented".Equals(transition.name, System.StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            jira.TransitionIssue(issueRef, transition);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if ("Dev In Progress" == jiraNextStatus)
+            {
+                if ("Open".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                    || "Pending".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
+                {
+                    foreach (var transition in transitions)
+                    {
+                        if ("Analysis In Progress".Equals(transition.name, System.StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            jira.TransitionIssue(issueRef, transition);
+                            break;
+                        }
+                    }
+
+                    jiraStatus = "In Progress";
+                }
+
+                if ("In Progress".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
+                {
+                    foreach (var transition in transitions)
+                    {
+                        if ("Dev In Progress".Equals(transition.name, System.StringComparison.InvariantCultureIgnoreCase))
                         {
                             jira.TransitionIssue(issueRef, transition);
                             break;

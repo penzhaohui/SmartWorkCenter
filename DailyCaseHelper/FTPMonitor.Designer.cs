@@ -48,6 +48,9 @@
             this.btnTop50NewCases = new System.Windows.Forms.Button();
             this.btnSyncWithJIRA = new System.Windows.Forms.Button();
             this.btnSendNotificationEmail = new System.Windows.Forms.Button();
+            this.txtSFID = new System.Windows.Forms.TextBox();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).BeginInit();
             this.grbFunctionArea.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +77,7 @@
             this.NextStatus});
             this.grdCaseList.Location = new System.Drawing.Point(8, 118);
             this.grdCaseList.Name = "grdCaseList";
-            this.grdCaseList.Size = new System.Drawing.Size(1288, 628);
+            this.grdCaseList.Size = new System.Drawing.Size(1288, 557);
             this.grdCaseList.TabIndex = 9;
             // 
             // ID
@@ -224,11 +227,41 @@
             this.btnSendNotificationEmail.UseVisualStyleBackColor = true;
             this.btnSendNotificationEmail.Click += new System.EventHandler(this.btnSendNotificationEmail_Click);
             // 
+            // txtSFID
+            // 
+            this.txtSFID.Location = new System.Drawing.Point(8, 698);
+            this.txtSFID.Name = "txtSFID";
+            this.txtSFID.Size = new System.Drawing.Size(102, 20);
+            this.txtSFID.TabIndex = 17;
+            // 
+            // btnSync
+            // 
+            this.btnSync.Location = new System.Drawing.Point(128, 695);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(75, 23);
+            this.btnSync.TabIndex = 18;
+            this.btnSync.Text = "Sync";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(209, 695);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmit.TabIndex = 19;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // FTPMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 756);
+            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.btnSync);
+            this.Controls.Add(this.txtSFID);
             this.Controls.Add(this.grbFunctionArea);
             this.Controls.Add(this.grdCaseList);
             this.Name = "FTPMonitor";
@@ -237,6 +270,7 @@
             this.grbFunctionArea.ResumeLayout(false);
             this.grbFunctionArea.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -262,5 +296,8 @@
         private System.Windows.Forms.Button btnSyncWithJIRA;
         private System.Windows.Forms.Button btnSendNotificationEmail;
         private System.Windows.Forms.TextBox txtCaseIDList;
+        private System.Windows.Forms.TextBox txtSFID;
+        private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.Button btnSubmit;
     }
 }

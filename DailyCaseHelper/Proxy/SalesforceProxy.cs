@@ -38,6 +38,13 @@ namespace com.smartwork.Proxy
             return Client;
         }
 
+        public static async Task<string> CreateCaseComment(NewCaseComment comment)
+        {
+            var results = await Client.CreateAsync("CaseComment", comment);
+
+            return results;
+        }
+
         public static async Task<List<AccelaCase>> GetTopNCommentedCaseList(int n)
         {
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
@@ -144,7 +151,7 @@ namespace com.smartwork.Proxy
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, rank_order__c, services_rank__c, case.account.name, 
                                               case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
                                               case.createdby.name, status, internal_type__c, engineering_status__c, bzid__c, product__c, solution__c, release_info__c, targeted_release__c, customer__r.name, 
-                                              (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate 
+                                              (select commentbody, casecomment.createdby.name, casecomment.lastmodifiedby.name, createddate, lastmodifieddate, ParentId, IsPublished 
                                                from casecomments ";
                 if(isCommentFilter) {
                     sql += " where casecomment.createdby.name = 'Accela Support Team' ";
@@ -406,6 +413,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Iron", "Iron.Tang");
             Reviewers.Add("Rev", "Rev.Vergara");
             Reviewers.Add("Lisa", "Lisa.Kang");
+            Reviewers.Add("Lenis", "Lenis.Huang");
 
             Reviewers.Add("Carly", "Carly.Xu");
             Reviewers.Add("Janice", "Janice.Zhong");

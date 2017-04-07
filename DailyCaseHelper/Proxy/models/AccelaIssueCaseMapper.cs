@@ -8,6 +8,7 @@ namespace com.smartwork.Proxy.models
 {
     public class AccelaIssueCaseMapper
     {
+        public string IssueType { get; set; }
         public string CaseNumber { get; set; }
         public string JiraId { get; set; }
         public string JiraKey { get; set; }

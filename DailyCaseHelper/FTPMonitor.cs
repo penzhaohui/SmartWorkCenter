@@ -2,6 +2,7 @@
 using com.smartwork.Proxy;
 using com.smartwork.Proxy.models;
 using com.smartwork.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -433,6 +434,44 @@ namespace com.smartwork
             EmailUtil.SendEmail(from, to, cc, subject, content);
 
             this.btnSendNotificationEmail.Enabled = true;
+        }
+
+        private async void btnSync_Click(object sender, EventArgs e)
+        {
+            this.btnSync.Enabled = false;
+
+            string strSFID = this.txtSFID.Text;
+
+            var GetCaseInfoByID = SalesforceProxy.GetCaseInfoByID(strSFID);
+            var caseInfo = await GetCaseInfoByID;
+
+            AccelaCase[] accelaCaseList = caseInfo.ToArray();
+            if (accelaCaseList.Length == 0)
+            {
+                MessageBox.Show("No case is found.");
+            }
+            else
+            {
+                // http://stackoverflow.com/questions/31079195/adding-a-new-case-comment-via-salesforce-api-c-sharp
+                // https://github.com/developerforce/Force.com-Toolkit-for-NET/issues/73
+                NewCaseComment caseComment = new NewCaseComment()
+                {
+                    CommentBody = "Peter's Test",
+                    ParentId = accelaCaseList[0].Id,
+                    IsPublished = true
+                };
+
+                var CreateCaseComment = SalesforceProxy.CreateCaseComment(caseComment);
+                var commentId = await CreateCaseComment;
+                MessageBox.Show("Case Comment's ID is " + commentId);
+            }
+
+            this.btnSync.Enabled = true;
+        }
+
+        private async void btnSubmit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

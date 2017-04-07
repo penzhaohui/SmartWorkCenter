@@ -77,6 +77,7 @@
             this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
             this.btnImportToJira = new System.Windows.Forms.Button();
             this.lblExportTodayCaseList = new System.Windows.Forms.Label();
+            this.chkOnlyNewCase = new System.Windows.Forms.CheckBox();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // grbImportTodayCaseList
             // 
+            this.grbImportTodayCaseList.Controls.Add(this.chkOnlyNewCase);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowOpenCase);
             this.grbImportTodayCaseList.Controls.Add(this.chkExcludeEngQA);
             this.grbImportTodayCaseList.Controls.Add(this.btnShowPendingCases);
@@ -152,7 +154,7 @@
             this.btnShowScheduledCase.Name = "btnShowScheduledCase";
             this.btnShowScheduledCase.Size = new System.Drawing.Size(138, 23);
             this.btnShowScheduledCase.TabIndex = 14;
-            this.btnShowScheduledCase.Text = "Show EngQA Cases";
+            this.btnShowScheduledCase.Text = "Show Bug Backlog";
             this.btnShowScheduledCase.UseVisualStyleBackColor = true;
             this.btnShowScheduledCase.Click += new System.EventHandler(this.btnShowScheduledCase_Click);
             // 
@@ -558,6 +560,16 @@
             this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
     "mail box. ";
             // 
+            // chkOnlyNewCase
+            // 
+            this.chkOnlyNewCase.AutoSize = true;
+            this.chkOnlyNewCase.Location = new System.Drawing.Point(859, 13);
+            this.chkOnlyNewCase.Name = "chkOnlyNewCase";
+            this.chkOnlyNewCase.Size = new System.Drawing.Size(99, 17);
+            this.chkOnlyNewCase.TabIndex = 20;
+            this.chkOnlyNewCase.Text = "Only New Case";
+            this.chkOnlyNewCase.UseVisualStyleBackColor = true;
+            // 
             // DailyCaseImportorFromSalesforce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,5 +642,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NextJiraStatus;
         private System.Windows.Forms.CheckBox chkExcludeEngQA;
         private System.Windows.Forms.Button btnShowOpenCase;
+        private System.Windows.Forms.CheckBox chkOnlyNewCase;
     }
 }

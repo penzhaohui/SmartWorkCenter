@@ -169,6 +169,7 @@ namespace com.smartwork
                 if (!JiraMapping.ContainsKey(issue.fields.customfield_10600))
                 {
                     AccelaIssueCaseMapper accelaIssueCaseMapper = new AccelaIssueCaseMapper();
+                    accelaIssueCaseMapper.IssueType = issue.fields.issueType.name;
                     accelaIssueCaseMapper.CaseNumber = issue.fields.customfield_10600;
                     accelaIssueCaseMapper.Assignee = (issue.fields.assignee == null ? "" : issue.fields.assignee.displayName);
                     accelaIssueCaseMapper.AssigneeQA = (issue.fields.customfield_11702 == null ? "" : issue.fields.customfield_11702.displayName);
@@ -180,6 +181,18 @@ namespace com.smartwork
                     accelaIssueCaseMapper.HotCase = issue.fields.labels.Contains("HotCase");
                     accelaIssueCaseMapper.Missionsky = issue.fields.labels.Contains("Missionsky");
                     accelaIssueCaseMapper.JiraLabels = issue.fields.labels;
+
+                    if (issue != null && issue.fields.fixVersions != null)
+                    {
+                        accelaIssueCaseMapper.FixVersions = new List<string>();
+                        foreach (var fixVersion in issue.fields.fixVersions)
+                        {
+                            if (fixVersion != null)
+                            {
+                                accelaIssueCaseMapper.FixVersions.Add(fixVersion.name);
+                            }
+                        }
+                    }
 
                     JiraMapping.Add(accelaIssueCaseMapper.CaseNumber, accelaIssueCaseMapper);
                 }
@@ -221,6 +234,7 @@ namespace com.smartwork
             table.Columns.Add("Assignee", typeof(string));
             table.Columns.Add("AssigneeQA", typeof(string));
             table.Columns.Add("CaseComments", typeof(List<CaseComment>));
+            table.Columns.Add("FixVersions", typeof(List<string>));
 
             Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
 
@@ -239,6 +253,7 @@ namespace com.smartwork
 
             int rank = 0;
 
+            string newCaseList = String.Empty;
             foreach (var caseinfo in caseList)
             {
                 tempIssue = null;
@@ -247,12 +262,22 @@ namespace com.smartwork
                     tempIssue = JiraMapping[caseinfo.CaseNumber];
                 }
 
+                // Only show new case
+                if (this.chkOnlyNewCase.Checked)
+                {
+                    if(tempIssue != null) continue;
+
+                    if (String.IsNullOrEmpty(newCaseList)) newCaseList = caseinfo.CaseNumber;
+                    else newCaseList += "," + caseinfo.CaseNumber;
+                }               
+
                 DataRow row = table.NewRow();
                 row["ID"] = caseinfo.Id;
                 row["No"] = index;
                 row["HotCase"] = (tempIssue != null && tempIssue.HotCase);
                 row["Missionsky"] = (tempIssue != null && tempIssue.Missionsky);
                 row["JiraLabels"] = (tempIssue != null ? tempIssue.JiraLabels : null);
+                row["FixVersions"] = (tempIssue != null ? tempIssue.FixVersions : null);
                 row["IssueCategory"] = (tempIssue != null ? tempIssue.IssueCategory : null);
                 row["Assignee"] = (tempIssue != null ? tempIssue.Assignee : null);
                 row["AssigneeQA"] = (tempIssue != null ? tempIssue.AssigneeQA : null);
@@ -374,7 +399,7 @@ namespace com.smartwork
                     isCommentedToday = (comment.CreatedDate.Year == DateTime.Now.Year && comment.CreatedDate.Month == DateTime.Now.Month && comment.CreatedDate.Day == DateTime.Now.Day ? true : false);
                 }
 
-                row["NextJiraStatus"] = AccelaCaseUtil.GetNextJIRAStatus(caseinfo.Owner.Name, caseinfo.Status, jiaStstus, isCommentedToday);
+                row["NextJiraStatus"] = AccelaCaseUtil.GetNextJIRAStatus(caseinfo.Owner.Name, caseinfo.Status, jiaStstus, isCommentedToday, (tempIssue == null ? "" : tempIssue.IssueType));
                 row["SFLastModified"] = lastModifiedDate;
                 if (tempIssue != null && String.IsNullOrEmpty(tempIssue.LastModified))
                 {
@@ -404,6 +429,12 @@ namespace com.smartwork
             // 3, Invoke Salesforce REST API            
             caseBusiness.ImportCasesFromSalesforce(caseIdList);
             // 4, Display today case list with the status value as "In Progress" or ""
+
+            // Only show new case
+            if (this.chkOnlyNewCase.Checked)
+            {
+                this.txtCaseIDList.Text = newCaseList;
+            }
 
             this.btnSendDailyCaseSummaryReport.Enabled = true;
             this.btnSyncWithJiraAndSF.Enabled = true;
@@ -713,6 +744,7 @@ namespace com.smartwork
                 bool hotCase = false;
                 bool missionsky = false;
                 List<string> jiraLabels = new List<string>();
+                List<string> fixVersions = new List<string>();
 
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -732,6 +764,7 @@ namespace com.smartwork
                     hotCase = bool.Parse(row["HotCase"].ToString());
                     missionsky = bool.Parse(row["Missionsky"].ToString());
                     jiraLabels = row["JiraLabels"] as List<string>;
+                    fixVersions = row["FixVersions"] as List<string>;
                     reopenCount = (String.IsNullOrEmpty(row["ReopenedCount"] as string) ? 0 : int.Parse(row["ReopenedCount"] as string));
                     reopenCount = reopenCount + 1;
                     lastModifiedDate = row["SFLastModified"] as string;
@@ -850,6 +883,21 @@ namespace com.smartwork
                                 {
                                     issue.fields.labels.Remove("ENG_BUG_BUCKET");
                                 }
+                            }
+
+                            // If it is already schedued in one version, remove 2 labels such as ENG_BUG_BUCKET and ENG_BUG_BACKLOG
+                            if (fixVersions != null && fixVersions.Count > 0)
+                            {
+                                issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                                issue.fields.labels.Remove("ENG_BUG_BACKLOG");
+                            }
+
+                            // If it is already resolved or closed, remove 2 labels such as ENG_BUG_BUCKET and ENG_BUG_BACKLOG
+                            if ("Resolved".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
+                                || "Closed".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                                issue.fields.labels.Remove("ENG_BUG_BACKLOG");
                             }
 
                             if (hotCase && !issue.fields.labels.Contains("HotCase"))
@@ -1198,7 +1246,7 @@ namespace com.smartwork
 
             string caseLists = string.Empty;
 
-            var GetIssueList = JiraProxy.GetIssueListByLabel("SupportQA");
+            var GetIssueList = JiraProxy.GetIssueListByLabel("ENG_BUG_BACKLOG");
             var issueList = await GetIssueList;
 
             foreach (var issue in issueList)

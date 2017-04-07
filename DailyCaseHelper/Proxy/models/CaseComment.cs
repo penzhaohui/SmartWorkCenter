@@ -30,5 +30,11 @@ namespace com.smartwork.Models
 
         [JsonProperty(PropertyName = "LastModifiedDate")]
         public DateTime LastModifiedDate { get; set; }
+
+        [JsonProperty(PropertyName = "ParentId")]
+        public string ParentId { get; set; }
+
+        [JsonProperty(PropertyName = "IsPublished")]
+        public bool IsPublished { get; set; }
     }
 }
