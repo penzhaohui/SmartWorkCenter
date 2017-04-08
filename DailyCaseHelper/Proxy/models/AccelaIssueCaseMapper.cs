@@ -10,6 +10,10 @@ namespace com.smartwork.Proxy.models
     {
         public string IssueType { get; set; }
         public string CaseNumber { get; set; }
+        public string SFProduct { get; set; }
+        public string SFCustomer { get; set; }
+        public string Description { get; set; }
+        public string Priority { get; set; }
         public string JiraId { get; set; }
         public string JiraKey { get; set; }
         public string IssueCategory { get; set; }

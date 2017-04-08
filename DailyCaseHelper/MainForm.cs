@@ -237,5 +237,16 @@ namespace com.smartwork
             dbRequestForm.MinimizeBox = false;
             dbRequestForm.Show();
         }
+
+        private void deliveryProgressReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            DeliveryProgressReportForm deliveryProgressReport = new DeliveryProgressReportForm();
+            deliveryProgressReport.WindowState = FormWindowState.Maximized;
+            deliveryProgressReport.MdiParent = this;
+            deliveryProgressReport.MaximizeBox = false;
+            deliveryProgressReport.MinimizeBox = false;
+            deliveryProgressReport.Show();
+        }
     }
 }

@@ -122,6 +122,12 @@
     <Compile Include="DBRequestForm.Designer.cs">
       <DependentUpon>DBRequestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryProgressReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryProgressReportForm.Designer.cs">
+      <DependentUpon>DeliveryProgressReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTPMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBRequestForm.resx">
       <DependentUpon>DBRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryProgressReportForm.resx">
+      <DependentUpon>DeliveryProgressReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FTPMonitor.resx">
       <DependentUpon>FTPMonitor.cs</DependentUpon>

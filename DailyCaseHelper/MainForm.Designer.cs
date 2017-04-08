@@ -53,11 +53,12 @@
             this.scanStatusCrossProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scanReleaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -185,7 +186,8 @@
             this.scanStatusCrossProjectToolStripMenuItem,
             this.scanReleaseStatusToolStripMenuItem,
             this.weeklyReportToolStripMenuItem1,
-            this.dBRequestToolStripMenuItem});
+            this.dBRequestToolStripMenuItem,
+            this.deliveryProgressReportToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -260,6 +262,13 @@
             this.weeklyReportToolStripMenuItem1.Text = "Weekly Report";
             this.weeklyReportToolStripMenuItem1.Click += new System.EventHandler(this.weeklyReportToolStripMenuItem1_Click);
             // 
+            // dBRequestToolStripMenuItem
+            // 
+            this.dBRequestToolStripMenuItem.Name = "dBRequestToolStripMenuItem";
+            this.dBRequestToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.dBRequestToolStripMenuItem.Text = "DB Request";
+            this.dBRequestToolStripMenuItem.Click += new System.EventHandler(this.dBRequestToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -289,12 +298,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // dBRequestToolStripMenuItem
+            // deliveryProgressReportToolStripMenuItem
             // 
-            this.dBRequestToolStripMenuItem.Name = "dBRequestToolStripMenuItem";
-            this.dBRequestToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.dBRequestToolStripMenuItem.Text = "DB Request";
-            this.dBRequestToolStripMenuItem.Click += new System.EventHandler(this.dBRequestToolStripMenuItem_Click);
+            this.deliveryProgressReportToolStripMenuItem.Name = "deliveryProgressReportToolStripMenuItem";
+            this.deliveryProgressReportToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.deliveryProgressReportToolStripMenuItem.Text = "Delivery Progress Report";
+            this.deliveryProgressReportToolStripMenuItem.Click += new System.EventHandler(this.deliveryProgressReportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -349,6 +358,7 @@
         private System.Windows.Forms.ToolStripMenuItem scanReleaseStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dBRequestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deliveryProgressReportToolStripMenuItem;
     }
 }
 
