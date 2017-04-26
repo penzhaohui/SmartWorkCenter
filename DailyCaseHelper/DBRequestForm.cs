@@ -60,7 +60,7 @@ namespace com.smartwork
             }
             else
             {
-                this.txtCustomerInfo.Text = accelaCaseList[0].Account != null? accelaCaseList[0].Account.Name : (accelaCaseList[0].Customer != null ? accelaCaseList[0].Customer.Name : "");
+                this.txtCustomerInfo.Text = accelaCaseList[0].Customer != null ? accelaCaseList[0].Customer.Name : (accelaCaseList[0].Account != null ? accelaCaseList[0].Account.Name : "");
                 this.txtVersion.Text = accelaCaseList[0].CurrentVersion;
                 this.chbAccelaHostedFlag.Checked = (accelaCaseList[0].Hosted != null && accelaCaseList[0].Hosted.IndexOf("Accela") >= 0 ? true : false);
                 this.txtCaseOwner.Text = accelaCaseList[0].CreatedBy.Name;

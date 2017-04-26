@@ -436,6 +436,7 @@ namespace com.smartwork
                 this.txtCaseIDList.Text = newCaseList;
             }
 
+            this.chkOnlyNewCase.Checked = false;
             this.btnSendDailyCaseSummaryReport.Enabled = true;
             this.btnSyncWithJiraAndSF.Enabled = true;
         }
@@ -825,6 +826,8 @@ namespace com.smartwork
                             var issue = await JiraProxy.CreateIssue(fields);
 
                             row["JiraID"] = issue.key;
+
+                            CloneDuplicatedStepsFromSF(issue.key, caseId);
                         }
                     }
                     else
@@ -996,7 +999,7 @@ namespace com.smartwork
                                         CreateDBInfoComment(jiraKey, customer);
                                     }
                                 }
-                            }
+                            }                            
 
                             if ("Delivery".Equals(origin, StringComparison.CurrentCultureIgnoreCase))
                             {
@@ -1053,6 +1056,34 @@ namespace com.smartwork
                 dbConnInfo += "Related Case: " + dbInfo.SFCase + "\n";
 
                 JiraProxy.CreateComment(issue, "This client provide some database dump before, please have a try on it first:\n---------------------------------------------------------\n" + dbConnInfo);
+            }
+        }
+
+        private async void CloneDuplicatedStepsFromSF(string jiraKey, string id)
+        {
+            var GetCaseCommentsByCaseID = SalesforceProxy.GetCaseCommentsByCaseID(id);
+            var comments = await GetCaseCommentsByCaseID;
+            string duplicatedComment = string.Empty;
+
+            if (comments != null)
+            {
+                foreach (var comment in comments)
+                {
+                    if (comment.CommentBody.Contains("<SFID>"))
+                    {
+                        duplicatedComment = comment.CommentBody;
+                        break;
+                    }
+                }
+            }
+
+            if (!String.IsNullOrEmpty(duplicatedComment))
+            {
+                IssueRef issue = new IssueRef();
+                issue.key = jiraKey;
+                issue.id = jiraKey;
+
+                JiraProxy.CreateComment(issue, "CRC collects some duplicated steps in salesforce, please validate it first:\n---------------------------------------------------------\n" + duplicatedComment);
             }
         }
 
@@ -1273,7 +1304,7 @@ namespace com.smartwork
 
             string caseLists = string.Empty;
 
-            /*
+            
             var GetCaseList = SalesforceProxy.GetHotCaseList(100);
             var caseList = await GetCaseList;
 
@@ -1288,7 +1319,7 @@ namespace com.smartwork
                     caseLists += "," + accelaCase.CaseNumber;
                 }
             }
-             * */
+            /*
             var GetIssueList = JiraProxy.GetIssueListByLabel("HotCase");
             var issueList = await GetIssueList;
 
@@ -1303,7 +1334,7 @@ namespace com.smartwork
                     caseLists += "," + issue.fields.customfield_10600;
                 }
             }
-
+            */
             this.txtCaseIDList.Text = caseLists;
             this.btnShowHotCases.Enabled = true;
 

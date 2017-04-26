@@ -471,7 +471,7 @@ namespace com.smartwork
 
         private async void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            SalesforceProxy.GetCaseCommentsByCaseID("50032000019YvqRAAS");
         }
     }
 }

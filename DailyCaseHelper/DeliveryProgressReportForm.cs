@@ -201,7 +201,7 @@ namespace com.smartwork
                                         <th align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Fix Version</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Jira Status</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee Dev</th>    
-                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee Dev</th> 
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee QA</th> 
                                     </tr>";
 
 

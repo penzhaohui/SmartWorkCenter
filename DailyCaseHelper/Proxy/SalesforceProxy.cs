@@ -45,6 +45,20 @@ namespace com.smartwork.Proxy
             return results;
         }
 
+        public static async Task<List<CaseComment>> GetCaseCommentsByCaseID(string id)
+        {
+            string sql = @"SELECT Id, CommentBody, CreatedById, CreatedDate, IsPublished, LastModifiedById, LastModifiedDate, ParentId
+                           from CaseComment
+                           WHERE ParentId= '{0}' ";
+            sql = String.Format(sql, id);
+
+            var comments = new List<CaseComment>();
+            var results = await Client.QueryAllAsync<CaseComment>(sql);
+            comments.AddRange(results.Records);
+
+            return comments;
+        }
+
         public static async Task<List<AccelaCase>> GetTopNCommentedCaseList(int n)
         {
             string sql = @"select id, casenumber, current_version__c, priority, go_live_critical__c, case.account.name, case.owner.name, origin, patch_number__c, subject, ownerid, type, description, createddate, 
@@ -376,6 +390,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Cheng", "Cheng.Xu");
             Reviewers.Add("Felix", "Felix.Chen");
             Reviewers.Add("Frank", "Frank.Deng");
+            Reviewers.Add("Melody", "Melody.Cai");
             //Reviewers.Add("Howe", "Howe.Deng");
             Reviewers.Add("Michael", "Michael.He");
             Reviewers.Add("Jackie", "Jackie.Yu");
@@ -398,6 +413,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Shirlly", "Shirlly.Wang");
             Reviewers.Add("Jenna", "Jenna.Zhang");
             Reviewers.Add("Venli", "Venli.Li");
+            Reviewers.Add("Wade", "Wade.Liang");
 
             Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 
