@@ -78,7 +78,7 @@ namespace com.smartwork.Util
         }
 
         public static string GetNextJIRAStatus(string sfQueue, string sfStatus, string jiraStatus, bool isCommentedToday, string issueType="")
-        {
+        {            
             string nextJiraStatus = "";
 
             if ("Bug".Equals(issueType, StringComparison.InvariantCultureIgnoreCase))
@@ -91,41 +91,44 @@ namespace com.smartwork.Util
                 }
             }
 
-            if (isCommentedToday)
+            if ("Case".Equals(issueType, StringComparison.InvariantCultureIgnoreCase))
             {
-                if (!"Pending".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                    && !"Resolved".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                    && !"Closed".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                    && !"Dev In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                if (isCommentedToday)
                 {
-                    nextJiraStatus = "Pending";
-                }
-            }
-            else
-            {
-                // sql += " and (status ='eng qa' or status ='qa in progress' or status ='engqa') ";
-                if ("Engineering".Equals(sfQueue, System.StringComparison.InvariantCultureIgnoreCase)
-                    && ("Eng New".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
-                        || "Eng QA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
-                        || "Qa In Progress".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
-                        || "EngQA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    if (!"In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                    if (!"Pending".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Resolved".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Closed".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Dev In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        nextJiraStatus = "In Progress";
+                        nextJiraStatus = "Pending";
                     }
                 }
                 else
                 {
-                    if ("CLOSED".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        || "PM Assigned".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        || "Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        || "Closed - Knowledge".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
-                        || "SPAM Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                    // sql += " and (status ='eng qa' or status ='qa in progress' or status ='engqa') ";
+                    if ("Engineering".Equals(sfQueue, System.StringComparison.InvariantCultureIgnoreCase)
+                        && ("Eng New".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                            || "Eng QA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                            || "Qa In Progress".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
+                            || "EngQA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        if (!"Closed".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                        if (!"In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            nextJiraStatus = "Closed";
+                            nextJiraStatus = "In Progress";
+                        }
+                    }
+                    else
+                    {
+                        if ("CLOSED".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                            || "PM Assigned".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                            || "Ideas (Closed)".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                            || "Closed - Knowledge".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
+                            || "SPAM Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            if (!"Closed".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                nextJiraStatus = "Closed";
+                            }
                         }
                     }
                 }

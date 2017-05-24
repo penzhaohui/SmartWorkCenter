@@ -128,6 +128,8 @@ namespace com.smartwork
                     }
                     else
                     {
+                        if (caseId.Trim().Length == 0) continue;
+
                         // Show one error message "ERROR: Invalid Format for XXXX"
                         (this.MdiParent as MainForm).ShowStatusMessage("ERROR: Invalid Format for " + caseId);
 
@@ -1303,8 +1305,7 @@ namespace com.smartwork
             this.txtCaseIDList.Text = "";
 
             string caseLists = string.Empty;
-
-            
+                        
             var GetCaseList = SalesforceProxy.GetHotCaseList(100);
             var caseList = await GetCaseList;
 
@@ -1319,8 +1320,9 @@ namespace com.smartwork
                     caseLists += "," + accelaCase.CaseNumber;
                 }
             }
+
             /*
-            var GetIssueList = JiraProxy.GetIssueListByLabel("HotCase");
+            var GetIssueList = JiraProxy.GetIssueListByLabel("9.1.0CodeMerge");
             var issueList = await GetIssueList;
 
             foreach (var issue in issueList)
@@ -1334,7 +1336,8 @@ namespace com.smartwork
                     caseLists += "," + issue.fields.customfield_10600;
                 }
             }
-            */
+             * */
+            
             this.txtCaseIDList.Text = caseLists;
             this.btnShowHotCases.Enabled = true;
 
