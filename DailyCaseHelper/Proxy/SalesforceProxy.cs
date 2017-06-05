@@ -68,7 +68,8 @@ namespace com.smartwork.Proxy
                                    where casecomment.createdby.name = 'Accela Support Team'
                                    order by createddate desc) 
                             from case 
-                            where case.lastmodifiedby.name = 'Accela Support Team'
+                            where case.lastmodifiedby.name = 'Accela Support Team' 
+                            and status != 'Dev Released'
                             order by case.lastmodifieddate desc
                             limit " + n;
 
@@ -414,6 +415,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Jenna", "Jenna.Zhang");
             Reviewers.Add("Venli", "Venli.Li");
             Reviewers.Add("Wade", "Wade.Liang");
+            Reviewers.Add("Ainy", "Ainy.Xiao");
 
             Reviewers.Add("Joanna", "Joanna.Mae.Ramirez");
 

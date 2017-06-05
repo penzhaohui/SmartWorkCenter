@@ -58,7 +58,7 @@ namespace com.smartwork
             this.btnShowPendingCases.Enabled = false;
             this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.6.3.0 - peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.6.3.3- peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -494,6 +494,7 @@ namespace com.smartwork
                 string reopenCount = "";
                 string assignee = "";
                 string jiaStstus = "";
+                string sfStatus = "";
                 string caseId = "";
                 string comment = "";
                 string caseCommentBody = "";
@@ -521,12 +522,20 @@ namespace com.smartwork
                     summary = row["Summary"] as string;
                     assignee = row["Reviewer"] as string;
                     jiaStstus = row["JiraStatus"] as string;
+                    sfStatus = row["SFStatus"] as string;
                     description = row["Description"] as string;
                     comment = row["Comments"] as string;
                     caseId = row["ID"] as string;
 
                     caseComment = row["CaseComment"] as CaseComment;
                     caseCommentBody = (caseComment != null ? caseComment.CommentBody : "");
+
+                    /*
+                    if ("Dev Released".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        continue;
+                    }
+                     * */
 
                     isNeedDoubleReview = false;
                     if (!String.IsNullOrEmpty(caseCommentBody) && (caseCommentBody.ToLower().Contains("released")
