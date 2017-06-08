@@ -37,7 +37,8 @@ namespace com.smartwork
 
             dicDeliveryCaseMapper.Clear();
 
-            string[] jiraLabelList = jiraLabels.Split(',');           
+            string[] jiraLabelList = jiraLabels.Split(',');
+           
             foreach(string label in jiraLabelList)
             {
                 if (String.IsNullOrEmpty(label) || String.IsNullOrWhiteSpace(label))
@@ -96,6 +97,7 @@ namespace com.smartwork
                     issueMapper.AssigneeQA = (issue.fields.customfield_11702 == null ? "" : issue.fields.customfield_11702.displayName);
 
                     jiraIssues.Add(issueMapper);
+
                 }
 
                 dicDeliveryCaseMapper[label] = jiraIssues;                
@@ -205,6 +207,7 @@ namespace com.smartwork
                                     </tr>";
 
 
+            List<string> uniqueJiraKeys = new List<string>();
             foreach (string versionLabel in dicDeliveryCaseMapper.Keys)
             {
                 List<AccelaIssueCaseMapper> jiraIssues = dicDeliveryCaseMapper[versionLabel];
@@ -226,7 +229,7 @@ namespace com.smartwork
                 int resolvedCount = 0;
                 int closedCount = 0;
                 string detailedInfo = "";
-
+               
                 foreach(AccelaIssueCaseMapper jiraIssue in jiraIssues)
                 {
                     product = jiraIssue.SFProduct;
@@ -259,7 +262,9 @@ namespace com.smartwork
                         closedCount++;
                     }
 
-                    detailedInfo += String.Format(@"<tr>
+                    if (uniqueJiraKeys.Contains(jiraKey))
+                    {
+                        detailedInfo += String.Format(@"<tr bgcolor='red'>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{0}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{1}</td>                                                        
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'><a href='https://accelaeng.atlassian.net/browse/{2}'>{2}</a></td>
@@ -273,19 +278,52 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
                                                     </tr>",
-                                                      no++,
-                                                      product,
-                                                      jiraKey,
-                                                      sfid,
-                                                      customer,
-                                                      description,
-                                                      issueType,
-                                                      severity,
-                                                      fixVersion,
-                                                      status,
-                                                      assigneeDev,
-                                                      assigneeQA
-                                                       );
+                                                          no++,
+                                                          product,
+                                                          jiraKey,
+                                                          sfid,
+                                                          customer,
+                                                          description,
+                                                          issueType,
+                                                          severity,
+                                                          fixVersion,
+                                                          status,
+                                                          assigneeDev,
+                                                          assigneeQA
+                                                           );
+                    }
+                    else
+                    {
+                        uniqueJiraKeys.Add(jiraKey);
+
+                        detailedInfo += String.Format(@"<tr>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{0}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{1}</td>                                                        
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'><a href='https://accelaeng.atlassian.net/browse/{2}'>{2}</a></td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{3}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{4}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{5}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{6}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{7}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{8}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{9}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
+                                                    </tr>",
+                                                          no++,
+                                                          product,
+                                                          jiraKey,
+                                                          sfid,
+                                                          customer,
+                                                          description,
+                                                          issueType,
+                                                          severity,
+                                                          fixVersion,
+                                                          status,
+                                                          assigneeDev,
+                                                          assigneeQA
+                                                           );
+                    }
                 }
 
                 deliveryProgressReport += "<tr><td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;' colspan='12'> Jira Version Label: "
