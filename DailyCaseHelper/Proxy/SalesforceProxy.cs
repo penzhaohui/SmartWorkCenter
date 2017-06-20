@@ -121,7 +121,9 @@ namespace com.smartwork.Proxy
                             and product__c != 'Kiva' 
                             and product__c != 'GeoTMS'
                             and product__c != 'KVS Standard'
-                            and product__c != 'KVS Enterprise' ";
+                            and product__c != 'KVS Enterprise' 
+                            and product__c != 'PublicStuff' 
+                            and product__c != 'Support Access' ";
 
             if (isOnlyEngQA)
             {
