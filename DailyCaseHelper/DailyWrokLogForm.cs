@@ -179,53 +179,128 @@ namespace com.smartwork
             // Create Sub Task for Review Case
             if (this.chkReviewAndRecreateQA.Checked)
             {
-                createSubTask(this.chkReviewAndRecreateQA.Text, jiraKey);
+                if (this.txtReviewAndRecreateQASubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkReviewAndRecreateQA.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtReviewAndRecreateQASubTaskKey.Text, this.txtAssigneeQA.Text);
+                }
             }
 
             //var subTaskReviewAndRecreateDev = new Task<string>();
             if (this.chkReviewAndRecreateDev.Checked)
             {
-                createSubTask(this.chkReviewAndRecreateDev.Text, jiraKey);
+                if (this.txtReviewAndRecreateDevSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkReviewAndRecreateDev.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtReviewAndRecreateDevSubTaskKey.Text, this.txtAssignee.Text);
+                }
             }
 
             // var subTaskResearchRootCause = new Task<string>();
             if (this.chkResearchRootCause.Checked)
             {
-                createSubTask(this.chkResearchRootCause.Text, jiraKey);
+                if (this.txtResearchRootCauseSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkResearchRootCause.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtResearchRootCauseSubTaskKey.Text, this.txtAssignee.Text);
+                }
             }
 
             // Create Sub Task for Bug Fix
             // var subTaskCodeFix = new Task<string>();
             if (this.chkCodeFix.Checked)
             {
-                createSubTask(this.chkCodeFix.Text, jiraKey);
+                if (this.txtCodeFixSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkCodeFix.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtCodeFixSubTaskKey.Text, this.txtAssignee.Text);
+                }
             }
 
             // var subTaskWriteTestCase = new Task<string>();
             if (this.chkWriteTestCase.Checked)
             {
-                createSubTask(this.chkWriteTestCase.Text, jiraKey);
+                if (this.txtWriteTestCaseSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkWriteTestCase.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtWriteTestCaseSubTaskKey.Text, this.txtAssigneeQA.Text);
+                }
             }
 
             // var subTaskExecuteTestCase = new Task<string>();
             if (this.chkExecuteTestCase.Checked)
             {
-                createSubTask(this.chkExecuteTestCase.Text, jiraKey);
+                if (this.txtExecuteTestCaseSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkExecuteTestCase.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtExecuteTestCaseSubTaskKey.Text, this.txtAssigneeQA.Text);
+                }
             }
 
             // var subTaskWriteReleaseNotes = new Task<string>();
             if (this.chkWriteReleaseNotes.Checked)
             {
-                createSubTask(this.chkWriteReleaseNotes.Text, jiraKey);
+                if (this.txtWriteReleaseNotesSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkWriteReleaseNotes.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtWriteReleaseNotesSubTaskKey.Text, this.txtAssignee.Text);
+                }  
             }
 
             // var subTaskReviewReleaseNotes = new Task<string>();
             if (this.chkReviewReleaseNotes.Checked)
             {
-                createSubTask(this.chkReviewReleaseNotes.Text, jiraKey);
+                if (this.txtReviewReleaseNotesSubTaskKey.Text.Trim().Length == 0)
+                {
+                    createSubTask(this.chkReviewReleaseNotes.Text, jiraKey);
+                }
+                else
+                {
+                    updateSubTask(this.txtReviewReleaseNotesSubTaskKey.Text, this.txtAssigneeQA.Text);
+                }
             }
 
             btnCreateSubTask.Enabled = false;
+        }
+
+        public async void updateSubTask(string subTaskKey, string assignee)
+        {
+            IssueRef issueRef = new IssueRef();
+            issueRef.key = subTaskKey;
+
+            var issue = await JiraProxy.LoadIssue(issueRef);
+            if (issue == null || issue.fields == null)
+            {
+                return;
+            }
+
+            // https://accelaeng.atlassian.net/rest/api/2/user/picker?query=peter.peng@missionsky.com
+            JiraUser jiraUser = new JiraUser();
+            jiraUser.name = assignee;
+            issue.fields.assignee = jiraUser;
+
+            JiraProxy.UpdateSubTask(issue);
         }
 
         public async Task<string> createSubTask(string summary, string issueKey)
@@ -357,6 +432,8 @@ Following the below steps if you work on this sub task
             return issue.key;
         }
 
+
+
         private async void btnCheckJiraKey_Click(object sender, EventArgs e)
         {
             this.btnCheckJiraKey.Enabled = false;
@@ -373,6 +450,9 @@ Following the below steps if you work on this sub task
                 return;
             }
 
+            this.txtAssignee.Text = issue.fields.assignee.name;
+            this.txtAssigneeQA.Text = issue.fields.customfield_11702 == null ? "" : issue.fields.customfield_11702.name;
+
             Dictionary<string, string> SubTaskMaper = new Dictionary<string, string>();
             foreach (var subTask in issue.fields.subtasks)
             {
@@ -387,38 +467,47 @@ Following the below steps if you work on this sub task
 
             if ("Case".Equals(issue.fields.issueType.name, StringComparison.InvariantCultureIgnoreCase))
             {
-                this.btnCreateSubTask.Enabled = true;
-                this.chkReviewAndRecreateQA.Enabled = true;
-                this.chkReviewAndRecreateDev.Enabled = true;
-                this.chkResearchRootCause.Enabled = true;
+                //this.btnCreateSubTask.Enabled = true;
+                //this.chkReviewAndRecreateQA.Enabled = true;
+                //this.chkReviewAndRecreateDev.Enabled = true;
+                //this.chkResearchRootCause.Enabled = true;
 
                 this.chkCodeFix.Enabled = false;
-                this.chkWriteTestCase.Enabled = false;
-                this.chkExecuteTestCase.Enabled = false;
-                this.chkWriteReleaseNotes.Enabled = false;
-                this.chkReviewReleaseNotes.Enabled = false;
+                //this.chkWriteTestCase.Enabled = false;
+                //this.chkExecuteTestCase.Enabled = false;
+                //this.chkWriteReleaseNotes.Enabled = false;
+                //this.chkReviewReleaseNotes.Enabled = false;
 
                 foreach (string key in SubTaskMaper.Keys)
                 {
                     // Review and Recreate(QA)
                     if (this.chkReviewAndRecreateQA.Text == key)
                     {
-                        this.chkReviewAndRecreateQA.Enabled = false;
+                        //this.chkReviewAndRecreateQA.Enabled = false;
                         this.txtReviewAndRecreateQASubTaskKey.Text = SubTaskMaper[key];
+
+                        var assignee = await JiraProxy.GetAssigneeByJiraKey(SubTaskMaper[key]);
+                        this.txtReviewAndRecreateQAAssignee.Text = assignee;
                     }
 
                     // Review and Recreate(Dev)
                     if (this.chkReviewAndRecreateDev.Text == key)
                     {
-                        this.chkReviewAndRecreateDev.Enabled = false;
+                        //this.chkReviewAndRecreateDev.Enabled = false;
                         this.txtReviewAndRecreateDevSubTaskKey.Text = SubTaskMaper[key];
+
+                        var assignee = await JiraProxy.GetAssigneeByJiraKey(SubTaskMaper[key]);
+                        this.txtReviewAndRecreateDevAssignee.Text = assignee;
                     }
 
                     // Research Root Cause
                     if (this.chkResearchRootCause.Text == key)
                     {
-                        this.chkResearchRootCause.Enabled = false;
+                        //this.chkResearchRootCause.Enabled = false;
                         this.txtResearchRootCauseSubTaskKey.Text = SubTaskMaper[key];
+
+                        var assignee = await JiraProxy.GetAssigneeByJiraKey(SubTaskMaper[key]);
+                        this.txtResearchRootCauseAssignee.Text = assignee;
                     }
                 }
             }
@@ -478,6 +567,35 @@ Following the below steps if you work on this sub task
 
             this.btnCreateSubTask.Enabled = true;
             this.btnCheckJiraKey.Enabled = true;
+        }
+
+        private async void btnCloseSubTask_Click(object sender, EventArgs e)
+        {
+            if (this.chkReviewAndRecreateQA.Checked)
+            {
+                if (this.txtReviewAndRecreateQASubTaskKey.Text.Trim().Length == 0)
+                {                   
+                }
+                else
+                {
+                    CloseSubTaskk(this.txtReviewAndRecreateQASubTaskKey.Text);
+                }
+            }
+        }
+
+        private async void CloseSubTaskk(string subTaskKey)
+        {
+            IssueRef issueRef = new IssueRef();
+            issueRef.key = subTaskKey;
+            issueRef.id = subTaskKey;
+
+            var issue = await JiraProxy.LoadIssue(issueRef);
+            if (issue == null || issue.fields == null)
+            {
+                return;
+            }           
+
+            JiraProxy.CloseSubTask(issueRef);
         }
     }
 }

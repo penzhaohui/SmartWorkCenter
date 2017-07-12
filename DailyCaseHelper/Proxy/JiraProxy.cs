@@ -176,6 +176,21 @@ namespace com.smartwork.Proxy
             return Issue;
         }
 
+        public static async Task<string> GetAssigneeByJiraKey(string jiraKey)
+        {
+            IssueRef issueRef = new IssueRef();
+            issueRef.key = jiraKey;
+
+            var issue = await JiraProxy.LoadIssue(issueRef);
+
+            if (issue == null || issue.fields == null || issue.fields.assignee == null)
+            {
+                return "";
+            }
+
+            return issue.fields.assignee.name;
+        }
+
         public static async Task<List<Worklog>> GetWorklogs(IssueRef issue)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
@@ -217,6 +232,29 @@ namespace com.smartwork.Proxy
             var issue = jira.CreateSubTask("ENGSUPP", parent.key, summary, description);
 
             return issue;
+        }
+
+        // https://www.quora.com/How-could-I-close-JIRA-ticket-using-rest-API
+        public static async void CloseSubTask(IssueRef issueRef)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            var transitions = jira.GetTransitions(issueRef);
+            foreach (var transition in transitions)
+            {
+                if ("Closed" == transition.name)
+                {
+                    jira.TransitionIssue(issueRef, transition);
+                }
+            }
+        }
+
+        public static async Task<Issue> UpdateSubTask(Issue issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var result = jira.UpdateSubTask("ENGSUPP", issue);
+
+            return result;
         }
 
         public static async Task<Issue> UpdateIssue(Issue issue)

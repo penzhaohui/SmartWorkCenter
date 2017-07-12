@@ -152,10 +152,9 @@ namespace TechTalk.JiraRestClient
                 issueData.Add("project", new { key = projectKey });
                 issueData.Add("parent", new { key = parent });
                 issueData.Add("issuetype", new { id = 5 });
-                issueData.Add("summary", summary);
+                issueData.Add("summary", summary);                
                 issueData.Add("description", description);
-                issueData.Add("customfield_11506", 0);                
-                request.AddBody(new { fields = issueData });
+                issueData.Add("customfield_11506", 0);
 
                 var response = ExecuteRequest(request);
                 AssertStatus(response, HttpStatusCode.Created);
@@ -170,6 +169,34 @@ namespace TechTalk.JiraRestClient
             }
         }
 
+
+        public Issue<TIssueFields> UpdateSubTask(String projectKey, Issue<TIssueFields> issue)
+        {
+            try
+            {
+                var path = String.Format("issue/{0}", issue.JiraIdentifier);
+                var request = CreateRequest(Method.PUT, path);
+                request.AddHeader("ContentType", "application/json");
+
+                var updateData = new Dictionary<string, object>();         
+                updateData.Add("summary", new[] { new { set = issue.fields.summary } });
+                updateData.Add("description", new[] { new { set = issue.fields.description } });
+                updateData.Add("assignee", new[] { new { set = new { name = issue.fields.assignee.name } } });               
+
+                request.AddBody(new { update = updateData });
+
+                var response = ExecuteRequest(request);
+                AssertStatus(response, HttpStatusCode.NoContent);
+
+                return LoadIssue(issue);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("UpdateIssue(issue) JIRA Issue Key: {0}", issue.key);
+                Trace.TraceError("UpdateIssue(issue) error: {0}", ex);
+                throw new JiraClientException("Could not update issue", ex);
+            }
+        }
         public Issue<TIssueFields> CreateIssue(String projectKey, String issueType, String summary)
         {
             return CreateIssue(projectKey, issueType, new TIssueFields { summary = summary });
@@ -373,6 +400,7 @@ namespace TechTalk.JiraRestClient
             }
         }
 
+        // https://www.quora.com/How-could-I-close-JIRA-ticket-using-rest-API
         public Issue<TIssueFields> TransitionIssue(IssueRef issue, Transition transition)
         {
             try
@@ -383,8 +411,12 @@ namespace TechTalk.JiraRestClient
 
                 var update = new Dictionary<string, object>();
                 update.Add("transition", new { id = transition.id });
-                if (transition.fields != null)
-                    update.Add("fields", transition.fields);
+                //update.Add("resolution", new[] { new { set = issue.fields.summary } });
+                //update.Add("resolution", new[] { new { set = new { name = "Done", id = 10000 } } });
+                update.Add("resolution", new[] { new { set = new { value = "Done" } } });
+                update.Add("customfield_12500", new[] { new { set = new { name = "Others", id = 12010 } } });
+                //if (transition.fields != null)
+                //    update.Add("fields", transition.fields);
 
                 request.AddBody(update);
 

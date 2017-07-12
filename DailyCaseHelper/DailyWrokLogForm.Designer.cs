@@ -50,11 +50,22 @@
             this.txtWriteReleaseNotesSubTaskKey = new System.Windows.Forms.TextBox();
             this.txtReviewReleaseNotesSubTaskKey = new System.Windows.Forms.TextBox();
             this.btnCheckJiraKey = new System.Windows.Forms.Button();
+            this.btnCloseSubTask = new System.Windows.Forms.Button();
+            this.txtReviewAndRecreateQAAssignee = new System.Windows.Forms.TextBox();
+            this.txtReviewAndRecreateDevAssignee = new System.Windows.Forms.TextBox();
+            this.txtResearchRootCauseAssignee = new System.Windows.Forms.TextBox();
+            this.txtCodeFixAssignee = new System.Windows.Forms.TextBox();
+            this.txtWriteTestCaseAssignee = new System.Windows.Forms.TextBox();
+            this.txtExecuteTestCaseAssignee = new System.Windows.Forms.TextBox();
+            this.txtWriteReleaseNotesAssignee = new System.Windows.Forms.TextBox();
+            this.txtReviewReleaseNotesAssignee = new System.Windows.Forms.TextBox();
+            this.txtAssigneeQA = new System.Windows.Forms.TextBox();
+            this.txtAssignee = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnListWorkLogList
             // 
-            this.btnListWorkLogList.Location = new System.Drawing.Point(248, 276);
+            this.btnListWorkLogList.Location = new System.Drawing.Point(248, 634);
             this.btnListWorkLogList.Name = "btnListWorkLogList";
             this.btnListWorkLogList.Size = new System.Drawing.Size(218, 61);
             this.btnListWorkLogList.TabIndex = 0;
@@ -64,14 +75,14 @@
             // 
             // dtpTo
             // 
-            this.dtpTo.Location = new System.Drawing.Point(12, 317);
+            this.dtpTo.Location = new System.Drawing.Point(12, 675);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(211, 20);
             this.dtpTo.TabIndex = 3;
             // 
             // dtpFrom
             // 
-            this.dtpFrom.Location = new System.Drawing.Point(12, 276);
+            this.dtpFrom.Location = new System.Drawing.Point(12, 634);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(211, 20);
             this.dtpFrom.TabIndex = 4;
@@ -128,7 +139,7 @@
             // chkCodeFix
             // 
             this.chkCodeFix.AutoSize = true;
-            this.chkCodeFix.Location = new System.Drawing.Point(347, 59);
+            this.chkCodeFix.Location = new System.Drawing.Point(12, 170);
             this.chkCodeFix.Name = "chkCodeFix";
             this.chkCodeFix.Size = new System.Drawing.Size(93, 17);
             this.chkCodeFix.TabIndex = 10;
@@ -138,7 +149,7 @@
             // chkWriteTestCase
             // 
             this.chkWriteTestCase.AutoSize = true;
-            this.chkWriteTestCase.Location = new System.Drawing.Point(347, 94);
+            this.chkWriteTestCase.Location = new System.Drawing.Point(12, 205);
             this.chkWriteTestCase.Name = "chkWriteTestCase";
             this.chkWriteTestCase.Size = new System.Drawing.Size(123, 17);
             this.chkWriteTestCase.TabIndex = 11;
@@ -148,7 +159,7 @@
             // chkExecuteTestCase
             // 
             this.chkExecuteTestCase.AutoSize = true;
-            this.chkExecuteTestCase.Location = new System.Drawing.Point(347, 131);
+            this.chkExecuteTestCase.Location = new System.Drawing.Point(12, 242);
             this.chkExecuteTestCase.Name = "chkExecuteTestCase";
             this.chkExecuteTestCase.Size = new System.Drawing.Size(137, 17);
             this.chkExecuteTestCase.TabIndex = 12;
@@ -158,7 +169,7 @@
             // chkWriteReleaseNotes
             // 
             this.chkWriteReleaseNotes.AutoSize = true;
-            this.chkWriteReleaseNotes.Location = new System.Drawing.Point(347, 164);
+            this.chkWriteReleaseNotes.Location = new System.Drawing.Point(12, 275);
             this.chkWriteReleaseNotes.Name = "chkWriteReleaseNotes";
             this.chkWriteReleaseNotes.Size = new System.Drawing.Size(150, 17);
             this.chkWriteReleaseNotes.TabIndex = 13;
@@ -168,7 +179,7 @@
             // chkReviewReleaseNotes
             // 
             this.chkReviewReleaseNotes.AutoSize = true;
-            this.chkReviewReleaseNotes.Location = new System.Drawing.Point(347, 206);
+            this.chkReviewReleaseNotes.Location = new System.Drawing.Point(12, 310);
             this.chkReviewReleaseNotes.Name = "chkReviewReleaseNotes";
             this.chkReviewReleaseNotes.Size = new System.Drawing.Size(156, 17);
             this.chkReviewReleaseNotes.TabIndex = 14;
@@ -198,35 +209,35 @@
             // 
             // txtCodeFixSubTaskKey
             // 
-            this.txtCodeFixSubTaskKey.Location = new System.Drawing.Point(509, 56);
+            this.txtCodeFixSubTaskKey.Location = new System.Drawing.Point(203, 168);
             this.txtCodeFixSubTaskKey.Name = "txtCodeFixSubTaskKey";
             this.txtCodeFixSubTaskKey.Size = new System.Drawing.Size(100, 20);
             this.txtCodeFixSubTaskKey.TabIndex = 18;
             // 
             // txtWriteTestCaseSubTaskKey
             // 
-            this.txtWriteTestCaseSubTaskKey.Location = new System.Drawing.Point(509, 92);
+            this.txtWriteTestCaseSubTaskKey.Location = new System.Drawing.Point(203, 204);
             this.txtWriteTestCaseSubTaskKey.Name = "txtWriteTestCaseSubTaskKey";
             this.txtWriteTestCaseSubTaskKey.Size = new System.Drawing.Size(100, 20);
             this.txtWriteTestCaseSubTaskKey.TabIndex = 19;
             // 
             // txtExecuteTestCaseSubTaskKey
             // 
-            this.txtExecuteTestCaseSubTaskKey.Location = new System.Drawing.Point(509, 131);
+            this.txtExecuteTestCaseSubTaskKey.Location = new System.Drawing.Point(203, 243);
             this.txtExecuteTestCaseSubTaskKey.Name = "txtExecuteTestCaseSubTaskKey";
             this.txtExecuteTestCaseSubTaskKey.Size = new System.Drawing.Size(100, 20);
             this.txtExecuteTestCaseSubTaskKey.TabIndex = 20;
             // 
             // txtWriteReleaseNotesSubTaskKey
             // 
-            this.txtWriteReleaseNotesSubTaskKey.Location = new System.Drawing.Point(509, 161);
+            this.txtWriteReleaseNotesSubTaskKey.Location = new System.Drawing.Point(203, 273);
             this.txtWriteReleaseNotesSubTaskKey.Name = "txtWriteReleaseNotesSubTaskKey";
             this.txtWriteReleaseNotesSubTaskKey.Size = new System.Drawing.Size(100, 20);
             this.txtWriteReleaseNotesSubTaskKey.TabIndex = 21;
             // 
             // txtReviewReleaseNotesSubTaskKey
             // 
-            this.txtReviewReleaseNotesSubTaskKey.Location = new System.Drawing.Point(509, 203);
+            this.txtReviewReleaseNotesSubTaskKey.Location = new System.Drawing.Point(203, 308);
             this.txtReviewReleaseNotesSubTaskKey.Name = "txtReviewReleaseNotesSubTaskKey";
             this.txtReviewReleaseNotesSubTaskKey.Size = new System.Drawing.Size(100, 20);
             this.txtReviewReleaseNotesSubTaskKey.TabIndex = 22;
@@ -241,11 +252,102 @@
             this.btnCheckJiraKey.UseVisualStyleBackColor = true;
             this.btnCheckJiraKey.Click += new System.EventHandler(this.btnCheckJiraKey_Click);
             // 
+            // btnCloseSubTask
+            // 
+            this.btnCloseSubTask.Location = new System.Drawing.Point(492, 9);
+            this.btnCloseSubTask.Name = "btnCloseSubTask";
+            this.btnCloseSubTask.Size = new System.Drawing.Size(117, 23);
+            this.btnCloseSubTask.TabIndex = 24;
+            this.btnCloseSubTask.Text = "Close Sub Task";
+            this.btnCloseSubTask.UseVisualStyleBackColor = true;
+            this.btnCloseSubTask.Click += new System.EventHandler(this.btnCloseSubTask_Click);
+            // 
+            // txtReviewAndRecreateQAAssignee
+            // 
+            this.txtReviewAndRecreateQAAssignee.Location = new System.Drawing.Point(347, 58);
+            this.txtReviewAndRecreateQAAssignee.Name = "txtReviewAndRecreateQAAssignee";
+            this.txtReviewAndRecreateQAAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtReviewAndRecreateQAAssignee.TabIndex = 25;
+            // 
+            // txtReviewAndRecreateDevAssignee
+            // 
+            this.txtReviewAndRecreateDevAssignee.Location = new System.Drawing.Point(347, 94);
+            this.txtReviewAndRecreateDevAssignee.Name = "txtReviewAndRecreateDevAssignee";
+            this.txtReviewAndRecreateDevAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtReviewAndRecreateDevAssignee.TabIndex = 26;
+            // 
+            // txtResearchRootCauseAssignee
+            // 
+            this.txtResearchRootCauseAssignee.Location = new System.Drawing.Point(347, 130);
+            this.txtResearchRootCauseAssignee.Name = "txtResearchRootCauseAssignee";
+            this.txtResearchRootCauseAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtResearchRootCauseAssignee.TabIndex = 27;
+            // 
+            // txtCodeFixAssignee
+            // 
+            this.txtCodeFixAssignee.Location = new System.Drawing.Point(347, 168);
+            this.txtCodeFixAssignee.Name = "txtCodeFixAssignee";
+            this.txtCodeFixAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtCodeFixAssignee.TabIndex = 28;
+            // 
+            // txtWriteTestCaseAssignee
+            // 
+            this.txtWriteTestCaseAssignee.Location = new System.Drawing.Point(347, 203);
+            this.txtWriteTestCaseAssignee.Name = "txtWriteTestCaseAssignee";
+            this.txtWriteTestCaseAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtWriteTestCaseAssignee.TabIndex = 29;
+            // 
+            // txtExecuteTestCaseAssignee
+            // 
+            this.txtExecuteTestCaseAssignee.Location = new System.Drawing.Point(347, 240);
+            this.txtExecuteTestCaseAssignee.Name = "txtExecuteTestCaseAssignee";
+            this.txtExecuteTestCaseAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtExecuteTestCaseAssignee.TabIndex = 30;
+            // 
+            // txtWriteReleaseNotesAssignee
+            // 
+            this.txtWriteReleaseNotesAssignee.Location = new System.Drawing.Point(347, 273);
+            this.txtWriteReleaseNotesAssignee.Name = "txtWriteReleaseNotesAssignee";
+            this.txtWriteReleaseNotesAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtWriteReleaseNotesAssignee.TabIndex = 31;
+            // 
+            // txtReviewReleaseNotesAssignee
+            // 
+            this.txtReviewReleaseNotesAssignee.Location = new System.Drawing.Point(347, 309);
+            this.txtReviewReleaseNotesAssignee.Name = "txtReviewReleaseNotesAssignee";
+            this.txtReviewReleaseNotesAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtReviewReleaseNotesAssignee.TabIndex = 32;
+            // 
+            // txtAssigneeQA
+            // 
+            this.txtAssigneeQA.Location = new System.Drawing.Point(492, 95);
+            this.txtAssigneeQA.Name = "txtAssigneeQA";
+            this.txtAssigneeQA.Size = new System.Drawing.Size(100, 20);
+            this.txtAssigneeQA.TabIndex = 33;
+            // 
+            // txtAssignee
+            // 
+            this.txtAssignee.Location = new System.Drawing.Point(492, 58);
+            this.txtAssignee.Name = "txtAssignee";
+            this.txtAssignee.Size = new System.Drawing.Size(100, 20);
+            this.txtAssignee.TabIndex = 34;
+            // 
             // DailyWrokLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 726);
+            this.Controls.Add(this.txtAssignee);
+            this.Controls.Add(this.txtAssigneeQA);
+            this.Controls.Add(this.txtReviewReleaseNotesAssignee);
+            this.Controls.Add(this.txtWriteReleaseNotesAssignee);
+            this.Controls.Add(this.txtExecuteTestCaseAssignee);
+            this.Controls.Add(this.txtWriteTestCaseAssignee);
+            this.Controls.Add(this.txtCodeFixAssignee);
+            this.Controls.Add(this.txtResearchRootCauseAssignee);
+            this.Controls.Add(this.txtReviewAndRecreateDevAssignee);
+            this.Controls.Add(this.txtReviewAndRecreateQAAssignee);
+            this.Controls.Add(this.btnCloseSubTask);
             this.Controls.Add(this.btnCheckJiraKey);
             this.Controls.Add(this.txtReviewReleaseNotesSubTaskKey);
             this.Controls.Add(this.txtWriteReleaseNotesSubTaskKey);
@@ -299,5 +401,16 @@
         private System.Windows.Forms.TextBox txtWriteReleaseNotesSubTaskKey;
         private System.Windows.Forms.TextBox txtReviewReleaseNotesSubTaskKey;
         private System.Windows.Forms.Button btnCheckJiraKey;
+        private System.Windows.Forms.Button btnCloseSubTask;
+        private System.Windows.Forms.TextBox txtReviewAndRecreateQAAssignee;
+        private System.Windows.Forms.TextBox txtReviewAndRecreateDevAssignee;
+        private System.Windows.Forms.TextBox txtResearchRootCauseAssignee;
+        private System.Windows.Forms.TextBox txtCodeFixAssignee;
+        private System.Windows.Forms.TextBox txtWriteTestCaseAssignee;
+        private System.Windows.Forms.TextBox txtExecuteTestCaseAssignee;
+        private System.Windows.Forms.TextBox txtWriteReleaseNotesAssignee;
+        private System.Windows.Forms.TextBox txtReviewReleaseNotesAssignee;
+        private System.Windows.Forms.TextBox txtAssigneeQA;
+        private System.Windows.Forms.TextBox txtAssignee;
     }
 }

@@ -35,6 +35,8 @@ namespace TechTalk.JiraRestClient
         /// </summary>
         Issue<TIssueFields> CreateSubTask(String projectKey, String parent, String summary, string description);
 
+        Issue<TIssueFields> UpdateSubTask(String projectKey, Issue<TIssueFields> issue);
+
         /// <summary>Returns all transitions avilable to the given issue</summary>
         IEnumerable<Transition> GetTransitions(IssueRef issue);
         /// <summary>Changes the state of the given issue as described by the transition</summary>
