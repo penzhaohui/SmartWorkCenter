@@ -397,6 +397,9 @@ namespace com.smartwork.Proxy
             //Reviewers.Add("Howe", "Howe.Deng");
             Reviewers.Add("Michael", "Michael.He");
             Reviewers.Add("Jackie", "Jackie.Yu");
+            Reviewers.Add("Andy", "Andy.Li");
+            Reviewers.Add("Kevin", "Kevin.Chen");
+            Reviewers.Add("Tata", "Tata.Liang");
 
 
             Reviewers.Add("Mandy", "Mandy.Zhou");

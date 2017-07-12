@@ -54,11 +54,12 @@
             this.scanReleaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -187,7 +188,8 @@
             this.scanReleaseStatusToolStripMenuItem,
             this.weeklyReportToolStripMenuItem1,
             this.dBRequestToolStripMenuItem,
-            this.deliveryProgressReportToolStripMenuItem});
+            this.deliveryProgressReportToolStripMenuItem,
+            this.dailyWorkLogToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -269,6 +271,13 @@
             this.dBRequestToolStripMenuItem.Text = "DB Request";
             this.dBRequestToolStripMenuItem.Click += new System.EventHandler(this.dBRequestToolStripMenuItem_Click);
             // 
+            // deliveryProgressReportToolStripMenuItem
+            // 
+            this.deliveryProgressReportToolStripMenuItem.Name = "deliveryProgressReportToolStripMenuItem";
+            this.deliveryProgressReportToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.deliveryProgressReportToolStripMenuItem.Text = "Delivery Progress Report";
+            this.deliveryProgressReportToolStripMenuItem.Click += new System.EventHandler(this.deliveryProgressReportToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -298,12 +307,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // deliveryProgressReportToolStripMenuItem
+            // dailyWorkLogToolStripMenuItem
             // 
-            this.deliveryProgressReportToolStripMenuItem.Name = "deliveryProgressReportToolStripMenuItem";
-            this.deliveryProgressReportToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.deliveryProgressReportToolStripMenuItem.Text = "Delivery Progress Report";
-            this.deliveryProgressReportToolStripMenuItem.Click += new System.EventHandler(this.deliveryProgressReportToolStripMenuItem_Click);
+            this.dailyWorkLogToolStripMenuItem.Name = "dailyWorkLogToolStripMenuItem";
+            this.dailyWorkLogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
+            this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -359,6 +368,7 @@
         private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dBRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deliveryProgressReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyWorkLogToolStripMenuItem;
     }
 }
 

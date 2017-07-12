@@ -248,5 +248,16 @@ namespace com.smartwork
             deliveryProgressReport.MinimizeBox = false;
             deliveryProgressReport.Show();
         }
+
+        private void dailyWorkLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            DailyWrokLogForm dailyWrokLogForm = new DailyWrokLogForm();
+            dailyWrokLogForm.WindowState = FormWindowState.Maximized;
+            dailyWrokLogForm.MdiParent = this;
+            dailyWrokLogForm.MaximizeBox = false;
+            dailyWrokLogForm.MinimizeBox = false;
+            dailyWrokLogForm.Show();
+        }
     }
 }

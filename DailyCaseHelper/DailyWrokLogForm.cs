@@ -1,0 +1,483 @@
+﻿using com.smartwork.Proxy;
+using com.smartwork.Util;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TechTalk.JiraRestClient;
+
+namespace com.smartwork
+{
+    public partial class DailyWrokLogForm : Form
+    {
+        public DailyWrokLogForm()
+        {
+            InitializeComponent();
+            btnCreateSubTask.Enabled = false;
+        }
+
+        private async void btnListWorkLogList_Click(object sender, EventArgs e)
+        {
+            this.btnListWorkLogList.Enabled = false;
+
+            DateTime from = this.dtpFrom.Value;
+            DateTime to = this.dtpTo.Value;
+
+            from = DateTime.Today.AddDays(-1);
+            to = DateTime.Today.AddDays(1);
+
+            var GetUpdatedIssueListByAssignee = JiraProxy.GetUpdatedIssueListByAssignee(from, to);
+            var issueList = await GetUpdatedIssueListByAssignee;
+
+            if (issueList == null || issueList.Count == 0)
+            {
+                return;
+            }
+
+            Dictionary<string, JiraTask> workLogsStore = new Dictionary<string, JiraTask>();
+            foreach (var issue in issueList)
+            {
+                if (issue == null) continue;
+
+                string taskKey = issue.fields.parent.key;
+                string taskSummary = issue.fields.parent.fields.summary;
+                string taskType = issue.fields.parent.fields.issuetype.name;
+                string subTaskkey = issue.key;
+                string subTaskSummary = issue.fields.summary;
+
+                var workLogs = await JiraProxy.GetWorklogs(issue);
+                if (workLogs != null && workLogs.Count > 0)
+                {
+                    foreach (var worklog in workLogs)
+                    {
+                        if (worklog.created.Year == DateTime.Today.Year
+                            && worklog.created.Month == DateTime.Today.Month
+                            && worklog.created.Day == DateTime.Today.Day)
+                        {
+                            if (!workLogsStore.ContainsKey(taskKey))
+                            {
+                                JiraTask jiraTask = new JiraTask();
+                                jiraTask.Key = taskKey;
+                                jiraTask.summary = taskSummary;
+                                jiraTask.Type = taskType;
+                                jiraTask.subTasks = new Dictionary<string, SubTask>();
+                                workLogsStore.Add(taskKey, jiraTask);
+                            }
+
+                            JiraTask jiraTask1 = workLogsStore[taskKey];                            
+                            if (!jiraTask1.subTasks.ContainsKey(subTaskkey))
+                            {
+                                SubTask subTask = new SubTask();
+                                subTask.Key = subTaskkey;
+                                subTask.summary = subTaskSummary;
+                                jiraTask1.subTasks.Add(subTaskkey, subTask);
+                            }
+
+                            SubTask subTask1 = jiraTask1.subTasks[subTaskkey];
+                            if (subTask1.worklogs == null)
+                            {
+                                subTask1.worklogs = new List<Worklog>();
+                            }
+
+                            Worklog workLog = new Worklog();
+                            workLog.displayName = worklog.author.displayName;
+                            workLog.timeSpent = worklog.timeSpent;
+                            workLog.comment = worklog.comment.Replace("\r\n",";");
+                            subTask1.worklogs.Add(workLog);
+
+                            jiraTask1.subTasks[subTaskkey] = subTask1;
+                            workLogsStore[taskKey] = jiraTask1;
+                        }
+                    }
+                }
+            }
+
+            string dailyWorkLogSummaryReport = "";
+            int index1 = 1;
+            foreach (string taskKey in workLogsStore.Keys)
+            {
+                JiraTask jiraTask = workLogsStore[taskKey];
+
+                dailyWorkLogSummaryReport += index1 + " " + jiraTask.Type + " - " + taskKey + " " + jiraTask.summary + "<br/>";
+
+                int index2 = 1;
+                foreach (string subTaskkey in jiraTask.subTasks.Keys)
+                {
+                    SubTask subTask = jiraTask.subTasks[subTaskkey];
+
+                    dailyWorkLogSummaryReport += index1 + "." + index2 + " Sub Task: " + subTaskkey + " " + subTask.summary + "<br/>";
+
+                    int index3 = 1;
+                    foreach (var workLog in subTask.worklogs)
+                    {
+                        dailyWorkLogSummaryReport += index1 + "." + index2 + "." + index3 + " " + workLog.displayName + "[" + workLog.timeSpent + "]" + workLog.comment + "<br/>";
+
+                        index3++;
+                    }
+
+                    index2++;
+                }
+
+                dailyWorkLogSummaryReport += "<br/><br/>";
+                index1++;
+            }
+
+            string content = @"Hi, All guys<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "Thanks<br/>Accela Support Team";
+            string fromEmailAddress = "auto_sender@missionsky.com";
+            string toEmailAddress = "peter.peng@missionsky.com;rleung@accela.com";
+            string ccEmailAddress = "accela-support-team@missionsky.com";
+            string subject = "Daily Work Log Summary - " + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+
+            try
+            {
+                EmailUtil.SendEmail(fromEmailAddress, toEmailAddress, ccEmailAddress, subject, content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed to send email");
+            }
+
+            System.Console.WriteLine(dailyWorkLogSummaryReport);
+
+            this.btnListWorkLogList.Enabled = true;
+        }
+
+        class JiraTask
+        {
+            public string Key { get; set; }
+            public string summary { get; set; }
+            public string Type { get; set; }
+            public Dictionary<string, SubTask> subTasks { get; set; }
+        }
+
+        class SubTask
+        {           
+            public string Key { get; set; }
+            public string summary { get; set; }
+            public List<Worklog> worklogs { get; set; }
+        }
+
+        class Worklog
+        {
+            public string Key { get; set; }
+            public string displayName { get; set; }
+            public string timeSpent { get; set; }
+            public string comment { get; set; }
+        }
+
+        private async void btnCreateSubTask_Click(object sender, EventArgs e)
+        {
+            this.btnCreateSubTask.Enabled = false;
+            string jiraKey = this.txtJiraKey.Text;
+
+            //var subTaskReviewAndRecreateQA = new Task<string>();
+            // Create Sub Task for Review Case
+            if (this.chkReviewAndRecreateQA.Checked)
+            {
+                createSubTask(this.chkReviewAndRecreateQA.Text, jiraKey);
+            }
+
+            //var subTaskReviewAndRecreateDev = new Task<string>();
+            if (this.chkReviewAndRecreateDev.Checked)
+            {
+                createSubTask(this.chkReviewAndRecreateDev.Text, jiraKey);
+            }
+
+            // var subTaskResearchRootCause = new Task<string>();
+            if (this.chkResearchRootCause.Checked)
+            {
+                createSubTask(this.chkResearchRootCause.Text, jiraKey);
+            }
+
+            // Create Sub Task for Bug Fix
+            // var subTaskCodeFix = new Task<string>();
+            if (this.chkCodeFix.Checked)
+            {
+                createSubTask(this.chkCodeFix.Text, jiraKey);
+            }
+
+            // var subTaskWriteTestCase = new Task<string>();
+            if (this.chkWriteTestCase.Checked)
+            {
+                createSubTask(this.chkWriteTestCase.Text, jiraKey);
+            }
+
+            // var subTaskExecuteTestCase = new Task<string>();
+            if (this.chkExecuteTestCase.Checked)
+            {
+                createSubTask(this.chkExecuteTestCase.Text, jiraKey);
+            }
+
+            // var subTaskWriteReleaseNotes = new Task<string>();
+            if (this.chkWriteReleaseNotes.Checked)
+            {
+                createSubTask(this.chkWriteReleaseNotes.Text, jiraKey);
+            }
+
+            // var subTaskReviewReleaseNotes = new Task<string>();
+            if (this.chkReviewReleaseNotes.Checked)
+            {
+                createSubTask(this.chkReviewReleaseNotes.Text, jiraKey);
+            }
+
+            btnCreateSubTask.Enabled = false;
+        }
+
+        public async Task<string> createSubTask(string summary, string issueKey)
+        {
+            IssueRef issueRef = new IssueRef();
+            issueRef.key = issueKey;
+
+            string description = "";
+            if ("Review and Recreate(QA)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log QA effort spent on reviewing and recreating the assicaited production case{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when this case is recreated";
+
+            }
+
+            if ("Review and Recreate(Dev)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log Dev effort spent on reviewing and recreating the assicaited production case{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when this case is recreated";
+            }
+
+            if ("Research Root Cause" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log Dev effort spent on researching root cause after the assicaited production case is recreated{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when this root cause is found";
+            }
+
+            // Code Fix(Dev)
+            if ("Code Fix(Dev)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log Dev effort spent on solving the assicaited production bug{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when it is done";
+            }
+
+            // Write Test Case(QA)
+            if ("Write Test Case(QA)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log QA effort spent on writing test case for the assicaited production bug{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when it is done";
+            }
+
+            // Execute Test Case(QA)
+            if ("Execute Test Case(QA)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log QA effort spent on executing test case for the assicaited production bug{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when it is done";
+            }
+
+            // Write Release Notes(Dev)
+            if ("Write Release Notes(Dev)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log Dev effort spent on writing release notes for the assicaited production bug{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when it is done";
+            }
+
+            // Review Release Notes(QA)
+            if ("Review Release Notes(QA)" == summary)
+            {
+                description =
+@"*{color:red}Notice{color}*: 
+* {color:red}Just log QA effort spent on reviewing release notes for the assicaited production bug{color}
+* {color:red}Please DO NOT add comment in the sub task{color}
+
+Following the below steps if you work on this sub task
+# Assign this sub task to you
+# Log all your effort spent on this case
+# Post your comment in the parent jira ticket if neccessary
+# Close this sub task when it is done";
+            }
+
+            var issue = await JiraProxy.CreateSubTask(summary, description, issueRef);
+
+            return issue.key;
+        }
+
+        private async void btnCheckJiraKey_Click(object sender, EventArgs e)
+        {
+            this.btnCheckJiraKey.Enabled = false;
+
+            string jiraKey = this.txtJiraKey.Text;
+
+            IssueRef issueRef = new IssueRef();
+            issueRef.key = jiraKey;
+
+            var issue = await JiraProxy.LoadIssue(issueRef);
+
+            if (issue == null || issue.fields == null)
+            {
+                return;
+            }
+
+            Dictionary<string, string> SubTaskMaper = new Dictionary<string, string>();
+            foreach (var subTask in issue.fields.subtasks)
+            {
+                if (subTask != null && subTask.fields != null && subTask.fields.issuetype.subtask == true)
+                {
+                    if (!SubTaskMaper.ContainsKey(subTask.fields.summary))
+                    {
+                        SubTaskMaper.Add(subTask.fields.summary, subTask.key);
+                    }
+                }
+            }            
+
+            if ("Case".Equals(issue.fields.issueType.name, StringComparison.InvariantCultureIgnoreCase))
+            {
+                this.btnCreateSubTask.Enabled = true;
+                this.chkReviewAndRecreateQA.Enabled = true;
+                this.chkReviewAndRecreateDev.Enabled = true;
+                this.chkResearchRootCause.Enabled = true;
+
+                this.chkCodeFix.Enabled = false;
+                this.chkWriteTestCase.Enabled = false;
+                this.chkExecuteTestCase.Enabled = false;
+                this.chkWriteReleaseNotes.Enabled = false;
+                this.chkReviewReleaseNotes.Enabled = false;
+
+                foreach (string key in SubTaskMaper.Keys)
+                {
+                    // Review and Recreate(QA)
+                    if (this.chkReviewAndRecreateQA.Text == key)
+                    {
+                        this.chkReviewAndRecreateQA.Enabled = false;
+                        this.txtReviewAndRecreateQASubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Review and Recreate(Dev)
+                    if (this.chkReviewAndRecreateDev.Text == key)
+                    {
+                        this.chkReviewAndRecreateDev.Enabled = false;
+                        this.txtReviewAndRecreateDevSubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Research Root Cause
+                    if (this.chkResearchRootCause.Text == key)
+                    {
+                        this.chkResearchRootCause.Enabled = false;
+                        this.txtResearchRootCauseSubTaskKey.Text = SubTaskMaper[key];
+                    }
+                }
+            }
+            
+
+            if ("Bug".Equals(issue.fields.issueType.name, StringComparison.InvariantCultureIgnoreCase))
+            {
+                this.btnCreateSubTask.Enabled = true;
+                this.chkReviewAndRecreateQA.Enabled = false;
+                this.chkReviewAndRecreateDev.Enabled = false;
+                this.chkResearchRootCause.Enabled = false;
+
+                this.chkCodeFix.Enabled = true;
+                this.chkWriteTestCase.Enabled = true;
+                this.chkExecuteTestCase.Enabled = true;
+                this.chkWriteReleaseNotes.Enabled = true;
+                this.chkReviewReleaseNotes.Enabled = true;
+
+                foreach (string key in SubTaskMaper.Keys)
+                {
+                    // Code Fix(Dev)
+                    if (this.chkCodeFix.Text == key)
+                    {
+                        this.chkCodeFix.Enabled = false;
+                        this.txtCodeFixSubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Write Test Case(QA)
+                    if (this.chkWriteTestCase.Text == key)
+                    {
+                        this.chkWriteTestCase.Enabled = false;
+                        this.txtWriteTestCaseSubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Execute Test Case(QA)
+                    if (this.chkExecuteTestCase.Text == key)
+                    {
+                        this.chkExecuteTestCase.Enabled = false;
+                        this.txtExecuteTestCaseSubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Write Release Notes(Dev)
+                    if (this.chkWriteReleaseNotes.Text == key)
+                    {
+                        this.chkWriteReleaseNotes.Enabled = false;
+                        this.txtWriteReleaseNotesSubTaskKey.Text = SubTaskMaper[key];
+                    }
+
+                    // Review Release Notes(QA)
+                    if (this.chkReviewReleaseNotes.Text == key)
+                    {
+                        this.chkReviewReleaseNotes.Enabled = false;
+                        this.txtReviewReleaseNotesSubTaskKey.Text = SubTaskMaper[key];
+                    }
+                }
+            }
+
+            this.btnCreateSubTask.Enabled = true;
+            this.btnCheckJiraKey.Enabled = true;
+        }
+    }
+}

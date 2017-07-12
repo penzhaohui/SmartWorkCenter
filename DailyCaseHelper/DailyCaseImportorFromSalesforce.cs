@@ -58,7 +58,7 @@ namespace com.smartwork
             this.btnShowPendingCases.Enabled = false;
             this.btnShowOpenCase.Enabled = false;
 
-            this.Text = "Build Version: 2.6.3.3- peter.peng@missionsky.com";
+            this.Text = "Build Version: 2.7.0.0 - peter.peng@missionsky.com";
 
             this.DisplayTodayCaseList();
             Task<IForceClient> createAuthenticationClient = SalesforceProxy.CreateAuthenticationClient();
@@ -811,6 +811,7 @@ namespace com.smartwork
                             }
                             temOpenDate = DateTime.Parse(openDate);
                             fields.customfield_10902 = temOpenDate.Year + "-" + (temOpenDate.Month < 10 ? "0" + temOpenDate.Month : "" + temOpenDate.Month) + "-" + (temOpenDate.Day < 10 ? "0" + temOpenDate.Day : "" + temOpenDate.Day) + "T00:00:00.000+1100";
+                            fields.customfield_11506 = 16;
                             //fields.customfield_11106 = new IssueSeverity();
                             //fields.customfield_11106.id = 11106;
                             //fields.customfield_11106.name = severity;

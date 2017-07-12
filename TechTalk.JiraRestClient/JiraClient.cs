@@ -140,6 +140,36 @@ namespace TechTalk.JiraRestClient
             }
         }
 
+        // https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-create-issue
+        public Issue<TIssueFields> CreateSubTask(String projectKey, String parent, String summary, string description)
+        {
+            try
+            {
+                var request = CreateRequest(Method.POST, "issue");
+                request.AddHeader("ContentType", "application/json");
+
+                var issueData = new Dictionary<string, object>();
+                issueData.Add("project", new { key = projectKey });
+                issueData.Add("parent", new { key = parent });
+                issueData.Add("issuetype", new { id = 5 });
+                issueData.Add("summary", summary);
+                issueData.Add("description", description);
+                issueData.Add("customfield_11506", 0);                
+                request.AddBody(new { fields = issueData });
+
+                var response = ExecuteRequest(request);
+                AssertStatus(response, HttpStatusCode.Created);
+
+                var issueRef = deserializer.Deserialize<IssueRef>(response);
+                return LoadIssue(issueRef);
+            }
+            catch (Exception ex)
+            {               
+                Trace.TraceError("CreateIssue(projectKey, typeCode) error: {0}", ex);
+                throw new JiraClientException("Could not create issue", ex);
+            }
+        }
+
         public Issue<TIssueFields> CreateIssue(String projectKey, String issueType, String summary)
         {
             return CreateIssue(projectKey, issueType, new TIssueFields { summary = summary });
@@ -403,6 +433,26 @@ namespace TechTalk.JiraRestClient
 
                 var data = deserializer.Deserialize<CommentsContainer>(response);
                 return data.comments ?? Enumerable.Empty<Comment>();
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("GetComments(issue) error: {0}", ex);
+                throw new JiraClientException("Could not load comments", ex);
+            }
+        }
+
+        public IEnumerable<Worklog> GetWorklogs(IssueRef issue)
+        {
+            try
+            {
+                var path = String.Format("issue/{0}/worklog", issue.id);
+                var request = CreateRequest(Method.GET, path);
+
+                var response = ExecuteRequest(request);
+                AssertStatus(response, HttpStatusCode.OK);
+
+                var data = deserializer.Deserialize<WorklogsContainer>(response);
+                return data.worklogs ?? Enumerable.Empty<Worklog>();
             }
             catch (Exception ex)
             {

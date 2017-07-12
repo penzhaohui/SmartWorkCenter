@@ -151,6 +151,40 @@ namespace com.smartwork.Proxy
             return issueList;
         }
 
+        public static async Task<List<Issue>> GetUpdatedIssueListByAssignee(DateTime from, DateTime to)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            //string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " AND assignee in (\"" + assignee + "\") ";
+            string sql = " issuetype in (subTaskIssueTypes()) AND updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " ";
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
+        public static async Task<Issue> LoadIssue(IssueRef issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var Issue = jira.LoadIssue(issue);
+
+            return Issue;
+        }
+
+        public static async Task<List<Worklog>> GetWorklogs(IssueRef issue)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var worklogs = jira.GetWorklogs(issue);
+
+            return (worklogs as List<Worklog>);
+        }
+
         public static async Task<List<Issue>> GetIssueListByStatus(string status)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
@@ -172,6 +206,15 @@ namespace com.smartwork.Proxy
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
 
             var issue = jira.CreateIssue("ENGSUPP", "Case", fields);
+
+            return issue;
+        }
+
+        public static async Task<Issue> CreateSubTask(string summary, string description, IssueRef parent)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            var issue = jira.CreateSubTask("ENGSUPP", parent.key, summary, description);
 
             return issue;
         }

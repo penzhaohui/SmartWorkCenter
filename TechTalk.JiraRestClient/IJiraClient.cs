@@ -30,6 +30,11 @@ namespace TechTalk.JiraRestClient
         /// <summary>Deletes the given issue from the remote system</summary>
         void DeleteIssue(IssueRef issue);
 
+        /// <summary>
+        /// Creates an sub task of the specified jira key for the given project
+        /// </summary>
+        Issue<TIssueFields> CreateSubTask(String projectKey, String parent, String summary, string description);
+
         /// <summary>Returns all transitions avilable to the given issue</summary>
         IEnumerable<Transition> GetTransitions(IssueRef issue);
         /// <summary>Changes the state of the given issue as described by the transition</summary>
@@ -44,6 +49,9 @@ namespace TechTalk.JiraRestClient
         Comment CreateComment(IssueRef issue, String comment);
         /// <summary>Deletes the given comment</summary>
         void DeleteComment(IssueRef issue, Comment comment);
+
+        /// <summary>Returns all work logs for the given issue</summary>
+        IEnumerable<Worklog> GetWorklogs(IssueRef issue);
 
         /// <summary>Return all attachments for the given issue</summary>
         IEnumerable<Attachment> GetAttachments(IssueRef issue);

@@ -101,7 +101,22 @@ namespace TechTalk.JiraRestClient
         /// <summary>
         /// SF-Targeted Release
         /// </summary>
-        public String customfield_12300 { get; set; }        
+        public String customfield_12300 { get; set; }
+
+        /// <summary>
+        /// Estimated Effort
+        /// </summary>
+        public int customfield_11506 { get; set; }
+
+        /// <summary>
+        /// Sub Tasks
+        /// </summary>
+        public List<SubTask> subtasks { get; set; } 
+ 
+        /// <summary>
+        /// Parent Tasks
+        /// </summary>
+        public SubTask parent { get; set; }     
 
         /// <summary>
         /// SF-Priority

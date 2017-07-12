@@ -48,6 +48,8 @@
     <Compile Include="IssueSeverity.cs" />
     <Compile Include="IssueType.cs" />
     <Compile Include="ServerInfo.cs" />
+    <Compile Include="SubTask.cs" />
+    <Compile Include="SubTaskFields.cs" />
     <Compile Include="WatchersContainer.cs" />
     <Compile Include="IJiraClient.cs" />
     <Compile Include="Issue.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="Transition.cs" />
     <Compile Include="Timetracking.cs" />
     <Compile Include="TransitionsContainer.cs" />
+    <Compile Include="Worklog.cs" />
+    <Compile Include="WorklogsContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

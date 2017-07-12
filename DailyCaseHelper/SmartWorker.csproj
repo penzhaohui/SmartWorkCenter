@@ -74,10 +74,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.JiraRestClient, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dlls\TechTalk.JiraRestClient.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AADevEnvChecker.cs">
@@ -112,6 +108,12 @@
     </Compile>
     <Compile Include="DailyCaseImportorFromSalesforce.Designer.cs">
       <DependentUpon>DailyCaseImportorFromSalesforce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DailyWrokLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DailyWrokLogForm.Designer.cs">
+      <DependentUpon>DailyWrokLogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\ConnectionInfo.cs" />
     <Compile Include="DataAccess\DatabaseUtil.cs" />
@@ -228,6 +230,9 @@
     <EmbeddedResource Include="DailyCaseImportorFromSalesforce.resx">
       <DependentUpon>DailyCaseImportorFromSalesforce.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DailyWrokLogForm.resx">
+      <DependentUpon>DailyWrokLogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DBRequestForm.resx">
       <DependentUpon>DBRequestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +340,10 @@
     <ProjectReference Include="..\ForceToolkitForNET\ForceToolkitForNET.csproj">
       <Project>{6b8131e1-ec47-4dee-8fcf-436f21c684d1}</Project>
       <Name>ForceToolkitForNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechTalk.JiraRestClient\TechTalk.JiraRestClient.csproj">
+      <Project>{210529fa-454e-4c32-a2c8-353ecbd4da05}</Project>
+      <Name>TechTalk.JiraRestClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

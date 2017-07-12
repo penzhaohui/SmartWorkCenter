@@ -85,7 +85,7 @@ namespace com.smartwork.Util
             {
                 if ("Pending".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)                    
                     || "Open".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase)
-                    || "In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                    || "In Development".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                 {
                     nextJiraStatus = "Dev In Progress";
                 }
@@ -112,9 +112,9 @@ namespace com.smartwork.Util
                             || "Qa In Progress".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)
                             || "EngQA".Equals(sfStatus, System.StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        if (!"In Progress".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
+                        if (!"In Development".Equals(jiraStatus, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            nextJiraStatus = "In Progress";
+                            nextJiraStatus = "In Development";
                         }
                     }
                     else
@@ -154,7 +154,7 @@ namespace com.smartwork.Util
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
             var transitions = jira.GetTransitions(issueRef);
 
-            if ("In Progress" == jiraNextStatus)
+            if ("In Development" == jiraNextStatus)
             {
                 if ("Open".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -225,10 +225,10 @@ namespace com.smartwork.Util
                         }
                     }
 
-                    jiraStatus = "In Progress";
+                    jiraStatus = "In Development";
                 }
 
-                if ("In Progress".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
+                if ("In Development".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
                 {
                     foreach (var transition in transitions)
                     {
@@ -255,10 +255,10 @@ namespace com.smartwork.Util
                         }
                     }
 
-                    jiraStatus = "In Progress";
+                    jiraStatus = "In Development";
                 }
 
-                if ("In Progress".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
+                if ("In Development".Equals(jiraStatus, System.StringComparison.InvariantCultureIgnoreCase))
                 {
                     foreach (var transition in transitions)
                     {
