@@ -55,11 +55,12 @@
             this.weeklyReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.batchSubTaskManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -189,7 +190,8 @@
             this.weeklyReportToolStripMenuItem1,
             this.dBRequestToolStripMenuItem,
             this.deliveryProgressReportToolStripMenuItem,
-            this.dailyWorkLogToolStripMenuItem});
+            this.dailyWorkLogToolStripMenuItem,
+            this.batchSubTaskManagerToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -278,6 +280,13 @@
             this.deliveryProgressReportToolStripMenuItem.Text = "Delivery Progress Report";
             this.deliveryProgressReportToolStripMenuItem.Click += new System.EventHandler(this.deliveryProgressReportToolStripMenuItem_Click);
             // 
+            // dailyWorkLogToolStripMenuItem
+            // 
+            this.dailyWorkLogToolStripMenuItem.Name = "dailyWorkLogToolStripMenuItem";
+            this.dailyWorkLogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
+            this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -307,12 +316,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // dailyWorkLogToolStripMenuItem
+            // batchSubTaskManagerToolStripMenuItem
             // 
-            this.dailyWorkLogToolStripMenuItem.Name = "dailyWorkLogToolStripMenuItem";
-            this.dailyWorkLogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
-            this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
+            this.batchSubTaskManagerToolStripMenuItem.Name = "batchSubTaskManagerToolStripMenuItem";
+            this.batchSubTaskManagerToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.batchSubTaskManagerToolStripMenuItem.Text = "Batch Sub Task Manager";
+            this.batchSubTaskManagerToolStripMenuItem.Click += new System.EventHandler(this.batchSubTaskManagerToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -369,6 +378,7 @@
         private System.Windows.Forms.ToolStripMenuItem dBRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deliveryProgressReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dailyWorkLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem batchSubTaskManagerToolStripMenuItem;
     }
 }
 

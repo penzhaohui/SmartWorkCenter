@@ -259,5 +259,16 @@ namespace com.smartwork
             dailyWrokLogForm.MinimizeBox = false;
             dailyWrokLogForm.Show();
         }
+
+        private void batchSubTaskManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            BatchSubTaskManagementForm batchSubTaskManagementForm = new BatchSubTaskManagementForm();
+            batchSubTaskManagementForm.WindowState = FormWindowState.Maximized;
+            batchSubTaskManagementForm.MdiParent = this;
+            batchSubTaskManagementForm.MaximizeBox = false;
+            batchSubTaskManagementForm.MinimizeBox = false;
+            batchSubTaskManagementForm.Show();
+        }
     }
 }
