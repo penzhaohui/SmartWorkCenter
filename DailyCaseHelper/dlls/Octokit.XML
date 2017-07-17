@@ -8645,7 +8645,7 @@
             <param name="owner">The owner of the repository</param>
             <param name="name">The name of the repository</param>
             <param name="path">The content path</param>
-            <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+            <param name="reference">The name of the commit/branch/tag. Default: the repository抯 default branch (usually master)</param>
         </member>
         <member name="M:Octokit.IRepositoryContentsClient.GetAllContentsByRef(System.Int64,System.String,System.String)">
             <summary>
@@ -8656,7 +8656,7 @@
             </remarks>
             <param name="repositoryId">The Id of the repository</param>
             <param name="path">The content path</param>
-            <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+            <param name="reference">The name of the commit/branch/tag. Default: the repository抯 default branch (usually master)</param>
         </member>
         <member name="M:Octokit.IRepositoryContentsClient.GetAllContentsByRef(System.String,System.String,System.String)">
             <summary>
@@ -8668,7 +8668,7 @@
             </remarks>
             <param name="owner">The owner of the repository</param>
             <param name="name">The name of the repository</param>
-            <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+            <param name="reference">The name of the commit/branch/tag. Default: the repository抯 default branch (usually master)</param>
         </member>
         <member name="M:Octokit.IRepositoryContentsClient.GetAllContentsByRef(System.Int64,System.String)">
             <summary>
@@ -8679,7 +8679,7 @@
             See the <a href="https://developer.github.com/v3/repos/contents/#get-contents">API documentation</a> for more information.
             </remarks>
             <param name="repositoryId">The Id of the repository</param>
-            <param name="reference">The name of the commit/branch/tag. Default: the repository’s default branch (usually master)</param>
+            <param name="reference">The name of the commit/branch/tag. Default: the repository抯 default branch (usually master)</param>
         </member>
         <member name="M:Octokit.IRepositoryContentsClient.GetReadme(System.String,System.String)">
             <summary>
@@ -24471,7 +24471,7 @@
         <member name="P:Octokit.NewRelease.TargetCommitish">
             <summary>
             Specifies the commitish value that determines where the Git tag is created from. Can be any branch or
-            commit SHA. Unused if the Git tag already exists. Default: the repository’s default branch
+            commit SHA. Unused if the Git tag already exists. Default: the repository抯 default branch
             (usually master).
             </summary>
             <value>
@@ -25449,9 +25449,9 @@
             </summary>
             <remarks>
             This endpoint makes use of a Hypermedia relation to determine which URL to access. This endpoint is provided
-            by a URI template in the release’s API response. You need to use an HTTP client which supports SNI to make
+            by a URI template in the release抯 API response. You need to use an HTTP client which supports SNI to make
             calls to this endpoint. The asset data is expected in its raw binary form, rather than JSON. Everything else
-             about the endpoint is the same as the rest of the API. For example, you’ll still need to pass your
+             about the endpoint is the same as the rest of the API. For example, you抣l still need to pass your
              authentication to be able to upload an asset.
             </remarks>
         </member>
@@ -25523,7 +25523,7 @@
         <member name="P:Octokit.ReleaseUpdate.TargetCommitish">
             <summary>
             Specifies the commitish value that determines where the Git tag is created from. Can be any branch or
-            commit SHA. Unused if the Git tag already exists. Default: the repository’s default branch
+            commit SHA. Unused if the Git tag already exists. Default: the repository抯 default branch
             (usually master).
             </summary>
             <value>
@@ -26376,7 +26376,7 @@
         </member>
         <member name="P:Octokit.SearchRepositoriesRequest.Language">
             <summary>
-            Searches repositories based on the language they’re written in.
+            Searches repositories based on the language they抮e written in.
             https://help.github.com/articles/searching-repositories#languages
             </summary>
         </member>
