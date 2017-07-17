@@ -56,12 +56,13 @@
             this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkCommitCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.batchCreateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -192,7 +193,8 @@
             this.weeklyReportToolStripMenuItem1,
             this.dBRequestToolStripMenuItem,
             this.deliveryProgressReportToolStripMenuItem,
-            this.dailyWorkLogToolStripMenuItem});
+            this.dailyWorkLogToolStripMenuItem,
+            this.batchCreateSubTaskToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -288,20 +290,6 @@
             this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
             this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.versionToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // versionToolStripMenuItem
-            // 
-            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.versionToolStripMenuItem.Text = "Version";
-            // 
             // githubToolStripMenuItem
             // 
             this.githubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -317,6 +305,20 @@
             this.checkCommitCommentsToolStripMenuItem.Text = "Check Commit Comments";
             this.checkCommitCommentsToolStripMenuItem.Click += new System.EventHandler(this.checkCommitCommentsToolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.versionToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // versionToolStripMenuItem
+            // 
+            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.versionToolStripMenuItem.Text = "Version";
+            // 
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -331,6 +333,13 @@
             // 
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
+            // 
+            // batchCreateSubTaskToolStripMenuItem
+            // 
+            this.batchCreateSubTaskToolStripMenuItem.Name = "batchCreateSubTaskToolStripMenuItem";
+            this.batchCreateSubTaskToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.batchCreateSubTaskToolStripMenuItem.Text = "Batch Create Sub Task";
+            this.batchCreateSubTaskToolStripMenuItem.Click += new System.EventHandler(this.batchCreateSubTaskToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -389,6 +398,7 @@
         private System.Windows.Forms.ToolStripMenuItem dailyWorkLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem githubToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkCommitCommentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem batchCreateSubTaskToolStripMenuItem;
     }
 }
 

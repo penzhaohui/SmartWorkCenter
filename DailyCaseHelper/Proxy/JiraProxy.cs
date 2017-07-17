@@ -472,7 +472,7 @@ namespace com.smartwork.Proxy
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
 
             // http://www.cnblogs.com/polk6/p/5465088.html
-            string sql = "reporter in (\"Peter.peng@missionsky.com\") AND created >= " + start.ToString("yyyy-MM-dd") + " AND created < " + end.ToString("yyyy-MM-dd") + " ";
+            string sql = "issuetype not in (Task, Sub-task) AND reporter in (\"Peter.peng@missionsky.com\") AND created >= " + start.ToString("yyyy-MM-dd") + " AND created < " + end.ToString("yyyy-MM-dd") + " ";
             
             List<Issue> issueList = new List<Issue>();
             var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);

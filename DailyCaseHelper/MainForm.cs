@@ -270,5 +270,16 @@ namespace com.smartwork
             checkCommitCommentsOnGithubForm.MinimizeBox = false;
             checkCommitCommentsOnGithubForm.Show();
         }
+
+        private void batchCreateSubTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            BatchSubTaskManagementForm batchSubTaskManagementForm = new BatchSubTaskManagementForm();
+            batchSubTaskManagementForm.WindowState = FormWindowState.Maximized;
+            batchSubTaskManagementForm.MdiParent = this;
+            batchSubTaskManagementForm.MaximizeBox = false;
+            batchSubTaskManagementForm.MinimizeBox = false;
+            batchSubTaskManagementForm.Show();
+        }
     }
 }

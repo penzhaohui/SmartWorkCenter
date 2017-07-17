@@ -9,6 +9,5 @@ D:\SmartWorkCenter\Octokit\obj\Debug\Octokit.csprojResolveAssemblyReference.cach
 I:\SmartWorkCenter\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.XML
 I:\SmartWorkCenter\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.dll
 I:\SmartWorkCenter\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.pdb
-I:\SmartWorkCenter\SmartWorkCenter\Octokit\obj\Debug\Octokit.csprojResolveAssemblyReference.cache
 I:\SmartWorkCenter\SmartWorkCenter\Octokit\obj\Debug\Octokit.dll
 I:\SmartWorkCenter\SmartWorkCenter\Octokit\obj\Debug\Octokit.pdb
