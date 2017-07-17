@@ -50,6 +50,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ForceToolkitForNET.Fakes">
+      <HintPath>FakesAssemblies\ForceToolkitForNET.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,6 +93,12 @@
     </Compile>
     <Compile Include="CaseAnalysisReportForm.Designer.cs">
       <DependentUpon>CaseAnalysisReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckCommitCommentsOnGithubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckCommitCommentsOnGithubForm.Designer.cs">
+      <DependentUpon>CheckCommitCommentsOnGithubForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DailyCaseImportorFromEmail.cs">
       <SubType>Form</SubType>
@@ -221,6 +230,9 @@
     <EmbeddedResource Include="CaseAnalysisReportForm.resx">
       <DependentUpon>CaseAnalysisReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CheckCommitCommentsOnGithubForm.resx">
+      <DependentUpon>CheckCommitCommentsOnGithubForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DailyCaseImportorFromEmail.resx">
       <DependentUpon>DailyCaseImportorFromEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,7 +295,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Fakes Include="Fakes\ForceToolkitForNET.fakes" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -340,6 +351,10 @@
     <ProjectReference Include="..\ForceToolkitForNET\ForceToolkitForNET.csproj">
       <Project>{6b8131e1-ec47-4dee-8fcf-436f21c684d1}</Project>
       <Name>ForceToolkitForNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Octokit\Octokit.csproj">
+      <Project>{2939729a-cd23-4e4a-a01b-d3beb834e158}</Project>
+      <Name>Octokit</Name>
     </ProjectReference>
     <ProjectReference Include="..\TechTalk.JiraRestClient\TechTalk.JiraRestClient.csproj">
       <Project>{210529fa-454e-4c32-a2c8-353ecbd4da05}</Project>

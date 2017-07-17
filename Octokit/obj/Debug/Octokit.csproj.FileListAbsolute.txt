@@ -1,0 +1,8 @@
+D:\SmartWorkCenter\Octokit\bin\Debug\Octokit.dll
+D:\SmartWorkCenter\Octokit\bin\Debug\Octokit.pdb
+D:\SmartWorkCenter\Octokit\obj\Debug\Octokit.dll
+D:\SmartWorkCenter\Octokit\obj\Debug\Octokit.pdb
+D:\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.XML
+D:\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.dll
+D:\SmartWorkCenter\DailyCaseHelper\dlls\Octokit.pdb
+D:\SmartWorkCenter\Octokit\obj\Debug\Octokit.csprojResolveAssemblyReference.cache

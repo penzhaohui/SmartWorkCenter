@@ -67,9 +67,6 @@
         <member name="M:Salesforce.Force.Fakes.ShimForceClient.UserInfoOf1String``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.String,System.Threading.Tasks.Task{``0}})">
             <summary>Sets the shim of ForceClient.UserInfo(String url)</summary>
         </member>
-        <member name="M:Salesforce.Force.Fakes.ShimForceClient._QueryByIdAsyncb__4Of1PropertyInfo``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Reflection.PropertyInfo,System.String})">
-            <summary>Sets the shim of ForceClient.&lt;QueryByIdAsync&gt;b__4(PropertyInfo p)</summary>
-        </member>
         <member name="P:Salesforce.Force.Fakes.ShimForceClient.Behavior">
             <summary>Assigns the behavior for all methods of the shimmed type</summary>
         </member>

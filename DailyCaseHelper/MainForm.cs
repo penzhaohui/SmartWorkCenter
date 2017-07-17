@@ -259,5 +259,16 @@ namespace com.smartwork
             dailyWrokLogForm.MinimizeBox = false;
             dailyWrokLogForm.Show();
         }
+
+        private void checkCommitCommentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            CheckCommitCommentsOnGithubForm checkCommitCommentsOnGithubForm = new CheckCommitCommentsOnGithubForm();
+            checkCommitCommentsOnGithubForm.WindowState = FormWindowState.Maximized;
+            checkCommitCommentsOnGithubForm.MdiParent = this;
+            checkCommitCommentsOnGithubForm.MaximizeBox = false;
+            checkCommitCommentsOnGithubForm.MinimizeBox = false;
+            checkCommitCommentsOnGithubForm.Show();
+        }
     }
 }

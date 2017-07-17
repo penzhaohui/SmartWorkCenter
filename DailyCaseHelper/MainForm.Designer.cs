@@ -55,11 +55,13 @@
             this.weeklyReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkCommitCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +72,7 @@
             this.menuSetting,
             this.reportToolStripMenuItem,
             this.toolsToolStripMenuItem,
+            this.githubToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -278,6 +281,13 @@
             this.deliveryProgressReportToolStripMenuItem.Text = "Delivery Progress Report";
             this.deliveryProgressReportToolStripMenuItem.Click += new System.EventHandler(this.deliveryProgressReportToolStripMenuItem_Click);
             // 
+            // dailyWorkLogToolStripMenuItem
+            // 
+            this.dailyWorkLogToolStripMenuItem.Name = "dailyWorkLogToolStripMenuItem";
+            this.dailyWorkLogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
+            this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -291,6 +301,21 @@
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.versionToolStripMenuItem.Text = "Version";
+            // 
+            // githubToolStripMenuItem
+            // 
+            this.githubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkCommitCommentsToolStripMenuItem});
+            this.githubToolStripMenuItem.Name = "githubToolStripMenuItem";
+            this.githubToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.githubToolStripMenuItem.Text = "Github";
+            // 
+            // checkCommitCommentsToolStripMenuItem
+            // 
+            this.checkCommitCommentsToolStripMenuItem.Name = "checkCommitCommentsToolStripMenuItem";
+            this.checkCommitCommentsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.checkCommitCommentsToolStripMenuItem.Text = "Check Commit Comments";
+            this.checkCommitCommentsToolStripMenuItem.Click += new System.EventHandler(this.checkCommitCommentsToolStripMenuItem_Click);
             // 
             // statusBar
             // 
@@ -306,13 +331,6 @@
             // 
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
-            // 
-            // dailyWorkLogToolStripMenuItem
-            // 
-            this.dailyWorkLogToolStripMenuItem.Name = "dailyWorkLogToolStripMenuItem";
-            this.dailyWorkLogToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
-            this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -369,6 +387,8 @@
         private System.Windows.Forms.ToolStripMenuItem dBRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deliveryProgressReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dailyWorkLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem githubToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkCommitCommentsToolStripMenuItem;
     }
 }
 
