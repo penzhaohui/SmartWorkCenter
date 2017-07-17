@@ -152,9 +152,12 @@ namespace TechTalk.JiraRestClient
                 issueData.Add("project", new { key = projectKey });
                 issueData.Add("parent", new { key = parent });
                 issueData.Add("issuetype", new { id = 5 });
+                //issueData.Add("issuetype", new { name = "Sub-task" });
                 issueData.Add("summary", summary);                
                 issueData.Add("description", description);
                 issueData.Add("customfield_11506", 0);
+
+                request.AddBody(new { fields = issueData });
 
                 var response = ExecuteRequest(request);
                 AssertStatus(response, HttpStatusCode.Created);

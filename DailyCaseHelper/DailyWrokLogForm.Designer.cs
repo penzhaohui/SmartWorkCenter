@@ -65,7 +65,7 @@
             // 
             // btnListWorkLogList
             // 
-            this.btnListWorkLogList.Location = new System.Drawing.Point(248, 634);
+            this.btnListWorkLogList.Location = new System.Drawing.Point(889, 12);
             this.btnListWorkLogList.Name = "btnListWorkLogList";
             this.btnListWorkLogList.Size = new System.Drawing.Size(218, 61);
             this.btnListWorkLogList.TabIndex = 0;
@@ -75,14 +75,14 @@
             // 
             // dtpTo
             // 
-            this.dtpTo.Location = new System.Drawing.Point(12, 675);
+            this.dtpTo.Location = new System.Drawing.Point(672, 53);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(211, 20);
             this.dtpTo.TabIndex = 3;
             // 
             // dtpFrom
             // 
-            this.dtpFrom.Location = new System.Drawing.Point(12, 634);
+            this.dtpFrom.Location = new System.Drawing.Point(672, 12);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(211, 20);
             this.dtpFrom.TabIndex = 4;
@@ -336,7 +336,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 726);
+            this.ClientSize = new System.Drawing.Size(1137, 726);
             this.Controls.Add(this.txtAssignee);
             this.Controls.Add(this.txtAssigneeQA);
             this.Controls.Add(this.txtReviewReleaseNotesAssignee);
