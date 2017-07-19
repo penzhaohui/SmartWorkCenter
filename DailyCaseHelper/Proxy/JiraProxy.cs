@@ -203,7 +203,7 @@ namespace com.smartwork.Proxy
         public static async Task<List<Issue>> GetIssueListByStatus(string status)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
-            string sql = "project = ENGSUPP AND status = \"" + status + "\" AND reporter in (\"rleung@accela.com\")";
+            string sql = "project = ENGSUPP AND issuetype not in (subTaskIssueTypes()) AND status = \"" + status + "\" AND reporter in (\"peter.peng@missionsky.com\")";
 
             List<Issue> issueList = new List<Issue>();
             var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);

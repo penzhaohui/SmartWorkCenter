@@ -19,6 +19,8 @@ namespace com.smartwork
 
         private void InitSubTaskTemplates()
         {
+            SubTaskTemplates.Clear();
+
             SubTaskTemplates.Add("Review and Recreate(QA)", 
 @"*{color:red}Notice{color}*: 
 * {color:red}Just log QA effort spent on reviewing and recreating the assicaited production case{color}

@@ -48,7 +48,7 @@ namespace com.smartwork
             // 
             this.btnCheck.Enabled = false;
 
-            string strSFID = this.txtSFID.Text;
+            string strSFID = this.txtSFID.Text.Trim();
 
             var GetCaseInfoByID = SalesforceProxy.GetCaseInfoByID(strSFID);
             var caseInfo = await GetCaseInfoByID;
@@ -199,7 +199,7 @@ namespace com.smartwork
 
             string summary = "Request one fresh database dump for [" + customerInfo + "] - " + sfid;
             string description1 = @"
-Hi [~vzou@accela.com],
+Hi [~rleung@accela.com],
                               
 Please kindly help to get one fresh database dump pings to {0} for <<{1}>> which is Accela hosted, because we could not reproduce the problem on our local site. The problem might exists on their latest {2} enviroment.
 
@@ -220,7 +220,7 @@ After the fresh database dump is ready, please put it under Accela ftp server. T
 
 Thanks you very much!
 
-CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{11}]";
+CC [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{11}]";
 
             description1 = String.Format(description1,
                                             siteUr,
@@ -258,7 +258,14 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
 
                 this.txtDatabaseID.Text = taskInfo.key;
                 MessageBox.Show("The database request ticket already exists, please refer to " + taskInfo.key);
-                showCaseComment(taskInfo.key);                
+                showCaseComment(engsuppKey, taskInfo.key);
+
+                IssueRef issue = new IssueRef();
+                issue.key = engsuppKey;
+                issue.id = engsuppKey;
+
+                JiraProxy.CreateComment(issue, String.Format("One jira ticket is already submitted to Accela DBA for the most recent database dump, because the reported issue might be data-related based on the research. The ticket key is {0}.  Thank you for your patience", taskInfo.key));
+     
             }
             else
             {
@@ -274,13 +281,13 @@ CC [~vzou@accela.com] [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@m
                 issue.fields.Priority.name = priority;
 
                 JiraProxy.UpdateDatabaseTask(issue);
-                showCaseComment(issue.key);
+                showCaseComment(engsuppKey, issue.key);
             }            
            
             this.btnRequest.Enabled = true;
         }
 
-        private void showCaseComment(string dbKey)
+        private void showCaseComment(string jiraKey, string dbKey)
         {
             string sfComment = @"
 Hi XXXXX,
@@ -296,6 +303,7 @@ Additional Information:
 XXXXXXX";
 
             sfComment = String.Format(sfComment, dbKey);
+
             this.txtOutputComment.Text = sfComment;
         }
 
