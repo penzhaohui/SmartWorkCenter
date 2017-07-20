@@ -1,0 +1,16 @@
+F:\hpop-master\hpop-master\OpenPopExamples\bin\Debug\OpenPopExamples.dll
+F:\hpop-master\hpop-master\OpenPopExamples\bin\Debug\OpenPopExamples.pdb
+F:\hpop-master\hpop-master\OpenPopExamples\bin\Debug\OpenPop.dll
+F:\hpop-master\hpop-master\OpenPopExamples\bin\Debug\OpenPop.pdb
+F:\hpop-master\hpop-master\OpenPopExamples\bin\Debug\OpenPop.xml
+F:\hpop-master\hpop-master\OpenPopExamples\obj\Debug\OpenPopExamples.csprojResolveAssemblyReference.cache
+F:\hpop-master\hpop-master\OpenPopExamples\obj\Debug\OpenPopExamples.dll
+F:\hpop-master\hpop-master\OpenPopExamples\obj\Debug\OpenPopExamples.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\bin\Debug\OpenPopExamples.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\bin\Debug\OpenPopExamples.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\bin\Debug\OpenPop.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\bin\Debug\OpenPop.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\bin\Debug\OpenPop.xml
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\obj\Debug\OpenPopExamples.csprojResolveAssemblyReference.cache
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\obj\Debug\OpenPopExamples.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopExamples\obj\Debug\OpenPopExamples.pdb

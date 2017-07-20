@@ -1,0 +1,20 @@
+F:\hpop-master\hpop-master\OpenPOPTest\bin\Debug\OpenPop.NET Test Application.exe
+F:\hpop-master\hpop-master\OpenPOPTest\bin\Debug\OpenPop.NET Test Application.pdb
+F:\hpop-master\hpop-master\OpenPOPTest\bin\Debug\OpenPop.dll
+F:\hpop-master\hpop-master\OpenPOPTest\bin\Debug\OpenPop.pdb
+F:\hpop-master\hpop-master\OpenPOPTest\bin\Debug\OpenPop.xml
+F:\hpop-master\hpop-master\OpenPOPTest\obj\Debug\OpenPopTest.csprojResolveAssemblyReference.cache
+F:\hpop-master\hpop-master\OpenPOPTest\obj\Debug\OpenPop.TestApplication.TestForm.resources
+F:\hpop-master\hpop-master\OpenPOPTest\obj\Debug\OpenPopTest.csproj.GenerateResource.Cache
+F:\hpop-master\hpop-master\OpenPOPTest\obj\Debug\OpenPop.NET Test Application.exe
+F:\hpop-master\hpop-master\OpenPOPTest\obj\Debug\OpenPop.NET Test Application.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.NET Test Application.exe
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.NET Test Application.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.xml
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csprojResolveAssemblyReference.cache
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.TestApplication.TestForm.resources
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csproj.GenerateResource.Cache
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.exe
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.pdb

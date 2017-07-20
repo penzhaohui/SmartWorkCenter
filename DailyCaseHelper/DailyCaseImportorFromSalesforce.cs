@@ -1501,6 +1501,12 @@ namespace com.smartwork
                         && !"Closed - Knowledge".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase)
                         && !"SPAM Closed".Equals(sfStatus, StringComparison.InvariantCultureIgnoreCase))
                     {
+                        //IssueRef issue = new IssueRef();
+                        //issue.key = jiraKey;
+                        //issue.id = jiraKey;
+
+                        //JiraProxy.CreateComment(issue, "The corresponding case in salesforce is already closed, please also close this jira ticket.");
+
                         continue;
                     }
 

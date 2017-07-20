@@ -1,0 +1,2 @@
+F:\hpop-master\hpop-master\OpenPOPUnitTests\obj\Debug\OpenPopUnitTests.csprojResolveAssemblyReference.cache
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopUnitTests\obj\Debug\OpenPopUnitTests.csprojResolveAssemblyReference.cache

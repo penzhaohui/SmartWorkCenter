@@ -1,0 +1,11 @@
+F:\hpop-master\hpop-master\OpenPOP\bin\Debug\OpenPop.xml
+F:\hpop-master\hpop-master\OpenPOP\bin\Debug\OpenPop.dll
+F:\hpop-master\hpop-master\OpenPOP\bin\Debug\OpenPop.pdb
+F:\hpop-master\hpop-master\OpenPOP\obj\Debug\OpenPop.dll
+F:\hpop-master\hpop-master\OpenPOP\obj\Debug\OpenPop.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.xml
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.pdb
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.csprojResolveAssemblyReference.cache
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.dll
+I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.pdb
