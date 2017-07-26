@@ -281,5 +281,21 @@ namespace com.smartwork
             batchSubTaskManagementForm.MinimizeBox = false;
             batchSubTaskManagementForm.Show();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scanTestResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            ScanTestResultForm scanTestResultForm = new ScanTestResultForm();
+            scanTestResultForm.WindowState = FormWindowState.Maximized;
+            scanTestResultForm.MdiParent = this;
+            scanTestResultForm.MaximizeBox = false;
+            scanTestResultForm.MinimizeBox = false;
+            scanTestResultForm.Show();
+        }
     }
 }

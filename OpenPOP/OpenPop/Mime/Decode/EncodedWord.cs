@@ -4,25 +4,25 @@ using System.Text.RegularExpressions;
 
 namespace OpenPop.Mime.Decode
 {
-	/// <summary>
-	/// Utility class for dealing with encoded word strings<br/>
-	/// <br/>
-	/// EncodedWord encoded strings are only in ASCII, but can embed information
-	/// about characters in other character sets.<br/>
-	/// <br/>
-	/// It is done by specifying the character set, an encoding that maps from ASCII to
-	/// the correct bytes and the actual encoded string.<br/>
-	/// <br/>
-	/// It is specified in a format that is best summarized by a BNF:<br/>
-	/// <c>"=?" character_set "?" encoding "?" encoded-text "?="</c><br/>
-	/// </summary>
-	/// <example>
-	/// <c>=?ISO-8859-1?Q?=2D?=</c>
-	/// Here <c>ISO-8859-1</c> is the character set.<br/>
-	/// <c>Q</c> is the encoding method (quoted-printable). <c>B</c> is also supported (Base 64).<br/>
-	/// The encoded text is the <c>=2D</c> part which is decoded to a space.
-	/// </example>
-	internal static class EncodedWord
+    /// <summary>
+    /// Utility class for dealing with encoded word strings<br/>
+    /// <br/>
+    /// EncodedWord encoded strings are only in ASCII, but can embed information
+    /// about characters in other character sets.<br/>
+    /// <br/>
+    /// It is done by specifying the character set, an encoding that maps from ASCII to
+    /// the correct bytes and the actual encoded string.<br/>
+    /// <br/>
+    /// It is specified in a format that is best summarized by a BNF:<br/>
+    /// <c>"=?" character_set "?" encoding "?" encoded-text "?="</c><br/>
+    /// </summary>
+    /// <example>
+    /// <c>=?ISO-8859-1?Q?=2D?=</c>
+    /// Here <c>ISO-8859-1</c> is the character set.<br/>
+    /// <c>Q</c> is the encoding method (quoted-printable). <c>B</c> is also supported (Base 64).<br/>
+    /// The encoded text is the <c>=2D</c> part which is decoded to a space.
+    /// </example>
+    public static class EncodedWord
 	{
 		/// <summary>
 		/// Decode text that is encoded with the <see cref="EncodedWord"/> encoding.<br/>

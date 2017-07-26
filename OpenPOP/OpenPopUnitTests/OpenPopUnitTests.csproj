@@ -68,13 +68,13 @@
     <Compile Include="Shared\StreamUtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenPOP\OpenPop.csproj">
-      <Project>{75B3E0DF-61C3-4643-AB47-DBE1CFE3D303}</Project>
-      <Name>OpenPop</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\OpenPop\OpenPop.csproj">
+      <Project>{75b3e0df-61c3-4643-ab47-dbe1cfe3d303}</Project>
+      <Name>OpenPop %28OpenPop\OpenPop%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

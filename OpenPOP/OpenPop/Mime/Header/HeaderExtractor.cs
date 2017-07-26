@@ -11,7 +11,7 @@ namespace OpenPop.Mime.Header
 	/// Utility class that divides a message into a body and a header.<br/>
 	/// The header is then parsed to a strongly typed <see cref="MessageHeader"/> object.
 	///</summary>
-	internal static class HeaderExtractor
+	public static class HeaderExtractor
 	{
 		/// <summary>
 		/// Find the end of the header section in a byte array.<br/>

@@ -45,9 +45,9 @@
     <Compile Include="Examples.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenPOP\OpenPop.csproj">
+    <ProjectReference Include="..\OpenPop\OpenPop.csproj">
       <Project>{75B3E0DF-61C3-4643-AB47-DBE1CFE3D303}</Project>
-      <Name>OpenPop</Name>
+      <Name>OpenPop %28OpenPop\OpenPop%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

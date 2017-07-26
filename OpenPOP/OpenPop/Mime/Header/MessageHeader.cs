@@ -238,7 +238,7 @@ namespace OpenPop.Mime.Header
 	    /// If it is not null, the handler handles the error on the specific header without stopping the message parsing process</param>
 	    /// <returns>A valid MessageHeader object</returns>
 	    /// <exception cref="ArgumentNullException">If <paramref name="headers"/> is <see langword="null"/></exception>
-	    internal MessageHeader(NameValueCollection headers, IParsingErrorHandler parsingErrorHandler = null)
+	    public MessageHeader(NameValueCollection headers, IParsingErrorHandler parsingErrorHandler = null)
 		{
 		    _parsingErrorHandler = parsingErrorHandler;
 		    if (headers == null)

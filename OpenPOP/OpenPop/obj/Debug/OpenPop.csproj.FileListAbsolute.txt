@@ -9,3 +9,8 @@ I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.pdb
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.csprojResolveAssemblyReference.cache
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.dll
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.pdb
+D:\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.xml
+D:\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.dll
+D:\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.pdb
+D:\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.dll
+D:\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.pdb

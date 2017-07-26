@@ -10,7 +10,7 @@ namespace OpenPop.Mime.Decode
 	/// This is a robust implementation of a Quoted-Printable decoder defined in <a href="http://tools.ietf.org/html/rfc2045">RFC 2045</a> and <a href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>.<br/>
 	/// Every measurement has been taken to conform to the RFC.
 	/// </summary>
-	internal static class QuotedPrintable
+	public static class QuotedPrintable
 	{
 		/// <summary>
 		/// Decodes a Quoted-Printable string according to <a href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>.<br/>

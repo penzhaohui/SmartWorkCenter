@@ -93,8 +93,8 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\OpenPOP\OpenPop.csproj">
-      <Name>OpenPop</Name>
+    <ProjectReference Include="..\OpenPop\OpenPop.csproj">
+      <Name>OpenPop %28OpenPop\OpenPop%29</Name>
       <Project>{75B3E0DF-61C3-4643-AB47-DBE1CFE3D303}</Project>
       <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>

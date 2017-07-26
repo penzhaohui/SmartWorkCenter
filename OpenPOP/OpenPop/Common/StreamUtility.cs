@@ -7,7 +7,7 @@ namespace OpenPop.Common
 	/// <summary>
 	/// Utility to help reading bytes and strings of a <see cref="Stream"/>
 	/// </summary>
-	internal static class StreamUtility
+	public static class StreamUtility
 	{
 		/// <summary>
 		/// Read a line from the stream.

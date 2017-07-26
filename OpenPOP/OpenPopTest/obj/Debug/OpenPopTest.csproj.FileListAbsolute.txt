@@ -18,3 +18,13 @@ I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.TestApp
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csproj.GenerateResource.Cache
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.exe
 I:\SmartWorkCenter\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.pdb
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.NET Test Application.exe
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.NET Test Application.pdb
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.dll
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.pdb
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\bin\Debug\OpenPop.xml
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csprojResolveAssemblyReference.cache
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.TestApplication.TestForm.resources
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csproj.GenerateResource.Cache
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.exe
+D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.pdb

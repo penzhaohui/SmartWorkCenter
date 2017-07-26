@@ -36,16 +36,8 @@
             this.importCaseFromExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCaseFromEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.weeklyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monthlyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.personlyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AADevCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syncJiraIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyCaseToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FTPMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dbManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mergeAttachmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,13 +48,21 @@
             this.dBRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.batchCreateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkCommitCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.batchCreateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testrailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesforceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyCaseToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.scanTestResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -71,9 +71,10 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSetting,
-            this.reportToolStripMenuItem,
+            this.salesforceToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.githubToolStripMenuItem,
+            this.testrailToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -95,14 +96,14 @@
             // menuItemDatabaseConnection
             // 
             this.menuItemDatabaseConnection.Name = "menuItemDatabaseConnection";
-            this.menuItemDatabaseConnection.Size = new System.Drawing.Size(143, 22);
+            this.menuItemDatabaseConnection.Size = new System.Drawing.Size(152, 22);
             this.menuItemDatabaseConnection.Text = "Database";
             this.menuItemDatabaseConnection.Click += new System.EventHandler(this.menuItemDatabaseConnection_Click);
             // 
             // menuItemEmailSever
             // 
             this.menuItemEmailSever.Name = "menuItemEmailSever";
-            this.menuItemEmailSever.Size = new System.Drawing.Size(143, 22);
+            this.menuItemEmailSever.Size = new System.Drawing.Size(152, 22);
             this.menuItemEmailSever.Text = "Email Setting";
             this.menuItemEmailSever.Click += new System.EventHandler(this.menuItemEmailSever_Click);
             // 
@@ -112,7 +113,7 @@
             this.importCaseFromExcelToolStripMenuItem,
             this.importCaseFromEmailToolStripMenuItem});
             this.importCaseToolStripMenuItem.Name = "importCaseToolStripMenuItem";
-            this.importCaseToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.importCaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importCaseToolStripMenuItem.Text = "Import Case";
             // 
             // importCaseFromExcelToolStripMenuItem
@@ -132,56 +133,13 @@
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(143, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(152, 22);
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dailyReportToolStripMenuItem,
-            this.weeklyReportToolStripMenuItem,
-            this.monthlyReportToolStripMenuItem,
-            this.personlyReportToolStripMenuItem,
-            this.productReportToolStripMenuItem});
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.reportToolStripMenuItem.Text = "Report";
-            // 
-            // dailyReportToolStripMenuItem
-            // 
-            this.dailyReportToolStripMenuItem.Name = "dailyReportToolStripMenuItem";
-            this.dailyReportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.dailyReportToolStripMenuItem.Text = "Daily Report";
-            // 
-            // weeklyReportToolStripMenuItem
-            // 
-            this.weeklyReportToolStripMenuItem.Name = "weeklyReportToolStripMenuItem";
-            this.weeklyReportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.weeklyReportToolStripMenuItem.Text = "Weekly Report";
-            // 
-            // monthlyReportToolStripMenuItem
-            // 
-            this.monthlyReportToolStripMenuItem.Name = "monthlyReportToolStripMenuItem";
-            this.monthlyReportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.monthlyReportToolStripMenuItem.Text = "Monthly Report";
-            // 
-            // personlyReportToolStripMenuItem
-            // 
-            this.personlyReportToolStripMenuItem.Name = "personlyReportToolStripMenuItem";
-            this.personlyReportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.personlyReportToolStripMenuItem.Text = "Individual  Report";
-            // 
-            // productReportToolStripMenuItem
-            // 
-            this.productReportToolStripMenuItem.Name = "productReportToolStripMenuItem";
-            this.productReportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.productReportToolStripMenuItem.Text = "Product Report";
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AADevCheckerToolStripMenuItem,
             this.syncJiraIssueToolStripMenuItem,
             this.dailyCaseToolToolStripMenuItem,
             this.FTPMonitorToolStripMenuItem,
@@ -196,15 +154,8 @@
             this.dailyWorkLogToolStripMenuItem,
             this.batchCreateSubTaskToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // AADevCheckerToolStripMenuItem
-            // 
-            this.AADevCheckerToolStripMenuItem.Name = "AADevCheckerToolStripMenuItem";
-            this.AADevCheckerToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.AADevCheckerToolStripMenuItem.Text = "AA Dev";
-            this.AADevCheckerToolStripMenuItem.Click += new System.EventHandler(this.AADevCheckerToolStripMenuItem_Click);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.toolsToolStripMenuItem.Text = "Jira";
             // 
             // syncJiraIssueToolStripMenuItem
             // 
@@ -212,13 +163,6 @@
             this.syncJiraIssueToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.syncJiraIssueToolStripMenuItem.Text = "Sync JIRA Issue";
             this.syncJiraIssueToolStripMenuItem.Click += new System.EventHandler(this.syncJiraIssueToolStripMenuItem_Click);
-            // 
-            // dailyCaseToolToolStripMenuItem
-            // 
-            this.dailyCaseToolToolStripMenuItem.Name = "dailyCaseToolToolStripMenuItem";
-            this.dailyCaseToolToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.dailyCaseToolToolStripMenuItem.Text = "Daily Case Tool";
-            this.dailyCaseToolToolStripMenuItem.Click += new System.EventHandler(this.dailyCaseToolToolStripMenuItem_Click);
             // 
             // FTPMonitorToolStripMenuItem
             // 
@@ -290,6 +234,13 @@
             this.dailyWorkLogToolStripMenuItem.Text = "Daily Work Log";
             this.dailyWorkLogToolStripMenuItem.Click += new System.EventHandler(this.dailyWorkLogToolStripMenuItem_Click);
             // 
+            // batchCreateSubTaskToolStripMenuItem
+            // 
+            this.batchCreateSubTaskToolStripMenuItem.Name = "batchCreateSubTaskToolStripMenuItem";
+            this.batchCreateSubTaskToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.batchCreateSubTaskToolStripMenuItem.Text = "Batch Create Sub Task";
+            this.batchCreateSubTaskToolStripMenuItem.Click += new System.EventHandler(this.batchCreateSubTaskToolStripMenuItem_Click);
+            // 
             // githubToolStripMenuItem
             // 
             this.githubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -334,12 +285,63 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // batchCreateSubTaskToolStripMenuItem
+            // testrailToolStripMenuItem
             // 
-            this.batchCreateSubTaskToolStripMenuItem.Name = "batchCreateSubTaskToolStripMenuItem";
-            this.batchCreateSubTaskToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.batchCreateSubTaskToolStripMenuItem.Text = "Batch Create Sub Task";
-            this.batchCreateSubTaskToolStripMenuItem.Click += new System.EventHandler(this.batchCreateSubTaskToolStripMenuItem_Click);
+            this.testrailToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scanTestResultToolStripMenuItem});
+            this.testrailToolStripMenuItem.Name = "testrailToolStripMenuItem";
+            this.testrailToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.testrailToolStripMenuItem.Text = "Testrail";
+            // 
+            // salesforceToolStripMenuItem
+            // 
+            this.salesforceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem4});
+            this.salesforceToolStripMenuItem.Name = "salesforceToolStripMenuItem";
+            this.salesforceToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.salesforceToolStripMenuItem.Text = "Salesforce";
+            // 
+            // dailyCaseToolToolStripMenuItem
+            // 
+            this.dailyCaseToolToolStripMenuItem.Name = "dailyCaseToolToolStripMenuItem";
+            this.dailyCaseToolToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.dailyCaseToolToolStripMenuItem.Text = "Daily Case Tool";
+            this.dailyCaseToolToolStripMenuItem.Click += new System.EventHandler(this.dailyCaseToolToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 22);
+            this.toolStripMenuItem2.Text = "Daily Case Tool";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem1.Text = "Delivery Progress Report";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem3.Text = "Weekly Report";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem4.Text = "FTP Monitor";
+            // 
+            // scanTestResultToolStripMenuItem
+            // 
+            this.scanTestResultToolStripMenuItem.Name = "scanTestResultToolStripMenuItem";
+            this.scanTestResultToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.scanTestResultToolStripMenuItem.Text = "Scan Test Result";
+            this.scanTestResultToolStripMenuItem.Click += new System.EventHandler(this.scanTestResultToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -369,12 +371,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemDatabaseConnection;
         private System.Windows.Forms.ToolStripMenuItem menuItemEmailSever;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
-        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dailyReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem weeklyReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem monthlyReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem personlyReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem productReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem versionToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusBar;
@@ -383,9 +379,7 @@
         private System.Windows.Forms.ToolStripMenuItem importCaseFromExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importCaseFromEmailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AADevCheckerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem syncJiraIssueToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dailyCaseToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FTPMonitorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dbManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeAttachmentToolStripMenuItem;
@@ -399,6 +393,14 @@
         private System.Windows.Forms.ToolStripMenuItem githubToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkCommitCommentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchCreateSubTaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesforceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem dailyCaseToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testrailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem scanTestResultToolStripMenuItem;
     }
 }
 
