@@ -887,23 +887,23 @@ namespace com.smartwork
                             }
                             */
 
-                            if (!String.IsNullOrEmpty(bzid) && !issue.fields.labels.Contains("ENG_BUG_BUCKET"))
+                            if (!String.IsNullOrEmpty(bzid) && !issue.fields.labels.Contains("ENG_BUG_BACKLOG"))
                             {
                                 if ("Development in Progress" == jiraStstus || "Development in Progress" == nextJiraStatus)
                                 {
-                                    issue.fields.labels.Add("ENG_BUG_BUCKET");
+                                    issue.fields.labels.Add("ENG_BUG_BACKLOG");
                                 }
 
                                 if ("Close" == jiraStstus)
                                 {
-                                    issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                                    issue.fields.labels.Remove("ENG_BUG_BACKLOG");
                                 }
                             }
 
                             // If it is already schedued in one version, remove 2 labels such as ENG_BUG_BUCKET and ENG_BUG_BACKLOG
                             if (fixVersions != null && fixVersions.Count > 0)
                             {
-                                issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                                //issue.fields.labels.Remove("ENG_BUG_BUCKET");
                                 issue.fields.labels.Remove("ENG_BUG_BACKLOG");
                             }
 
@@ -911,8 +911,18 @@ namespace com.smartwork
                             if ("Resolved".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase)
                                 || "Closed".Equals(jiraStstus, StringComparison.InvariantCultureIgnoreCase))
                             {
-                                issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                                //issue.fields.labels.Remove("ENG_BUG_BUCKET");
                                 issue.fields.labels.Remove("ENG_BUG_BACKLOG");
+                            }
+
+                            if (issue.fields.labels.Contains("ENG_BUG_BUCKET"))
+                            {
+                                issue.fields.labels.Remove("ENG_BUG_BUCKET");
+                            }
+
+                            if (issue.fields.labels.Contains("BUG_BUCKET"))
+                            {
+                                issue.fields.labels.Remove("BUG_BUCKET");
                             }
 
                             if (hotCase && !issue.fields.labels.Contains("HotCase"))

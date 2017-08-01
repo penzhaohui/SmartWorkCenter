@@ -18,3 +18,8 @@ D:\SmartWorkCenter\Testrail\DailyCaseHelper\dlls\TestRail.pdb
 D:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.dll
 D:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.pdb
 D:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.xml
+F:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.dll
+F:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.pdb
+F:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.xml
+F:\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.dll
+F:\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.pdb

@@ -249,16 +249,16 @@ Following the below steps if you work on this sub task
         }
 
         private async void CreateSubTask(SubTaskSuite SubTaskSuite, SubTaskOption SubTaskOption)
-        {
-            if ("Resolved".Equals(SubTaskSuite.Status, StringComparison.InvariantCultureIgnoreCase)
-                || "Closed".Equals(SubTaskSuite.Status, StringComparison.InvariantCultureIgnoreCase))
-            {
-                return;
-            }
-
+        { 
             if ("Case".Equals(SubTaskSuite.IssueType, StringComparison.InvariantCultureIgnoreCase)
                 && !String.IsNullOrEmpty(SubTaskSuite.SFID))
             {
+                if ("Resolved".Equals(SubTaskSuite.Status, StringComparison.InvariantCultureIgnoreCase)
+                    || "Closed".Equals(SubTaskSuite.Status, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return;
+                }
+
                 if (SubTaskOption.ReviewAndRecreateByQA == true
                     && String.IsNullOrEmpty(SubTaskSuite.ReviewAndRecreateByQA))
                 {
@@ -280,6 +280,11 @@ Following the below steps if you work on this sub task
 
             if ("Bug".Equals(SubTaskSuite.IssueType, StringComparison.InvariantCultureIgnoreCase))
             {
+                if ("Closed".Equals(SubTaskSuite.Status, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return;
+                }
+
                 if (SubTaskOption.CodeFixByDev == true
                     && String.IsNullOrEmpty(SubTaskSuite.CodeFixByDev))
                 {
