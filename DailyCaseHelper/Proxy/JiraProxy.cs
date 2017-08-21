@@ -166,6 +166,39 @@ namespace com.smartwork.Proxy
 
             return issueList;
         }
+		
+		public static async Task<List<Issue>> GetUpdatedIssueListByAssigneeList(DateTime from, DateTime to, List<string> assignees)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+            string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " ";
+            if (assignees.Count > 0)
+            {
+                sql += " AND assignee in (";
+                bool isFirst = true;
+                foreach (var assignee in assignees)
+                {
+                    if (isFirst)
+                    {
+                        sql += " \"" + assignee + "\" ";
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        sql += " ,\"" + assignee + "\" ";
+                    }
+                }
+                sql += " )";
+            }
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
 
         public static async Task<Issue> LoadIssue(IssueRef issue)
         {

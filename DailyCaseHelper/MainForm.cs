@@ -252,7 +252,7 @@ namespace com.smartwork
         private void dailyWorkLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
-            DailyWrokLogForm dailyWrokLogForm = new DailyWrokLogForm();
+            DailyWorkLogForm1 dailyWrokLogForm = new DailyWorkLogForm1();
             dailyWrokLogForm.WindowState = FormWindowState.Maximized;
             dailyWrokLogForm.MdiParent = this;
             dailyWrokLogForm.MaximizeBox = false;
