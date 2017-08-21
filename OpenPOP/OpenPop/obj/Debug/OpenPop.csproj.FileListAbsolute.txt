@@ -14,3 +14,9 @@ D:\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.dll
 D:\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.pdb
 D:\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.dll
 D:\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.pdb
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.xml
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.dll
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\bin\Debug\OpenPop.pdb
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.dll
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.pdb
+F:\software\SmartWorkCenter\OpenPOP\OpenPop\obj\Debug\OpenPop.csprojResolveAssemblyReference.cache

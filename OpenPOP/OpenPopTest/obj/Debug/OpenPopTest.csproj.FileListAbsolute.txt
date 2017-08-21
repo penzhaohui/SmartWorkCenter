@@ -28,3 +28,5 @@ D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.TestApplication.TestFor
 D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPopTest.csproj.GenerateResource.Cache
 D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.exe
 D:\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.pdb
+F:\software\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.exe
+F:\software\SmartWorkCenter\OpenPOP\OpenPopTest\obj\Debug\OpenPop.NET Test Application.pdb

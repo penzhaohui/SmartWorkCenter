@@ -123,6 +123,7 @@ namespace com.smartwork.Proxy
                             and product__c != 'KVS Standard'
                             and product__c != 'KVS Enterprise' 
                             and product__c != 'PublicStuff' 
+                            and product__c != 'Citizen Relationship Management' 
                             and product__c != 'Support Access' ";
 
             if (isOnlyEngQA)

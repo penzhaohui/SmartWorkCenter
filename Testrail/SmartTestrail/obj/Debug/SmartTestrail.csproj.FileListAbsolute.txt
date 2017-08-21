@@ -38,3 +38,16 @@ F:\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.Properties.Res
 F:\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.csproj.GenerateResource.Cache
 F:\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.exe
 F:\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.pdb
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\SmartTestrail.exe.config
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\SmartTestrail.exe
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\SmartTestrail.pdb
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\Newtonsoft.Json.dll
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\TestRail.dll
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\TestRail.pdb
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\bin\Debug\TestRail.xml
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.csprojResolveAssemblyReference.cache
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.TestrailClient.resources
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.Properties.Resources.resources
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.csproj.GenerateResource.Cache
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.exe
+F:\software\SmartWorkCenter\Testrail\SmartTestrail\obj\Debug\SmartTestrail.pdb

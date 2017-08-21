@@ -31,7 +31,7 @@ namespace com.smartwork
             from = DateTime.Today.AddDays(-1);
             to = DateTime.Today.AddDays(1);
 
-            var GetUpdatedIssueListByAssignee = JiraProxy.GetUpdatedIssueListByAssignee(from, to);
+            var GetUpdatedIssueListByAssignee = JiraProxy.GetUpdatedIssueListByTimeslot(from, to);
             var issueList = await GetUpdatedIssueListByAssignee;
 
             if (issueList == null || issueList.Count == 0)
@@ -97,6 +97,7 @@ namespace com.smartwork
                 }
             }
 
+            /*
             string dailyWorkLogSummaryReport = "";
             int index1 = 1;
             foreach (string taskKey in workLogsStore.Keys)
@@ -126,6 +127,66 @@ namespace com.smartwork
                 dailyWorkLogSummaryReport += "<br/><br/>";
                 index1++;
             }
+            */
+
+            string dailyWorkLogSummaryReport = "";
+            Dictionary<string, List<IndividualWorkLog>> IndividualWorkLogs = new Dictionary<string, List<IndividualWorkLog>>();
+            foreach (string taskKey in workLogsStore.Keys)
+            {
+                JiraTask jiraTask = workLogsStore[taskKey];
+                foreach (string subTaskkey in jiraTask.subTasks.Keys)
+                {
+                    SubTask subTask = jiraTask.subTasks[subTaskkey];
+                    foreach (var workLog in subTask.worklogs)
+                    {
+                        IndividualWorkLog individualWorkLog = new IndividualWorkLog();
+                        individualWorkLog.jiraKey = taskKey;
+                        individualWorkLog.summary = jiraTask.summary;
+                        individualWorkLog.subTaskSummary = subTask.summary;
+                        individualWorkLog.timeSpent = workLog.timeSpent;
+                        individualWorkLog.comment = workLog.comment;
+
+                        if (!IndividualWorkLogs.ContainsKey(workLog.displayName))
+                        {
+                            IndividualWorkLogs.Add(workLog.displayName, new List<IndividualWorkLog>());
+                        }
+                        List<IndividualWorkLog> workLogs = IndividualWorkLogs[workLog.displayName];
+                        workLogs.Add(individualWorkLog);
+                        IndividualWorkLogs[workLog.displayName] = workLogs;
+                    }
+                }
+            }
+
+            dailyWorkLogSummaryReport = @"<table cellspacing='1' cellpadding='1' border='0' bgcolor='111111' style='border-collapse:collapse;border-spacing:0;border-left:1px solid #888;border-top:1px solid #888;background:#efefef;'>
+                                            <tr>
+                                                <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>No</td>
+                                                <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>Name</td>
+                                                <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>Work Logs</td>                                               
+                                            </tr>";
+
+            int i = 1;
+            foreach (string name in IndividualWorkLogs.Keys)
+            {
+                dailyWorkLogSummaryReport += "  <tr>";
+                dailyWorkLogSummaryReport += "      <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>" + i + "</td>";
+                dailyWorkLogSummaryReport += "      <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>" + name + "</td>";
+                dailyWorkLogSummaryReport += "      <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>";
+
+                int j = 1;
+                List<IndividualWorkLog> workLogs = IndividualWorkLogs[name];
+                foreach (var worklog in workLogs)
+                {
+                    dailyWorkLogSummaryReport += "" + j + ") " + worklog.jiraKey + " - " + worklog.summary + "<br/>";
+                    dailyWorkLogSummaryReport += "[" + worklog.subTaskSummary + "] "+ worklog.timeSpent + " - " + worklog.comment + "<br/>";
+                    j++;
+                }
+                dailyWorkLogSummaryReport += "      </td>";
+                dailyWorkLogSummaryReport += "  </tr>";
+
+                i++;
+            }
+
+            dailyWorkLogSummaryReport += "</table>";
 
             string content = @"Hi, All guys<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "Thanks<br/>Accela Support Team";
             string fromEmailAddress = "auto_sender@missionsky.com";
@@ -145,6 +206,15 @@ namespace com.smartwork
             System.Console.WriteLine(dailyWorkLogSummaryReport);
 
             this.btnListWorkLogList.Enabled = true;
+        }
+
+        class IndividualWorkLog
+        {
+            public string jiraKey { get; set; }
+            public string summary { get; set; }
+            public string subTaskSummary { get; set; }
+            public string timeSpent { get; set; }
+            public string comment { get; set; }
         }
 
         class JiraTask

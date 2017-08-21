@@ -23,3 +23,9 @@ F:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.pdb
 F:\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.xml
 F:\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.dll
 F:\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.pdb
+F:\software\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.dll
+F:\software\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.pdb
+F:\software\SmartWorkCenter\DailyCaseHelper\dlls\TestRail.xml
+F:\software\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.dll
+F:\software\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.pdb
+F:\software\SmartWorkCenter\Testrail\TestRail\obj\Debug\TestRail.csprojResolveAssemblyReference.cache

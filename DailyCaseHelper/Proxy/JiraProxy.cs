@@ -151,7 +151,7 @@ namespace com.smartwork.Proxy
             return issueList;
         }
 
-        public static async Task<List<Issue>> GetUpdatedIssueListByAssignee(DateTime from, DateTime to)
+        public static async Task<List<Issue>> GetUpdatedIssueListByTimeslot(DateTime from, DateTime to)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
             //string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " AND assignee in (\"" + assignee + "\") ";
