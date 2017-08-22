@@ -42,7 +42,8 @@ namespace com.smartwork
 
             members.Add("gordon.chen@missionsky.com");
             members.Add("jane.hu@missionsky.com");
-            members.Add("linda.xiao@missionsky.com");
+            members.Add("Linda.Xiao@missionsky.comLinda.Xiao");
+            members.Add("leo.liu@missionsky.com");
             members.Add("jessy.zhang@missionsky.com");
             members.Add("jenna.zhang@missionsky.com");
             members.Add("venli.li@missionsky.com");

@@ -43,8 +43,6 @@
             this.btnSyncAssignee = new System.Windows.Forms.Button();
             this.btnCloseSubTask = new System.Windows.Forms.Button();
             this.dgvCaseList = new System.Windows.Forms.DataGridView();
-            this.btnSyncSubTask = new System.Windows.Forms.Button();
-            this.btnSendReport = new System.Windows.Forms.Button();
             this.checkedFlag = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JiraKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +74,9 @@
             this.ReviewReleaseNotesByQA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Assignee8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSyncSubTask = new System.Windows.Forms.Button();
+            this.btnSendReport = new System.Windows.Forms.Button();
+            this.chkBypassStatusValidation = new System.Windows.Forms.CheckBox();
             this.gpbEnterCaseList.SuspendLayout();
             this.gpbChooseSubTask.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaseList)).BeginInit();
@@ -270,26 +271,6 @@
             this.dgvCaseList.Size = new System.Drawing.Size(1275, 525);
             this.dgvCaseList.TabIndex = 14;
             this.dgvCaseList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCaseList_CellContentClick);
-            // 
-            // btnSyncSubTask
-            // 
-            this.btnSyncSubTask.Location = new System.Drawing.Point(18, 158);
-            this.btnSyncSubTask.Name = "btnSyncSubTask";
-            this.btnSyncSubTask.Size = new System.Drawing.Size(123, 23);
-            this.btnSyncSubTask.TabIndex = 15;
-            this.btnSyncSubTask.Text = "Sync Sub Task";
-            this.btnSyncSubTask.UseVisualStyleBackColor = true;
-            this.btnSyncSubTask.Click += new System.EventHandler(this.btnSyncSubTask_Click);
-            // 
-            // btnSendReport
-            // 
-            this.btnSendReport.Location = new System.Drawing.Point(572, 158);
-            this.btnSendReport.Name = "btnSendReport";
-            this.btnSendReport.Size = new System.Drawing.Size(108, 23);
-            this.btnSendReport.TabIndex = 16;
-            this.btnSendReport.Text = "Send Report";
-            this.btnSendReport.UseVisualStyleBackColor = true;
-            this.btnSendReport.Click += new System.EventHandler(this.btnSendReport_Click);
             // 
             // checkedFlag
             // 
@@ -486,11 +467,42 @@
             this.Status8.HeaderText = "Status8";
             this.Status8.Name = "Status8";
             // 
+            // btnSyncSubTask
+            // 
+            this.btnSyncSubTask.Location = new System.Drawing.Point(18, 158);
+            this.btnSyncSubTask.Name = "btnSyncSubTask";
+            this.btnSyncSubTask.Size = new System.Drawing.Size(123, 23);
+            this.btnSyncSubTask.TabIndex = 15;
+            this.btnSyncSubTask.Text = "Sync Sub Task";
+            this.btnSyncSubTask.UseVisualStyleBackColor = true;
+            this.btnSyncSubTask.Click += new System.EventHandler(this.btnSyncSubTask_Click);
+            // 
+            // btnSendReport
+            // 
+            this.btnSendReport.Location = new System.Drawing.Point(572, 158);
+            this.btnSendReport.Name = "btnSendReport";
+            this.btnSendReport.Size = new System.Drawing.Size(108, 23);
+            this.btnSendReport.TabIndex = 16;
+            this.btnSendReport.Text = "Send Report";
+            this.btnSendReport.UseVisualStyleBackColor = true;
+            this.btnSendReport.Click += new System.EventHandler(this.btnSendReport_Click);
+            // 
+            // chkBypassStatusValidation
+            // 
+            this.chkBypassStatusValidation.AutoSize = true;
+            this.chkBypassStatusValidation.Location = new System.Drawing.Point(949, 162);
+            this.chkBypassStatusValidation.Name = "chkBypassStatusValidation";
+            this.chkBypassStatusValidation.Size = new System.Drawing.Size(142, 17);
+            this.chkBypassStatusValidation.TabIndex = 17;
+            this.chkBypassStatusValidation.Text = "Bypass Status Validation";
+            this.chkBypassStatusValidation.UseVisualStyleBackColor = true;
+            // 
             // BatchSubTaskManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1305, 746);
+            this.Controls.Add(this.chkBypassStatusValidation);
             this.Controls.Add(this.btnSendReport);
             this.Controls.Add(this.btnSyncSubTask);
             this.Controls.Add(this.dgvCaseList);
@@ -507,6 +519,7 @@
             this.gpbChooseSubTask.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaseList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -560,5 +573,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReviewReleaseNotesByQA;
         private System.Windows.Forms.DataGridViewTextBoxColumn Assignee8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status8;
+        private System.Windows.Forms.CheckBox chkBypassStatusValidation;
     }
 }
