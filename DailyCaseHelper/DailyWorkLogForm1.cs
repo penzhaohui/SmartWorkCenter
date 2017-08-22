@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechTalk.JiraRestClient;
 
 namespace com.smartwork
 {
@@ -45,6 +46,8 @@ namespace com.smartwork
             members.Add("jessy.zhang@missionsky.com");
             members.Add("jenna.zhang@missionsky.com");
             members.Add("venli.li@missionsky.com");
+
+            members.Add("jlu@accela.com");
 
             return members;
         }
@@ -220,13 +223,67 @@ namespace com.smartwork
             this.btnSync.Enabled = true;
         }
 
-        private void btnAssign_Click(object sender, EventArgs e)
+        private async void btnAssign_Click(object sender, EventArgs e)
         {
+            this.btnAssign.Enabled = false;
 
+            DataTable dataTable = dgvWorkLogReport.DataSource as DataTable;
+            if (dataTable != null)
+            {
+                string Name = "";
+                string EmailAddress = "";
+                string Effort = "";
+                string SubTaskID = "";
+                string SubTaskSummary = "";
+                string SubTaskAssignee = "";
+                string SubTaskComment = "";
+                string JiraKey = "";
+                string JiraSummary = "";
+
+                int rowCount = dataTable.Rows.Count;
+                for (int k = 0; k < rowCount; k++)
+                {
+                    DataRow row = dataTable.Rows[k];                    
+
+                    Name = row["Name"] as string;
+                    EmailAddress = row["EmailAddress"] as string;
+                    Effort = row["Effort"] as string;
+                    SubTaskID = row["SubTaskID"] as string;
+                    SubTaskSummary = row["SubTaskSummary"] as string;
+                    SubTaskAssignee = row["SubTaskAssignee"] as string;
+                    SubTaskComment = row["SubTaskComment"] as string;
+                    JiraKey = row["JiraKey"] as string;
+                    JiraSummary = row["JiraSummary"] as string;
+
+                    if (!String.IsNullOrEmpty(SubTaskID) 
+                        && !Name.Equals(SubTaskAssignee, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        IssueRef issueRef = new IssueRef();
+                        issueRef.key = SubTaskID;
+
+                        var issue = await JiraProxy.LoadIssue(issueRef);
+                        if (issue == null || issue.fields == null)
+                        {
+                            return;
+                        }
+
+                        // https://accelaeng.atlassian.net/rest/api/2/user/picker?query=peter.peng@missionsky.com
+                        JiraUser jiraUser = new JiraUser();
+                        jiraUser.name = EmailAddress;
+                        issue.fields.assignee = jiraUser;
+
+                        JiraProxy.UpdateSubTask(issue);
+                    }
+                }
+            }
+
+            this.btnAssign.Enabled = true;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            this.btnSend.Enabled = false;
+
             DataTable dataTable = dgvWorkLogReport.DataSource as DataTable;
 
             DataView dataTableView = dataTable.DefaultView;
@@ -338,6 +395,8 @@ namespace com.smartwork
             }
 
             System.Console.WriteLine(dailyWorkLogSummaryReport);
+
+            this.btnSend.Enabled = true;
         }
 
         class IndividualWorkLog

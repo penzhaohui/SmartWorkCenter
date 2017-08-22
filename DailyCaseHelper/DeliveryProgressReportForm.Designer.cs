@@ -30,9 +30,12 @@
         {
             this.grdCaseList = new System.Windows.Forms.DataGridView();
             this.grbJiraLabelList = new System.Windows.Forms.GroupBox();
-            this.txtLabelList = new System.Windows.Forms.TextBox();
-            this.btnSync = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.txtLabelList = new System.Windows.Forms.TextBox();
+            this.chkImpactArea = new System.Windows.Forms.CheckBox();
+            this.chkSolution = new System.Windows.Forms.CheckBox();
+            this.chkRootCause = new System.Windows.Forms.CheckBox();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JiraKey = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -45,6 +48,7 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssigneeDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssigneeQA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CemmentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).BeginInit();
             this.grbJiraLabelList.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +69,8 @@
             this.FixVersionsForUI,
             this.Status,
             this.AssigneeDev,
-            this.AssigneeQA});
+            this.AssigneeQA,
+            this.CemmentCount});
             this.grdCaseList.Location = new System.Drawing.Point(12, 129);
             this.grdCaseList.Name = "grdCaseList";
             this.grdCaseList.Size = new System.Drawing.Size(1284, 611);
@@ -73,15 +78,38 @@
             // 
             // grbJiraLabelList
             // 
+            this.grbJiraLabelList.Controls.Add(this.chkRootCause);
+            this.grbJiraLabelList.Controls.Add(this.chkSolution);
+            this.grbJiraLabelList.Controls.Add(this.chkImpactArea);
             this.grbJiraLabelList.Controls.Add(this.btnSend);
             this.grbJiraLabelList.Controls.Add(this.btnSync);
             this.grbJiraLabelList.Controls.Add(this.txtLabelList);
             this.grbJiraLabelList.Location = new System.Drawing.Point(12, 12);
             this.grbJiraLabelList.Name = "grbJiraLabelList";
-            this.grbJiraLabelList.Size = new System.Drawing.Size(553, 100);
+            this.grbJiraLabelList.Size = new System.Drawing.Size(1284, 100);
             this.grbJiraLabelList.TabIndex = 20;
             this.grbJiraLabelList.TabStop = false;
             this.grbJiraLabelList.Text = "Please enter the jira label list like Label1, Label2";
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(533, 19);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 75);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // btnSync
+            // 
+            this.btnSync.Location = new System.Drawing.Point(452, 19);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(75, 75);
+            this.btnSync.TabIndex = 1;
+            this.btnSync.Text = "Sync";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
             // txtLabelList
             // 
@@ -91,25 +119,35 @@
             this.txtLabelList.Size = new System.Drawing.Size(440, 75);
             this.txtLabelList.TabIndex = 0;
             // 
-            // btnSync
+            // chkImpactArea
             // 
-            this.btnSync.Location = new System.Drawing.Point(452, 19);
-            this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(75, 23);
-            this.btnSync.TabIndex = 1;
-            this.btnSync.Text = "Sync";
-            this.btnSync.UseVisualStyleBackColor = true;
-            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            this.chkImpactArea.AutoSize = true;
+            this.chkImpactArea.Location = new System.Drawing.Point(1168, 77);
+            this.chkImpactArea.Name = "chkImpactArea";
+            this.chkImpactArea.Size = new System.Drawing.Size(83, 17);
+            this.chkImpactArea.TabIndex = 3;
+            this.chkImpactArea.Text = "Impact Area";
+            this.chkImpactArea.UseVisualStyleBackColor = true;
             // 
-            // btnSend
+            // chkSolution
             // 
-            this.btnSend.Location = new System.Drawing.Point(452, 48);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
-            this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.chkSolution.AutoSize = true;
+            this.chkSolution.Location = new System.Drawing.Point(1168, 49);
+            this.chkSolution.Name = "chkSolution";
+            this.chkSolution.Size = new System.Drawing.Size(64, 17);
+            this.chkSolution.TabIndex = 4;
+            this.chkSolution.Text = "Solution";
+            this.chkSolution.UseVisualStyleBackColor = true;
+            // 
+            // chkRootCause
+            // 
+            this.chkRootCause.AutoSize = true;
+            this.chkRootCause.Location = new System.Drawing.Point(1168, 21);
+            this.chkRootCause.Name = "chkRootCause";
+            this.chkRootCause.Size = new System.Drawing.Size(82, 17);
+            this.chkRootCause.TabIndex = 21;
+            this.chkRootCause.Text = "Root Cause";
+            this.chkRootCause.UseVisualStyleBackColor = true;
             // 
             // No
             // 
@@ -117,6 +155,7 @@
             this.No.HeaderText = "No";
             this.No.Name = "No";
             this.No.ReadOnly = true;
+            this.No.Width = 50;
             // 
             // Product
             // 
@@ -195,14 +234,27 @@
             this.AssigneeQA.Name = "AssigneeQA";
             this.AssigneeQA.ReadOnly = true;
             // 
+            // CemmentCount
+            // 
+            this.CemmentCount.DataPropertyName = "CemmentCount";
+            this.CemmentCount.HeaderText = "Cemment Count";
+            this.CemmentCount.Name = "CemmentCount";
+            this.CemmentCount.ReadOnly = true;
+            this.CemmentCount.Width = 150;
+            // 
             // DeliveryProgressReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 752);
+            this.ControlBox = false;
             this.Controls.Add(this.grbJiraLabelList);
             this.Controls.Add(this.grdCaseList);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DeliveryProgressReportForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Delivery Progress Report";
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).EndInit();
             this.grbJiraLabelList.ResumeLayout(false);
@@ -218,6 +270,9 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnSync;
         private System.Windows.Forms.TextBox txtLabelList;
+        private System.Windows.Forms.CheckBox chkImpactArea;
+        private System.Windows.Forms.CheckBox chkRootCause;
+        private System.Windows.Forms.CheckBox chkSolution;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewLinkColumn JiraKey;
@@ -230,5 +285,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssigneeDev;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssigneeQA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CemmentCount;
     }
 }

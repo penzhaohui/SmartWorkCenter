@@ -1,4 +1,5 @@
-﻿using com.smartwork.Proxy;
+﻿using com.smartwork.Models;
+using com.smartwork.Proxy;
 using com.smartwork.Proxy.models;
 using com.smartwork.Util;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechTalk.JiraRestClient;
 
 namespace com.smartwork
 {
@@ -96,6 +98,45 @@ namespace com.smartwork
                     // Assignee(QA)
                     issueMapper.AssigneeQA = (issue.fields.customfield_11702 == null ? "" : issue.fields.customfield_11702.displayName);
 
+                    List<Comment> comments = new List<Comment>();
+
+                    if (this.chkRootCause.Checked
+                        || this.chkSolution.Checked
+                        || this.chkImpactArea.Checked)
+                    {
+                        if ("ENGSUPP-12597".Equals(issue.key))
+                        {
+                            System.Console.WriteLine("" + issue.key);
+                        }
+
+                        var Comments = await JiraProxy.GetComments(issue);
+                        foreach (var comment in Comments)
+                        {
+                            if (this.chkRootCause.Checked
+                                && comment.body.Contains("Root Cause"))
+                            {
+                                comments.Add(comment);
+                                continue;
+                            }
+
+                            if (this.chkSolution.Checked
+                                && comment.body.Contains("Solution"))
+                            {
+                                comments.Add(comment);
+                                continue;
+                            }
+
+                            if (this.chkImpactArea.Checked
+                                && comment.body.Contains("Impact Area"))
+                            {
+                                comments.Add(comment);
+                                continue;
+                            }
+                        }
+                    }
+
+                    issueMapper.Comments = comments;
+
                     jiraIssues.Add(issueMapper);
 
                 }
@@ -117,6 +158,8 @@ namespace com.smartwork
             table.Columns.Add("JiraStatus", typeof(string));
             table.Columns.Add("AssigneeDev", typeof(string));
             table.Columns.Add("AssigneeQA", typeof(string));
+            table.Columns.Add("Comments", typeof(List<Comment>));
+            table.Columns.Add("CemmentCount", typeof(int));
 
             int index = 1;
             int labelIndex = 1;
@@ -157,6 +200,8 @@ namespace com.smartwork
                     row["JiraStatus"] = jiraIssue.Status;
                     row["AssigneeDev"] = jiraIssue.Assignee;
                     row["AssigneeQA"] = jiraIssue.AssigneeQA;
+                    row["Comments"] = jiraIssue.Comments;
+                    row["CemmentCount"] = jiraIssue.Comments.Count;
 
                     table.Rows.Add(row);
                 }
@@ -204,6 +249,7 @@ namespace com.smartwork
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Jira Status</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee Dev</th>    
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee QA</th> 
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Root Cause/Solution/Impact Area</th> 
                                     </tr>";
 
 
@@ -262,6 +308,20 @@ namespace com.smartwork
                         closedCount++;
                     }
 
+                    List<Comment> comments = jiraIssue.Comments;
+                    string commentStr = "";
+                    if (this.chkRootCause.Checked
+                        || this.chkSolution.Checked
+                        || this.chkImpactArea.Checked)
+                    {
+                        int index = 1;
+                        foreach (var comment in comments)
+                        {
+                            commentStr += index++ + ". ------------------------------------------------<br/>";
+                            commentStr += comment.body.Replace("\r\n", "<br/>") + "<br/><br/>";
+                        }
+                    }
+
                     if (uniqueJiraKeys.Contains(jiraKey))
                     {
                         detailedInfo += String.Format(@"<tr bgcolor='red'>
@@ -269,7 +329,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{1}</td>                                                        
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'><a href='https://accelaeng.atlassian.net/browse/{2}'>{2}</a></td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{3}</td>
-                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{4}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{4}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{5}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{6}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{7}</td>
@@ -277,6 +337,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{9}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
                                                     </tr>",
                                                           no++,
                                                           product,
@@ -289,7 +350,8 @@ namespace com.smartwork
                                                           fixVersion,
                                                           status,
                                                           assigneeDev,
-                                                          assigneeQA
+                                                          assigneeQA,
+                                                          commentStr
                                                            );
                     }
                     else
@@ -309,6 +371,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{9}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
                                                     </tr>",
                                                           no++,
                                                           product,
@@ -321,7 +384,8 @@ namespace com.smartwork
                                                           fixVersion,
                                                           status,
                                                           assigneeDev,
-                                                          assigneeQA
+                                                          assigneeQA,
+                                                          commentStr
                                                            );
                     }
                 }

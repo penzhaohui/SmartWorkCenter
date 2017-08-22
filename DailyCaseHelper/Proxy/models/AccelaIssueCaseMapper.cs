@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.JiraRestClient;
 
 namespace com.smartwork.Proxy.models
 {
@@ -25,5 +26,6 @@ namespace com.smartwork.Proxy.models
         public bool Missionsky { get; set; }
         public List<string> JiraLabels { get; set; }
         public List<string> FixVersions { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -156,7 +156,7 @@
             this.No.HeaderText = "No";
             this.No.Name = "No";
             this.No.ReadOnly = true;
-            this.No.Width = 50;
+            this.No.Width = 150;
             // 
             // Assignee
             // 
@@ -206,9 +206,11 @@
             // JiraKey
             // 
             this.JiraKey.DataPropertyName = "JiraKey";
+            this.JiraKey.FillWeight = 150F;
             this.JiraKey.HeaderText = "Associated Jira Key";
             this.JiraKey.Name = "JiraKey";
             this.JiraKey.ReadOnly = true;
+            this.JiraKey.Width = 150;
             // 
             // JiraSummary
             // 
