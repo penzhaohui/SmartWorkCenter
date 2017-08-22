@@ -259,13 +259,6 @@ CC [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{1
                 this.txtDatabaseID.Text = taskInfo.key;
                 MessageBox.Show("The database request ticket already exists, please refer to " + taskInfo.key);
                 showCaseComment(engsuppKey, taskInfo.key);
-
-                IssueRef issue = new IssueRef();
-                issue.key = engsuppKey;
-                issue.id = engsuppKey;
-
-                JiraProxy.CreateComment(issue, String.Format("One jira ticket is already submitted to Accela DBA for the most recent database dump, because the reported issue might be data-related based on the research. The ticket key is {0}.  Thank you for your patience", taskInfo.key));
-     
             }
             else
             {
@@ -282,6 +275,12 @@ CC [~rleung@accela.com] [~vsunku@accela.com] [~evelyn.zhang@missionsky.com] [~{1
 
                 JiraProxy.UpdateDatabaseTask(issue);
                 showCaseComment(engsuppKey, issue.key);
+
+                IssueRef engIssue = new IssueRef();
+                engIssue.key = engsuppKey;
+                engIssue.id = engsuppKey;
+
+                JiraProxy.CreateComment(engIssue, String.Format("One jira ticket is already submitted to Accela DBA for the most recent database dump, because the reported issue might be data-related based on the research. The ticket key is {0}.  Thank you for your patience", issue.key));
             }            
            
             this.btnRequest.Enabled = true;

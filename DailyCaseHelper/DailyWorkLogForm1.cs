@@ -362,12 +362,13 @@ namespace com.smartwork
                     dailyWorkLogSummaryReport += "" + j + ") <a href='https://accelaeng.atlassian.net/browse/" + worklog.jiraIssueKey + "'>" + worklog.jiraIssueKey + "</a> - " + worklog.jiraIssueSummary + "<br/>";
                     if (String.IsNullOrEmpty(worklog.subTaskKey) || worklog.subTaskKey.Trim().Length == 0)
                     {
-                        dailyWorkLogSummaryReport += "[No Sub Task] " + worklog.timeSpent + " - " + worklog.comment + "<br/>";
+                        dailyWorkLogSummaryReport += "&nbsp;&nbsp;&nbsp;&nbsp;[No Sub Task] " + worklog.timeSpent + " - " + worklog.comment + "<br/>";
                     }
                     else
                     {
-                        dailyWorkLogSummaryReport += "[<a href='https://accelaeng.atlassian.net/browse/" + worklog.subTaskKey + "'>" + worklog.subTaskSummary + "</a>] " + worklog.timeSpent + " - " + worklog.comment + "<br/>";
+                        dailyWorkLogSummaryReport += "&nbsp;&nbsp;&nbsp;&nbsp;[<a href='https://accelaeng.atlassian.net/browse/" + worklog.subTaskKey + "'>" + worklog.subTaskSummary + "</a>] " + worklog.timeSpent + " - " + worklog.comment + "<br/>";
                     }
+                    dailyWorkLogSummaryReport += "<br/>";
                     j++;
                 }
 
@@ -379,9 +380,14 @@ namespace com.smartwork
 
             dailyWorkLogSummaryReport += "</table>";
 
-            string content = @"Hi, All guys<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "Thanks<br/>Accela Support Team";
+            string content = @"Hi, All guys<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "<br/><br/>Thanks<br/>Accela Support Team";
             string fromEmailAddress = "auto_sender@missionsky.com";
-            string toEmailAddress = "peter.peng@missionsky.com;rleung@accela.com";
+            string toEmailAddress = "peter.peng@missionsky.com;";
+            if (DateTime.Now.Hour > 18)
+            {
+                toEmailAddress += "rleung@accela.com;accela.robinson@gmail.com;jlu@accela.com";
+            }
+
             string ccEmailAddress = "accela-support-team@missionsky.com";
             string subject = "Daily Work Log Summary - [" + this.dtpFrom.Value.ToString("MM/dd/yyyy") + "-" + this.dtpTo.Value.ToString("MM/dd/yyyy") + "]";
 
