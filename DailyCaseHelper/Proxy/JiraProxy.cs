@@ -170,7 +170,21 @@ namespace com.smartwork.Proxy
 		public static async Task<List<Issue>> GetUpdatedIssueListByAssigneeList(DateTime from, DateTime to, List<string> assignees)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
-            string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " ";
+            //string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " ";
+            string sql = "";
+
+            int fromTimeSlot = await GetTimeSlot(from);
+            int toTimeSlot = await GetTimeSlot(to);
+
+            if (toTimeSlot < 0)
+            {
+                sql = " updated >= -" + DateTime.Now.Subtract(from).Hours + "h ";
+            }
+            else
+            {
+                sql = " updated >= -" + fromTimeSlot + "h AND updated <= -" + toTimeSlot + "h ";
+            }            
+
             if (assignees.Count > 0)
             {
                 sql += " AND assignee in (";
@@ -198,6 +212,23 @@ namespace com.smartwork.Proxy
             }
 
             return issueList;
+        }
+
+        private static async Task<int> GetTimeSlot(DateTime date)
+        {
+            if (date.Year == DateTime.Now.Year
+                && date.Month == DateTime.Now.Month
+                && date.Day == DateTime.Now.Day)
+            {
+                return DateTime.Now.Subtract(date).Hours;
+            }
+            else if (date.Year == DateTime.Now.Year
+                && date.Month == DateTime.Now.Month)
+            {
+                return DateTime.Now.Subtract(date).Days * 24 + DateTime.Now.Subtract(date).Hours;
+            }
+
+            return 12;
         }
 
         public static async Task<Issue> LoadIssue(IssueRef issue)
