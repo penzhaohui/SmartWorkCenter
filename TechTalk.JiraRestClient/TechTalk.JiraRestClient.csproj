@@ -46,6 +46,7 @@
     <Compile Include="IssuePriority.cs" />
     <Compile Include="IssueSeverity.cs" />
     <Compile Include="IssueType.cs" />
+    <Compile Include="MEOOption.cs" />
     <Compile Include="ServerInfo.cs" />
     <Compile Include="SubTask.cs" />
     <Compile Include="SubTaskFields.cs" />

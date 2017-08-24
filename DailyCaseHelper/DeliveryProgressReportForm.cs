@@ -136,6 +136,7 @@ namespace com.smartwork
                     }
 
                     issueMapper.Comments = comments;
+                    issueMapper.ReleaseNote = issue.fields.customfield_11500;
 
                     jiraIssues.Add(issueMapper);
 
@@ -160,6 +161,7 @@ namespace com.smartwork
             table.Columns.Add("AssigneeQA", typeof(string));
             table.Columns.Add("Comments", typeof(List<Comment>));
             table.Columns.Add("CemmentCount", typeof(int));
+            table.Columns.Add("ReleaseNote", typeof(string));
 
             int index = 1;
             int labelIndex = 1;
@@ -202,6 +204,7 @@ namespace com.smartwork
                     row["AssigneeQA"] = jiraIssue.AssigneeQA;
                     row["Comments"] = jiraIssue.Comments;
                     row["CemmentCount"] = jiraIssue.Comments.Count;
+                    row["ReleaseNote"] = jiraIssue.ReleaseNote;
 
                     table.Rows.Add(row);
                 }
@@ -250,6 +253,7 @@ namespace com.smartwork
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee Dev</th>    
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Assignee QA</th> 
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Root Cause/Solution/Impact Area</th> 
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Release Notes</th> 
                                     </tr>";
 
 
@@ -275,6 +279,7 @@ namespace com.smartwork
                 int resolvedCount = 0;
                 int closedCount = 0;
                 string detailedInfo = "";
+                string releaseNote = "";
                
                 foreach(AccelaIssueCaseMapper jiraIssue in jiraIssues)
                 {
@@ -285,7 +290,8 @@ namespace com.smartwork
                     description = jiraIssue.Description;
                     issueType = jiraIssue.IssueType;
                     severity = jiraIssue.Priority;
-                    
+                    releaseNote = jiraIssue.ReleaseNote;
+
                     string fixVersionsForUI = String.Empty;
                     foreach (string versionUI in jiraIssue.FixVersions)
                     {
@@ -338,6 +344,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{13}</td>
                                                     </tr>",
                                                           no++,
                                                           product,
@@ -351,7 +358,8 @@ namespace com.smartwork
                                                           status,
                                                           assigneeDev,
                                                           assigneeQA,
-                                                          commentStr
+                                                          commentStr,
+                                                          releaseNote
                                                            );
                     }
                     else
@@ -372,6 +380,7 @@ namespace com.smartwork
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{10}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
+                                                        <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{13}</td>
                                                     </tr>",
                                                           no++,
                                                           product,
@@ -385,12 +394,13 @@ namespace com.smartwork
                                                           status,
                                                           assigneeDev,
                                                           assigneeQA,
-                                                          commentStr
+                                                          commentStr,
+                                                          releaseNote
                                                            );
                     }
                 }
 
-                deliveryProgressReport += "<tr><td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;' colspan='12'> Jira Version Label: "
+                deliveryProgressReport += "<tr><td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;' colspan='14'> Jira Version Label: "
                     + versionLabel + " [Target Date: XX/XX/XXXX] - Total: " + totalCount 
                     + " items; QA Verified: " + closedCount 
                     + " Items, Dev Resolved: " + resolvedCount 
@@ -403,7 +413,7 @@ namespace com.smartwork
 
             string content = @"Hi All,<br/><br/>Below is the current delivery progress report. Please kindly let us know if you have any further question.<br/><br/>" + deliveryProgressReport + "<br/><br/>Thanks<br/>Accela Support Team";
             string from = "auto_sender@missionsky.com";            
-            string to = "peter.peng@missionsky.com;leo.liu@missionsky.com;louis.he@missionsky.com";
+            string to = "peter.peng@missionsky.com;trancy.zhai@missionsky.com;";
             string cc = "accela-support-team@missionsky.com";
 
             string subject = "Delivery Progress Summary - " + this.txtLabelList.Text;

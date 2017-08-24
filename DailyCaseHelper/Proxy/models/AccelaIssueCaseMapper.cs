@@ -27,5 +27,6 @@ namespace com.smartwork.Proxy.models
         public List<string> JiraLabels { get; set; }
         public List<string> FixVersions { get; set; }
         public List<Comment> Comments { get; set; }
+        public string ReleaseNote { get; set; }
     }
 }

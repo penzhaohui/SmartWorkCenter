@@ -89,6 +89,12 @@
     <Compile Include="AADevEnvChecker.Designer.cs">
       <DependentUpon>AADevEnvChecker.cs</DependentUpon>
     </Compile>
+    <Compile Include="BatchMEOForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchMEOForm.Designer.cs">
+      <DependentUpon>BatchMEOForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BatchSubTaskManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </Compile>
     <EmbeddedResource Include="AADevEnvChecker.resx">
       <DependentUpon>AADevEnvChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BatchMEOForm.resx">
+      <DependentUpon>BatchMEOForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BatchSubTaskManagementForm.resx">
       <DependentUpon>BatchSubTaskManagementForm.cs</DependentUpon>

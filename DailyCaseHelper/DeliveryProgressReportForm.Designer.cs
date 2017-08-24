@@ -30,12 +30,12 @@
         {
             this.grdCaseList = new System.Windows.Forms.DataGridView();
             this.grbJiraLabelList = new System.Windows.Forms.GroupBox();
+            this.chkRootCause = new System.Windows.Forms.CheckBox();
+            this.chkSolution = new System.Windows.Forms.CheckBox();
+            this.chkImpactArea = new System.Windows.Forms.CheckBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
             this.txtLabelList = new System.Windows.Forms.TextBox();
-            this.chkImpactArea = new System.Windows.Forms.CheckBox();
-            this.chkSolution = new System.Windows.Forms.CheckBox();
-            this.chkRootCause = new System.Windows.Forms.CheckBox();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JiraKey = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -49,6 +49,7 @@
             this.AssigneeDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AssigneeQA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CemmentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).BeginInit();
             this.grbJiraLabelList.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,8 @@
             this.Status,
             this.AssigneeDev,
             this.AssigneeQA,
-            this.CemmentCount});
+            this.CemmentCount,
+            this.ReleaseNote});
             this.grdCaseList.Location = new System.Drawing.Point(12, 129);
             this.grdCaseList.Name = "grdCaseList";
             this.grdCaseList.Size = new System.Drawing.Size(1284, 611);
@@ -90,6 +92,36 @@
             this.grbJiraLabelList.TabIndex = 20;
             this.grbJiraLabelList.TabStop = false;
             this.grbJiraLabelList.Text = "Please enter the jira label list like Label1, Label2";
+            // 
+            // chkRootCause
+            // 
+            this.chkRootCause.AutoSize = true;
+            this.chkRootCause.Location = new System.Drawing.Point(1168, 21);
+            this.chkRootCause.Name = "chkRootCause";
+            this.chkRootCause.Size = new System.Drawing.Size(82, 17);
+            this.chkRootCause.TabIndex = 21;
+            this.chkRootCause.Text = "Root Cause";
+            this.chkRootCause.UseVisualStyleBackColor = true;
+            // 
+            // chkSolution
+            // 
+            this.chkSolution.AutoSize = true;
+            this.chkSolution.Location = new System.Drawing.Point(1168, 49);
+            this.chkSolution.Name = "chkSolution";
+            this.chkSolution.Size = new System.Drawing.Size(64, 17);
+            this.chkSolution.TabIndex = 4;
+            this.chkSolution.Text = "Solution";
+            this.chkSolution.UseVisualStyleBackColor = true;
+            // 
+            // chkImpactArea
+            // 
+            this.chkImpactArea.AutoSize = true;
+            this.chkImpactArea.Location = new System.Drawing.Point(1168, 77);
+            this.chkImpactArea.Name = "chkImpactArea";
+            this.chkImpactArea.Size = new System.Drawing.Size(83, 17);
+            this.chkImpactArea.TabIndex = 3;
+            this.chkImpactArea.Text = "Impact Area";
+            this.chkImpactArea.UseVisualStyleBackColor = true;
             // 
             // btnSend
             // 
@@ -118,36 +150,6 @@
             this.txtLabelList.Name = "txtLabelList";
             this.txtLabelList.Size = new System.Drawing.Size(440, 75);
             this.txtLabelList.TabIndex = 0;
-            // 
-            // chkImpactArea
-            // 
-            this.chkImpactArea.AutoSize = true;
-            this.chkImpactArea.Location = new System.Drawing.Point(1168, 77);
-            this.chkImpactArea.Name = "chkImpactArea";
-            this.chkImpactArea.Size = new System.Drawing.Size(83, 17);
-            this.chkImpactArea.TabIndex = 3;
-            this.chkImpactArea.Text = "Impact Area";
-            this.chkImpactArea.UseVisualStyleBackColor = true;
-            // 
-            // chkSolution
-            // 
-            this.chkSolution.AutoSize = true;
-            this.chkSolution.Location = new System.Drawing.Point(1168, 49);
-            this.chkSolution.Name = "chkSolution";
-            this.chkSolution.Size = new System.Drawing.Size(64, 17);
-            this.chkSolution.TabIndex = 4;
-            this.chkSolution.Text = "Solution";
-            this.chkSolution.UseVisualStyleBackColor = true;
-            // 
-            // chkRootCause
-            // 
-            this.chkRootCause.AutoSize = true;
-            this.chkRootCause.Location = new System.Drawing.Point(1168, 21);
-            this.chkRootCause.Name = "chkRootCause";
-            this.chkRootCause.Size = new System.Drawing.Size(82, 17);
-            this.chkRootCause.TabIndex = 21;
-            this.chkRootCause.Text = "Root Cause";
-            this.chkRootCause.UseVisualStyleBackColor = true;
             // 
             // No
             // 
@@ -242,6 +244,12 @@
             this.CemmentCount.ReadOnly = true;
             this.CemmentCount.Width = 150;
             // 
+            // ReleaseNote
+            // 
+            this.ReleaseNote.DataPropertyName = "ReleaseNote";
+            this.ReleaseNote.HeaderText = "ReleaseNote";
+            this.ReleaseNote.Name = "ReleaseNote";
+            // 
             // DeliveryProgressReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,5 +294,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AssigneeDev;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssigneeQA;
         private System.Windows.Forms.DataGridViewTextBoxColumn CemmentCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseNote;
     }
 }

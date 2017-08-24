@@ -184,7 +184,24 @@ namespace TechTalk.JiraRestClient
                 var updateData = new Dictionary<string, object>();         
                 updateData.Add("summary", new[] { new { set = issue.fields.summary } });
                 updateData.Add("description", new[] { new { set = issue.fields.description } });
-                updateData.Add("assignee", new[] { new { set = new { name = issue.fields.assignee.name } } });               
+                updateData.Add("assignee", new[] { new { set = new { name = issue.fields.assignee.name } } });
+
+                if (issue.key.StartsWith("ENGSUPP"))
+                {
+                    var propertyList = typeof(TIssueFields).GetProperties().Where(p => p.Name.StartsWith("customfield_"));
+                    foreach (var property in propertyList)
+                    {
+                        var propertyValue = property.GetValue(issue.fields, null);
+                        if (propertyValue != null)
+                        {
+                            // M.E.O Options
+                            if ("customfield_14101" == property.Name)
+                            {
+                                updateData.Add(property.Name, new[] { new { set = new { value = (propertyValue as MEOOption).value, id = "" + (propertyValue as MEOOption).id } } });
+                            }
+                        }
+                    }                    
+                }
 
                 request.AddBody(new { update = updateData });
 

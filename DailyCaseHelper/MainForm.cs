@@ -121,24 +121,12 @@ namespace com.smartwork
 
         private void FTPMonitorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseAllChildForm();
-            FTPMonitor ftpMonitor = new FTPMonitor();
-            ftpMonitor.WindowState = FormWindowState.Maximized;
-            ftpMonitor.MdiParent = this;
-            ftpMonitor.MaximizeBox = false;
-            ftpMonitor.MinimizeBox = false;
-            ftpMonitor.Show();
+            
         }
 
         private void syncJiraIssueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseAllChildForm();
-            UpdateMyJIRAIssueFromSalesforce updateMyJIRAIssueFromSalesforce = new UpdateMyJIRAIssueFromSalesforce();
-            updateMyJIRAIssueFromSalesforce.WindowState = FormWindowState.Maximized;
-            updateMyJIRAIssueFromSalesforce.MdiParent = this;
-            updateMyJIRAIssueFromSalesforce.MaximizeBox = false;
-            updateMyJIRAIssueFromSalesforce.MinimizeBox = false;
-            updateMyJIRAIssueFromSalesforce.Show();
+           
         }
 
         private void CloseAllChildForm()
@@ -207,24 +195,12 @@ namespace com.smartwork
 
         private void scanReleaseStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseAllChildForm();
-            ScanReleaseStatusFomSalesforce scanReleaseStatusFomSalesforce = new ScanReleaseStatusFomSalesforce();
-            scanReleaseStatusFomSalesforce.WindowState = FormWindowState.Maximized;
-            scanReleaseStatusFomSalesforce.MdiParent = this;
-            scanReleaseStatusFomSalesforce.MaximizeBox = false;
-            scanReleaseStatusFomSalesforce.MinimizeBox = false;
-            scanReleaseStatusFomSalesforce.Show();
+            
         }
 
         private void weeklyReportToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            CloseAllChildForm();
-            frmWeeklyReportForm weeklyReportForm = new frmWeeklyReportForm();
-            weeklyReportForm.WindowState = FormWindowState.Maximized;
-            weeklyReportForm.MdiParent = this;
-            weeklyReportForm.MaximizeBox = false;
-            weeklyReportForm.MinimizeBox = false;
-            weeklyReportForm.Show();
+            
         }
 
         private void dBRequestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -284,7 +260,13 @@ namespace com.smartwork
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+            CloseAllChildForm();
+            UpdateMyJIRAIssueFromSalesforce updateMyJIRAIssueFromSalesforce = new UpdateMyJIRAIssueFromSalesforce();
+            updateMyJIRAIssueFromSalesforce.WindowState = FormWindowState.Maximized;
+            updateMyJIRAIssueFromSalesforce.MdiParent = this;
+            updateMyJIRAIssueFromSalesforce.MaximizeBox = false;
+            updateMyJIRAIssueFromSalesforce.MinimizeBox = false;
+            updateMyJIRAIssueFromSalesforce.Show();
         }
 
         private void scanTestResultToolStripMenuItem_Click(object sender, EventArgs e)
@@ -296,6 +278,55 @@ namespace com.smartwork
             scanTestResultForm.MaximizeBox = false;
             scanTestResultForm.MinimizeBox = false;
             scanTestResultForm.Show();
+        }
+
+        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            frmWeeklyReportForm weeklyReportForm = new frmWeeklyReportForm();
+            weeklyReportForm.WindowState = FormWindowState.Maximized;
+            weeklyReportForm.MdiParent = this;
+            weeklyReportForm.MaximizeBox = false;
+            weeklyReportForm.MinimizeBox = false;
+            weeklyReportForm.Show();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            FTPMonitor ftpMonitor = new FTPMonitor();
+            ftpMonitor.WindowState = FormWindowState.Maximized;
+            ftpMonitor.MdiParent = this;
+            ftpMonitor.MaximizeBox = false;
+            ftpMonitor.MinimizeBox = false;
+            ftpMonitor.Show();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            ScanReleaseStatusFomSalesforce scanReleaseStatusFomSalesforce = new ScanReleaseStatusFomSalesforce();
+            scanReleaseStatusFomSalesforce.WindowState = FormWindowState.Maximized;
+            scanReleaseStatusFomSalesforce.MdiParent = this;
+            scanReleaseStatusFomSalesforce.MaximizeBox = false;
+            scanReleaseStatusFomSalesforce.MinimizeBox = false;
+            scanReleaseStatusFomSalesforce.Show();
+        }
+
+        private void mEOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            BatchMEOForm batchMEOForm = new BatchMEOForm();
+            batchMEOForm.WindowState = FormWindowState.Maximized;
+            batchMEOForm.MdiParent = this;
+            batchMEOForm.MaximizeBox = false;
+            batchMEOForm.MinimizeBox = false;
+            batchMEOForm.Show();
         }
     }
 }

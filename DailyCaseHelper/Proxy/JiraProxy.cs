@@ -166,15 +166,95 @@ namespace com.smartwork.Proxy
 
             return issueList;
         }
-		
-		public static async Task<List<Issue>> GetUpdatedIssueListByAssigneeList(DateTime from, DateTime to, List<string> assignees)
+
+        public static async Task<List<Issue>> GetUpdatedIssueListByTimeslot(string userName, string password, DateTime from, DateTime to, List<string> subTaskStatusList = null, List<string> meoOptions = null)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", userName, password);
+
+            int fromTimeSlot = (int)DateTime.Now.Subtract(from).TotalHours;
+            int toTimeSlot = (int)DateTime.Now.Subtract(to).TotalHours;
+
+            string sql = " issuetype in (subTaskIssueTypes()) ";
+
+            if(userName != "peter.peng@missionsky.com")
+            {
+                sql += " AND assignee = \"" + userName + "\" ";
+            }
+
+            if (toTimeSlot < 0)
+            {
+                sql += " AND updated >= -" + DateTime.Now.Subtract(from).Hours + "h ";
+            }
+            else
+            {
+                sql += " AND updated >= -" + fromTimeSlot + "h AND updated <= -" + toTimeSlot + "h ";
+            }
+
+            if (meoOptions == null || meoOptions.Count == 0)
+            {
+                sql += " AND \"Self Rating\" is EMPTY ";
+            }
+            else
+            {
+                sql += " AND \"Self Rating\" in (";
+                bool isFirstOne = true;
+                foreach (string meo in meoOptions)
+                {
+                    if (isFirstOne)
+                    {
+                        sql += meo;
+                        isFirstOne = false;
+                    }
+                    else
+                    {
+                        sql += "," + meo;
+                    }
+                }               
+                sql += ") ";
+            }
+
+            if (subTaskStatusList == null || subTaskStatusList.Count == 0)
+            {
+
+                sql += " AND status in (Closed, Resolved) ";
+            }
+            else
+            {
+                sql += " AND status in (";
+                bool isFirstOne = true;
+                foreach (string status in subTaskStatusList)
+                {
+                    if (isFirstOne)
+                    {
+                        sql += "\"" + status + "\"";
+                        isFirstOne = false;
+                    }
+                    else
+                    {
+                        sql += "," + "\"" + status + "\"";
+                    }
+                }                
+                sql += ") ";
+            }
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
+        public static async Task<List<Issue>> GetUpdatedIssueListByAssigneeList(DateTime from, DateTime to, List<string> assignees)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
             //string sql = " updated >= " + from.ToString("yyyy-MM-dd") + " AND updated <= " + to.ToString("yyyy-MM-dd") + " ";
             string sql = "";
 
-            int fromTimeSlot = await GetTimeSlot(from);
-            int toTimeSlot = await GetTimeSlot(to);
+            int fromTimeSlot = (int)DateTime.Now.Subtract(from).TotalHours;
+            int toTimeSlot = (int)DateTime.Now.Subtract(to).TotalHours;
 
             if (toTimeSlot < 0)
             {

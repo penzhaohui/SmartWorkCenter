@@ -104,6 +104,16 @@ namespace TechTalk.JiraRestClient
         public String customfield_12300 { get; set; }
 
         /// <summary>
+        /// M.E.O Options
+        /// </summary>
+        public MEOOption customfield_14101 { get; set; }
+
+        /// <summary>
+        /// Time spent
+        /// </summary>
+        public int timespent { get; set; }
+
+        /// <summary>
         /// Estimated Effort
         /// </summary>
         public int customfield_11506 { get; set; }
@@ -170,6 +180,11 @@ namespace TechTalk.JiraRestClient
         /// </summary>
         public String customfield_11900 { get; set; }
 
+        /// <summary>
+        /// Release Notes
+        /// </summary>
+        public String customfield_11500 { get; set; }
+        
         /// <summary>
         /// Low - https://accelaeng.atlassian.net/rest/api/2/priority/8
         /// High - https://accelaeng.atlassian.net/rest/api/2/priority/7
