@@ -261,12 +261,12 @@ namespace com.smartwork
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
-            UpdateMyJIRAIssueFromSalesforce updateMyJIRAIssueFromSalesforce = new UpdateMyJIRAIssueFromSalesforce();
-            updateMyJIRAIssueFromSalesforce.WindowState = FormWindowState.Maximized;
-            updateMyJIRAIssueFromSalesforce.MdiParent = this;
-            updateMyJIRAIssueFromSalesforce.MaximizeBox = false;
-            updateMyJIRAIssueFromSalesforce.MinimizeBox = false;
-            updateMyJIRAIssueFromSalesforce.Show();
+            DailyCaseImportorFromSalesforce DailyCaseImportorFromSalesforce = new DailyCaseImportorFromSalesforce();
+            DailyCaseImportorFromSalesforce.WindowState = FormWindowState.Maximized;
+            DailyCaseImportorFromSalesforce.MdiParent = this;
+            DailyCaseImportorFromSalesforce.MaximizeBox = false;
+            DailyCaseImportorFromSalesforce.MinimizeBox = false;
+            DailyCaseImportorFromSalesforce.Show();
         }
 
         private void scanTestResultToolStripMenuItem_Click(object sender, EventArgs e)

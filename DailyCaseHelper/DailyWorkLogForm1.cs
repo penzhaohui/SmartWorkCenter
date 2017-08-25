@@ -30,7 +30,7 @@ namespace com.smartwork
             //members.Add("peter.peng@missionsky.com");
             members.Add("john.huang@missionsky.com");
             members.Add("louis.he@missionsky.com");
-            members.Add("likko.zhang@missionsky.com");
+            members.Add("likko.zhang");
             members.Add("alex.li@missionsky.com");
             members.Add("andy.li@missionsky.com");
             members.Add("ainy.xiao@missionsky.com");
@@ -270,6 +270,11 @@ namespace com.smartwork
 
                         // https://accelaeng.atlassian.net/rest/api/2/user/picker?query=peter.peng@missionsky.com
                         JiraUser jiraUser = new JiraUser();
+
+                        if ("likko.zhang@missionsky.com" == EmailAddress)
+                        {
+                            EmailAddress = "likko.zhang";
+                        }
                         jiraUser.name = EmailAddress;
                         issue.fields.assignee = jiraUser;
 
