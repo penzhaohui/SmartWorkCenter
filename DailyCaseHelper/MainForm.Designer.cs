@@ -51,6 +51,7 @@
             this.deliveryProgressReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchCreateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkCommitCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testrailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,7 @@
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weeklyMEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -148,14 +149,14 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(176, 22);
             this.toolStripMenuItem2.Text = "Daily Case Tool";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(176, 22);
             this.toolStripMenuItem3.Text = "Weekly Report";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -169,7 +170,7 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(176, 22);
             this.toolStripMenuItem4.Text = "FTP Monitor";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
@@ -185,7 +186,8 @@
             this.deliveryProgressReportToolStripMenuItem,
             this.dailyWorkLogToolStripMenuItem,
             this.batchCreateSubTaskToolStripMenuItem,
-            this.mEOToolStripMenuItem});
+            this.mEOToolStripMenuItem,
+            this.weeklyMEOToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.toolsToolStripMenuItem.Text = "Jira";
@@ -254,6 +256,13 @@
             this.batchCreateSubTaskToolStripMenuItem.Text = "Batch Create Sub Task";
             this.batchCreateSubTaskToolStripMenuItem.Click += new System.EventHandler(this.batchCreateSubTaskToolStripMenuItem_Click);
             // 
+            // mEOToolStripMenuItem
+            // 
+            this.mEOToolStripMenuItem.Name = "mEOToolStripMenuItem";
+            this.mEOToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.mEOToolStripMenuItem.Text = "M.E.O";
+            this.mEOToolStripMenuItem.Click += new System.EventHandler(this.mEOToolStripMenuItem_Click);
+            // 
             // githubToolStripMenuItem
             // 
             this.githubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -313,12 +322,12 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // mEOToolStripMenuItem
+            // weeklyMEOToolStripMenuItem
             // 
-            this.mEOToolStripMenuItem.Name = "mEOToolStripMenuItem";
-            this.mEOToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.mEOToolStripMenuItem.Text = "M.E.O";
-            this.mEOToolStripMenuItem.Click += new System.EventHandler(this.mEOToolStripMenuItem_Click);
+            this.weeklyMEOToolStripMenuItem.Name = "weeklyMEOToolStripMenuItem";
+            this.weeklyMEOToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.weeklyMEOToolStripMenuItem.Text = "Weekly M.E.O";
+            this.weeklyMEOToolStripMenuItem.Click += new System.EventHandler(this.weeklyMEOToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -375,6 +384,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem scanTestResultToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weeklyMEOToolStripMenuItem;
     }
 }
 

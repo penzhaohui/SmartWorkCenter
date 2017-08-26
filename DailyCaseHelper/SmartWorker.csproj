@@ -246,6 +246,12 @@
     <Compile Include="Util\AccelaDBUtil.cs" />
     <Compile Include="Util\EmailUtil.cs" />
     <Compile Include="Util\AccelaCaseUtil.cs" />
+    <Compile Include="WeeklyMEOReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeeklyMEOReport.Designer.cs">
+      <DependentUpon>WeeklyMEOReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="WeeklyReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateMyJIRAIssueFromSalesforce.resx">
       <DependentUpon>UpdateMyJIRAIssueFromSalesforce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeeklyMEOReport.resx">
+      <DependentUpon>WeeklyMEOReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WeeklyReportForm.resx">
       <DependentUpon>WeeklyReportForm.cs</DependentUpon>

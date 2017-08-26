@@ -328,5 +328,16 @@ namespace com.smartwork
             batchMEOForm.MinimizeBox = false;
             batchMEOForm.Show();
         }
+
+        private void weeklyMEOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            WeeklyMEOReport WeeklyMEOReport = new WeeklyMEOReport();
+            WeeklyMEOReport.WindowState = FormWindowState.Maximized;
+            WeeklyMEOReport.MdiParent = this;
+            WeeklyMEOReport.MaximizeBox = false;
+            WeeklyMEOReport.MinimizeBox = false;
+            WeeklyMEOReport.Show();
+        }
     }
 }

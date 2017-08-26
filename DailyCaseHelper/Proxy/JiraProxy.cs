@@ -258,7 +258,7 @@ namespace com.smartwork.Proxy
 
             if (toTimeSlot < 0)
             {
-                sql = " updated >= -" + DateTime.Now.Subtract(from).Hours + "h ";
+                sql = " updated >= -" + fromTimeSlot + "h ";
             }
             else
             {
@@ -644,5 +644,23 @@ namespace com.smartwork.Proxy
 
             return issueList;
         }
+
+        public static async Task<List<Issue>> GetUpdatedIssueList(DateTime from, DateTime to)
+        {
+            IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
+
+            string sql = " issuetype not in (Task, Sub-task) AND reporter in (\"Peter.peng@missionsky.com\") ";
+            sql += " AND resolutiondate >= " + from.ToString("yyyy-MM-dd") + " AND resolutiondate <= " + to.ToString("yyyy-MM-dd");           
+
+            List<Issue> issueList = new List<Issue>();
+            var issues = jira.GetIssuesByQuery("ENGSUPP", "", sql);
+            foreach (Issue issue in issues)
+            {
+                issueList.Add(issue);
+            }
+
+            return issueList;
+        }
+
     }
 }
