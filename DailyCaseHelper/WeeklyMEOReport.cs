@@ -15,14 +15,98 @@ namespace com.smartwork
 {
     public partial class WeeklyMEOReport : Form
     {
+        private static List<JiraIssue> jiraIssueList = new List<JiraIssue>();
         public WeeklyMEOReport()
         {
             InitializeComponent();
         }
 
-        private void btnSync_Click(object sender, EventArgs e)
+        private async void btnSync_Click(object sender, EventArgs e)
         {
+            this.btnSync.Enabled = false;
 
+            if (jiraIssueList == null || jiraIssueList.Count <= 0)
+            {
+                this.btnSync.Enabled = true;
+                return;
+            }
+
+            foreach (var issue in jiraIssueList)
+            {
+                if (issue.subtasks == null || issue.subtasks.Count <= 0)
+                {
+                    continue;
+                }
+
+                foreach (var key in issue.subtasks.Keys)
+                {
+                    var subTask = issue.subtasks[key];
+
+                    IssueRef issueRef = new IssueRef();
+                    issueRef.key = subTask.key;
+                    issueRef.id = subTask.key;
+
+                    if (subTask == null
+                        || subTask.timespent <= 0
+                        || subTask.worklogs == null
+                        || subTask.worklogs.Count <= 0)
+                    {
+                        continue;
+                    }
+
+                    var lastWorkLog = subTask.worklogs[subTask.worklogs.Count - 1];
+                    var lastAssigneeEmailAddress = lastWorkLog.assigneeEmailAddress;
+                    
+                    var subTaskItem = await JiraProxy.LoadIssue(issueRef);
+                    if (subTaskItem == null || subTaskItem.fields == null)
+                    {
+                        continue;
+                    }
+
+                    if (subTask.assignee == "Jerry Lu")
+                    {
+                        // https://accelaeng.atlassian.net/rest/api/2/user/picker?query=peter.peng@missionsky.com
+                        JiraUser jiraUser = new JiraUser();
+
+                        if ("likko.zhang@missionsky.com" == lastAssigneeEmailAddress)
+                        {
+                            lastAssigneeEmailAddress = "likko.zhang";
+                        }
+                        jiraUser.name = lastAssigneeEmailAddress;
+                        subTaskItem.fields.assignee = jiraUser;
+
+                        JiraProxy.UpdateSubTask(subTaskItem);
+                    }
+
+                    if ("Closed".Equals(issue.status, StringComparison.InvariantCultureIgnoreCase)
+                        && !"Closed".Equals(subTask.status, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if ("Case".Equals(issue.issueType, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            if ("Review and Recreate(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Review and Recreate(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Research Root Cause".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                JiraProxy.CloseSubTask(issueRef);
+                            }
+                        }
+
+                        if ("Bug".Equals(issue.issueType, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            if ("Code Fix(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Write Test Case(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Execute Test Case(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Write Release Notes(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Review Release Notes(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                JiraProxy.CloseSubTask(issueRef);
+                            }
+                        }
+                    }
+                }
+            }
+
+            this.btnSync.Enabled = true;
         }
 
         private async void btnPull_Click(object sender, EventArgs e)
@@ -33,16 +117,14 @@ namespace com.smartwork
             DateTime to = this.dtpTo.Value;
 
             var issues = await JiraProxy.GetUpdatedIssueList(from, to);
-
             
-
             if (issues == null || issues.Count == 0)
             {
                 this.btnPull.Enabled = true;
                 return;
             }
 
-            List<JiraIssue> jiraIssueList = new List<JiraIssue>();
+            jiraIssueList.Clear();
             JiraIssue jiraIssue = null;
 
             foreach (var issue in issues)

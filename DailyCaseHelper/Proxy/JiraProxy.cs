@@ -382,12 +382,33 @@ namespace com.smartwork.Proxy
         public static async void CloseSubTask(IssueRef issueRef)
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
-            var transitions = jira.GetTransitions(issueRef);
-            foreach (var transition in transitions)
+
+            bool isClosed = false;
+            while (true)
             {
-                if ("Closed" == transition.name)
+                var transitions = jira.GetTransitions(issueRef);
+
+                Transition lastTransition = null;
+
+                foreach (var transition in transitions)
                 {
-                    jira.TransitionIssue(issueRef, transition);
+                    lastTransition = transition;
+
+                    if ("Closed".Equals(transition.name, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        jira.TransitionIssue(issueRef, transition);
+                        isClosed = true;
+                        break;
+                    }
+                }
+
+                if (isClosed == false && lastTransition != null)
+                {
+                    jira.TransitionIssue(issueRef, lastTransition);
+                }
+                else
+                {
+                    break;
                 }
             }
         }
