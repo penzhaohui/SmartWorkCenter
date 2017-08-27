@@ -93,7 +93,10 @@ namespace com.smartwork
 
                         if ("Bug".Equals(issue.issueType, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            if ("Code Fix(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                            if ("Review and Recreate(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Review and Recreate(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Research Root Cause".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
+                                || "Code Fix(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
                                 || "Write Test Case(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
                                 || "Execute Test Case(QA)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
                                 || "Write Release Notes(Dev)".Equals(subTask.name, StringComparison.InvariantCultureIgnoreCase)
@@ -200,7 +203,7 @@ namespace com.smartwork
                     }
                 }
 
-                jiraIssue.timespent = (int)Math.Round((double)timeSpentSeconds / 3600, 2);
+                jiraIssue.timespent = Math.Round((double)timeSpentSeconds / 3600, 2);
                 jiraIssueList.Add(jiraIssue);
             }
 
@@ -525,7 +528,7 @@ namespace com.smartwork
             public string assigneeEmailAddress { get; set; }
             public string assigneeDisplayName { get; set; }
             public string status { get; set; }
-            public int timespent { get; set; }
+            public double timespent { get; set; }
             public Dictionary<string, SubTask> subtasks { get; set; }
         }
 

@@ -52,6 +52,7 @@
             this.dailyWorkLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchCreateSubTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weeklyMEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkCommitCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testrailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,6 @@
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.weeklyMEOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -263,6 +263,13 @@
             this.mEOToolStripMenuItem.Text = "M.E.O";
             this.mEOToolStripMenuItem.Click += new System.EventHandler(this.mEOToolStripMenuItem_Click);
             // 
+            // weeklyMEOToolStripMenuItem
+            // 
+            this.weeklyMEOToolStripMenuItem.Name = "weeklyMEOToolStripMenuItem";
+            this.weeklyMEOToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.weeklyMEOToolStripMenuItem.Text = "Weekly M.E.O";
+            this.weeklyMEOToolStripMenuItem.Click += new System.EventHandler(this.weeklyMEOToolStripMenuItem_Click);
+            // 
             // githubToolStripMenuItem
             // 
             this.githubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -322,13 +329,6 @@
             this.statusMessage.Name = "statusMessage";
             this.statusMessage.Size = new System.Drawing.Size(0, 17);
             // 
-            // weeklyMEOToolStripMenuItem
-            // 
-            this.weeklyMEOToolStripMenuItem.Name = "weeklyMEOToolStripMenuItem";
-            this.weeklyMEOToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.weeklyMEOToolStripMenuItem.Text = "Weekly M.E.O";
-            this.weeklyMEOToolStripMenuItem.Click += new System.EventHandler(this.weeklyMEOToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +339,8 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Smart Worker";
             this.menuStrip1.ResumeLayout(false);

@@ -79,6 +79,9 @@
             this.SFQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SFStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NextJiraStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Timespent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaseCommentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalCommentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbWeeklyBaseline.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCaseList)).BeginInit();
             this.SuspendLayout();
@@ -386,7 +389,10 @@
             this.Status,
             this.SFQueue,
             this.SFStatus,
-            this.NextJiraStatus});
+            this.NextJiraStatus,
+            this.Timespent,
+            this.CaseCommentCount,
+            this.TotalCommentCount});
             this.grdCaseList.Location = new System.Drawing.Point(26, 227);
             this.grdCaseList.Name = "grdCaseList";
             this.grdCaseList.Size = new System.Drawing.Size(1274, 511);
@@ -524,12 +530,34 @@
             this.NextJiraStatus.HeaderText = "NextJiraStatus";
             this.NextJiraStatus.Name = "NextJiraStatus";
             this.NextJiraStatus.ReadOnly = true;
+            this.NextJiraStatus.Visible = false;
+            // 
+            // Timespent
+            // 
+            this.Timespent.DataPropertyName = "Timespent";
+            this.Timespent.HeaderText = "Total Time Spent";
+            this.Timespent.Name = "Timespent";
+            this.Timespent.ReadOnly = true;
+            // 
+            // CaseCommentCount
+            // 
+            this.CaseCommentCount.DataPropertyName = "CaseCommentCount";
+            this.CaseCommentCount.HeaderText = "Case Comment Count";
+            this.CaseCommentCount.Name = "CaseCommentCount";
+            // 
+            // TotalCommentCount
+            // 
+            this.TotalCommentCount.DataPropertyName = "TotalCommentCount";
+            this.TotalCommentCount.HeaderText = "Total Comment Count";
+            this.TotalCommentCount.Name = "TotalCommentCount";
+            this.TotalCommentCount.ReadOnly = true;
             // 
             // frmWeeklyReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 750);
+            this.ControlBox = false;
             this.Controls.Add(this.grdCaseList);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnGet);
@@ -538,7 +566,11 @@
             this.Controls.Add(this.lblSpecifiedSunday);
             this.Controls.Add(this.grbWeeklyBaseline);
             this.Controls.Add(this.dtpStartDate);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmWeeklyReportForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Weekly Report Form";
             this.grbWeeklyBaseline.ResumeLayout(false);
             this.grbWeeklyBaseline.PerformLayout();
@@ -601,6 +633,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SFQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn SFStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn NextJiraStatus;
-
+        private System.Windows.Forms.DataGridViewTextBoxColumn Timespent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CaseCommentCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalCommentCount;
     }
 }

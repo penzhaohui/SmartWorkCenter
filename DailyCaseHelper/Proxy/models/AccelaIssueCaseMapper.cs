@@ -28,5 +28,6 @@ namespace com.smartwork.Proxy.models
         public List<string> FixVersions { get; set; }
         public List<Comment> Comments { get; set; }
         public string ReleaseNote { get; set; }
+        public int AggregateTimeSpent { get; set; }
     }
 }

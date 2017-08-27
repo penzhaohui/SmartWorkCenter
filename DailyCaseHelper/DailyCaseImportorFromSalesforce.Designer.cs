@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grbImportTodayCaseList = new System.Windows.Forms.GroupBox();
+            this.chkOnlyNewCase = new System.Windows.Forms.CheckBox();
             this.btnShowOpenCase = new System.Windows.Forms.Button();
             this.chkExcludeEngQA = new System.Windows.Forms.CheckBox();
             this.btnShowPendingCases = new System.Windows.Forms.Button();
@@ -77,7 +78,6 @@
             this.btnSendDailyCaseSummaryReport = new System.Windows.Forms.Button();
             this.btnImportToJira = new System.Windows.Forms.Button();
             this.lblExportTodayCaseList = new System.Windows.Forms.Label();
-            this.chkOnlyNewCase = new System.Windows.Forms.CheckBox();
             this.grbImportTodayCaseList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbExportTodayCaseList.SuspendLayout();
@@ -104,6 +104,16 @@
             this.grbImportTodayCaseList.TabIndex = 2;
             this.grbImportTodayCaseList.TabStop = false;
             this.grbImportTodayCaseList.Text = "1. Import Today Case List";
+            // 
+            // chkOnlyNewCase
+            // 
+            this.chkOnlyNewCase.AutoSize = true;
+            this.chkOnlyNewCase.Location = new System.Drawing.Point(859, 13);
+            this.chkOnlyNewCase.Name = "chkOnlyNewCase";
+            this.chkOnlyNewCase.Size = new System.Drawing.Size(99, 17);
+            this.chkOnlyNewCase.TabIndex = 20;
+            this.chkOnlyNewCase.Text = "Only New Case";
+            this.chkOnlyNewCase.UseVisualStyleBackColor = true;
             // 
             // btnShowOpenCase
             // 
@@ -560,24 +570,19 @@
             this.lblExportTodayCaseList.Text = "Update the \"Comment\" column, click \"Send Daily Report\" to send case list to your " +
     "mail box. ";
             // 
-            // chkOnlyNewCase
-            // 
-            this.chkOnlyNewCase.AutoSize = true;
-            this.chkOnlyNewCase.Location = new System.Drawing.Point(859, 13);
-            this.chkOnlyNewCase.Name = "chkOnlyNewCase";
-            this.chkOnlyNewCase.Size = new System.Drawing.Size(99, 17);
-            this.chkOnlyNewCase.TabIndex = 20;
-            this.chkOnlyNewCase.Text = "Only New Case";
-            this.chkOnlyNewCase.UseVisualStyleBackColor = true;
-            // 
             // DailyCaseImportorFromSalesforce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 762);
+            this.ControlBox = false;
             this.Controls.Add(this.grbExportTodayCaseList);
             this.Controls.Add(this.grbImportTodayCaseList);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DailyCaseImportorFromSalesforce";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Smart Worker";
             this.grbImportTodayCaseList.ResumeLayout(false);
             this.grbImportTodayCaseList.PerformLayout();

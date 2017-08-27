@@ -165,6 +165,7 @@ namespace com.smartwork
             int N = 1;
 
             Dictionary<string, AccelaCase> SFCaseList = new Dictionary<string, AccelaCase>();
+            Dictionary<string, int> SFCaseCommentCounter = new Dictionary<string, int>();
 
             int mondayCaseCommentCount = 0;
             int tuesdayCaseCommentCount = 0;
@@ -198,6 +199,7 @@ namespace com.smartwork
 
                     if (caseInfo.CaseComments != null && caseInfo.CaseComments.Records != null && caseInfo.CaseComments.Records.Count > 0)
                     {
+                        int caseCommentCountor = 0;
                         foreach (CaseComment comment in caseInfo.CaseComments.Records)
                         {
                             if (IsSameday(comment.CreatedDate, monday))
@@ -208,6 +210,7 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 mondayCaseCommentCount++;
                                 System.Console.WriteLine("[1] " + caseInfo.CaseNumber);
                             }
@@ -219,6 +222,7 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 tuesdayCaseCommentCount++;
                                 System.Console.WriteLine("[2] " + caseInfo.CaseNumber);
                             }
@@ -230,12 +234,19 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 wednesdayCaseCommentCount++;
                                 System.Console.WriteLine("[3] " + caseInfo.CaseNumber);
                             }
                             else if (IsSameday(comment.CreatedDate, thursday))
                             {
-                                caseList.Add(caseInfo);
+                                if (!SFCaseList.ContainsKey(caseInfo.CaseNumber))
+                                {
+                                    caseList.Add(caseInfo);
+                                    SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
+                                }
+
+                                caseCommentCountor++;
                                 thursdayCaseCommentCount++;
                                 System.Console.WriteLine("[4] " + caseInfo.CaseNumber);                                
                             }
@@ -247,6 +258,7 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 fridayCaseCommentCount++;
                                 System.Console.WriteLine("[5] " + caseInfo.CaseNumber);                                
                             }
@@ -258,6 +270,7 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 saturdayCaseCommentCount++;
                                 System.Console.WriteLine("[6] " + caseInfo.CaseNumber);                                
                             }
@@ -269,10 +282,13 @@ namespace com.smartwork
                                     SFCaseList.Add(caseInfo.CaseNumber, caseInfo);
                                 }
 
+                                caseCommentCountor++;
                                 sundayCaseCommentCount++;
                                 System.Console.WriteLine("[7] " + caseInfo.CaseNumber);
-                            }
+                            }                          
                         }
+
+                        SFCaseCommentCounter.Add(caseInfo.CaseNumber, caseCommentCountor);
                     }
                 }
             }
@@ -308,6 +324,7 @@ namespace com.smartwork
                     accelaIssueCaseMapper.HotCase = issue.fields.labels.Contains("HotCase");
                     accelaIssueCaseMapper.Missionsky = issue.fields.labels.Contains("Missionsky");
                     accelaIssueCaseMapper.JiraLabels = issue.fields.labels;
+                    accelaIssueCaseMapper.AggregateTimeSpent = issue.fields.aggregatetimespent;
 
                     JiraMapping.Add(accelaIssueCaseMapper.CaseNumber, accelaIssueCaseMapper);
                 }
@@ -349,6 +366,9 @@ namespace com.smartwork
             table.Columns.Add("Assignee", typeof(string));
             table.Columns.Add("AssigneeQA", typeof(string));
             table.Columns.Add("CaseComments", typeof(List<CaseComment>));
+            table.Columns.Add("CaseCommentCount", typeof(int));
+            table.Columns.Add("TotalCommentCount", typeof(int));
+            table.Columns.Add("Timespent", typeof(string));
 
             Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
 
@@ -440,6 +460,7 @@ namespace com.smartwork
                 if (caseinfo.CaseComments != null && caseinfo.CaseComments.Records != null)
                 {
                     row["CaseComments"] = caseinfo.CaseComments.Records;
+                    row["TotalCommentCount"] = caseinfo.CaseComments.Records.Count;
 
                     CaseComment comment = caseinfo.CaseComments.Records[0];
                     //lastModifiedDate = comment.CreatedDate.Year + "-" + (comment.CreatedDate.Month < 10 ? "0" + comment.CreatedDate.Month : "" + comment.CreatedDate.Month) + "-" + (comment.CreatedDate.Day < 10 ? "0" + comment.CreatedDate.Day : "" + comment.CreatedDate.Day);
@@ -483,7 +504,7 @@ namespace com.smartwork
                             }
                         }
                     }
-                }
+                }                
 
                 row["Reviewer"] = assignee;
                 row["Comments"] = temComment;
@@ -511,6 +532,8 @@ namespace com.smartwork
 
                 row["TargetedRelease"] = caseinfo.TargetedRelease;
                 row["BZID"] = caseinfo.BZID;
+                row["CaseCommentCount"] = SFCaseCommentCounter[caseinfo.CaseNumber];
+                row["Timespent"] = Math.Round((double)tempIssue.AggregateTimeSpent/3600,2);
 
                 table.Rows.Add(row);
                 index++;

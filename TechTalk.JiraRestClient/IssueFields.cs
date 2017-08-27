@@ -113,6 +113,10 @@ namespace TechTalk.JiraRestClient
         /// </summary>
         public int timespent { get; set; }
 
+        public int aggregatetimespent { get; set; }
+
+        public DateTime resolutiondate { get; set; }        
+
         /// <summary>
         /// Estimated Effort
         /// </summary>
