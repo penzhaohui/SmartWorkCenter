@@ -368,7 +368,7 @@ namespace com.smartwork
             table.Columns.Add("CaseComments", typeof(List<CaseComment>));
             table.Columns.Add("CaseCommentCount", typeof(int));
             table.Columns.Add("TotalCommentCount", typeof(int));
-            table.Columns.Add("Timespent", typeof(string));
+            table.Columns.Add("Timespent", typeof(double));
 
             Dictionary<string, string> Reviewers = SalesforceProxy.GetReviewerNamesList();
 
@@ -636,6 +636,9 @@ namespace com.smartwork
                                         <th align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Summary</th>
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Reviewer</th>                                   
                                         <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Comments</th>
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Case Comment Count</th>
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Total Case Comment</th>
+                                        <th align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;font-weight:bold;background:#ccc;'>Total Time Spent</th>
                                     </tr>";
 
             DataTable dataTable = grdCaseList.DataSource as DataTable;
@@ -661,8 +664,10 @@ namespace com.smartwork
                 string jiaStstus = "";
                 string caseId = "";
                 string comment = "";
-                string caseCommentBody = "";
-                bool isNeedDoubleReview = false;
+                string caseCommentBody = "";                
+                double CaseCommentCount = 0.0;
+                double TotalCommentCount = 0.0;
+                double TotalTimespent = 0.0;
 
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -692,18 +697,10 @@ namespace com.smartwork
 
                     caseComment = row["CaseComment"] as CaseComment;
                     caseCommentBody = (caseComment != null ? caseComment.CommentBody : "");
-
-                    isNeedDoubleReview = false;
-                    if (!String.IsNullOrEmpty(caseCommentBody) && (caseCommentBody.ToLower().Contains("released")
-                                                           || caseCommentBody.ToLower().Contains(" fix ")
-                                                           || caseCommentBody.ToLower().Contains("released")
-                                                           || caseCommentBody.ToLower().Contains("fixed")
-                                                           || caseCommentBody.ToLower().Contains("bug")
-                                                           || caseCommentBody.ToLower().Contains("missionsky")
-                                                           || caseCommentBody.ToLower().Contains("asap")))
-                    {
-                        isNeedDoubleReview = true;
-                    }
+                    
+                    CaseCommentCount = (int)row["CaseCommentCount"];
+                    TotalCommentCount = (int)row["TotalCommentCount"];
+                    TotalTimespent = (double)row["Timespent"];
 
                     weekyCaseSummary += String.Format(@"<tr>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{0}</td>
@@ -721,6 +718,9 @@ namespace com.smartwork
                                                         <td align='left' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{11}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{12}</td>
                                                         <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{13}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{17}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{18}</td>
+                                                        <td align='center' style='border-right:1px solid #888;border-bottom:1px solid #888;padding:1px 10px;'>{19}h</td>
                                                     </tr>",
                                                        (i + 1),         // 0
                                                        product,         // 1
@@ -739,7 +739,10 @@ namespace com.smartwork
                                                        comment,
                                                        caseId,
                                                        "", //(isNeedDoubleReview ? "font-weight:bold;font-style:italic;color:red" : "color:green")
-                                                       (rank == 0 ? "" : "" + rank)
+                                                       (rank == 0 ? "" : "" + rank),
+                                                       CaseCommentCount,
+                                                       TotalCommentCount,
+                                                       TotalTimespent
                                                        );
                 }
             }

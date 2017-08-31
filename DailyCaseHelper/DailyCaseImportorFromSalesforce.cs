@@ -1147,11 +1147,26 @@ namespace com.smartwork
                         issue.id = jiraID;
 
                         JiraProxy.CreateComment(issue, "Copied from salesforce:\n---------------------------------------------------------\n" + caseComment.CommentBody);
+
+                        RemoveLable(issue, "TOP10");
                     }
                 }
             }
 
             this.btnMoveCommentToJIRA.Enabled = true;
+        }
+
+        private async void RemoveLable(IssueRef issueRef, string label)
+        {
+            var issue = await JiraProxy.LoadIssue(issueRef);
+            if (issue.fields != null
+                && issue.fields.labels != null
+                && issue.fields.labels.Contains(label))
+            {
+                issue.fields.labels.Remove(label);
+
+                JiraProxy.UpdateIssue(issue);
+            }
         }
 
         private void btnSendDailyCommentEmail_Click(object sender, EventArgs e)
