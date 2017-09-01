@@ -100,10 +100,7 @@ namespace com.smartwork
                     {
                         foreach (var worklog in workLogs)
                         {
-                            if (worklog.created.Year == from.Year
-                                && worklog.created.Month == from.Month
-                                && worklog.created.Day >= from.Day
-                                && worklog.created.Day < to.Day)
+                            if (DateTime.Compare(worklog.created, from) >= 0 && DateTime.Compare(worklog.created, to) <= 0)
                             {
                                 individualWorkLog = new IndividualWorkLog();
                                 individualWorkLog.subTaskKey = issue.key;
@@ -141,10 +138,7 @@ namespace com.smartwork
                         {
                             System.Console.WriteLine("Work Log are created on " + worklog.created);
 
-                            if (worklog.created.Year == from.Year
-                                && worklog.created.Month == from.Month
-                                && worklog.created.Day >= from.Day
-                                && worklog.created.Day < to.Day)
+                            if (DateTime.Compare(worklog.created, from) >= 0 && DateTime.Compare(worklog.created, to) <= 0)
                             {
                                 individualWorkLog = new IndividualWorkLog();
                                 //individualWorkLog.subTaskKey = issue.fields.parent.key;

@@ -174,11 +174,12 @@ namespace com.smartwork.Proxy
                 if(isCommentFilter) {
                     sql += " where casecomment.createdby.name = 'Accela Support Team' ";
                     sql += "       or casecomment.createdby.name = 'Accela Engineering Team' ";
-                    //sql += "       or casecomment.createdby.name = 'Jerry Lu' ";
-                    //sql += "       or casecomment.createdby.name = 'Robinson Leung' ";
-                    //sql += "       or casecomment.createdby.name = 'Anderson Liu' ";
-                    //sql += "       or casecomment.createdby.name = 'Greg Mietelski' ";
-                }
+                    sql += "       or casecomment.createdby.name = 'Accela Engineering Support' ";
+                //sql += "       or casecomment.createdby.name = 'Jerry Lu' ";
+                //sql += "       or casecomment.createdby.name = 'Robinson Leung' ";
+                //sql += "       or casecomment.createdby.name = 'Anderson Liu' ";
+                //sql += "       or casecomment.createdby.name = 'Greg Mietelski' ";
+            }
                  
              sql += @" order by createddate desc) 
                        from case 
