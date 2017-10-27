@@ -287,7 +287,7 @@
             this.SFQueue,
             this.SFStatus,
             this.NextJiraStatus});
-            this.grdCaseList.Location = new System.Drawing.Point(13, 80);
+            this.grdCaseList.Location = new System.Drawing.Point(19, 80);
             this.grdCaseList.Name = "grdCaseList";
             this.grdCaseList.Size = new System.Drawing.Size(1254, 522);
             this.grdCaseList.TabIndex = 7;

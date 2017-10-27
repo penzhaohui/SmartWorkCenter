@@ -27,14 +27,17 @@ namespace com.smartwork
         {
             List<string> members = new List<string>();
 
-            //members.Add("peter.peng@missionsky.com");
+            //members.Add("peter.peng@missionsky.com");        
             members.Add("john.huang@missionsky.com");
             members.Add("louis.he@missionsky.com");
             members.Add("likko.zhang");
             members.Add("alex.li@missionsky.com");
             members.Add("andy.li@missionsky.com");
             members.Add("ainy.xiao@missionsky.com");
+     
 
+            members.Add("bass.yang@missionsky.com");
+            
             members.Add("felix.chen@missionsky.com");
             members.Add("kevin.chen@missionsky.com");
             members.Add("clare.han@missionsky.com");
@@ -49,6 +52,7 @@ namespace com.smartwork
             members.Add("venli.li@missionsky.com");
 
             members.Add("jlu@accela.com");
+           
 
             return members;
         }

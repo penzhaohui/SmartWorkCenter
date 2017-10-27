@@ -74,6 +74,13 @@ namespace com.smartwork.Proxy
                             limit " + n;
 
             var cases = new List<AccelaCase>();
+
+            /*
+            sql = @"select Id, CaseId, case.CaseNumber, CreatedById, CreatedBy.name, CreatedDate,NewValue, OldValue, IsDeleted 
+                    from CaseHistory 
+                    where case.CaseNumber = '17ACC-253892' AND Field = 'Status' AND  CreatedDate >= 2011-12-31T00:00:00Z AND  CreatedDate <= 2017-12-31T00:00:00Z ";
+                    */
+
             var results = await Client.QueryAsync<AccelaCase>(sql);
             var totalSize = results.TotalSize;
 
@@ -402,6 +409,7 @@ namespace com.smartwork.Proxy
             Reviewers.Add("Andy", "Andy.Li");
             Reviewers.Add("Kevin", "Kevin.Chen");
             Reviewers.Add("Tata", "Tata.Liang");
+            Reviewers.Add("Miky", "Miky.Hu");
 
 
             Reviewers.Add("Mandy", "Mandy.Zhou");
