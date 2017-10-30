@@ -35,6 +35,8 @@ namespace com.smartwork
                 end = DateUtil.GetWeekLastDaySat(DateTime.Today.AddDays(-7));
             }
 
+            this.dtpStartDate.Value = from;
+
             var caseNoList = await SalesforceProxy.GetProcessedCaseNOs(from, end, "Accela Support Team");
             this.txtInputCaseList.Text = string.Join(",", caseNoList);
         }
