@@ -204,6 +204,7 @@
     <Compile Include="Proxy\models\CaseAttachment.cs" />
     <Compile Include="Proxy\models\AttributeType.cs" />
     <Compile Include="Proxy\models\CaseComment.cs" />
+    <Compile Include="Proxy\models\CaseHistory.cs" />
     <Compile Include="Proxy\models\Contact.cs" />
     <Compile Include="Proxy\models\NewCaseComment.cs" />
     <Compile Include="Proxy\models\User.cs" />
@@ -244,6 +245,7 @@
       <DependentUpon>UpdateMyJIRAIssueFromSalesforce.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\AccelaDBUtil.cs" />
+    <Compile Include="Util\DateUtil.cs" />
     <Compile Include="Util\EmailUtil.cs" />
     <Compile Include="Util\AccelaCaseUtil.cs" />
     <Compile Include="WeeklyMEOReport.cs">

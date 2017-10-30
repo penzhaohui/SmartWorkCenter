@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.smartwork.Proxy.models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechTalk.JiraRestClient;

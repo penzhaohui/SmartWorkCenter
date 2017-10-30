@@ -21,6 +21,22 @@ namespace com.smartwork
         public frmWeeklyReportForm()
         {
             InitializeComponent();
+            LoadProcessedCase();
+        }
+
+        private async void LoadProcessedCase()
+        {
+            DateTime from = DateUtil.GetWeekFirstDaySun(DateTime.Today);
+            DateTime end = DateUtil.GetWeekLastDaySat(DateTime.Today);
+
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+            {
+                from = DateUtil.GetWeekFirstDaySun(DateTime.Today.AddDays(-7));
+                end = DateUtil.GetWeekLastDaySat(DateTime.Today.AddDays(-7));
+            }
+
+            var caseNoList = await SalesforceProxy.GetProcessedCaseNOs(from, end, "Accela Support Team");
+            this.txtInputCaseList.Text = string.Join(",", caseNoList);
         }
 
         private async void btnGet_Click(object sender, EventArgs e)

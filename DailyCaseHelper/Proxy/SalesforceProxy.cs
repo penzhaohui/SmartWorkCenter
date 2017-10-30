@@ -38,6 +38,32 @@ namespace com.smartwork.Proxy
             return Client;
         }
 
+        public static async Task<List<string>> GetProcessedCaseNOs(DateTime from, DateTime end, string editor)
+        {
+            List<string> caseNos = new List<string>();
+
+            string sql = @" select Id, CaseId, case.CaseNumber, CreatedById, CreatedBy.name, CreatedDate,NewValue, OldValue, IsDeleted
+                            from CaseHistory
+                            where Field = 'Status' ";
+
+            sql += $" AND CreatedDate >= {from.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}Z ";
+            sql += $" AND CreatedDate <= {end.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}Z ";
+            sql += $" AND CreatedBy.name = '{editor}' ";
+            
+            var cases = new List<CaseHistory>();
+            var results = await Client.QueryAsync<CaseHistory>(sql);
+
+            foreach (CaseHistory history in results.Records)
+            {
+                if (!caseNos.Contains(history.Case.CaseNumber))
+                {
+                    caseNos.Add(history.Case.CaseNumber);
+                }
+            }
+
+            return caseNos;
+        }
+
         public static async Task<string> CreateCaseComment(NewCaseComment comment)
         {
             var results = await Client.CreateAsync("CaseComment", comment);
