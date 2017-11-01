@@ -201,10 +201,10 @@
     <Compile Include="Proxy\models\AccelaIssueCaseMapper.cs" />
     <Compile Include="Proxy\models\AccelaIssueFields.cs" />
     <Compile Include="Proxy\models\Account.cs" />
+    <Compile Include="Proxy\models\CaseHistory.cs" />
     <Compile Include="Proxy\models\CaseAttachment.cs" />
     <Compile Include="Proxy\models\AttributeType.cs" />
     <Compile Include="Proxy\models\CaseComment.cs" />
-    <Compile Include="Proxy\models\CaseHistory.cs" />
     <Compile Include="Proxy\models\Contact.cs" />
     <Compile Include="Proxy\models\NewCaseComment.cs" />
     <Compile Include="Proxy\models\User.cs" />
