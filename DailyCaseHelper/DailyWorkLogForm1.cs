@@ -384,7 +384,7 @@ namespace com.smartwork
 
             dailyWorkLogSummaryReport += "</table>";
 
-            string content = @"Hi, All guys<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "<br/><br/>Thanks<br/>Accela Support Team";
+            string content = @"Hi, All<br/><br/>Below is the work log summary report.<br/><br/>" + dailyWorkLogSummaryReport + "<br/><br/>Thanks<br/>Accela Support Team";
             string fromEmailAddress = "auto_sender@missionsky.com";
             string toEmailAddress = "peter.peng@missionsky.com;";
             if (DateTime.Now.Hour >= 17)
