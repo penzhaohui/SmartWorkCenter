@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Salesforce.Common.Models;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Salesforce.Common
 {
@@ -64,6 +65,9 @@ namespace Salesforce.Common
 
             request.Headers.UserAgent.ParseAdd(string.Concat(UserAgent, "/", ApiVersion));
 
+            if (request.RequestUri.Scheme == "https")
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
             var responseMessage = await _httpClient.SendAsync(request).ConfigureAwait(false);
             var response = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -78,7 +82,7 @@ namespace Salesforce.Common
             else
             {
                 var errorResponse = JsonConvert.DeserializeObject<AuthErrorResponse>(response);
-                throw new ForceAuthException(errorResponse.Error, errorResponse.ErrorDescription);
+                throw new ForceAuthException(errorResponse.Error, errorResponse.ErrorDescription);                
             }
         }
 
@@ -114,6 +118,9 @@ namespace Salesforce.Common
             };
 
             request.Headers.UserAgent.ParseAdd(string.Concat(UserAgent, "/", ApiVersion));
+
+            if (request.RequestUri.Scheme == "https")
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             var responseMessage = await _httpClient.SendAsync(request).ConfigureAwait(false);
             var response = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -154,6 +161,9 @@ namespace Salesforce.Common
             };
 
             request.Headers.UserAgent.ParseAdd(string.Concat(UserAgent, "/", ApiVersion));
+
+            if (request.RequestUri.Scheme == "https")
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
             var responseMessage = await _httpClient.SendAsync(request).ConfigureAwait(false);
             var response = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
