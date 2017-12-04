@@ -21,7 +21,7 @@ namespace com.smartwork.Proxy
         private static readonly string Password = ConfigurationManager.AppSettings["Password"] + SecurityToken;
         private static readonly string IsSandboxUser = ConfigurationManager.AppSettings["IsSandboxUser"];
         public static IForceClient Client = null;
-
+        public static string AccessToken = "";
         public static async Task<IForceClient> CreateAuthenticationClient()
         {
             var auth = new AuthenticationClient();
@@ -32,6 +32,8 @@ namespace com.smartwork.Proxy
                 : "https://login.salesforce.com/services/oauth2/token";
             
             await auth.UsernamePasswordAsync(ConsumerKey, ConsumerSecret, Username, Password, url);
+
+            AccessToken = auth.AccessToken;
 
             Client = new ForceClient(auth.InstanceUrl, auth.AccessToken, auth.ApiVersion);
 
@@ -295,7 +297,7 @@ namespace com.smartwork.Proxy
 
             var uri = "https://na26.salesforce.com//services/data/v32.0/sobjects/Attachment/" + attachmentId + "/body";
             var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uri);
-            req.Headers.Add("Authorization: OAuth " + "00D300000000B1r!AQMAQNMJOSIlO5nn.h399Yq7kWkBqgLwi_3uDgOwDCP1jbgDOxPmVpqOXdTOzBIAc8bQyteeSjZaTdK3ReQ8tUXdrWPQ9zug");
+            req.Headers.Add("Authorization: OAuth " + AccessToken);
             req.ContentType = "application/json";
             req.Method = "GET";
             var resp = req.GetResponse();

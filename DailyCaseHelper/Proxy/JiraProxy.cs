@@ -105,7 +105,16 @@ namespace com.smartwork.Proxy
         {
             IJiraClient jira = new JiraClient("https://accelaeng.atlassian.net/", "peter.peng@missionsky.com", "peter.peng");
             string sql = "(";
-            sql += " created >= -15d AND summary ~ \"" + customer + "\"";
+
+            if (customer.IndexOf(",") > 0)
+            {
+                sql += " created >= -15d AND summary ~ \"" + customer.Substring(0, customer.IndexOf(",")) + "\"";
+            }
+            else
+            {
+                sql += " created >= -15d AND summary ~ \"" + customer + "\"";
+            }
+            
             sql += ")";
 
             List<Issue> issueList = new List<Issue>();
