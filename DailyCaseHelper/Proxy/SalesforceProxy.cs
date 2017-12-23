@@ -285,7 +285,7 @@ namespace com.smartwork.Proxy
             cases.AddRange(results.Records);
 
             return cases;
-        }
+        }        
 
         public static byte[] GetCaseAttachmentById(string attachmentId)
         {
